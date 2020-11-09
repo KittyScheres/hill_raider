@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="surface.cpp">
+      <Filter>template code</Filter>
+    </ClCompile>
+    <ClCompile Include="template.cpp">
+      <Filter>template code</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>down_below\cpp_files\states</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>down_below\cpp_files\graphics_objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>down_below\cpp_files\graphics_objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="surface.h">
+      <Filter>template code</Filter>
+    </ClInclude>
+    <ClInclude Include="template.h">
+      <Filter>template code</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>down_below\header_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>down_below\header_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>down_below\header_files\graphics_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>down_below\header_files\graphics_objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="template code">
+      <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below">
+      <UniqueIdentifier>{802bdb65-e4ce-4855-bc49-13a3b1aa5485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files">
+      <UniqueIdentifier>{e6cfcbe0-56fe-4239-93ac-366119d7354c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files">
+      <UniqueIdentifier>{3759f279-8d26-47b4-b725-ccb9f66173bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\states">
+      <UniqueIdentifier>{f285019d-01ec-4fda-aadc-3c88d75f160f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\states">
+      <UniqueIdentifier>{656395b4-ce12-46f7-9168-742950d865c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\graphics_objects">
+      <UniqueIdentifier>{96e59b71-33a2-474b-bbb3-bcdee7de7420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\graphics_objects">
+      <UniqueIdentifier>{a0ea5239-dbfc-43b8-9e1e-7d02418f8e00}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_readme.txt">
+      <Filter>template code</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
