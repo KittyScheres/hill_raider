@@ -235,6 +235,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateCallback.h" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		SetState(new DownBelow::StartMenu());
+		SetState(new DownBelow::StartMenu(this));
 	}
 	
 	// -----------------------------------------------------------

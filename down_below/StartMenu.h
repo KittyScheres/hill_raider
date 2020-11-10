@@ -1,6 +1,6 @@
 #pragma once
 
-#include "State.h"
+#include "StateCallback.h"
 #include "surface.h"
 #include "Image.h"
 #include "Animation.h"
@@ -14,12 +14,14 @@ namespace DownBelow
 	class StartMenu: public State
 	{
 	public:
-		StartMenu();
+		StartMenu(StateCallback* iCallback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~StartMenu();
 
 	private:
+		StateCallback* callback = nullptr;
 		Animation* tank = nullptr;
+		float timer = 0.f;
 	};
 }

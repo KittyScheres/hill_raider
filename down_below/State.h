@@ -13,5 +13,6 @@ namespace DownBelow
 		virtual void Update(float deltaTime) {}
 		virtual void LateUpdate() {}
 		virtual void Render(Tmpl8::Surface* screen) {}
+		virtual ~State() {}
 	};
 }

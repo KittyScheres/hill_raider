@@ -6,8 +6,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
-	StartMenu::StartMenu()
+	StartMenu::StartMenu(StateCallback* iCallback)
 	{
+		callback = iCallback;
 		tank = new Animation("assets/ctankbase.tga", 16, 50.f, true, 0, 0);
 	}
 
@@ -17,6 +18,11 @@ namespace DownBelow
 	void StartMenu::Update(float deltaTime)
 	{
 		tank->UpdateAnimation(deltaTime);
+		timer += deltaTime;
+
+		if (timer >= 6000) {
+			callback->SetState(new StartMenu(callback));
+		}
 	}
 
 	// --------------------------------------------------
@@ -30,8 +36,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	StartMenu::~StartMenu() {
+	StartMenu::~StartMenu()
+	{
 		delete tank;
 		tank = nullptr;
+		callback = nullptr;
 	}
 }

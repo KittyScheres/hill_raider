@@ -38,6 +38,9 @@
     <ClInclude Include="Animation.h">
       <Filter>down_below\header_files\graphics_objects</Filter>
     </ClInclude>
+    <ClInclude Include="StateCallback.h">
+      <Filter>down_below\cpp_files\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

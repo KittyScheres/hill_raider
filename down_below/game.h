@@ -1,11 +1,11 @@
 #pragma once
 
-#include "State.h"
+#include "StateCallback.h"
 
 namespace Tmpl8
 {
 	class Surface;
-	class Game
+	class Game : public DownBelow::StateCallback
 	{
 	public:
 		void SetTarget(Surface* surface) { screen = surface; }
