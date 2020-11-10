@@ -16,7 +16,6 @@ namespace DownBelow
 	public:
 		StartMenu();
 		void Update(float deltaTime);
-		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);
 		~StartMenu();
 
