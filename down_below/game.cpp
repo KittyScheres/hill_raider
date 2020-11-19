@@ -11,6 +11,7 @@ namespace Tmpl8
 	void Game::Init()
 	{
 		SetState(new DownBelow::StartMenu(this));
+		inputManager = DownBelow::InputManager::GetInstance();
 	}
 	
 	// -----------------------------------------------------------
@@ -20,6 +21,8 @@ namespace Tmpl8
 	{
 		delete currentState;
 		currentState = nullptr;
+
+		inputManager->DestroyInstance();
 	}
 
 	// -----------------------------------------------------------
@@ -29,6 +32,8 @@ namespace Tmpl8
 	{
 		// clear the graphics window
 		screen->Clear(0);
+		// get new key inputs
+		inputManager->UpdateKeysState();
 		// call update the game
 		currentState->Update(deltaTime);
 		// check and apply collision

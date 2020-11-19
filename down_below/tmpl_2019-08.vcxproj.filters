@@ -17,6 +17,18 @@
     <ClCompile Include="Animation.cpp">
       <Filter>down_below\cpp_files\graphics_objects</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>down_below\cpp_files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlay.cpp">
+      <Filter>down_below\cpp_files\states</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>down_below\cpp_files\game_components\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>down_below\cpp_files\game_components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -40,6 +52,18 @@
     </ClInclude>
     <ClInclude Include="StateCallback.h">
       <Filter>down_below\cpp_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>down_below\header_files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlay.h">
+      <Filter>down_below\header_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>down_below\header_files\game_components\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>down_below\header_files\game_components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +90,24 @@
     </Filter>
     <Filter Include="down_below\cpp_files\graphics_objects">
       <UniqueIdentifier>{a0ea5239-dbfc-43b8-9e1e-7d02418f8e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\managers">
+      <UniqueIdentifier>{c5cb0ec4-51b4-4b64-85fa-80ad609abb6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\managers">
+      <UniqueIdentifier>{18657ea2-b1df-45dd-bee9-edc69a5b7060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\game_components">
+      <UniqueIdentifier>{f325dc8d-dca6-4dc1-a354-2e65dbd11d9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\game_components">
+      <UniqueIdentifier>{d21b1384-2acc-487b-b51e-3b052840794e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\game_components\screens">
+      <UniqueIdentifier>{8ed0514a-d6f1-4800-9038-706c5e48eb30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\game_components\screens">
+      <UniqueIdentifier>{4ae28eb4-f73a-43cc-b174-e6c8b3fe8982}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

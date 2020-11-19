@@ -224,7 +224,11 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameData.cpp" />
+    <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
@@ -232,7 +236,11 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameData.h" />
+    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateCallback.h" />

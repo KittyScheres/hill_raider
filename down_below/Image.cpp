@@ -26,7 +26,9 @@ namespace DownBelow
 				for (int iX = 0; iX < srcWidth; iX++) {
 					int screenXpos = x + iX;
 					if (screenXpos >= 0 && screenXpos <= screenWidth) {
-						screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = src->GetBuffer()[iX + (iY * srcWidth)];
+						if ((src->GetBuffer()[iX + (iY * srcWidth)] >> 24) != 0) {
+							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = src->GetBuffer()[iX + (iY * srcWidth)];
+						}
 					}
 				}
 			}

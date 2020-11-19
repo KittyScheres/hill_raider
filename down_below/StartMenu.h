@@ -4,6 +4,9 @@
 #include "surface.h"
 #include "Image.h"
 #include "Animation.h"
+#include "InputManager.h"
+#include "GamePlay.h"
+#include <cstdio>
 
 namespace DownBelow 
 {
@@ -21,7 +24,21 @@ namespace DownBelow
 
 	private:
 		StateCallback* callback = nullptr;
-		Animation* tank = nullptr;
-		float timer = 0.f;
+		InputManager* inputManager = nullptr;
+
+		Image* background = nullptr;
+		Image* title = nullptr;
+
+		int menuButtonsY[3] {4 * 64, (5 * 64) + 32 , 7 * 64};
+		Image* playGameButtonBackground = nullptr;
+		Image* checkControlsButtonBackground = nullptr;
+		Image* exitGameButtonBackground = nullptr;
+		
+		Image* playGameButtonText = nullptr;
+		Image* checkControlsButtonText = nullptr;
+		Image* exitGameButtonText = nullptr;
+
+		short selectedMenuItem = 0;
+		Image* menuItemHighlight = nullptr;
 	};
 }

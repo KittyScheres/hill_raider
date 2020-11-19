@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StateCallback.h"
+#include "InputManager.h"
 
 namespace Tmpl8
 {
@@ -16,10 +17,9 @@ namespace Tmpl8
 		void MouseUp( int button ) { /* implement if you want to detect mouse button presses */ }
 		void MouseDown( int button ) { /* implement if you want to detect mouse button presses */ }
 		void MouseMove( int x, int y ) { /* implement if you want to detect mouse movement */ }
-		void KeyUp( int key ) { /* implement if you want to handle keys */ }
-		void KeyDown( int key ) { /* implement if you want to handle keys */ }
 	private:
 		Surface* screen;
-		DownBelow::State* currentState;
+		DownBelow::InputManager* inputManager = nullptr;
+		DownBelow::State* currentState = nullptr;
 	};
 }; // namespace Tmpl8
