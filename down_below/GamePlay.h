@@ -4,6 +4,8 @@
 #include "StateCallback.h"
 #include "InputManager.h"
 #include "PauseScreen.h"
+#include "Ui.h"
+#include "Player.h"
 #include "GameData.h"
 
 namespace DownBelow
@@ -15,6 +17,8 @@ namespace DownBelow
 		InputManager* inputManager = nullptr;
 		bool gamePaused = false;
 		PauseScreen* pauseScreen = nullptr;
+		Ui* ui = nullptr;
+		Player* player = nullptr;
 
 	public:
 		GamePlay(StateCallback* iCallback);

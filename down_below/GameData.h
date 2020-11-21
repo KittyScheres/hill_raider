@@ -8,7 +8,7 @@ namespace DownBelow
 		static GameData* instance;
 
 	public:
-		const short MAX_HEALTH = 6;
+		const static short MAX_HEALTH = 6;
 		short playerHealth = 6;
 
 	public:

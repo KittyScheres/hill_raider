@@ -10,6 +10,8 @@ namespace DownBelow
 		callback = iCallback;
 		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen();
+		ui = new Ui();
+		player = new Player(0, 0, 325.f, 64, 64);
 		GameData::GetInstance();
 	}
 
@@ -30,6 +32,8 @@ namespace DownBelow
 			if (inputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
 				gamePaused = true;
 			}
+
+			player->Update(deltaTime);
 		}
 	}
 
@@ -39,7 +43,7 @@ namespace DownBelow
 	void GamePlay::LateUpdate()
 	{
 		if (!gamePaused) {
-			
+			player->LateUpdate();
 		}
 	}
 
@@ -52,7 +56,8 @@ namespace DownBelow
 			pauseScreen->Render(screen);
 		}
 		else {
-
+			player->Render(screen);
+			ui->Render(screen);
 		}
 	}
 
@@ -66,6 +71,12 @@ namespace DownBelow
 
 		delete pauseScreen;
 		pauseScreen = nullptr;
+
+		delete ui;
+		ui = nullptr;
+
+		delete player;
+		player = nullptr;
 
 		GameData::DestroyInstance();
 	}
