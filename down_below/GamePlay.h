@@ -6,6 +6,7 @@
 #include "PauseScreen.h"
 #include "Ui.h"
 #include "Player.h"
+#include "Floor.h"
 #include "GameData.h"
 
 namespace DownBelow
@@ -19,6 +20,7 @@ namespace DownBelow
 		PauseScreen* pauseScreen = nullptr;
 		Ui* ui = nullptr;
 		Player* player = nullptr;
+		Floor* floor = nullptr;
 
 	public:
 		GamePlay(StateCallback* iCallback);

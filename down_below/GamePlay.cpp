@@ -12,6 +12,7 @@ namespace DownBelow
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
 		player = new Player(0, 0, 325.f, 64, 64);
+		floor = new Floor();
 		GameData::GetInstance();
 	}
 
@@ -44,6 +45,31 @@ namespace DownBelow
 	{
 		if (!gamePaused) {
 			player->LateUpdate();
+
+			int playerX = player->GetPosition()[0];
+			int playerY = player->GetPosition()[1];
+
+			switch (floor->GetCurrentRoom()->GetTileMap()->GetCollision(playerX, playerY)) {
+			case 'w':
+				floor->MoveToNextRoom(Floor::UP);
+				player->SetPosition(7 * 64, 7 * 64);
+				break;
+
+			case 'd':
+				floor->MoveToNextRoom(Floor::RIGHT);
+				player->SetPosition(64, 5 * 64);
+				break;
+
+			case 's':
+				floor->MoveToNextRoom(Floor::DOWN);
+				player->SetPosition(7 * 64, 64);
+				break;
+
+			case 'a':
+				floor->MoveToNextRoom(Floor::LEFT);
+				player->SetPosition(13 * 64, 5 * 64);
+				break;
+			}
 		}
 	}
 
@@ -56,6 +82,7 @@ namespace DownBelow
 			pauseScreen->Render(screen);
 		}
 		else {
+			floor->Render(screen);
 			player->Render(screen);
 			ui->Render(screen);
 		}
@@ -77,6 +104,9 @@ namespace DownBelow
 
 		delete player;
 		player = nullptr;
+
+		delete floor;
+		floor = nullptr;
 
 		GameData::DestroyInstance();
 	}

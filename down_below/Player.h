@@ -21,6 +21,7 @@ namespace DownBelow
 		void Update(float deltaTime);
 		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);
+		void SetPosition(int iX, int iY);
 		int* GetPosition();
 		int GetWidth();
 		int GetHeight();

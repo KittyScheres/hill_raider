@@ -29,11 +29,20 @@
     <ClCompile Include="GameData.cpp">
       <Filter>down_below\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="Ui.cpp">
-      <Filter>down_below\cpp_files\game_components\ui</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>down_below\cpp_files\game_components\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Ui.cpp">
+      <Filter>down_below\cpp_files\game_components</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>down_below\cpp_files\game_components</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>down_below\cpp_files\game_components</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>down_below\cpp_files\game_components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,11 +80,20 @@
     <ClInclude Include="GameData.h">
       <Filter>down_below\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="Ui.h">
-      <Filter>down_below\header_files\game_components\ui</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>down_below\header_files\game_components\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Ui.h">
+      <Filter>down_below\header_files\game_components</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>down_below\header_files\game_components</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>down_below\header_files\game_components</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>down_below\header_files\game_components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -120,12 +138,6 @@
     </Filter>
     <Filter Include="down_below\header_files\game_components\screens">
       <UniqueIdentifier>{4ae28eb4-f73a-43cc-b174-e6c8b3fe8982}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="down_below\cpp_files\game_components\ui">
-      <UniqueIdentifier>{fb3c4630-7283-4b6e-a74a-96a7e6f06a48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="down_below\header_files\game_components\ui">
-      <UniqueIdentifier>{270b8667-23f3-4e05-89c2-bc7095e8358e}</UniqueIdentifier>
     </Filter>
     <Filter Include="down_below\header_files\game_components\entities">
       <UniqueIdentifier>{2e3af917-0025-40ef-92dc-8cda04d04332}</UniqueIdentifier>

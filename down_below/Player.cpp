@@ -13,7 +13,7 @@ namespace DownBelow
 		width = iWidth;
 		height = iHeight;
 		inputManager = InputManager::GetInstance();
-		playerSprite = new Image("assets/player/player.png", x, y);
+		playerSprite = new Image("assets/gameplay/player/player.png", x, y);
 	}
 
 	// --------------------------------------------------
@@ -53,6 +53,14 @@ namespace DownBelow
 	void Player::Render(Tmpl8::Surface* screen)
 	{
 		playerSprite->DrawImage(screen);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Player::SetPosition(int iX, int iY) {
+		x = iX;
+		y = iY;
 	}
 
 	// --------------------------------------------------
