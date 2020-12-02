@@ -11,7 +11,7 @@ namespace DownBelow
 		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
-		player = new Player(0, 0, 325.f, 64, 64);
+		player = new Player(64, 64, 325.f, 10, 10);
 		floor = new Floor();
 		GameData::GetInstance();
 	}
@@ -46,29 +46,33 @@ namespace DownBelow
 		if (!gamePaused) {
 			player->LateUpdate();
 
-			int playerX = player->GetPosition()[0];
-			int playerY = player->GetPosition()[1];
+			std::vector<std::vector<int>> hitbox = player->GetHitbox()->GetBoxPoints();
 
-			switch (floor->GetCurrentRoom()->GetTileMap()->GetCollision(playerX, playerY)) {
-			case 'w':
-				floor->MoveToNextRoom(Floor::UP);
-				player->SetPosition(7 * 64, 7 * 64);
-				break;
+			for (int i = 0; i < 4; i++) {
+				if (floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1]) != ' ') {
+					switch (floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1])) {
+					case 'w':
+						floor->MoveToNextRoom(Floor::UP);
+						player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), (7 * 64) + (player->GetSprite()->GetHeight() / 2));
+						break;
 
-			case 'd':
-				floor->MoveToNextRoom(Floor::RIGHT);
-				player->SetPosition(64, 5 * 64);
-				break;
+					case 'd':
+						floor->MoveToNextRoom(Floor::RIGHT);
+						player->SetPosition(64 + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+						break;
 
-			case 's':
-				floor->MoveToNextRoom(Floor::DOWN);
-				player->SetPosition(7 * 64, 64);
-				break;
+					case 's':
+						floor->MoveToNextRoom(Floor::DOWN);
+						player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), 64 + (player->GetSprite()->GetHeight() / 2));
+						break;
 
-			case 'a':
-				floor->MoveToNextRoom(Floor::LEFT);
-				player->SetPosition(13 * 64, 5 * 64);
-				break;
+					case 'a':
+						floor->MoveToNextRoom(Floor::LEFT);
+						player->SetPosition((13 * 64) + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+						break;
+					}
+					break;
+				}
 			}
 		}
 	}

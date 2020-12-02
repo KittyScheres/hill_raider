@@ -44,6 +44,9 @@
     <ClCompile Include="Room.cpp">
       <Filter>down_below\cpp_files\game_components</Filter>
     </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>down_below\cpp_files\game_components\physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -95,6 +98,9 @@
     <ClInclude Include="Room.h">
       <Filter>down_below\header_files\game_components</Filter>
     </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>down_below\header_files\game_components\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -144,6 +150,12 @@
     </Filter>
     <Filter Include="down_below\cpp_files\game_components\entities">
       <UniqueIdentifier>{080542ac-91d4-426c-9bd1-7b113e11ac42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\game_components\physics">
+      <UniqueIdentifier>{a7f8964d-e2c2-456b-ab37-08a5c6fb3120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\game_components\physics">
+      <UniqueIdentifier>{b41ca808-a521-4478-8c4c-88d8e2c6ed10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

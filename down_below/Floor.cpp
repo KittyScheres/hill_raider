@@ -2,6 +2,9 @@
 
 namespace DownBelow
 {
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	Floor::Floor()
 	{
 		char tilemap0[9][46]{
@@ -78,16 +81,25 @@ namespace DownBelow
 		currentRoom[1] = 1;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Floor::Render(Tmpl8::Surface* screen)
 	{
 		floorMap[currentRoom[0]][currentRoom[1]]->Render(screen);
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	Room* Floor::GetCurrentRoom()
 	{
 		return floorMap[currentRoom[0]][currentRoom[1]];
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Floor::MoveToNextRoom(MoveDirection direction)
 	{
 		switch (direction)
@@ -110,6 +122,9 @@ namespace DownBelow
 		}
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	Floor::~Floor()
 	{
 		delete floorMap[1][1];

@@ -2,6 +2,7 @@
 
 #include "Image.h"
 #include "InputManager.h"
+#include "Hitbox.h"
 #include <cstdio>
 
 namespace DownBelow
@@ -9,9 +10,13 @@ namespace DownBelow
 	class Player
 	{
 	private:
+		enum class MovementDirection {UP = 0, RIGHT, DOWN, LEFT};
+	private:
 		InputManager* inputManager = nullptr;
 		Image* playerSprite = nullptr;
+		Hitbox* hitbox = nullptr;
 		float speed = 0.f;
+		MovementDirection direction = MovementDirection::UP;
 		int x = 0;
 		int y = 0;
 		int width = 0;
@@ -25,6 +30,12 @@ namespace DownBelow
 		int* GetPosition();
 		int GetWidth();
 		int GetHeight();
+		Image* GetSprite();
+		Hitbox* GetHitbox();
 		~Player();
+	private:
+		void CheckForKeyPressed();
+		void CheckForKeyLetGo();
+		void MovePlayer(float deltaTime);
 	};
 }

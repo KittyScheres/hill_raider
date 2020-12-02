@@ -227,6 +227,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="Hitbox.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PauseScreen.h" />

@@ -39,12 +39,12 @@ namespace DownBelow
 			previousKeyState[i] = currentKeysState[i];
 		}
 
-		currentKeysState[ENTER] = GetAsyncKeyState(VK_RETURN);
-		currentKeysState[ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
-		currentKeysState[UP] = GetAsyncKeyState(VK_UP);
-		currentKeysState[RIGHT] = GetAsyncKeyState(VK_RIGHT);
-		currentKeysState[DOWN] = GetAsyncKeyState(VK_DOWN);
-		currentKeysState[LEFT] = GetAsyncKeyState(VK_LEFT);
+		currentKeysState[(int)Keys::ENTER] = GetAsyncKeyState(VK_RETURN);
+		currentKeysState[(int)Keys::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
+		currentKeysState[(int)Keys::UP] = GetAsyncKeyState(VK_UP);
+		currentKeysState[(int)Keys::RIGHT] = GetAsyncKeyState(VK_RIGHT);
+		currentKeysState[(int)Keys::DOWN] = GetAsyncKeyState(VK_DOWN);
+		currentKeysState[(int)Keys::LEFT] = GetAsyncKeyState(VK_LEFT);
 	}
 
 	// --------------------------------------------------
@@ -52,7 +52,7 @@ namespace DownBelow
 	// --------------------------------------------------
 	bool InputManager::KeyDown(Keys key)
 	{
-		return currentKeysState[key];
+		return currentKeysState[(int)key];
 	}
 	
 	// --------------------------------------------------
@@ -60,7 +60,7 @@ namespace DownBelow
 	// --------------------------------------------------
 	bool InputManager::KeyUp(Keys key)
 	{
-		return !currentKeysState[key];
+		return !currentKeysState[(int)key];
 	}
 	
 	// --------------------------------------------------
@@ -68,7 +68,14 @@ namespace DownBelow
 	// --------------------------------------------------
 	bool InputManager::KeyPressed(Keys key)
 	{
-		return !previousKeyState[key] && currentKeysState[key];
+		return !previousKeyState[(int)key] && currentKeysState[(int)key];
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
+	bool InputManager::KeyLetGo(Keys key) {
+		return previousKeyState[(int)key] && !currentKeysState[(int)key];
 	}
 
 	// --------------------------------------------------

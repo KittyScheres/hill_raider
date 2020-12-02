@@ -7,7 +7,7 @@ namespace DownBelow
 	class InputManager
 	{
 	public:
-		enum Keys {ENTER = 0, ESCAPE, UP, RIGHT, DOWN, LEFT};
+		enum class Keys {ENTER = 0, ESCAPE, UP, RIGHT, DOWN, LEFT};
 
 	private:
 		static InputManager* instance;
@@ -21,6 +21,7 @@ namespace DownBelow
 		bool KeyDown(Keys key);
 		bool KeyUp(Keys key);
 		bool KeyPressed(Keys key);
+		bool KeyLetGo(Keys key);
 
 	private:
 		InputManager();
