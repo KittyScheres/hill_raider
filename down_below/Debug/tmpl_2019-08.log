@@ -1,6 +1,8 @@
-﻿  InputManager.cpp
+﻿  GamePlay.cpp
   Player.cpp
-  template.cpp
+  StartMenu.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  game.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating Code...
-D:\breda\game\down_below\down_below\Player.cpp(182): warning C4172: returning address of local variable or temporary: position
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe

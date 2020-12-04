@@ -3,13 +3,14 @@
 #include "Image.h"
 #include "InputManager.h"
 #include "Hitbox.h"
+#include <vector>
 #include <cstdio>
 
 namespace DownBelow
 {
 	class Player
 	{
-	private:
+	public:
 		enum class MovementDirection {UP = 0, RIGHT, DOWN, LEFT};
 	private:
 		InputManager* inputManager = nullptr;
@@ -27,7 +28,8 @@ namespace DownBelow
 		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);
 		void SetPosition(int iX, int iY);
-		int* GetPosition();
+		std::vector<int> GetPosition();
+		MovementDirection GetDirection();
 		int GetWidth();
 		int GetHeight();
 		Image* GetSprite();

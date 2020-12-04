@@ -8,71 +8,71 @@ namespace DownBelow
 	Floor::Floor()
 	{
 		char tilemap0[9][46]{
-		"aa ac ac ac ac ac ac aewac ac ac ac ac ac ab ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ee ca ca ca ca ca ca ad ",
-		"beaca ca ca ca ca ed cb eb ca ca ca ca ca afd",
-		"bc ca ca ca ca ca ca ec ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"ba bd bd bd bd bd bd bfsbd bd bd bd bd bd bb "
+		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"beaca ca ca ca ca ca ca ca ca ca ca ca ca afd",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 		};
 
 		floorMap[1][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap0, 64, 64));
 
 		char tilemap1[9][46]{
-		"aa ac ac ac ac ac ac ac ac ac ac ac ac ac ab ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ee ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ed cb eb ca ca ca ca ca ad",
-		"bc ca ca ca ca ca ca ec ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"ba bd bd bd bd bd bd bfsbd bd bd bd bd bd bb "
+		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca edxcbxebxca ca ca ca ca adx",
+		"bcxca ca ca ca ca caxecxca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 		};
 
 		floorMap[1][0] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap1, 64, 64));
 
 		char tilemap2[9][46]{
-		"aa ac ac ac ac ac ac ac ac ac ac ac ac ac ab ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ee ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ed cb eb ca ca ca ca ca afd",
-		"bc ca ca ca ca ca ca ec ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"ba bd bd bd bd bd bd bd bd bd bd bd bd bd bb "
+		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca edxcbxebxca ca ca ca ca afd",
+		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
 		floorMap[0][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap2, 64, 64));
 
 		char tilemap3[9][46]{
-		"aa ac ac ac ac ac ac aewac ac ac ac ac ac ab ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ee ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ed cb eb ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ec ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"ba bd bd bd bd bd bd bd bd bd bd bd bd bd bb "
+		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca edxcbxebxca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
 		floorMap[1][2] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap3, 64, 64));
 
 		char tilemap4[9][46]{
-		"aa ac ac ac ac ac ac ac ac ac ac ac ac ac ab ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ee ca ca ca ca ca ca ad ",
-		"beaca ca ca ca ca ed cb eb ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ec ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"bc ca ca ca ca ca ca ca ca ca ca ca ca ca ad ",
-		"ba bd bd bd bd bd bd bd bd bd bd bd bd bd bb "
+		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
+		"beaca ca ca ca ca edxcbxebxca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
 		floorMap[2][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap4, 64, 64));

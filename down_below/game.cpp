@@ -34,7 +34,7 @@ namespace Tmpl8
 		screen->Clear(0);
 		// get new key inputs
 		inputManager->UpdateKeysState();
-		// call update the game
+		// call update for the game
 		currentState->Update(deltaTime);
 		// check and apply collision
 		currentState->LateUpdate();
