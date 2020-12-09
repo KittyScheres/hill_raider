@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Player.h"
 #include "Room.h"
 
 namespace DownBelow
@@ -7,7 +8,7 @@ namespace DownBelow
 	class Floor
 	{
 	public:
-		enum MoveDirection {UP = 0, RIGHT, DOWN, LEFT};
+		enum class MoveDirection {UP = 0, RIGHT, DOWN, LEFT};
 
 	private:
 		Room* floorMap[3][3];
@@ -15,7 +16,9 @@ namespace DownBelow
 
 	public:
 		Floor();
+		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
+		void LateUpdate(Player* player);
 		Room* GetCurrentRoom();
 		void MoveToNextRoom(MoveDirection direction);
 		~Floor();

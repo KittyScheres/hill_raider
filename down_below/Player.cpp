@@ -5,16 +5,11 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Player::Player(int iX, int iY, float iSpeed, int iWidth, int iHeight)
+	Player::Player(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
-		x = iX;
-		y = iY;
 		speed = iSpeed;
-		width = iWidth;
-		height = iHeight;
 		inputManager = InputManager::GetInstance();
-		playerSprite = new Image("assets/gameplay/player/player.png", x - (width / 2), y - (height / 2));
-		hitbox = new Hitbox(x, y, width, height);
+		playerSprite = new Image("assets/gameplay/player/player.png", x , y );
 	}
 
 	// --------------------------------------------------
@@ -32,9 +27,13 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void Player::LateUpdate()
+	void Player::LateUpdate(std::vector<Entity*> entityList)
 	{
-
+		for (auto entity : entityList) {
+			if (TestBoxCollision(entity)) {
+				
+			}
+		}
 	}
 
 	// --------------------------------------------------
@@ -58,32 +57,8 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	std::vector<int> Player::GetPosition()
-	{
-		return std::vector<int> { x, y };
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	Player::MovementDirection Player::GetDirection() {
+	Entity::MovementDirection Player::GetDirection() {
 		return direction;
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	int Player::GetWidth()
-	{
-		return width;
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	int Player::GetHeight()
-	{
-		return height;
 	}
 
 	// --------------------------------------------------
@@ -97,21 +72,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Hitbox* Player::GetHitbox()
-	{
-		return hitbox;
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
 	Player::~Player()
 	{
 		delete playerSprite;
 		playerSprite = nullptr;
-
-		delete hitbox;
-		hitbox = nullptr;
 
 		inputManager = nullptr;
 	}

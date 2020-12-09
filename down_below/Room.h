@@ -1,7 +1,8 @@
 #pragma once
 
-#include "surface.h"
+#include "Player.h"
 #include "TileMap.h"
+#include "RagDoll.h"
 
 namespace DownBelow
 {
@@ -9,10 +10,13 @@ namespace DownBelow
 	{
 	private:
 		TileMap* tileMap = nullptr;
+		RagDoll* entity = nullptr;
 
 	public:
 		Room(TileMap* iTilemap);
+		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
+		void LateUpdate(Player* player);
 		TileMap* GetTileMap();
 		~Room();
 	};

@@ -35,6 +35,7 @@ namespace DownBelow
 			}
 
 			player->Update(deltaTime);
+			floor->Update(deltaTime);
 		}
 	}
 
@@ -46,6 +47,7 @@ namespace DownBelow
 		if (!gamePaused) {
 			std::vector<std::vector<int>> hitbox = player->GetHitbox()->GetBoxPoints();
 			CheckTileMapCollision(hitbox);
+			floor->LateUpdate(player);
 		}
 	}
 
@@ -105,41 +107,41 @@ namespace DownBelow
 
 		switch (collisionChar) {
 		case 'w':
-			floor->MoveToNextRoom(Floor::UP);
+			floor->MoveToNextRoom(Floor::MoveDirection::UP);
 			player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), (7 * 64) + (player->GetSprite()->GetHeight() / 2));
 			break;
 
 		case 'd':
-			floor->MoveToNextRoom(Floor::RIGHT);
+			floor->MoveToNextRoom(Floor::MoveDirection::RIGHT);
 			player->SetPosition(64 + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
 			break;
 
 		case 's':
-			floor->MoveToNextRoom(Floor::DOWN);
+			floor->MoveToNextRoom(Floor::MoveDirection::DOWN);
 			player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), 64 + (player->GetSprite()->GetHeight() / 2));
 			break;
 
 		case 'a':
-			floor->MoveToNextRoom(Floor::LEFT);
+			floor->MoveToNextRoom(Floor::MoveDirection::LEFT);
 			player->SetPosition((13 * 64) + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
 			break;
 
 		case 'x':
 			switch (player->GetDirection())
 			{
-			case Player::MovementDirection::UP:
+			case Entity::MovementDirection::UP:
 				player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - ((pointY % 64) - 1)));
 				break;
 
-			case Player::MovementDirection::RIGHT:
+			case Entity::MovementDirection::RIGHT:
 				player->SetPosition(player->GetPosition()[0] - ((pointX % 64) + 1), player->GetPosition()[1]);
 				break;
 
-			case Player::MovementDirection::DOWN:
+			case Entity::MovementDirection::DOWN:
 				player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - ((pointY % 64) + 1));
 				break;
 
-			case Player::MovementDirection::LEFT:
+			case Entity::MovementDirection::LEFT:
 				player->SetPosition(player->GetPosition()[0] + (64 - ((pointX % 64) - 1)), player->GetPosition()[1]);
 				break;
 			}

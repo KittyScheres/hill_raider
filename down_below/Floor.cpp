@@ -84,10 +84,25 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
+	void Floor::Update(float deltaTime) {
+		floorMap[currentRoom[0]][currentRoom[1]]->Update(deltaTime);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Floor::Render(Tmpl8::Surface* screen)
 	{
 		floorMap[currentRoom[0]][currentRoom[1]]->Render(screen);
 	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Floor::LateUpdate(Player* player) {
+		floorMap[currentRoom[0]][currentRoom[1]]->LateUpdate(player);
+	}
+
 
 	// --------------------------------------------------
 	//
@@ -104,19 +119,19 @@ namespace DownBelow
 	{
 		switch (direction)
 		{
-		case UP:
+		case MoveDirection::UP:
 			--currentRoom[1];
 			break;
 
-		case RIGHT:
+		case MoveDirection::RIGHT:
 			++currentRoom[0];
 			break;
 
-		case DOWN:
+		case MoveDirection::DOWN:
 			++currentRoom[1];
 			break;
 
-		case LEFT:
+		case MoveDirection::LEFT:
 			--currentRoom[0];
 			break;
 		}
