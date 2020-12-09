@@ -10,6 +10,7 @@ namespace DownBelow
 	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
 		speed = iSpeed;
+		direction = Entity::MovementDirection::RIGHT;
 		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
 	}
 
@@ -18,6 +19,8 @@ namespace DownBelow
 	// --------------------------------------------------
 	void RagDoll::Update(float deltaTime)
 	{
+		distanceMoved = (int)(speed * (deltaTime / 1000));
+		x += distanceMoved;
 		hitbox->SetPosition(x, y);
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth() / 2), y - (ragDollSprite->GetHeight() / 2));
 	}
@@ -29,7 +32,9 @@ namespace DownBelow
 	{
 		for (auto entity : entityList) {
 			if (TestBoxCollision(entity)) {
-				
+				ApplyEntityCollision(entity);
+				ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth() / 2), y - (ragDollSprite->GetHeight() / 2));
+				hitbox->SetPosition(x, y);
 			}
 		}
 	}

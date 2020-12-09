@@ -10,7 +10,6 @@ namespace DownBelow
 	private:
 		Image* ragDollSprite = nullptr;
 		float speed = 0.f;
-		MovementDirection direction = MovementDirection::UP;
 	public:
 		RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight);
 		void Update(float deltaTime);

@@ -56,6 +56,13 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
+	Entity::MovementDirection Entity::GetDirection() {
+		return direction;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	Hitbox* Entity::GetHitbox()
 	{
 		return hitbox;
@@ -94,5 +101,43 @@ namespace DownBelow
 		}
 
 		return collide;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Entity::ApplyEntityCollision(Entity* otherEntity) {
+		int vX = otherEntity->GetPosition()[0] - x;
+		int vY = otherEntity->GetPosition()[1] - y;
+		float mag = sqrtf((vX * vX) + (vY * vY));
+		float nX = vX / mag;
+		float nY = vY / mag;
+
+		switch (direction)
+		{
+		case Entity::MovementDirection::UP:
+			if ((nX > -0.75f && nX < 0.75f) && nY < 0.f) {
+				y += distanceMoved;
+			}
+			break;
+
+		case Entity::MovementDirection::RIGHT:
+			if ((nY > -0.75f && nY < 0.75f) && nX > 0.f) {
+				x -= distanceMoved;
+			}
+			break;
+
+		case Entity::MovementDirection::DOWN:
+			if ((nX > -0.75f && nX < 0.75f) && nY > 0.f) {
+				y -= distanceMoved;
+			}
+			break;
+
+		case Entity::MovementDirection::LEFT:
+			if ((nY > -0.75f && nY < 0.75f) && nX < 0.f) {
+				x += distanceMoved;
+			}
+			break;
+		}
 	}
 }

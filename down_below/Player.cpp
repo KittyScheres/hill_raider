@@ -31,7 +31,9 @@ namespace DownBelow
 	{
 		for (auto entity : entityList) {
 			if (TestBoxCollision(entity)) {
-				
+				ApplyEntityCollision(entity);
+				playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
+				hitbox->SetPosition(x, y);
 			}
 		}
 	}
@@ -172,29 +174,35 @@ namespace DownBelow
 	// --------------------------------------------------
 	void Player::MovePlayer(float deltaTime)
 	{
+		distanceMoved = 0;
+
 		switch (direction)
 		{
 		case MovementDirection::UP:
 			if (inputManager->KeyDown(InputManager::Keys::UP)) {
-				y -= (int)(speed * (deltaTime / 1000));
+				distanceMoved = (int)(speed * (deltaTime / 1000));
+				y -= distanceMoved;
 			}
 			break;
 
 		case MovementDirection::RIGHT:
 			if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-				x += (int)(speed * (deltaTime / 1000));
+				distanceMoved = (int)(speed * (deltaTime / 1000));
+				x += distanceMoved;
 			}
 			break;
 
 		case MovementDirection::DOWN:
 			if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-				y += (int)(speed * (deltaTime / 1000));
+				distanceMoved = (int)(speed * (deltaTime / 1000));
+				y += distanceMoved;
 			}
 			break;
 
 		case MovementDirection::LEFT:
 			if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
-				x -= (int)(speed * (deltaTime / 1000));
+				distanceMoved = (int)(speed * (deltaTime / 1000));
+				x -= distanceMoved;
 			}
 			break;
 		}

@@ -8,7 +8,7 @@ namespace DownBelow
 	Room::Room(TileMap* iTilemap)
 	{
 		tileMap = iTilemap;
-		entity = new RagDoll(64 * 4, 64 * 3, 0.f, 64, 64);
+		entity = new RagDoll(64 * 4, 64 * 3, 150.f, 64, 64);
 	}
 
 	// --------------------------------------------------
