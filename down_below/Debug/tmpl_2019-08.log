@@ -1,14 +1,4 @@
 ﻿  Entity.cpp
 D:\breda\game\down_below\down_below\Entity.cpp(89,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\breda\game\down_below\down_below\Entity.cpp(112,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Floor.cpp
-  GamePlay.cpp
-  Player.cpp
-  RagDoll.cpp
-  Room.cpp
-  StartMenu.cpp
-D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  game.cpp
-D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
+D:\breda\game\down_below\down_below\Entity.cpp(114,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe

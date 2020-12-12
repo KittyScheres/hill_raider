@@ -94,9 +94,11 @@ namespace DownBelow
 			std::vector<std::vector<int>> entityHitbox = otherEntity->GetHitbox()->GetBoxPoints();
 
 			// check for box collision
-			if (((myHitbox[0][0] < entityHitbox[1][0] && myHitbox[0][0] > entityHitbox[0][0]) || (myHitbox[1][0] > entityHitbox[0][0] && myHitbox[1][0] < entityHitbox[1][0])) &&
-				((myHitbox[0][1] < entityHitbox[2][1] && myHitbox[0][1] > entityHitbox[0][1]) || (myHitbox[2][1] > entityHitbox[0][1] && myHitbox[2][1] < entityHitbox[2][1]))) {
+			if (((myHitbox[0][0] <= entityHitbox[1][0] && myHitbox[0][0] >= entityHitbox[0][0]) || (myHitbox[1][0] >= entityHitbox[0][0] && myHitbox[1][0] <= entityHitbox[1][0])) && ((myHitbox[0][1] <= entityHitbox[2][1] && myHitbox[0][1] >= entityHitbox[0][1]) || (myHitbox[2][1] >= entityHitbox[0][1] && myHitbox[2][1] <= entityHitbox[2][1])) ||
+				((myHitbox[0][0] < entityHitbox[0][0] && myHitbox[1][0] > entityHitbox[1][0]) && ((myHitbox[0][1] >= entityHitbox[0][1] && myHitbox[0][1] <= entityHitbox[2][1]) || (myHitbox[2][1] >= entityHitbox[0][1] && myHitbox[2][1] <= entityHitbox[2][1]))) ||
+				((myHitbox[0][1] < entityHitbox[0][1] && myHitbox[2][1] > entityHitbox[2][1]) && ((myHitbox[0][0] >= entityHitbox[0][0] && myHitbox[0][0] <= entityHitbox[1][0]) || (myHitbox[1][0] >= entityHitbox[0][0] && myHitbox[1][0] <= entityHitbox[1][0])))) {
 				collide = true;
+				
 			}
 		}
 
