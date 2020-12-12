@@ -19,5 +19,8 @@ namespace DownBelow
 		void LateUpdate(Player* player);
 		TileMap* GetTileMap();
 		~Room();
+
+	private:
+		void CheckTileMapCollision(Entity* entity);
 	};
 }

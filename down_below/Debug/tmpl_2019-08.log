@@ -1,4 +1,2 @@
-﻿  Entity.cpp
-D:\breda\game\down_below\down_below\Entity.cpp(89,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\breda\game\down_below\down_below\Entity.cpp(114,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Room.cpp
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe

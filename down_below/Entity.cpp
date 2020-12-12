@@ -32,6 +32,16 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
+	void Entity::SetPosition(int iX, int iY)
+	{
+		x = iX;
+		y = iY;
+		hitbox->SetPosition(x, y);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	std::vector<int> Entity::GetPosition()
 	{
 		return std::vector<int> {x, y};
