@@ -60,7 +60,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	TileMap::~TileMap()
 	{
-		delete tileMapSurface;
-		tileMapSurface = nullptr;
+		if (tileMapSurface != nullptr) {
+			delete tileMapSurface;
+			tileMapSurface = nullptr;
+		}
 	}
 }

@@ -83,8 +83,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	Entity::~Entity()
 	{
-		delete hitbox;
-		hitbox = nullptr;
+		if (hitbox != nullptr) {
+			delete hitbox;
+			hitbox = nullptr;
+		}
 	}
 
 	// --------------------------------------------------
@@ -151,5 +153,7 @@ namespace DownBelow
 			}
 			break;
 		}
+
+		this->SetPosition(x, y);
 	}
 }

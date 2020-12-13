@@ -28,15 +28,15 @@ namespace DownBelow
 		entity->Render(screen);
 	}
 
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	void Room::LateUpdate(Player* player)
+	void Room::RoomCheckEntityCollision(Player* player)
 	{
-		CheckTileMapCollision(entity);
-
 		entity->LateUpdate(std::vector<Entity*>{player});
 		player->LateUpdate(std::vector<Entity*>{entity});
+	}
+
+	void Room::RoomCheckTileMapCollsion()
+	{
+		CheckTileMapCollision(entity);
 	}
 	
 	// --------------------------------------------------
@@ -52,11 +52,15 @@ namespace DownBelow
 	// --------------------------------------------------
 	Room::~Room()
 	{
-		delete tileMap;
-		tileMap = nullptr;
+		if (tileMap != nullptr) {
+			delete tileMap;
+			tileMap = nullptr;
+		}
 
-		delete entity;
-		entity = nullptr;
+		if (entity != nullptr) {
+			delete entity;
+			entity = nullptr;
+		}
 	}
 
 	// --------------------------------------------------

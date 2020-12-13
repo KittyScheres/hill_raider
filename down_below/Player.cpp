@@ -32,8 +32,6 @@ namespace DownBelow
 		for (auto entity : entityList) {
 			if (TestBoxCollision(entity)) {
 				ApplyEntityCollision(entity);
-				playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
-				hitbox->SetPosition(x, y);
 			}
 		}
 	}
@@ -43,17 +41,8 @@ namespace DownBelow
 	// --------------------------------------------------
 	void Player::Render(Tmpl8::Surface* screen)
 	{
-		playerSprite->DrawImage(screen);
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	void Player::SetPosition(int iX, int iY) {
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
+		playerSprite->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
@@ -76,8 +65,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	Player::~Player()
 	{
-		delete playerSprite;
-		playerSprite = nullptr;
+		if (playerSprite != nullptr) {
+			delete playerSprite;
+			playerSprite = nullptr;
+		}
 
 		inputManager = nullptr;
 	}

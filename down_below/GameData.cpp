@@ -20,8 +20,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	void GameData::DestroyInstance()
 	{
-		delete instance;
-		instance = nullptr;
+		if (instance != nullptr) {
+			delete instance;
+			instance = nullptr;
+		}
 	}
 
 	// --------------------------------------------------

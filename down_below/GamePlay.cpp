@@ -35,7 +35,7 @@ namespace DownBelow
 			}
 
 			player->Update(deltaTime);
-			floor->Update(deltaTime);
+			floor->GetCurrentRoom()->Update(deltaTime);
 		}
 	}
 
@@ -45,9 +45,12 @@ namespace DownBelow
 	void GamePlay::LateUpdate()
 	{
 		if (!gamePaused) {
-			std::vector<std::vector<int>> hitbox = player->GetHitbox()->GetBoxPoints();
-			CheckTileMapCollision(hitbox);
-			floor->LateUpdate(player);
+			// check and apply entity collision
+			floor->GetCurrentRoom()->RoomCheckEntityCollision(player);
+			
+			// check and apply tile map collision
+			CheckTileMapCollision(player->GetHitbox()->GetBoxPoints());
+			floor->GetCurrentRoom()->RoomCheckTileMapCollsion();
 		}
 	}
 
@@ -60,7 +63,7 @@ namespace DownBelow
 			pauseScreen->Render(screen);
 		}
 		else {
-			floor->Render(screen);
+			floor->GetCurrentRoom()->Render(screen);
 			player->Render(screen);
 			ui->Render(screen);
 		}
@@ -74,17 +77,25 @@ namespace DownBelow
 		callback = nullptr;
 		inputManager = nullptr;
 
-		delete pauseScreen;
-		pauseScreen = nullptr;
+		if (pauseScreen != nullptr) {
+			delete pauseScreen;
+			pauseScreen = nullptr;
+		}
 
-		delete ui;
-		ui = nullptr;
+		if (ui != nullptr) {
+			delete ui;
+			ui = nullptr;
+		}
 
-		delete player;
-		player = nullptr;
+		if (player != nullptr) {
+			delete player;
+			player = nullptr;
+		}
 
-		delete floor;
-		floor = nullptr;
+		if (floor != nullptr) {
+			delete floor;
+			floor = nullptr;
+		}
 
 		GameData::DestroyInstance();
 	}

@@ -82,32 +82,50 @@ namespace DownBelow
 	// --------------------------------------------------
 	StartMenu::~StartMenu()
 	{
-		delete background;
-		background = nullptr;
+		if (background != nullptr) {
+			delete background;
+			background = nullptr;
+		}
 
-		delete title;
-		title = nullptr;
+		if (title != nullptr) {
+			delete title;
+			title = nullptr;
+		}
 
-		delete playGameButtonBackground;
-		playGameButtonBackground = nullptr;
+		if (playGameButtonBackground != nullptr) {
+			delete playGameButtonBackground;
+			playGameButtonBackground = nullptr;
+		}
 
-		delete checkControlsButtonBackground;
-		checkControlsButtonBackground = nullptr;
+		if (checkControlsButtonBackground != nullptr) {
+			delete checkControlsButtonBackground;
+			checkControlsButtonBackground = nullptr;
+		}
 
-		delete exitGameButtonBackground;
-		exitGameButtonBackground = nullptr;
+		if (exitGameButtonBackground != nullptr) {
+			delete exitGameButtonBackground;
+			exitGameButtonBackground = nullptr;
+		}
 
-		delete playGameButtonText;
-		playGameButtonText = nullptr;
+		if (playGameButtonText != nullptr) {
+			delete playGameButtonText;
+			playGameButtonText = nullptr;
+		}
 
-		delete checkControlsButtonText;
-		checkControlsButtonText = nullptr;
+		if (checkControlsButtonText != nullptr) {
+			delete checkControlsButtonText;
+			checkControlsButtonText = nullptr;
+		}
 
-		delete exitGameButtonText;
-		exitGameButtonText = nullptr;
+		if (exitGameButtonText != nullptr) {
+			delete exitGameButtonText;
+			exitGameButtonText = nullptr;
+		}
 
-		delete menuItemHighlight;
-		menuItemHighlight = nullptr;
+		if (menuItemHighlight != nullptr) {
+			delete menuItemHighlight;
+			menuItemHighlight = nullptr;
+		}
 
 		callback = nullptr;
 	}

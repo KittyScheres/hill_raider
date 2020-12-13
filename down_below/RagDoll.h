@@ -15,7 +15,6 @@ namespace DownBelow
 		void Update(float deltaTime);
 		void LateUpdate(std::vector<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);
-		void SetPosition(int iX, int iY);
 		MovementDirection GetDirection();
 		Image* GetSprite();
 		~RagDoll();

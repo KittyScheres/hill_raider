@@ -16,9 +16,6 @@ namespace DownBelow
 
 	public:
 		Floor();
-		void Update(float deltaTime);
-		void Render(Tmpl8::Surface* screen);
-		void LateUpdate(Player* player);
 		Room* GetCurrentRoom();
 		void MoveToNextRoom(MoveDirection direction);
 		~Floor();
