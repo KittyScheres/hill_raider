@@ -7,6 +7,12 @@ namespace DownBelow
 	// --------------------------------------------------
 	Floor::Floor()
 	{
+		for (int y = 0; y < ((sizeof(floorMap) / sizeof(Room*)) / (sizeof(floorMap[y]) / sizeof(Room*))); y++) {
+			for (int x = 0; x < (sizeof(floorMap[y]) / sizeof(Room*)); x++) {
+				floorMap[x][y] = nullptr;
+			}
+		}
+
 		char tilemap0[9][46]{
 		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
 		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
@@ -86,29 +92,6 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void Floor::Update(float deltaTime) {
-		floorMap[currentRoom[0]][currentRoom[1]]->Update(deltaTime);
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	void Floor::Render(Tmpl8::Surface* screen)
-	{
-		floorMap[currentRoom[0]][currentRoom[1]]->Render(screen);
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	void Floor::LateUpdate(Player* player) {
-		floorMap[currentRoom[0]][currentRoom[1]]->LateUpdate(player);
-	}
-
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
 	Room* Floor::GetCurrentRoom()
 	{
 		return floorMap[currentRoom[0]][currentRoom[1]];
@@ -146,10 +129,13 @@ namespace DownBelow
 	// --------------------------------------------------
 	Floor::~Floor()
 	{
-		delete floorMap[1][1];
-		delete floorMap[1][0];
-		delete floorMap[1][2];
-		delete floorMap[0][1];
-		delete floorMap[2][1];
+		for (int y = 0; y < ((sizeof(floorMap) / sizeof(Room*)) / (sizeof(floorMap[y]) / sizeof(Room*))); y++) {
+			for (int x = 0; x < (sizeof(floorMap[y]) / sizeof(Room*)); x++) {
+				if (floorMap[x][y] != nullptr) {
+					delete floorMap[x][y];
+					floorMap[x][y] = nullptr;
+				}
+			}
+		}
 	}
 }

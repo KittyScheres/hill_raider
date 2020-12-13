@@ -35,8 +35,10 @@ namespace DownBelow
 	Ui::~Ui()
 	{
 		for (auto halfHeart : healthBar) {
-			delete halfHeart;
-			halfHeart = nullptr;
+			if (halfHeart != nullptr) {
+				delete halfHeart;
+				halfHeart = nullptr;
+			}
 		}
 
 		gameData = nullptr;

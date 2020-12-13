@@ -22,8 +22,8 @@ namespace DownBelow
 		AStar::GetIntance()->FindPath(GetPosition());
 		distanceMoved = (int)(speed * (deltaTime / 1000));
 		x += distanceMoved;
-		hitbox->SetPosition(x, y);
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth() / 2), y - (ragDollSprite->GetHeight() / 2));
+		hitbox->SetPosition(x, y);
 	}
 
 	// --------------------------------------------------
@@ -34,8 +34,6 @@ namespace DownBelow
 		for (auto entity : entityList) {
 			if (TestBoxCollision(entity)) {
 				ApplyEntityCollision(entity);
-				ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth() / 2), y - (ragDollSprite->GetHeight() / 2));
-				hitbox->SetPosition(x, y);
 			}
 		}
 	}
@@ -45,18 +43,8 @@ namespace DownBelow
 	// --------------------------------------------------
 	void RagDoll::Render(Tmpl8::Surface* screen)
 	{
+		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
-	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	void RagDoll::SetPosition(int iX, int iY)
-	{
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
-		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth() / 2), y - (ragDollSprite->GetHeight() / 2));
 	}
 
 	// --------------------------------------------------
@@ -80,7 +68,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	RagDoll::~RagDoll()
 	{
-		delete ragDollSprite;
-		ragDollSprite = nullptr;
+		if (ragDollSprite != nullptr) {
+			delete ragDollSprite;
+			ragDollSprite = nullptr;
+		}
 	}
 }

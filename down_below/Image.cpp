@@ -74,7 +74,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	Image::~Image()
 	{
-		delete src;
-		src = nullptr;
+		if (src != nullptr) {
+			delete src;
+			src = nullptr;
+		}
 	}
 }

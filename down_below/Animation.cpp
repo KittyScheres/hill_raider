@@ -95,7 +95,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	Animation::~Animation()
 	{
-		delete src;
-		src = nullptr;
+		if (src != nullptr) {
+			delete src;
+			src = nullptr;
+		}
 	}
 }

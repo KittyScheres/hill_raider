@@ -26,8 +26,10 @@ namespace DownBelow
 	// --------------------------------------------------
 	void InputManager::DestroyInstance()
 	{
-		delete instance;
-		instance = nullptr;
+		if (instance != nullptr) {
+			delete instance;
+			instance = nullptr;
+		}
 	}
 
 	// --------------------------------------------------

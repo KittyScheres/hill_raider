@@ -16,7 +16,8 @@ namespace DownBelow
 		Room(TileMap* iTilemap);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
-		void LateUpdate(Player* player);
+		void RoomCheckEntityCollision(Player* player);
+		void RoomCheckTileMapCollsion();
 		TileMap* GetTileMap();
 		~Room();
 
