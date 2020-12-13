@@ -12,6 +12,7 @@ namespace DownBelow
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
 		player = new Player(64 * 8, 64 * 5, 325.f, 40, 40);
+		AStar::GetIntance()->SetEndGoal(player);
 		floor = new Floor();
 		GameData::GetInstance();
 	}

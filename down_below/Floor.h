@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "Room.h"
+#include "AStar.h"
 
 namespace DownBelow
 {

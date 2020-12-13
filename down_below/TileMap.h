@@ -18,6 +18,8 @@ namespace DownBelow
 		TileMap(char* TileMapSurfacePath, char iTileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT + 1], int iTileWidth, int iTileHeight);
 		void Render(Tmpl8::Surface* screen);
 		char GetCollision(int x, int y);
+		int GetTileHeight();
+		int GetTileWidth();
 		~TileMap();
 
 	private:

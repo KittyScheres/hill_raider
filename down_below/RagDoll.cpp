@@ -19,6 +19,7 @@ namespace DownBelow
 	// --------------------------------------------------
 	void RagDoll::Update(float deltaTime)
 	{
+		AStar::GetIntance()->FindPath(GetPosition());
 		distanceMoved = (int)(speed * (deltaTime / 1000));
 		x += distanceMoved;
 		hitbox->SetPosition(x, y);

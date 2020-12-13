@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "Image.h"
+#include "AStar.h"
 
 namespace DownBelow
 {

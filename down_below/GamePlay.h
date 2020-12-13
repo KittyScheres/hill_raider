@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Floor.h"
 #include "GameData.h"
+#include "AStar.h"
 #include <vector>
 
 namespace DownBelow

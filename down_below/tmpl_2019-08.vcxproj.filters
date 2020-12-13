@@ -53,6 +53,9 @@
     <ClCompile Include="RagDoll.cpp">
       <Filter>down_below\cpp_files\game_components\entities</Filter>
     </ClCompile>
+    <ClCompile Include="AStar.cpp">
+      <Filter>down_below\cpp_files\game_components\algoritmes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -73,9 +76,6 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>down_below\header_files\graphics_objects</Filter>
-    </ClInclude>
-    <ClInclude Include="StateCallback.h">
-      <Filter>down_below\cpp_files\states</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>down_below\header_files\managers</Filter>
@@ -112,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="RagDoll.h">
       <Filter>down_below\header_files\game_components\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
+      <Filter>down_below\header_files\game_components\algoritmes</Filter>
+    </ClInclude>
+    <ClInclude Include="StateCallback.h">
+      <Filter>down_below\header_files\states</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +174,12 @@
     </Filter>
     <Filter Include="down_below\header_files\game_components\physics">
       <UniqueIdentifier>{b41ca808-a521-4478-8c4c-88d8e2c6ed10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\cpp_files\game_components\algoritmes">
+      <UniqueIdentifier>{7e28bbd2-6e16-40af-a9fa-408c2ab44858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="down_below\header_files\game_components\algoritmes">
+      <UniqueIdentifier>{1602a18b-d66d-43ac-b030-9c1b6acb6b34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

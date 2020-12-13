@@ -79,6 +79,8 @@ namespace DownBelow
 
 		currentRoom[0] = 1;
 		currentRoom[1] = 1;
+
+		AStar::GetIntance()->SetTileMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
 	}
 
 	// --------------------------------------------------
@@ -135,6 +137,8 @@ namespace DownBelow
 			--currentRoom[0];
 			break;
 		}
+
+		AStar::GetIntance()->SetTileMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
 	}
 
 	// --------------------------------------------------
