@@ -52,7 +52,7 @@ namespace DownBelow
 				break;
 
 			case 2:
-				
+				callback->CloseGame();
 				break;
 			}
 		}
