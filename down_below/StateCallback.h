@@ -8,5 +8,6 @@ namespace DownBelow
 	{
 	public:
 		virtual void SetState(DownBelow::State* newState) {}
+		virtual void CloseGame() {}
 	};
 }

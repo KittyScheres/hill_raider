@@ -1,4 +1,5 @@
 #include "game.h"
+#include "SDL.h"
 #include "surface.h"
 #include "StartMenu.h"
 #include <cstdio> //printf
@@ -19,8 +20,10 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		delete currentState;
-		currentState = nullptr;
+		if (currentState != nullptr) {
+			delete currentState;
+			currentState = nullptr;
+		}
 
 		inputManager->DestroyInstance();
 	}
@@ -30,16 +33,19 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		// clear the graphics window
-		screen->Clear(0);
-		// get new key inputs
-		inputManager->UpdateKeysState();
-		// call update for the game
-		currentState->Update(deltaTime);
-		// check and apply collision
-		currentState->LateUpdate();
-		// draw objects
-		currentState->Render(screen);
+		// check if application hasn't been paused
+		if (deltaTime < 100.f) {
+			// clear the graphics window
+			screen->Clear(0);
+			// get new key inputs
+			inputManager->UpdateKeysState();
+			// call update for the game
+			currentState->Update(deltaTime);
+			// check and apply collision
+			currentState->LateUpdate();
+			// draw objects
+			currentState->Render(screen);
+		}
 	}
 
 	// -----------------------------------------------------------
@@ -48,5 +54,14 @@ namespace Tmpl8
 	void Game::SetState(DownBelow::State* newState) {
 		delete currentState;
 		currentState = newState;
+	}
+
+	// -----------------------------------------------------------
+	// Close the game
+	// -----------------------------------------------------------
+	void Game::CloseGame() {
+		SDL_Event closeWindowEvent;
+		closeWindowEvent.type = SDL_QUIT;
+		SDL_PushEvent(&closeWindowEvent);
 	}
 };
