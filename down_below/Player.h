@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Entity.h"
+#include "RagDoll.h"
 #include "Image.h"
 #include "InputManager.h"
+#include "GameData.h"
 
 namespace DownBelow
 {
@@ -17,11 +19,13 @@ namespace DownBelow
 		Hitbox* attackHitbox = nullptr;
 		float speed = 0.f;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
+		bool attackFlag = false;
 	public:
 		Player(int iX, int iY, float iSpeed, int iWidth, int iHeight);
 		void Update(float deltaTime);
 		void LateUpdate(std::vector<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);
+		void TakeDamage();
 		void SetPosition(int iX, int iY);
 		void SetDirection(Entity::MovementDirection iDirection);
 		MovementDirection GetDirection();

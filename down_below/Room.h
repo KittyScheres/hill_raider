@@ -1,12 +1,13 @@
 #pragma once
 
+#include "RoomCallback.h"
 #include "Player.h"
 #include "TileMap.h"
 #include "RagDoll.h"
 
 namespace DownBelow
 {
-	class Room
+	class Room : public RoomCallback
 	{
 	private:
 		TileMap* tileMap = nullptr;
@@ -19,6 +20,7 @@ namespace DownBelow
 		void RoomCheckEntityCollision(Player* player);
 		void RoomCheckTileMapCollsion();
 		TileMap* GetTileMap();
+		void RemoveEntity(Entity* entity);
 		~Room();
 
 	private:

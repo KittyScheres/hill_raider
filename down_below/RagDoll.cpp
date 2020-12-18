@@ -7,8 +7,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
+	RagDoll::RagDoll(RoomCallback* iCallback, int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
+		callback = iCallback;
 		speed = iSpeed;
 		direction = Entity::MovementDirection::RIGHT;
 		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
@@ -44,7 +45,15 @@ namespace DownBelow
 	{
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
-		hitbox->RenderHitbox(screen);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void RagDoll::TakeDamage() {
+		if (--ragdollHealt <= 0) {
+			callback->RemoveEntity(this);
+		}
 	}
 
 	// --------------------------------------------------

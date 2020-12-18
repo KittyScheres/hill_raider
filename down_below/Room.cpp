@@ -8,7 +8,7 @@ namespace DownBelow
 	Room::Room(TileMap* iTilemap)
 	{
 		tileMap = iTilemap;
-		entity = new RagDoll(64 * 4, 64 * 3, 150.f, 64, 64);
+		entity = new RagDoll(this, 64 * 4, 64 * 3, 150.f, 64, 64);
 	}
 
 	// --------------------------------------------------
@@ -16,7 +16,9 @@ namespace DownBelow
 	// --------------------------------------------------
 	void Room::Update(float deltaTime)
 	{
-		entity->Update(deltaTime);
+		if (entity != nullptr) {
+			entity->Update(deltaTime);
+		}
 	}
 
 	// --------------------------------------------------
@@ -25,18 +27,24 @@ namespace DownBelow
 	void Room::Render(Tmpl8::Surface* screen)
 	{
 		tileMap->Render(screen);
-		entity->Render(screen);
+		if (entity != nullptr) {
+			entity->Render(screen);
+		}
 	}
 
 	void Room::RoomCheckEntityCollision(Player* player)
 	{
-		entity->LateUpdate(std::vector<Entity*>{player});
-		player->LateUpdate(std::vector<Entity*>{entity});
+		if (entity != nullptr) {
+			entity->LateUpdate(std::vector<Entity*>{player});
+			player->LateUpdate(std::vector<Entity*>{entity});
+		}
 	}
 
 	void Room::RoomCheckTileMapCollsion()
 	{
-		CheckTileMapCollision(entity);
+		if (entity != nullptr) {
+			CheckTileMapCollision(entity);
+		}
 	}
 	
 	// --------------------------------------------------
@@ -45,6 +53,16 @@ namespace DownBelow
 	TileMap* Room::GetTileMap()
 	{
 		return tileMap;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Room::RemoveEntity(Entity* entity) {
+		if (entity == this->entity) {
+			delete this->entity;
+			this->entity = nullptr;
+		}
 	}
 	
 	// --------------------------------------------------

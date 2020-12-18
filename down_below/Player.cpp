@@ -18,10 +18,15 @@ namespace DownBelow
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
+		attackFlag = false;
+
 		CheckForKeyPressed();
 		CheckForKeyLetGo();
 		MovePlayer(deltaTime);
 		SetPosition(x, y);
+		if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
+			attackFlag = true;
+		}
 	}
 	
 	// --------------------------------------------------
@@ -29,10 +34,17 @@ namespace DownBelow
 	// --------------------------------------------------
 	void Player::LateUpdate(std::vector<Entity*> entityList)
 	{
-		for (auto entity : entityList) {
+		for (Entity* entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
 				SetPosition(x, y);
+			}
+
+			if (attackFlag && TestBoxCollision(attackHitbox, entity)) {
+				RagDoll* ragdoll = dynamic_cast<RagDoll*>(entity);
+				if (ragdoll != nullptr) {
+					ragdoll->TakeDamage();
+				}
 			}
 		}
 	}
@@ -44,8 +56,13 @@ namespace DownBelow
 	{
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
 		playerSprite->DrawImage(screen);
-		hitbox->RenderHitbox(screen);
-		attackHitbox->RenderHitbox(screen);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Player::TakeDamage() {
+		--GameData::GetInstance()->playerHealth;
 	}
 
 	// --------------------------------------------------

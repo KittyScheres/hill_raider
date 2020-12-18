@@ -113,6 +113,9 @@
     <ClInclude Include="RagDoll.h">
       <Filter>down_below\header_files\game_components\entities</Filter>
     </ClInclude>
+    <ClInclude Include="RoomCallback.h">
+      <Filter>down_below\header_files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
