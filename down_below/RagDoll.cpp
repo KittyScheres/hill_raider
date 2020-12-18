@@ -44,6 +44,7 @@ namespace DownBelow
 	{
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
+		hitbox->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------

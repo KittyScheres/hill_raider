@@ -43,6 +43,7 @@ namespace DownBelow
 	{
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
 		playerSprite->DrawImage(screen);
+		hitbox->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------

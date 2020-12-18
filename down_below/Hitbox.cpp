@@ -67,4 +67,20 @@ namespace DownBelow
 
 		return boxPoints;
 	}
+
+
+	void Hitbox::RenderHitbox(Tmpl8::Surface* screen){
+		int startXPos = xPos - halfWidth;
+		int startYPos = yPos - halfHeight;
+
+		for (int y = 0; y < (halfHeight * 2); y++) {
+			if (startYPos + y < screen->GetHeight()) {
+				for (int x = 0; x < (halfWidth * 2); x++) {
+					if (startXPos + x < screen->GetWidth()) {
+						screen->GetBuffer()[(startXPos + x) + ((startYPos + y) * screen->GetWidth())] = debugColour;
+					}
+				}
+			}
+		}
+	}
 }
