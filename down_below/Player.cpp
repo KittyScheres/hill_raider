@@ -10,6 +10,7 @@ namespace DownBelow
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
 		playerSprite = new Image("assets/gameplay/player/player.png", x , y );
+		attackHitbox = new Hitbox(x, y - attackHitboxOffset, 20, 10);
 	}
 
 	// --------------------------------------------------
@@ -20,8 +21,7 @@ namespace DownBelow
 		CheckForKeyPressed();
 		CheckForKeyLetGo();
 		MovePlayer(deltaTime);
-		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
-		hitbox->SetPosition(x, y);
+		SetPosition(x, y);
 	}
 	
 	// --------------------------------------------------
@@ -30,8 +30,9 @@ namespace DownBelow
 	void Player::LateUpdate(std::vector<Entity*> entityList)
 	{
 		for (auto entity : entityList) {
-			if (TestBoxCollision(entity)) {
+			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
+				SetPosition(x, y);
 			}
 		}
 	}
@@ -44,6 +45,73 @@ namespace DownBelow
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
 		playerSprite->DrawImage(screen);
 		hitbox->RenderHitbox(screen);
+		attackHitbox->RenderHitbox(screen);
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Player::SetPosition(int iX, int iY) {
+		x = iX;
+		y = iY;
+		hitbox->SetPosition(x, y);
+
+		if (direction == Entity::MovementDirection::LEFT || direction == Entity::MovementDirection::RIGHT) {
+			attackHitbox->SetPosition(x + attackHitboxOffset, y);
+		}
+		else {
+			attackHitbox->SetPosition(x, y + attackHitboxOffset);
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Player::SetDirection(Entity::MovementDirection iDirection) {
+		direction = iDirection;
+
+		switch (direction)
+		{
+		case Entity::MovementDirection::UP:
+			if (attackHitboxOffset > 0) {
+				attackHitboxOffset = -attackHitboxOffset;
+			}
+			hitbox->SetWidth(width);
+			hitbox->SetHeight(height);
+			attackHitbox->SetWidth(attackHitboxWidth);
+			attackHitbox->SetHeight(attackHitboxHeight);
+			break;
+		
+		case Entity::MovementDirection::RIGHT:
+			if (attackHitboxOffset < 0) {
+				attackHitboxOffset = -attackHitboxOffset;
+			}
+			hitbox->SetWidth(height);
+			hitbox->SetHeight(width);
+			attackHitbox->SetWidth(attackHitboxHeight);
+			attackHitbox->SetHeight(attackHitboxWidth);
+			break;
+
+		case Entity::MovementDirection::DOWN:
+			if (attackHitboxOffset < 0) {
+				attackHitboxOffset = -attackHitboxOffset;
+			}
+			hitbox->SetWidth(width);
+			hitbox->SetHeight(height);
+			attackHitbox->SetWidth(attackHitboxWidth);
+			attackHitbox->SetHeight(attackHitboxHeight);
+			break;
+
+		case Entity::MovementDirection::LEFT:
+			if (attackHitboxOffset > 0) {
+				attackHitboxOffset = -attackHitboxOffset;
+			}
+			hitbox->SetWidth(height);
+			hitbox->SetHeight(width);
+			attackHitbox->SetWidth(attackHitboxHeight);
+			attackHitbox->SetHeight(attackHitboxWidth);
+			break;
+		}
 	}
 
 	// --------------------------------------------------
@@ -71,6 +139,11 @@ namespace DownBelow
 			playerSprite = nullptr;
 		}
 
+		if (attackHitbox != nullptr) {
+			delete attackHitbox;
+			attackHitbox = nullptr;
+		}
+
 		inputManager = nullptr;
 	}
 
@@ -80,19 +153,19 @@ namespace DownBelow
 	void Player::CheckForKeyPressed()
 	{
 		if (inputManager->KeyPressed(InputManager::Keys::UP)) {
-			direction = MovementDirection::UP;
+			SetDirection(MovementDirection::UP);
 		}
 
 		if (inputManager->KeyPressed(InputManager::Keys::RIGHT)) {
-			direction = MovementDirection::RIGHT;
+			SetDirection(MovementDirection::RIGHT);
 		}
 
 		if (inputManager->KeyPressed(InputManager::Keys::DOWN)) {
-			direction = MovementDirection::DOWN;
+			SetDirection(MovementDirection::DOWN);
 		}
 
 		if (inputManager->KeyPressed(InputManager::Keys::LEFT)) {
-			direction = MovementDirection::LEFT;
+			SetDirection(MovementDirection::LEFT);
 		}
 	}
 
@@ -106,13 +179,13 @@ namespace DownBelow
 		case MovementDirection::UP:
 			if (inputManager->KeyLetGo(InputManager::Keys::UP)) {
 				if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-					direction = MovementDirection::RIGHT;
+					SetDirection(MovementDirection::RIGHT);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-					direction = MovementDirection::DOWN;
+					SetDirection(MovementDirection::DOWN);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
-					direction = MovementDirection::LEFT;
+					SetDirection(MovementDirection::LEFT);
 				}
 			}
 			break;
@@ -120,13 +193,13 @@ namespace DownBelow
 		case MovementDirection::RIGHT:
 			if (inputManager->KeyLetGo(InputManager::Keys::RIGHT)) {
 				if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-					direction = MovementDirection::DOWN;
+					SetDirection(MovementDirection::DOWN);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
-					direction = MovementDirection::LEFT;
+					SetDirection(MovementDirection::LEFT);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::UP)) {
-					direction = MovementDirection::UP;
+					SetDirection(MovementDirection::UP);
 				}
 			}
 			break;
@@ -134,13 +207,13 @@ namespace DownBelow
 		case MovementDirection::DOWN:
 			if (inputManager->KeyLetGo(InputManager::Keys::DOWN)) {
 				if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
-					direction = MovementDirection::LEFT;
+					SetDirection(MovementDirection::LEFT);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::UP)) {
-					direction = MovementDirection::UP;
+					SetDirection(MovementDirection::UP);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-					direction = MovementDirection::RIGHT;
+					SetDirection(MovementDirection::RIGHT);
 				}
 			}
 			break;
@@ -148,13 +221,13 @@ namespace DownBelow
 		case MovementDirection::LEFT:
 			if (inputManager->KeyLetGo(InputManager::Keys::LEFT)) {
 				if (inputManager->KeyDown(InputManager::Keys::UP)) {
-					direction = MovementDirection::UP;
+					SetDirection(direction = MovementDirection::UP);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-					direction = MovementDirection::RIGHT;
+					SetDirection(direction = MovementDirection::RIGHT);
 				}
 				else if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-					direction = MovementDirection::DOWN;
+					SetDirection(direction = MovementDirection::DOWN);
 				}
 			}
 			break;

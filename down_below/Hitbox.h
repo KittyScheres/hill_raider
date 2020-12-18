@@ -20,6 +20,7 @@ namespace DownBelow
 		void SetPosition(int x, int y);
 		void SetWidth(int width);
 		void SetHeight(int height);
+		std::vector<int> GetPosition();
 		float GetHalfDiameter();
 		std::vector<std::vector<int>> GetBoxPoints();
 		void RenderHitbox(Tmpl8::Surface* screen);

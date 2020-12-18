@@ -26,6 +26,10 @@ namespace DownBelow
 		halfHeight = height / 2;
 	}
 
+	std::vector<int> Hitbox::GetPosition() {
+		return std::vector<int>{xPos, yPos};
+	}
+
 	float Hitbox::GetHalfDiameter()
 	{
 		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));;

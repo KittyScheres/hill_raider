@@ -11,7 +11,7 @@ namespace DownBelow
 		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
-		player = new Player(64 * 8, 64 * 5, 325.f, 40, 40);
+		player = new Player(64 * 8, 64 * 5, 325.f, 40, 64);
 		floor = new Floor();
 		GameData::GetInstance();
 	}

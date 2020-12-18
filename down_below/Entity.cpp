@@ -92,23 +92,23 @@ namespace DownBelow
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	bool Entity::TestBoxCollision(Entity* otherEntity)
+	bool Entity::TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity)
 	{
 		bool collide = false;
 
-		int vectorX = otherEntity->GetPosition()[0] - x;
-		int vectorY = otherEntity->GetPosition()[1] - y;
+		int vectorX = otherEntity->GetPosition()[0] - myHitbox->GetPosition()[0];
+		int vectorY = otherEntity->GetPosition()[1] - myHitbox->GetPosition()[1];
 		float magnatude = sqrtf((vectorX * vectorX) + (vectorY * vectorY));
 
 		// check for circel collision
-		if (magnatude < (hitbox->GetHalfDiameter() + otherEntity->GetHitbox()->GetHalfDiameter())) {
-			std::vector<std::vector<int>> myHitbox = hitbox->GetBoxPoints();
-			std::vector<std::vector<int>> entityHitbox = otherEntity->GetHitbox()->GetBoxPoints();
+		if (magnatude < (myHitbox->GetHalfDiameter() + otherEntity->GetHitbox()->GetHalfDiameter())) {
+			std::vector<std::vector<int>> myHitboxPoints = myHitbox->GetBoxPoints();
+			std::vector<std::vector<int>> entityHitboxPoints = otherEntity->GetHitbox()->GetBoxPoints();
 
 			// check for box collision
-			if (((myHitbox[0][0] <= entityHitbox[1][0] && myHitbox[0][0] >= entityHitbox[0][0]) || (myHitbox[1][0] >= entityHitbox[0][0] && myHitbox[1][0] <= entityHitbox[1][0])) && ((myHitbox[0][1] <= entityHitbox[2][1] && myHitbox[0][1] >= entityHitbox[0][1]) || (myHitbox[2][1] >= entityHitbox[0][1] && myHitbox[2][1] <= entityHitbox[2][1])) ||
-				((myHitbox[0][0] < entityHitbox[0][0] && myHitbox[1][0] > entityHitbox[1][0]) && ((myHitbox[0][1] >= entityHitbox[0][1] && myHitbox[0][1] <= entityHitbox[2][1]) || (myHitbox[2][1] >= entityHitbox[0][1] && myHitbox[2][1] <= entityHitbox[2][1]))) ||
-				((myHitbox[0][1] < entityHitbox[0][1] && myHitbox[2][1] > entityHitbox[2][1]) && ((myHitbox[0][0] >= entityHitbox[0][0] && myHitbox[0][0] <= entityHitbox[1][0]) || (myHitbox[1][0] >= entityHitbox[0][0] && myHitbox[1][0] <= entityHitbox[1][0])))) {
+			if (((myHitboxPoints[0][0] <= entityHitboxPoints[1][0] && myHitboxPoints[0][0] >= entityHitboxPoints[0][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])) && ((myHitboxPoints[0][1] <= entityHitboxPoints[2][1] && myHitboxPoints[0][1] >= entityHitboxPoints[0][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1])) ||
+				((myHitboxPoints[0][0] < entityHitboxPoints[0][0] && myHitboxPoints[1][0] > entityHitboxPoints[1][0]) && ((myHitboxPoints[0][1] >= entityHitboxPoints[0][1] && myHitboxPoints[0][1] <= entityHitboxPoints[2][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1]))) ||
+				((myHitboxPoints[0][1] < entityHitboxPoints[0][1] && myHitboxPoints[2][1] > entityHitboxPoints[2][1]) && ((myHitboxPoints[0][0] >= entityHitboxPoints[0][0] && myHitboxPoints[0][0] <= entityHitboxPoints[1][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])))) {
 				collide = true;
 				
 			}

@@ -21,7 +21,7 @@ namespace DownBelow
 	protected:
 		Entity(int iX, int iY, int iWidth, int iHeight);
 		~Entity();
-		bool TestBoxCollision(Entity* otherEntity);
+		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
 		void ApplyEntityCollision(Entity* otherEntity);
 	public:
 		void Update(float deltaTime);

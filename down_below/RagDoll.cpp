@@ -31,7 +31,7 @@ namespace DownBelow
 	void RagDoll::LateUpdate(std::vector<Entity*> entityList)
 	{
 		for (auto entity : entityList) {
-			if (TestBoxCollision(entity)) {
+			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
 			}
 		}
