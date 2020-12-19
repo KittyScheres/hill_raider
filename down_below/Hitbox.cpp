@@ -26,6 +26,10 @@ namespace DownBelow
 		halfHeight = height / 2;
 	}
 
+	std::vector<int> Hitbox::GetPosition() {
+		return std::vector<int>{xPos, yPos};
+	}
+
 	float Hitbox::GetHalfDiameter()
 	{
 		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));;
@@ -66,5 +70,21 @@ namespace DownBelow
 		}
 
 		return boxPoints;
+	}
+
+
+	void Hitbox::RenderHitbox(Tmpl8::Surface* screen){
+		int startXPos = xPos - halfWidth;
+		int startYPos = yPos - halfHeight;
+
+		for (int y = 0; y < (halfHeight * 2); y++) {
+			if (startYPos + y < screen->GetHeight()) {
+				for (int x = 0; x < (halfWidth * 2); x++) {
+					if (startXPos + x < screen->GetWidth()) {
+						screen->GetBuffer()[(startXPos + x) + ((startYPos + y) * screen->GetWidth())] = debugColour;
+					}
+				}
+			}
+		}
 	}
 }

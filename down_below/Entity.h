@@ -21,13 +21,14 @@ namespace DownBelow
 	protected:
 		Entity(int iX, int iY, int iWidth, int iHeight);
 		~Entity();
-		bool TestBoxCollision(Entity* otherEntity);
+		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
 		void ApplyEntityCollision(Entity* otherEntity);
 	public:
-		void Update(float deltaTime);
-		void LateUpdate();
-		void Render(Tmpl8::Surface* screen);
-		void SetPosition(int iX, int iY);
+		virtual void Update(float deltaTime) {}
+		virtual void LateUpdate() {}
+		virtual void Render(Tmpl8::Surface* screen) {}
+		virtual void TakeDamage() {}
+		virtual void SetPosition(int iX, int iY);
 		std::vector<int> GetPosition();
 		int GetWidth();
 		int GetHeight();

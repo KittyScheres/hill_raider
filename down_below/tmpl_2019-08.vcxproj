@@ -257,6 +257,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RagDoll.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomCallback.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateCallback.h" />
