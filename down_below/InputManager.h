@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-namespace DownBelow
+namespace HillRaider
 {
 	class InputManager
 	{

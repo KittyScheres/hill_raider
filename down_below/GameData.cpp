@@ -1,6 +1,6 @@
 #include "GameData.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	GameData* GameData::instance = nullptr;
 

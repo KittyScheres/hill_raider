@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	// 

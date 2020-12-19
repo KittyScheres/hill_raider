@@ -1,6 +1,6 @@
 #include "TileMap.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//

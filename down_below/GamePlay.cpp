@@ -1,6 +1,6 @@
 #include "GamePlay.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//
@@ -12,9 +12,9 @@ namespace DownBelow
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
 		player = new Player(64 * 8, 64 * 5, 325.f, 40, 64);
-		AStar::GetIntance()->SetEndGoal(player);
 		floor = new Floor();
 		GameData::GetInstance();
+		AStar::GetIntance()->SetEndGoal(player);
 	}
 
 	// --------------------------------------------------

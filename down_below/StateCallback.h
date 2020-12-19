@@ -2,12 +2,12 @@
 
 #include "State.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class StateCallback
 	{
 	public:
-		virtual void SetState(DownBelow::State* newState) {}
+		virtual void SetState(HillRaider::State* newState) {}
 		virtual void CloseGame() {}
 	};
 }

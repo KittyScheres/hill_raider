@@ -8,7 +8,7 @@
 #include "GamePlay.h"
 #include <cstdio>
 
-namespace DownBelow 
+namespace HillRaider 
 {
 	// ------------------------------------------------------------
 	// Start menu is a state class. It detremens the functionality

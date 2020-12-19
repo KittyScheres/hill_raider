@@ -1,6 +1,6 @@
 #include "Room.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//
@@ -27,11 +27,15 @@ namespace DownBelow
 	void Room::Render(Tmpl8::Surface* screen)
 	{
 		tileMap->Render(screen);
+		AStar::GetIntance()->DebugRenderNodeMap(screen);
 		if (entity != nullptr) {
 			entity->Render(screen);
 		}
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Room::RoomCheckEntityCollision(Player* player)
 	{
 		if (entity != nullptr) {
@@ -40,6 +44,9 @@ namespace DownBelow
 		}
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Room::RoomCheckTileMapCollsion()
 	{
 		if (entity != nullptr) {

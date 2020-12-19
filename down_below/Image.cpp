@@ -1,6 +1,6 @@
 #include "Image.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	// 

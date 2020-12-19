@@ -4,7 +4,7 @@
 #include <math.h>
 #include "surface.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Hitbox
 	{

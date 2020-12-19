@@ -2,7 +2,7 @@
 
 #include "surface.h"
 
-namespace DownBelow 
+namespace HillRaider 
 {
 	// -------------------------------------------------------------------
 	// The state is a template which can be used to create state classes.

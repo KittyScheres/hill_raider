@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//

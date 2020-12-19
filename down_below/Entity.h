@@ -4,7 +4,7 @@
 #include "Hitbox.h"
 #include <vector>
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Entity
 	{

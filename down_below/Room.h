@@ -5,7 +5,7 @@
 #include "TileMap.h"
 #include "RagDoll.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Room : public RoomCallback
 	{

@@ -11,7 +11,7 @@
 #include "AStar.h"
 #include <vector>
 
-namespace DownBelow
+namespace HillRaider
 {
 	class GamePlay: public State
 	{

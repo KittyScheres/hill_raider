@@ -1,6 +1,6 @@
 #include "InputManager.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	InputManager* InputManager::instance = nullptr;
 

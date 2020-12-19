@@ -1,6 +1,6 @@
 #include "PauseScreen.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DownBelow
+namespace HillRaider
 {
 	class GameData
 	{

@@ -1,6 +1,6 @@
 #include "Ui.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//

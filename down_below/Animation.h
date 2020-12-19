@@ -2,7 +2,7 @@
 
 #include "surface.h";
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Animation
 	{

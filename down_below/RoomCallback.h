@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class RoomCallback
 	{

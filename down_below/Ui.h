@@ -3,7 +3,7 @@
 #include "Image.h"
 #include "GameData.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Ui
 	{

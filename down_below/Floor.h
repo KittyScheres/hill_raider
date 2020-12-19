@@ -4,7 +4,7 @@
 #include "Room.h"
 #include "AStar.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Floor
 	{

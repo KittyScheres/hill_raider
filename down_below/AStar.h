@@ -1,28 +1,27 @@
 #pragma once
 
+#include "AStarGrid.h"
 #include "Entity.h"
 #include "TileMap.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class AStar
 	{
 	private:
 		static AStar* instance;
+		AStarGrid* nodeMap = nullptr;
 		Entity* endGoal = nullptr;
-		TileMap* currentTileMap = nullptr;
 		std::vector<std::vector<int>> movementDirections;
 	public:
 		static AStar* GetIntance();
 		static void DestroyInstance();
+		void SetNodeMap(TileMap* tileMap);
 		void SetEndGoal(Entity* entity);
-		void SetTileMap(TileMap* tileMap);
+		void DebugRenderNodeMap(Tmpl8::Surface* screen);
 		std::vector<std::vector<int>> FindPath(std::vector<int> startPosition);
 	private:
 		AStar();
 		~AStar();
-		int GetValue(std::vector<int> comparePos, std::vector<int> newPos);
-		int GetVectorIndex(std::vector<int>, int value);
-		bool CheckForRepeat(std::vector<std::vector<std::vector<int>>> paths, std::vector<int> newPos);
 	};
 }

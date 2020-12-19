@@ -1,6 +1,6 @@
 #include "Player.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//

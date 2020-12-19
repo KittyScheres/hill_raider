@@ -1,6 +1,6 @@
 #include "Hitbox.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	Hitbox::Hitbox(int x, int y, int width, int Height)
 	{

@@ -11,8 +11,8 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		SetState(new DownBelow::StartMenu(this));
-		inputManager = DownBelow::InputManager::GetInstance();
+		SetState(new HillRaider::StartMenu(this));
+		inputManager = HillRaider::InputManager::GetInstance();
 	}
 	
 	// -----------------------------------------------------------
@@ -51,7 +51,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	// Set the current state of the game
 	// -----------------------------------------------------------
-	void Game::SetState(DownBelow::State* newState) {
+	void Game::SetState(HillRaider::State* newState) {
 		delete currentState;
 		currentState = newState;
 	}

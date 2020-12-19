@@ -2,13 +2,15 @@
 
 #include "surface.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class TileMap
 	{
-	private:
+	public:
 		const static int TILE_MAP_HEIGHT = 9;
 		const static int TILE_MAP_WIDHT = 15 * 3;
+
+	private:
 		Tmpl8::Surface* tileMapSurface = nullptr;
 		char tileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT];
 		int tileHeight = 0;

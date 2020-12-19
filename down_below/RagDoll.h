@@ -5,7 +5,7 @@
 #include "Image.h"
 #include "AStar.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class RagDoll : public Entity
 	{

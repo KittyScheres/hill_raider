@@ -1,6 +1,6 @@
 #include "Floor.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	// --------------------------------------------------
 	//
@@ -86,7 +86,7 @@ namespace DownBelow
 		currentRoom[0] = 1;
 		currentRoom[1] = 1;
 
-		AStar::GetIntance()->SetTileMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
+		AStar::GetIntance()->SetNodeMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
 	}
 
 	// --------------------------------------------------
@@ -121,7 +121,7 @@ namespace DownBelow
 			break;
 		}
 
-		AStar::GetIntance()->SetTileMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
+		AStar::GetIntance()->SetNodeMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
 	}
 
 	// --------------------------------------------------

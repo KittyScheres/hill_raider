@@ -6,7 +6,7 @@
 #include "InputManager.h"
 #include "GameData.h"
 
-namespace DownBelow
+namespace HillRaider
 {
 	class Player : public Entity
 	{
