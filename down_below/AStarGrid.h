@@ -16,6 +16,7 @@ namespace HillRaider
 		void DebugRender(Tmpl8::Surface* screen);
 		std::vector<std::vector<AStarNode*>> GetNodeGrid();
 		AStarNode* GetNodeFromGrid(int x, int y);
+		std::vector<AStarNode*> GetNeighbouringNodes(AStarNode* node);
 		~AStarGrid();
 	};
 }

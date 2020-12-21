@@ -27,7 +27,6 @@ namespace HillRaider
 	void Room::Render(Tmpl8::Surface* screen)
 	{
 		tileMap->Render(screen);
-		AStar::GetIntance()->DebugRenderNodeMap(screen);
 		if (entity != nullptr) {
 			entity->Render(screen);
 		}

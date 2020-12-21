@@ -14,12 +14,12 @@ namespace HillRaider
 				int yPos = y * tileMap->GetTileHeight();
 
 				if (tileMap->GetCollision(xPos, yPos) != ' ') {
-					AStarNode* newNode = new AStarNode(xPos, yPos, AStarNode::WalkableNode::NOT_WALKABLE);
+					AStarNode* newNode = new AStarNode(xPos, yPos, AStarNode::WalkableNode::NOT_WALKABLE, x, y);
 					newNode->SetDebugColor(255 << 16);
 					newRow.push_back(newNode);
 				}
 				else {
-					newRow.push_back(new AStarNode(xPos, yPos, AStarNode::WalkableNode::WALKABLE));
+					newRow.push_back(new AStarNode(xPos, yPos, AStarNode::WalkableNode::WALKABLE, x, y));
 				}
 			}
 			nodeGrid.push_back(newRow);
@@ -55,6 +55,26 @@ namespace HillRaider
 	AStarNode* AStarGrid::GetNodeFromGrid(int x, int y)
 	{
 		return nodeGrid[y / 64][x / 64];
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	std::vector<AStarNode*> AStarGrid::GetNeighbouringNodes(AStarNode* node)
+	{
+		std::vector<AStarNode*> nodeList;
+
+		for (int offset = -1; offset <= 1; offset += 2) {
+			if ((node->GetGridY() + offset) < nodeGrid.size() && (node->GetGridY() + offset) >= 0) {
+				nodeList.push_back(nodeGrid[node->GetGridY() + offset][node->GetGridX()]);
+			}
+
+			if ((node->GetGridX() + offset) < nodeGrid[0].size() && (node->GetGridX() + offset) >= 0) {
+				nodeList.push_back(nodeGrid[node->GetGridY()][node->GetGridX() + offset]);
+			}
+		}
+
+		return nodeList;
 	}
 
 	// --------------------------------------------------
