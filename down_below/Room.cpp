@@ -8,7 +8,7 @@ namespace HillRaider
 	Room::Room(TileMap* iTilemap)
 	{
 		tileMap = iTilemap;
-		entity = new RagDoll(this, 64 * 4, 64 * 3, 150.f, 64, 64);
+		entity = new RagDoll(this, 64 * 4, 64 * 3, 150.f, 40, 40);
 	}
 
 	// --------------------------------------------------

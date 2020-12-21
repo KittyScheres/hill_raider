@@ -23,5 +23,8 @@ namespace HillRaider
 		MovementDirection GetDirection();
 		Image* GetSprite();
 		~RagDoll();
+	private:
+		void UpdateDirection();
+		void MoveRagdoll(float deltaTime);
 	};
 }

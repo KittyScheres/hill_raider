@@ -2,6 +2,9 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	Hitbox::Hitbox(int x, int y, int width, int Height)
 	{
 		halfWidth = width / 2;
@@ -10,31 +13,65 @@ namespace HillRaider
 		yPos = y;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Hitbox::SetPosition(int x, int y)
 	{
 		xPos = x;
 		yPos = y;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Hitbox::SetWidth(int width)
 	{
 		halfWidth = width / 2;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Hitbox::SetHeight(int height)
 	{
 		halfHeight = height / 2;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	std::vector<int> Hitbox::GetPosition() {
 		return std::vector<int>{xPos, yPos};
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	int Hitbox::GetHalfWidth()
+	{
+		return halfWidth;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	int Hitbox::GetHalfHeight()
+	{
+		return halfHeight;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	float Hitbox::GetHalfDiameter()
 	{
 		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));;
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	std::vector<std::vector<int>> Hitbox::GetBoxPoints()
 	{
 		std::vector<std::vector<int>> boxPoints;
@@ -72,7 +109,9 @@ namespace HillRaider
 		return boxPoints;
 	}
 
-
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Hitbox::RenderHitbox(Tmpl8::Surface* screen){
 		int startXPos = xPos - halfWidth;
 		int startYPos = yPos - halfHeight;

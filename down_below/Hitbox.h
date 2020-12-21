@@ -21,6 +21,8 @@ namespace HillRaider
 		void SetWidth(int width);
 		void SetHeight(int height);
 		std::vector<int> GetPosition();
+		int GetHalfWidth();
+		int GetHalfHeight();
 		float GetHalfDiameter();
 		std::vector<std::vector<int>> GetBoxPoints();
 		void RenderHitbox(Tmpl8::Surface* screen);
