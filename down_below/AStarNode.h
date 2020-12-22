@@ -6,15 +6,8 @@ namespace HillRaider
 {
 	class AStarNode
 	{
-	public:
-		enum class WalkableNode
-		{
-			WALKABLE = 0,
-			NOT_WALKABLE
-		};
-
 	private:
-		WalkableNode walkable = WalkableNode::WALKABLE;
+		bool walkable = true;
 		int gridX = 0;
 		int gridY = 0;
 		int x = 0;
@@ -25,14 +18,14 @@ namespace HillRaider
 		AStarNode* parent = nullptr;
 
 	public:
-		AStarNode(int iX, int iY, WalkableNode iWalkable, int iGridX, int iGridY);
+		AStarNode(int iX, int iY, bool iWalkable, int iGridX, int iGridY);
 		void RenderNode(Tmpl8::Surface* screen);
-		void SetWalkable(WalkableNode iWalkable);
+		void SetWalkable(bool iWalkable);
 		void SetDebugColor(int iDebugColor);
 		void SetGCost(int g);
 		void SetHCost(int h);
 		void SetParent(AStarNode* iParent);
-		WalkableNode GetWalkable();
+		bool GetWalkable();
 		int GetGridX();
 		int GetGridY();
 		int GetGCost();

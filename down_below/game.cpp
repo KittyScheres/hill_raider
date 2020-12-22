@@ -2,7 +2,6 @@
 #include "SDL.h"
 #include "surface.h"
 #include "StartMenu.h"
-#include <cstdio> //printf
 
 namespace Tmpl8
 {

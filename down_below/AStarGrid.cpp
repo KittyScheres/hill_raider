@@ -14,12 +14,12 @@ namespace HillRaider
 				int yPos = y * tileMap->GetTileHeight();
 
 				if (tileMap->GetCollision(xPos, yPos) != ' ') {
-					AStarNode* newNode = new AStarNode(xPos, yPos, AStarNode::WalkableNode::NOT_WALKABLE, x, y);
+					AStarNode* newNode = new AStarNode(xPos, yPos, false, x, y);
 					newNode->SetDebugColor(255 << 16);
 					newRow.push_back(newNode);
 				}
 				else {
-					newRow.push_back(new AStarNode(xPos, yPos, AStarNode::WalkableNode::WALKABLE, x, y));
+					newRow.push_back(new AStarNode(xPos, yPos, true, x, y));
 				}
 			}
 			nodeGrid.push_back(newRow);
@@ -34,7 +34,7 @@ namespace HillRaider
 		for (std::vector<AStarNode*> nodeRow : nodeGrid) {
 			for (AStarNode* node : nodeRow) {
 				node->RenderNode(screen);
-				if (node->GetWalkable() == AStarNode::WalkableNode::WALKABLE) {
+				if (node->GetWalkable()) {
 					node->SetDebugColor((127 << 16) + (127 << 8) + 127);
 				}
 			}

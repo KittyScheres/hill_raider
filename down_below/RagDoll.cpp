@@ -11,7 +11,6 @@ namespace HillRaider
 	{
 		callback = iCallback;
 		speed = iSpeed;
-		direction = Entity::MovementDirection::RIGHT;
 		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
 	}
 
@@ -92,19 +91,19 @@ namespace HillRaider
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
-			path = AStar::GetIntance()->FindPath(std::vector<int>{x, y + hitbox->GetHalfHeight()});
+			path = AStar::GetIntance()->FindPath(std::vector<int>{x, y + hitbox->GetHalfHeight()}, std::vector<int>{x, y - hitbox->GetHalfHeight()});
 			break;
 
 		case Entity::MovementDirection::RIGHT:
-			path = AStar::GetIntance()->FindPath(std::vector<int>{x - hitbox->GetHalfWidth(), y});
+			path = AStar::GetIntance()->FindPath(std::vector<int>{x - hitbox->GetHalfWidth(), y}, std::vector<int>{x + hitbox->GetHalfWidth(), y});
 			break;
 
 		case Entity::MovementDirection::DOWN:
-			path = AStar::GetIntance()->FindPath(std::vector<int>{x, y - hitbox->GetHalfHeight()});
+			path = AStar::GetIntance()->FindPath(std::vector<int>{x, y - hitbox->GetHalfHeight()}, std::vector<int>{x, y + hitbox->GetHalfHeight()});
 			break;
 
 		case Entity::MovementDirection::LEFT:
-			path = AStar::GetIntance()->FindPath(std::vector<int>{x + hitbox->GetHalfWidth(), y});
+			path = AStar::GetIntance()->FindPath(std::vector<int>{x + hitbox->GetHalfWidth(), y}, std::vector<int>{x - hitbox->GetHalfWidth(), y});
 			break;
 		}
 

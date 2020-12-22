@@ -21,7 +21,7 @@ namespace HillRaider
 		void SetNodeMap(TileMap* tileMap);
 		void SetEndGoal(Entity* entity);
 		void DebugRenderNodeMap(Tmpl8::Surface* screen);
-		std::vector<AStarNode*> FindPath(std::vector<int> startPosition);
+		std::vector<AStarNode*> FindPath(std::vector<int> startPosition, std::vector<int> comparePosition);
 		std::vector<AStarNode*> RetracePath(AStarNode* startNode, AStarNode* endNode);
 		int GetDistanceBetween(AStarNode* node1, AStarNode* node2);
 	private:

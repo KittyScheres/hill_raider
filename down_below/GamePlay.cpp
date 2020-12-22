@@ -98,6 +98,7 @@ namespace HillRaider
 			floor = nullptr;
 		}
 
+		AStar::DestroyInstance();
 		GameData::DestroyInstance();
 	}
 

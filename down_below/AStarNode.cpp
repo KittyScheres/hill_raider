@@ -5,7 +5,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	AStarNode::AStarNode(int iX, int iY, WalkableNode iWalkable, int iGridX, int iGridY)
+	AStarNode::AStarNode(int iX, int iY, bool iWalkable, int iGridX, int iGridY)
 	{
 		x = iX;
 		y = iY;
@@ -33,7 +33,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void AStarNode::SetWalkable(WalkableNode iWalkable)
+	void AStarNode::SetWalkable(bool iWalkable)
 	{
 		walkable = iWalkable;
 	}
@@ -73,7 +73,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	AStarNode::WalkableNode AStarNode::GetWalkable()
+	bool AStarNode::GetWalkable()
 	{
 		return walkable;
 	}
