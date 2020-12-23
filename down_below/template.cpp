@@ -18,6 +18,7 @@
 #include <fcntl.h>
 #include <io.h>
 #include "template.h"
+#include "FrameRateManager.h"
 #include <corecrt_math.h>
 #include <SDL.h>
 #include "surface.h"
@@ -331,8 +332,10 @@ int main( int argc, char **argv )
 	game->SetTarget( surface );
 	timer t;
 	t.reset();
+	HillRaider::FrameRateManager frameRateManager;
 	while (!exitapp) 
 	{
+		frameRateManager.ResetFrameCapTimer();
 	#ifdef ADVANCEDGL
 		swap();
 		surface->SetBuffer( (Pixel*)framedata );
@@ -389,6 +392,7 @@ int main( int argc, char **argv )
 				break;
 			}
 		}
+		frameRateManager.ConstrainFrameRate();
 	}
 	game->Shutdown();
 	SDL_Quit();

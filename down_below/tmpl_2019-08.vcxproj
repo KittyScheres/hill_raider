@@ -228,6 +228,7 @@
     <ClCompile Include="AStarNode.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="FrameRateManager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GamePlay.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="AStarNode.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="FrameRateManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GamePlay.h" />

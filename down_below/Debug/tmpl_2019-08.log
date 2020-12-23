@@ -1,2 +1,5 @@
-﻿  Room.cpp
+﻿  FrameRateManager.cpp
+D:\breda\game\down_below\down_below\FrameRateManager.cpp(14,38): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+  template.cpp
+  Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe

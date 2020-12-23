@@ -1,5 +1,6 @@
 #pragma once
 
+#include "template.h"
 #include "StateCallback.h"
 #include "InputManager.h"
 
