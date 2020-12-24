@@ -107,14 +107,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void GamePlay::CheckTileMapCollision(std::vector<std::vector<int>> hitbox) {
 		char collisionChar = ' ';
-		int pointX = 0;
-		int pointY = 0;
+		short index = 0;
 
 		for (int i = 0; i < 4; i++) {
 			if (floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1]) != ' ' && collisionChar != 'x') {
 				collisionChar = floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1]);
-				pointX = hitbox[i][0];
-				pointY = hitbox[i][1];
+				index = i;
 			}
 		}
 
@@ -143,21 +141,50 @@ namespace HillRaider
 			switch (player->GetDirection())
 			{
 			case Entity::MovementDirection::UP:
-				player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - ((pointY % 64) - 1)));
-				break;
-
-			case Entity::MovementDirection::RIGHT:
-				player->SetPosition(player->GetPosition()[0] - ((pointX % 64) + 1), player->GetPosition()[1]);
-				break;
-
 			case Entity::MovementDirection::DOWN:
-				player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - ((pointY % 64) + 1));
+				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
 				break;
 
 			case Entity::MovementDirection::LEFT:
-				player->SetPosition(player->GetPosition()[0] + (64 - ((pointX % 64) - 1)), player->GetPosition()[1]);
+			case Entity::MovementDirection::RIGHT:
+				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
 				break;
 			}
+			break;
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void GamePlay::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
+	{
+		switch (hitboxPointIndex & 2)
+		{
+		case 0:
+			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - ((hitboxPointYPos & 63) - 1)));
+			break;
+
+		case 2:
+			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - ((hitboxPointYPos & 63) + 1));
+			break;
+		}
+
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void GamePlay::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)
+	{
+		switch (hitboxPointIndex & 1)
+		{
+		case 0:
+			player->SetPosition(player->GetPosition()[0] + (64 - ((hitboxPointXPos & 63) - 1)), player->GetPosition()[1]);
+			break;
+
+		case 1:
+			player->SetPosition(player->GetPosition()[0] - ((hitboxPointXPos & 63) + 1), player->GetPosition()[1]);
 			break;
 		}
 	}
