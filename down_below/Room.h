@@ -25,5 +25,7 @@ namespace HillRaider
 
 	private:
 		void CheckTileMapCollision(Entity* entity);
+		void ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos);
+		void ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos);
 	};
 }

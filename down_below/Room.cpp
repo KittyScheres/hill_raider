@@ -94,14 +94,12 @@ namespace HillRaider
 	{
 		std::vector<std::vector<int>> hitbox = entity->GetHitbox()->GetBoxPoints();
 		char collisionChar = ' ';
-		int pointX = 0;
-		int pointY = 0;
+		int index = 0;
 
 		for (int i = 0; i < 4; i++) {
 			if (tileMap->GetCollision(hitbox[i][0], hitbox[i][1]) != ' ' && collisionChar != 'x') {
 				collisionChar = tileMap->GetCollision(hitbox[i][0], hitbox[i][1]);
-				pointX = hitbox[i][0];
-				pointY = hitbox[i][1];
+				index = i;
 			}
 		}
 
@@ -109,21 +107,50 @@ namespace HillRaider
 			switch (entity->GetDirection())
 			{
 			case Entity::MovementDirection::UP:
-				entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] + (64 - ((pointY % 64) - 1)));
-				break;
-
-			case Entity::MovementDirection::RIGHT:
-				entity->SetPosition(entity->GetPosition()[0] - ((pointX % 64) + 1), entity->GetPosition()[1]);
-				break;
-
 			case Entity::MovementDirection::DOWN:
-				entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] - ((pointY % 64) + 1));
+				ApplyVerticalTileMapCollision(entity, index, hitbox[index][1]);
 				break;
 
 			case Entity::MovementDirection::LEFT:
-				entity->SetPosition(entity->GetPosition()[0] + (64 - ((pointX % 64) - 1)), entity->GetPosition()[1]);
+			case Entity::MovementDirection::RIGHT:
+				ApplyHorizontalTileMapCollision(entity, index, hitbox[index][0]);
 				break;
 			}
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Room::ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos)
+	{
+		switch (hitboxPointIndex & 2)
+		{
+		case 0:
+			entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] + (64 - ((hitboxPointYPos & 63) - 1)));
+			break;
+
+		case 2:
+			entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] - ((hitboxPointYPos & 63) + 1));
+			break;
+		}
+
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Room::ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos)
+	{
+		switch (hitboxPointIndex & 1)
+		{
+		case 0:
+			entity->SetPosition(entity->GetPosition()[0] + (64 - ((hitboxPointXPos & 63) - 1)), entity->GetPosition()[1]);
+			break;
+
+		case 1:
+			entity->SetPosition(entity->GetPosition()[0] - ((hitboxPointXPos & 63) + 1), entity->GetPosition()[1]);
+			break;
 		}
 	}
 }
