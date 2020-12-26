@@ -25,7 +25,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[1][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap0, 64, 64));
+		floorMap[1][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap0, 64, 64), std::list<Entity*>{new RagDoll(64 * 4, 64* 4, 150.f, 60, 60)});
 
 		char tilemap1[9][46]{
 		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
@@ -39,7 +39,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[1][0] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap1, 64, 64));
+		floorMap[1][0] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap1, 64, 64), std::list<Entity*>{});
 
 		char tilemap2[9][46]{
 		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
@@ -53,7 +53,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[0][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap2, 64, 64));
+		floorMap[0][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap2, 64, 64), std::list<Entity*>{});
 
 		char tilemap3[9][46]{
 		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
@@ -67,7 +67,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[1][2] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap3, 64, 64));
+		floorMap[1][2] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap3, 64, 64), std::list<Entity*>{});
 
 		char tilemap4[9][46]{
 		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
@@ -81,7 +81,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[2][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap4, 64, 64));
+		floorMap[2][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap4, 64, 64), std::list<Entity*>{});
 
 		currentRoom[0] = 1;
 		currentRoom[1] = 1;

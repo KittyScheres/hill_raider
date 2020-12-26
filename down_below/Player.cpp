@@ -32,7 +32,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void Player::LateUpdate(std::vector<Entity*> entityList)
+	void Player::LateUpdate(std::list<Entity*> entityList)
 	{
 		for (Entity* entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
@@ -56,6 +56,8 @@ namespace HillRaider
 	{
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
 		playerSprite->DrawImage(screen);
+		hitbox->RenderHitbox(screen);
+		attackHitbox->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------

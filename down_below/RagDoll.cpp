@@ -7,9 +7,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	RagDoll::RagDoll(RoomCallback* iCallback, int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
+	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
-		callback = iCallback;
 		speed = iSpeed;
 		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
 	}
@@ -27,7 +26,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void RagDoll::LateUpdate(std::vector<Entity*> entityList)
+	void RagDoll::LateUpdate(std::list<Entity*> entityList)
 	{
 		for (auto entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
@@ -43,6 +42,7 @@ namespace HillRaider
 	{
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
+		hitbox->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------
@@ -52,6 +52,14 @@ namespace HillRaider
 		if (--ragdollHealt <= 0) {
 			callback->RemoveEntity(this);
 		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void RagDoll::SetRoomCallback(RoomCallback* iCallback)
+	{
+		callback = iCallback;
 	}
 
 	// --------------------------------------------------

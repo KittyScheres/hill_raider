@@ -3,6 +3,7 @@
 #include "surface.h"
 #include "Hitbox.h"
 #include <vector>
+#include <list>
 
 namespace HillRaider
 {
@@ -20,12 +21,11 @@ namespace HillRaider
 		int distanceMoved = 0;
 	protected:
 		Entity(int iX, int iY, int iWidth, int iHeight);
-		~Entity();
 		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
 		void ApplyEntityCollision(Entity* otherEntity);
 	public:
 		virtual void Update(float deltaTime) {}
-		virtual void LateUpdate() {}
+		virtual void LateUpdate(std::list<Entity*> entityList) {}
 		virtual void Render(Tmpl8::Surface* screen) {}
 		virtual void TakeDamage() {}
 		virtual void SetPosition(int iX, int iY);
@@ -34,5 +34,6 @@ namespace HillRaider
 		int GetHeight();
 		MovementDirection GetDirection();
 		Hitbox* GetHitbox();
+		~Entity();
 	};
 }

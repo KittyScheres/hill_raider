@@ -118,23 +118,43 @@ namespace HillRaider
 
 		switch (collisionChar) {
 		case 'w':
-			floor->MoveToNextRoom(Floor::MoveDirection::UP);
-			player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), (7 * 64) + (player->GetSprite()->GetHeight() / 2));
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				floor->MoveToNextRoom(Floor::MoveDirection::UP);
+				player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), (7 * 64) + (player->GetSprite()->GetHeight() / 2));
+			}
+			else{
+				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
+			}
 			break;
 
 		case 'd':
-			floor->MoveToNextRoom(Floor::MoveDirection::RIGHT);
-			player->SetPosition(64 + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				floor->MoveToNextRoom(Floor::MoveDirection::RIGHT);
+				player->SetPosition(64 + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+			}
+			else {
+				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
+			}
 			break;
 
 		case 's':
-			floor->MoveToNextRoom(Floor::MoveDirection::DOWN);
-			player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), 64 + (player->GetSprite()->GetHeight() / 2));
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				floor->MoveToNextRoom(Floor::MoveDirection::DOWN);
+				player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), 64 + (player->GetSprite()->GetHeight() / 2));
+			}
+			else {
+				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
+			}
 			break;
 
 		case 'a':
-			floor->MoveToNextRoom(Floor::MoveDirection::LEFT);
-			player->SetPosition((13 * 64) + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				floor->MoveToNextRoom(Floor::MoveDirection::LEFT);
+				player->SetPosition((13 * 64) + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
+			}
+			else {
+				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
+			}
 			break;
 
 		case 'x':

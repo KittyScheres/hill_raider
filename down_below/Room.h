@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "TileMap.h"
 #include "RagDoll.h"
+#include <list>
+#include <typeinfo>
 
 namespace HillRaider
 {
@@ -11,16 +13,17 @@ namespace HillRaider
 	{
 	private:
 		TileMap* tileMap = nullptr;
-		RagDoll* entity = nullptr;
+		std::list<Entity*> enemyList = std::list<Entity*>{};
 
 	public:
-		Room(TileMap* iTilemap);
+		Room(TileMap* iTilemap, std::list<Entity*> enemies);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		void RoomCheckEntityCollision(Player* player);
 		void RoomCheckTileMapCollsion();
 		TileMap* GetTileMap();
 		void RemoveEntity(Entity* entity);
+		bool RoomCleared();
 		~Room();
 
 	private:

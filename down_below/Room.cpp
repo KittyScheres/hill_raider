@@ -5,10 +5,17 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Room::Room(TileMap* iTilemap)
+	Room::Room(TileMap* iTilemap, std::list<Entity*> enemies)
 	{
 		tileMap = iTilemap;
-		entity = new RagDoll(this, 64 * 4, 64 * 3, 150.f, 40, 40);
+		enemyList = enemies;
+		
+		for (Entity* enemy : enemyList) {
+			RagDoll* ragdoll = dynamic_cast<RagDoll*>(enemy);
+			if (ragdoll != nullptr) {
+				ragdoll->SetRoomCallback(this);
+			}
+		}
 	}
 
 	// --------------------------------------------------
@@ -16,8 +23,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::Update(float deltaTime)
 	{
-		if (entity != nullptr) {
-			entity->Update(deltaTime);
+		for (Entity* enemy : enemyList) {
+			enemy->Update(deltaTime);
 		}
 	}
 
@@ -27,8 +34,8 @@ namespace HillRaider
 	void Room::Render(Tmpl8::Surface* screen)
 	{
 		tileMap->Render(screen);
-		if (entity != nullptr) {
-			entity->Render(screen);
+		for (Entity* enemy : enemyList) {
+			enemy->Render(screen);
 		}
 	}
 
@@ -37,10 +44,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::RoomCheckEntityCollision(Player* player)
 	{
-		if (entity != nullptr) {
-			entity->LateUpdate(std::vector<Entity*>{player});
-			player->LateUpdate(std::vector<Entity*>{entity});
+		for (Entity* enemy : enemyList) {
+			std::list<Entity*> entityCheckList = std::list<Entity*>(enemyList);
+			entityCheckList.remove(enemy);
+			entityCheckList.push_back(player);
+			enemy->LateUpdate(entityCheckList);
 		}
+		player->LateUpdate(enemyList);
 	}
 
 	// --------------------------------------------------
@@ -48,8 +58,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::RoomCheckTileMapCollsion()
 	{
-		if (entity != nullptr) {
-			CheckTileMapCollision(entity);
+		for (Entity* enemy : enemyList) {
+			CheckTileMapCollision(enemy);
 		}
 	}
 	
@@ -65,12 +75,21 @@ namespace HillRaider
 	//
 	// --------------------------------------------------
 	void Room::RemoveEntity(Entity* entity) {
-		if (entity == this->entity) {
-			delete this->entity;
-			this->entity = nullptr;
+		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
+			enemyList.remove(entity);
+			delete entity;
+			entity = nullptr;
 		}
 	}
 	
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	bool Room::RoomCleared()
+	{
+		return enemyList.empty();
+	}
+
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
@@ -81,9 +100,12 @@ namespace HillRaider
 			tileMap = nullptr;
 		}
 
-		if (entity != nullptr) {
-			delete entity;
-			entity = nullptr;
+		if (!enemyList.empty()) {
+			for (Entity* enemy : enemyList) {
+				delete enemy;
+				enemy = nullptr;
+			}
+			enemyList.clear();
 		}
 	}
 

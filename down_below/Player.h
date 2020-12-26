@@ -23,7 +23,7 @@ namespace HillRaider
 	public:
 		Player(int iX, int iY, float iSpeed, int iWidth, int iHeight);
 		void Update(float deltaTime);
-		void LateUpdate(std::vector<Entity*> entityList);
+		void LateUpdate(std::list<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);
 		void TakeDamage();
 		void SetPosition(int iX, int iY);
