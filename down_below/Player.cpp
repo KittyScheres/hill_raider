@@ -75,11 +75,17 @@ namespace HillRaider
 		y = iY;
 		hitbox->SetPosition(x, y);
 
-		if (direction == Entity::MovementDirection::LEFT || direction == Entity::MovementDirection::RIGHT) {
-			attackHitbox->SetPosition(x + attackHitboxOffset, y);
-		}
-		else {
+		switch (direction)
+		{
+		case Entity::MovementDirection::UP :
+		case Entity::MovementDirection::DOWN :
 			attackHitbox->SetPosition(x, y + attackHitboxOffset);
+			break;
+
+		case Entity::MovementDirection::LEFT :
+		case Entity::MovementDirection::RIGHT :
+			attackHitbox->SetPosition(x + attackHitboxOffset, y);
+			break;
 		}
 	}
 
@@ -92,9 +98,7 @@ namespace HillRaider
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
-			if (attackHitboxOffset > 0) {
-				attackHitboxOffset = -attackHitboxOffset;
-			}
+			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
 			attackHitbox->SetWidth(attackHitboxWidth);
@@ -102,9 +106,7 @@ namespace HillRaider
 			break;
 		
 		case Entity::MovementDirection::RIGHT:
-			if (attackHitboxOffset < 0) {
-				attackHitboxOffset = -attackHitboxOffset;
-			}
+			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);
 			attackHitbox->SetWidth(attackHitboxHeight);
@@ -112,9 +114,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::DOWN:
-			if (attackHitboxOffset < 0) {
-				attackHitboxOffset = -attackHitboxOffset;
-			}
+			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
 			attackHitbox->SetWidth(attackHitboxWidth);
@@ -122,9 +122,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::LEFT:
-			if (attackHitboxOffset > 0) {
-				attackHitboxOffset = -attackHitboxOffset;
-			}
+			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);
 			attackHitbox->SetWidth(attackHitboxHeight);

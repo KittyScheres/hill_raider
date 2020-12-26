@@ -11,7 +11,7 @@ namespace HillRaider
 		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
-		player = new Player(64 * 8, 64 * 5, 325.f, 40, 64);
+		player = new Player(64 * 8, 64 * 5, 325.f, 40, 60);
 		floor = new Floor();
 		GameData::GetInstance();
 		AStar::GetIntance()->SetEndGoal(player);

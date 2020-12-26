@@ -11,6 +11,8 @@ namespace HillRaider
 	{
 		speed = iSpeed;
 		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
+		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
+		lineScan = new Hitbox(x, y + lineScanOffset, lineScanWidth, lineScanHeight);
 	}
 
 	// --------------------------------------------------
@@ -18,9 +20,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void RagDoll::Update(float deltaTime)
 	{
+		attackFlag = false;
+
 		UpdateDirection();
 		MoveRagdoll(deltaTime);
-		hitbox->SetPosition(x, y);
+		SetPosition(x, y);
 	}
 
 	// --------------------------------------------------
@@ -31,6 +35,11 @@ namespace HillRaider
 		for (auto entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
+			}
+
+			Player* player = dynamic_cast<Player*>(entity);
+			if (player != nullptr && TestBoxCollision(lineScan, entity)) {
+				
 			}
 		}
 	}
@@ -43,6 +52,8 @@ namespace HillRaider
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
 		hitbox->RenderHitbox(screen);
+		attackHitbox->RenderHitbox(screen);
+		lineScan->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------
@@ -60,6 +71,86 @@ namespace HillRaider
 	void RagDoll::SetRoomCallback(RoomCallback* iCallback)
 	{
 		callback = iCallback;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void RagDoll::SetPosition(int iX, int iY)
+	{
+		x = iX;
+		y = iY;
+		hitbox->SetPosition(x, y);
+
+		switch (direction)
+		{
+		case Entity::MovementDirection::UP:
+		case Entity::MovementDirection::DOWN:
+			attackHitbox->SetPosition(x, y + attackHitboxOffset);
+			lineScan->SetPosition(x, y + lineScanOffset);
+			break;
+
+		case Entity::MovementDirection::LEFT:
+		case Entity::MovementDirection::RIGHT:
+			attackHitbox->SetPosition(x + attackHitboxOffset, y);
+			lineScan->SetPosition(x + lineScanOffset, y);
+			break;
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void RagDoll::SetDirection(Entity::MovementDirection iDirection)
+	{
+		direction = iDirection;
+
+		switch (direction)
+		{
+		case Entity::MovementDirection::UP:
+			attackHitboxOffset = -std::abs(attackHitboxOffset);
+			lineScanOffset = -std::abs(lineScanOffset);
+			hitbox->SetWidth(width);
+			hitbox->SetHeight(height);
+			attackHitbox->SetWidth(attackHitboxWidth);
+			attackHitbox->SetHeight(attackHitboxHeight);
+			lineScan->SetWidth(lineScanWidth);
+			lineScan->SetHeight(lineScanHeight);
+			break;
+
+		case Entity::MovementDirection::RIGHT:
+			attackHitboxOffset = std::abs(attackHitboxOffset);
+			lineScanOffset = std::abs(lineScanOffset);
+			hitbox->SetWidth(height);
+			hitbox->SetHeight(width);
+			attackHitbox->SetWidth(attackHitboxHeight);
+			attackHitbox->SetHeight(attackHitboxWidth);
+			lineScan->SetWidth(lineScanHeight);
+			lineScan->SetHeight(lineScanWidth);
+			break;
+
+		case Entity::MovementDirection::DOWN:
+			attackHitboxOffset = std::abs(attackHitboxOffset);
+			lineScanOffset = std::abs(lineScanOffset);
+			hitbox->SetWidth(width);
+			hitbox->SetHeight(height);
+			attackHitbox->SetWidth(attackHitboxWidth);
+			attackHitbox->SetHeight(attackHitboxHeight);
+			lineScan->SetWidth(lineScanWidth);
+			lineScan->SetHeight(lineScanHeight);
+			break;
+
+		case Entity::MovementDirection::LEFT:
+			attackHitboxOffset = -std::abs(attackHitboxOffset);
+			lineScanOffset = -std::abs(lineScanOffset);
+			hitbox->SetWidth(height);
+			hitbox->SetHeight(width);
+			attackHitbox->SetWidth(attackHitboxHeight);
+			attackHitbox->SetHeight(attackHitboxWidth);
+			lineScan->SetWidth(lineScanHeight);
+			lineScan->SetHeight(lineScanWidth);
+			break;
+		}
 	}
 
 	// --------------------------------------------------
@@ -86,6 +177,16 @@ namespace HillRaider
 		if (ragDollSprite != nullptr) {
 			delete ragDollSprite;
 			ragDollSprite = nullptr;
+		}
+
+		if (attackHitbox != nullptr) {
+			delete attackHitbox;
+			attackHitbox = nullptr;
+		}
+
+		if (lineScan != nullptr) {
+			delete lineScan;
+			lineScan = nullptr;
 		}
 	}
 
@@ -119,16 +220,16 @@ namespace HillRaider
 			std::vector<int> directionVector{ path[1]->GetGridX() - path[0]->GetGridX(), path[1]->GetGridY() - path[0]->GetGridY() };
 
 			if (directionVector == std::vector<int>{0, -1}) {
-				direction = Entity::MovementDirection::UP;
+				SetDirection(Entity::MovementDirection::UP);
 			}
 			else if (directionVector == std::vector<int>{1, 0}) {
-				direction = Entity::MovementDirection::RIGHT;
+				SetDirection(Entity::MovementDirection::RIGHT);
 			}
 			else if (directionVector == std::vector<int>{0, 1}) {
-				direction = Entity::MovementDirection::DOWN;
+				SetDirection(Entity::MovementDirection::DOWN);
 			}
 			else if (directionVector == std::vector<int>{-1, 0}) {
-				direction = Entity::MovementDirection::LEFT;
+				SetDirection(Entity::MovementDirection::LEFT);
 			}
 		}
 	}

@@ -117,9 +117,9 @@ namespace HillRaider
 		int startYPos = yPos - halfHeight;
 
 		for (int y = 0; y < (halfHeight * 2); y++) {
-			if (startYPos + y < screen->GetHeight()) {
+			if (startYPos + y < screen->GetHeight() && startYPos + y >= 0) {
 				for (int x = 0; x < (halfWidth * 2); x++) {
-					if (startXPos + x < screen->GetWidth()) {
+					if (startXPos + x < screen->GetWidth() && startXPos + x >= 0) {
 						screen->GetBuffer()[(startXPos + x) + ((startYPos + y) * screen->GetWidth())] = debugColour;
 					}
 				}

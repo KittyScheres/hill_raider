@@ -25,7 +25,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 		};
 
-		floorMap[1][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap0, 64, 64), std::list<Entity*>{new RagDoll(64 * 4, 64* 4, 150.f, 60, 60)});
+		floorMap[1][1] = new Room(new TileMap("assets/gameplay/tile_maps/tile_map.png", tilemap0, 64, 64), std::list<Entity*>{new RagDoll(64 * 4, 64* 4, 150.f, 40, 60)});
 
 		char tilemap1[9][46]{
 		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
