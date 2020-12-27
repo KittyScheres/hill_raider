@@ -70,11 +70,11 @@ namespace HillRaider
 		checkControlsButtonBackground->DrawImage(screen);
 		exitGameButtonBackground->DrawImage(screen);
 
+		menuItemHighlight->DrawImage(screen);
+
 		playGameButtonText->DrawImage(screen);
 		checkControlsButtonText->DrawImage(screen);
 		exitGameButtonText->DrawImage(screen);
-
-		menuItemHighlight->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
