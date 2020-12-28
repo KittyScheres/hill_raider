@@ -10,7 +10,7 @@ namespace HillRaider
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
 		playerSprite = new Image("assets/gameplay/player/player.png", x , y );
-		attackHitbox = new Hitbox(x, y - attackHitboxOffset, 20, 10);
+		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 	}
 
 	// --------------------------------------------------
@@ -18,15 +18,40 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
-		attackFlag = false;
-
-		CheckForKeyPressed();
-		CheckForKeyLetGo();
-		MovePlayer(deltaTime);
-		SetPosition(x, y);
-		if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
-			attackFlag = true;
+		if (!lungeFlag) {
+			CheckForKeyPressed();
+			CheckForKeyLetGo();
+			MovePlayer(deltaTime);
+			
+			if (!lungeCooldownFlag) {
+				if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
+					lungeFlag = true;
+					lungeCooldownFlag = true;
+				}
+			}
+			else {
+				if (lungeCooldownTimer >= lungeCooldown) {
+					lungeCooldownFlag = false;
+					lungeCooldownTimer = 0.f;
+				}
+				else {
+					lungeCooldownTimer += deltaTime;
+				}
+			}
 		}
+		else {
+			if (lungeDurationTimer >= lungeDuration) {
+				registerHitFlag = true;
+				lungeFlag = false;
+				lungeDurationTimer = 0.f;
+			}
+			else {
+				Lunge(deltaTime);
+				lungeDurationTimer += deltaTime;
+			}
+		}
+
+		SetPosition(x, y);
 	}
 	
 	// --------------------------------------------------
@@ -40,11 +65,16 @@ namespace HillRaider
 				SetPosition(x, y);
 			}
 
-			if (attackFlag && TestBoxCollision(attackHitbox, entity)) {
-				RagDoll* ragdoll = dynamic_cast<RagDoll*>(entity);
-				if (ragdoll != nullptr) {
-					ragdoll->TakeDamage();
+			if (registerHitFlag)
+			{
+				if (TestBoxCollision(attackHitbox, entity))
+				{
+					RagDoll* ragdoll = dynamic_cast<RagDoll*>(entity);
+					if (ragdoll != nullptr) {
+						ragdoll->TakeDamage();
+					}
 				}
+				registerHitFlag = false;
 			}
 		}
 	}
@@ -286,6 +316,34 @@ namespace HillRaider
 				distanceMoved = (int)(speed * (deltaTime / 1000));
 				x -= distanceMoved;
 			}
+			break;
+		}
+	}
+
+	void Player::Lunge(float deltaTime)
+	{
+		distanceMoved = 0;
+
+		switch (direction)
+		{
+		case MovementDirection::UP:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			y -= distanceMoved;
+			break;
+
+		case MovementDirection::RIGHT:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			x += distanceMoved;
+			break;
+
+		case MovementDirection::DOWN:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			y += distanceMoved;
+			break;
+
+		case MovementDirection::LEFT:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			x -= distanceMoved;
 			break;
 		}
 	}

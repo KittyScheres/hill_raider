@@ -13,13 +13,20 @@ namespace HillRaider
 	private:
 		const short attackHitboxWidth = 20;
 		const short attackHitboxHeight = 10;
+		const short lungeSpeedIncrease = 200;
+		const float lungeDuration = 200.f;
+		const float lungeCooldown = 2000.f;
 	private:
 		InputManager* inputManager = nullptr;
 		Image* playerSprite = nullptr;
 		Hitbox* attackHitbox = nullptr;
 		float speed = 0.f;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
-		bool attackFlag = false;
+		bool lungeFlag = false;
+		bool lungeCooldownFlag = false;
+		bool registerHitFlag = false;
+		float lungeDurationTimer = 0.f;
+		float lungeCooldownTimer = 0.f;
 	public:
 		Player(int iX, int iY, float iSpeed, int iWidth, int iHeight);
 		void Update(float deltaTime);
@@ -35,5 +42,6 @@ namespace HillRaider
 		void CheckForKeyPressed();
 		void CheckForKeyLetGo();
 		void MovePlayer(float deltaTime);
+		void Lunge(float deltaTime);
 	};
 }
