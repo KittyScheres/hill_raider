@@ -40,13 +40,13 @@ namespace HillRaider
 			}
 		}
 		else {
+			Lunge(deltaTime);
+
 			if (lungeDurationTimer >= lungeDuration) {
-				registerHitFlag = true;
 				lungeFlag = false;
 				lungeDurationTimer = 0.f;
 			}
 			else {
-				Lunge(deltaTime);
 				lungeDurationTimer += deltaTime;
 			}
 		}
@@ -65,16 +65,15 @@ namespace HillRaider
 				SetPosition(x, y);
 			}
 
-			if (registerHitFlag)
-			{
-				if (TestBoxCollision(attackHitbox, entity))
-				{
+			if (lungeFlag) {
+				if (TestBoxCollision(attackHitbox, entity)) {
 					RagDoll* ragdoll = dynamic_cast<RagDoll*>(entity);
 					if (ragdoll != nullptr) {
 						ragdoll->TakeDamage();
+						lungeFlag = false;
+						lungeDurationTimer = 0.f;
 					}
 				}
-				registerHitFlag = false;
 			}
 		}
 	}
@@ -86,8 +85,6 @@ namespace HillRaider
 	{
 		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
 		playerSprite->DrawImage(screen);
-		hitbox->RenderHitbox(screen);
-		attackHitbox->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------
@@ -320,6 +317,9 @@ namespace HillRaider
 		}
 	}
 
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Player::Lunge(float deltaTime)
 	{
 		distanceMoved = 0;

@@ -24,7 +24,6 @@ namespace HillRaider
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
 		bool lungeFlag = false;
 		bool lungeCooldownFlag = false;
-		bool registerHitFlag = false;
 		float lungeDurationTimer = 0.f;
 		float lungeCooldownTimer = 0.f;
 	public:

@@ -1,7 +1,5 @@
 #include "RagDoll.h"
 
-#include <cstdio>
-
 namespace HillRaider
 {
 	// --------------------------------------------------
@@ -20,10 +18,42 @@ namespace HillRaider
 	// --------------------------------------------------
 	void RagDoll::Update(float deltaTime)
 	{
-		attackFlag = false;
+		if (!lungeFlag) {
+			UpdateDirection();
+			MoveRagdoll(deltaTime);
 
-		UpdateDirection();
-		MoveRagdoll(deltaTime);
+			if (!makeDecisionFlag) {
+				if (makeDecisionTimer >= makeDecisionCooldown) {
+					makeDecisionFlag = true;
+					makeDecisionTimer = 0.f;
+				}
+				else {
+					makeDecisionTimer += deltaTime;
+				}
+			}
+
+			if (lungeCooldownFlag) {
+				if (lungeCooldownTimer >= lungeCooldown) {
+					lungeCooldownFlag = false;
+					lungeCooldownTimer = 0.f;
+				}
+				else {
+					lungeCooldownTimer += deltaTime;
+				}
+			}
+		}
+		else {
+			Lunge(deltaTime);
+
+			if (lungeDurationTimer >= lungeDuration) {
+				lungeFlag = false;
+				lungeDurationTimer = 0.f;
+			}
+			else {
+				lungeDurationTimer += deltaTime;
+			}
+		}
+
 		SetPosition(x, y);
 	}
 
@@ -32,15 +62,47 @@ namespace HillRaider
 	// --------------------------------------------------
 	void RagDoll::LateUpdate(std::list<Entity*> entityList)
 	{
+		float smallestDistance = 10000.f;
+		bool playerInLineOfSide = false;
+
 		for (auto entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
 			}
 
-			Player* player = dynamic_cast<Player*>(entity);
-			if (player != nullptr && TestBoxCollision(lineScan, entity)) {
-				
+			if (lungeFlag) {
+				Player* player = dynamic_cast<Player*>(entity);
+				if (player != nullptr && TestBoxCollision(attackHitbox, entity)) {
+					player->TakeDamage();
+					lungeFlag = false;
+					lungeDurationTimer = 0.f;
+				}
 			}
+
+			if (makeDecisionFlag && !lungeCooldownFlag) {
+				if (TestBoxCollision(lineScan, entity)) {
+					int distanceVectorX = entity->GetPosition()[0] - x;
+					int distanceVectorY = entity->GetPosition()[1] - y;
+					float distance = sqrtf((distanceVectorX * distanceVectorX) + (distanceVectorY * distanceVectorY));
+					Player* player = dynamic_cast<Player*>(entity);
+					if (player != nullptr && distance < smallestDistance) {
+						playerInLineOfSide = true;
+						smallestDistance = distance;
+					}
+					else if(distance < smallestDistance) {
+						playerInLineOfSide = false;
+						smallestDistance = distance;
+					}
+				}
+			}			
+		}
+
+		if (playerInLineOfSide) {
+			if ((rand() & 1) == 0) {
+				lungeFlag = true;
+				lungeCooldownFlag = true;
+			}
+			makeDecisionFlag = false;
 		}
 	}
 
@@ -51,9 +113,6 @@ namespace HillRaider
 	{
 		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
 		ragDollSprite->DrawImage(screen);
-		hitbox->RenderHitbox(screen);
-		attackHitbox->RenderHitbox(screen);
-		lineScan->RenderHitbox(screen);
 	}
 
 	// --------------------------------------------------
@@ -260,6 +319,37 @@ namespace HillRaider
 
 		case Entity::MovementDirection::LEFT:
 			distanceMoved = (int)(speed * (deltaTime / 1000));
+			x -= distanceMoved;
+			break;
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void RagDoll::Lunge(float deltaTime)
+	{
+		distanceMoved = 0;
+
+		switch (direction)
+		{
+		case MovementDirection::UP:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			y -= distanceMoved;
+			break;
+
+		case MovementDirection::RIGHT:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			x += distanceMoved;
+			break;
+
+		case MovementDirection::DOWN:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
+			y += distanceMoved;
+			break;
+
+		case MovementDirection::LEFT:
+			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			x -= distanceMoved;
 			break;
 		}

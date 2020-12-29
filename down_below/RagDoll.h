@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Image.h"
 #include "AStar.h"
+#include <random>
 
 namespace HillRaider
 {
@@ -15,6 +16,10 @@ namespace HillRaider
 		const short attackHitboxHeight = 10;
 		const short lineScanWidth = 2;
 		const short lineScanHeight = 90;
+		const short lungeSpeedIncrease = 200;
+		const float makeDecisionCooldown = 1000.f;
+		const float lungeDuration = 300.f;
+		const float lungeCooldown = 2000.f;
 	private:
 		RoomCallback* callback = nullptr;
 		Image* ragDollSprite = nullptr;
@@ -24,7 +29,12 @@ namespace HillRaider
 		int ragdollHealt = 2;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
 		short lineScanOffset = (height / 2) + (lineScanHeight / 2);
-		bool attackFlag = false;
+		bool makeDecisionFlag = false;
+		bool lungeFlag = false;
+		bool lungeCooldownFlag = false;
+		float makeDecisionTimer = 0.f;
+		float lungeDurationTimer = 0.f;
+		float lungeCooldownTimer = 0.f;
 	public:
 		RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight);
 		void Update(float deltaTime);
@@ -40,5 +50,6 @@ namespace HillRaider
 	private:
 		void UpdateDirection();
 		void MoveRagdoll(float deltaTime);
+		void Lunge(float deltaTime);
 	};
 }

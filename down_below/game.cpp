@@ -2,6 +2,8 @@
 #include "SDL.h"
 #include "surface.h"
 #include "StartMenu.h"
+#include <random>
+#include <time.h>
 
 namespace Tmpl8
 {
@@ -12,6 +14,7 @@ namespace Tmpl8
 	{
 		SetState(new HillRaider::StartMenu(this));
 		inputManager = HillRaider::InputManager::GetInstance();
+		srand(time(NULL));
 	}
 	
 	// -----------------------------------------------------------
