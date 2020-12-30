@@ -5,11 +5,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
-	Image::Image(char* srcPath, int iX, int iY)
+	Image::Image(char* srcPath, int iX, int iY, short iXFrames, short iYFrames)
 	{
 		src = new Tmpl8::Surface(srcPath);
 		x = iX;
 		y = iY;
+		xFrames = iXFrames;
+		yFrames = iYFrames;
+		width = src->GetWidth() / iXFrames;
+		height = src->GetHeight() / iYFrames;
 	}
 
 	// --------------------------------------------------
@@ -18,16 +22,15 @@ namespace HillRaider
 	void Image::DrawImage(Tmpl8::Surface* screen)
 	{
 		int screenWidth = screen->GetWidth();
-		int srcWidth = src->GetWidth();
 
-		for (int iY = 0; iY < src->GetHeight(); iY++) {
+		for (int iY = 0; iY < height; iY++) {
 			int screenYPos = y + iY;
 			if (screenYPos >= 0 && screenYPos <= screen->GetHeight()) {
-				for (int iX = 0; iX < srcWidth; iX++) {
+				for (int iX = 0; iX < width; iX++) {
 					int screenXpos = x + iX;
 					if (screenXpos >= 0 && screenXpos <= screenWidth) {
-						if ((src->GetBuffer()[iX + (iY * srcWidth)] >> 24) != 0) {
-							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = src->GetBuffer()[iX + (iY * srcWidth)];
+						if ((src->GetBuffer()[(iX + (currentXFrame * width)) + ((iY + (currentYFrame * height)) * src->GetWidth())] >> 24) != 0) {
+							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = src->GetBuffer()[(iX + (currentXFrame * width)) + ((iY + (currentYFrame * height)) * src->GetWidth())];
 						}
 					}
 				}
@@ -47,6 +50,26 @@ namespace HillRaider
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
+	void Image::SetCurrentXFrame(int iCurrentXFrame)
+	{
+		if (iCurrentXFrame < xFrames && iCurrentXFrame >= 0) {
+			currentXFrame = iCurrentXFrame;
+		}
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
+	void Image::SetCurrentYFrame(int iCurrentYFrame)
+	{
+		if (iCurrentYFrame < yFrames && iCurrentYFrame >= 0) {
+			currentYFrame = iCurrentYFrame;
+		}
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
 	int* Image::GetPosition()
 	{
 		int position[2]{ x, y };
@@ -58,7 +81,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Image::GetWidth()
 	{
-		return src->GetWidth();
+		return width;
 	}
 
 	// --------------------------------------------------
@@ -66,7 +89,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Image::GetHeight()
 	{
-		return src->GetHeight();
+		return height;
 	}
 
 	// --------------------------------------------------

@@ -9,7 +9,7 @@ namespace HillRaider
 	{
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
-		playerSprite = new Image("assets/gameplay/player/player.png", x , y );
+		playerSprite = new Image("assets/gameplay/entities/black_ant_body.png", x, y, 4, 4);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 	}
 
@@ -125,6 +125,7 @@ namespace HillRaider
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
+			playerSprite->SetCurrentYFrame(0);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
@@ -133,6 +134,7 @@ namespace HillRaider
 			break;
 		
 		case Entity::MovementDirection::RIGHT:
+			playerSprite->SetCurrentYFrame(1);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);
@@ -141,6 +143,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::DOWN:
+			playerSprite->SetCurrentYFrame(2);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
@@ -149,6 +152,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::LEFT:
+			playerSprite->SetCurrentYFrame(3);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);

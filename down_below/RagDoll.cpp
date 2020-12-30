@@ -8,7 +8,7 @@ namespace HillRaider
 	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
 		speed = iSpeed;
-		ragDollSprite = new Image("assets/gameplay/entities/ragdoll.png", x, y);
+		ragDollSprite = new Image("assets/gameplay/entities/red_ant_body.png", x, y, 4, 4);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 		lineScan = new Hitbox(x, y + lineScanOffset, lineScanWidth, lineScanHeight);
 	}
@@ -167,6 +167,7 @@ namespace HillRaider
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
+			ragDollSprite->SetCurrentYFrame(0);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -178,6 +179,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::RIGHT:
+			ragDollSprite->SetCurrentYFrame(1);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(height);
@@ -189,6 +191,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::DOWN:
+			ragDollSprite->SetCurrentYFrame(2);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -200,6 +203,7 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::LEFT:
+			ragDollSprite->SetCurrentYFrame(3);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(height);

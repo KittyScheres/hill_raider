@@ -1,3 +1,3 @@
-﻿  RagDoll.cpp
-D:\breda\game\down_below\down_below\RagDoll.cpp(86,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Image.cpp
+D:\breda\game\down_below\down_below\Image.cpp(76): warning C4172: returning address of local variable or temporary: position
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe
