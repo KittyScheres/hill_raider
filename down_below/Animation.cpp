@@ -5,16 +5,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
-	Animation::Animation(char* srcPath, unsigned int iFrames, float iTimePerFrame, bool iLoop, int iX, int iY)
+	Animation::Animation(char* srcPath, short iXFrames, short iYFrames, float iTimePerFrame, int iX, int iY, bool iLoop)
 	{
-		src = new Tmpl8::Sprite(new Tmpl8::Surface(srcPath), iFrames);
-		frames = iFrames;
+		src = new Image(srcPath, iX, iY, iXFrames, iYFrames);
+		xFrames = iXFrames;
 		timePerFrame = iTimePerFrame;
 		loop = iLoop;
-		x = iX;
-		y = iY;
-		currentFrame = 0;
-		src->SetFrame(currentFrame);
 	}
 
 	// --------------------------------------------------
@@ -22,21 +18,19 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Animation::UpdateAnimation(float deltaTime)
 	{
-		if (currentFrame < frames) {
-			animationTimer += deltaTime;
-
-			if (animationTimer >= timePerFrame) {
-				currentFrame += 1;
-
-				if (currentFrame >= frames && loop) {
-					currentFrame = 0;
-				}
-
-				if (currentFrame < frames) {
-					src->SetFrame(currentFrame);
-					animationTimer = 0.f;
-				}
+		if (animationTimer >= timePerFrame) {
+			if (currentXFrame < xFrames) {
+				src->SetCurrentXFrame(++currentXFrame);
+				animationTimer = 0.f;
 			}
+			else if (loop) {
+				src->SetCurrentXFrame(0);
+				currentXFrame = 0;
+				animationTimer = 0.f;
+			}
+		}
+		else {
+			animationTimer += deltaTime;
 		}
 	}
 
@@ -45,7 +39,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Animation::DrawAnimation(Tmpl8::Surface* screen)
 	{
-		src->Draw(screen, x, y);
+		src->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
@@ -53,8 +47,24 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Animation::SetPosition(int iX, int iY)
 	{
-		x = iX;
-		y = iY;
+		src->SetPosition(iX, iY);
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
+	void Animation::SetCurrentXFrame(short iCurrentXFrame)
+	{
+		currentXFrame = iCurrentXFrame;
+		src->SetCurrentXFrame(iCurrentXFrame);
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
+	void Animation::SetCurrentYFrame(short iCurrentYFrame)
+	{
+		src->SetCurrentYFrame(iCurrentYFrame);
 	}
 
 	// --------------------------------------------------
@@ -62,8 +72,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int* Animation::GetPosition()
 	{
-		int postion[2]{ x, y };
-		return postion;
+		return src->GetPosition();
 	}
 
 	// --------------------------------------------------
@@ -80,14 +89,6 @@ namespace HillRaider
 	int Animation::GetHeight()
 	{
 		return src->GetHeight();
-	}
-
-	// --------------------------------------------------
-	// 
-	// --------------------------------------------------
-	unsigned int Animation::GetCurrentFrame()
-	{
-		return currentFrame;
 	}
 
 	// --------------------------------------------------

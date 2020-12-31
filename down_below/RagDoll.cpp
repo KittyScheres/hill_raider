@@ -8,7 +8,8 @@ namespace HillRaider
 	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
 		speed = iSpeed;
-		ragDollSprite = new Image("assets/gameplay/entities/red_ant_body.png", x, y, 4, 4);
+		legsAnimation = new Animation("assets/gameplay/entities/red_ant_legs.png", 4, 4, 30.f, iX, iY, true);
+		bodyAnimation = new Animation("assets/gameplay/entities/red_ant_body.png", 4, 4, 75.f, iX, iY, false);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 		lineScan = new Hitbox(x, y + lineScanOffset, lineScanWidth, lineScanHeight);
 	}
@@ -36,9 +37,11 @@ namespace HillRaider
 				if (lungeCooldownTimer >= lungeCooldown) {
 					lungeCooldownFlag = false;
 					lungeCooldownTimer = 0.f;
+					bodyAnimation->SetCurrentXFrame(0);
 				}
 				else {
 					lungeCooldownTimer += deltaTime;
+					bodyAnimation->UpdateAnimation(deltaTime);
 				}
 			}
 		}
@@ -54,6 +57,7 @@ namespace HillRaider
 			}
 		}
 
+		legsAnimation->UpdateAnimation(deltaTime);
 		SetPosition(x, y);
 	}
 
@@ -111,8 +115,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void RagDoll::Render(Tmpl8::Surface* screen)
 	{
-		ragDollSprite->SetPosition(x - (ragDollSprite->GetWidth()) / 2, y - (ragDollSprite->GetHeight() / 2));
-		ragDollSprite->DrawImage(screen);
+		legsAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
+		bodyAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
+	
+		legsAnimation->DrawAnimation(screen);
+		bodyAnimation->DrawAnimation(screen);
 	}
 
 	// --------------------------------------------------
@@ -164,10 +171,12 @@ namespace HillRaider
 	{
 		direction = iDirection;
 
+		legsAnimation->SetCurrentYFrame((int)direction);
+		bodyAnimation->SetCurrentYFrame((int)direction);
+
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
-			ragDollSprite->SetCurrentYFrame(0);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -179,7 +188,6 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::RIGHT:
-			ragDollSprite->SetCurrentYFrame(1);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(height);
@@ -191,7 +199,6 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::DOWN:
-			ragDollSprite->SetCurrentYFrame(2);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -203,7 +210,6 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::LEFT:
-			ragDollSprite->SetCurrentYFrame(3);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(height);
@@ -227,9 +233,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Image* RagDoll::GetSprite()
+	Animation* RagDoll::GetSprite()
 	{
-		return ragDollSprite;
+		return bodyAnimation;
 	}
 
 	// --------------------------------------------------
@@ -237,9 +243,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	RagDoll::~RagDoll()
 	{
-		if (ragDollSprite != nullptr) {
-			delete ragDollSprite;
-			ragDollSprite = nullptr;
+		if (legsAnimation != nullptr) {
+			delete legsAnimation;
+			legsAnimation = nullptr;
+		}
+
+		if (bodyAnimation != nullptr) {
+			delete bodyAnimation;
+			bodyAnimation = nullptr;
 		}
 
 		if (attackHitbox != nullptr) {

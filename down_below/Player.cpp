@@ -9,7 +9,8 @@ namespace HillRaider
 	{
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
-		playerSprite = new Image("assets/gameplay/entities/black_ant_body.png", x, y, 4, 4);
+		legsAnimation = new Animation("assets/gameplay/entities/black_ant_legs.png", 4, 4, 20.f, iX, iY, true);
+		bodyAnimation = new Animation("assets/gameplay/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 	}
 
@@ -33,13 +34,16 @@ namespace HillRaider
 				if (lungeCooldownTimer >= lungeCooldown) {
 					lungeCooldownFlag = false;
 					lungeCooldownTimer = 0.f;
+					bodyAnimation->SetCurrentXFrame(0);
 				}
 				else {
 					lungeCooldownTimer += deltaTime;
+					bodyAnimation->UpdateAnimation(deltaTime);
 				}
 			}
 		}
 		else {
+			legsAnimation->UpdateAnimation(deltaTime);
 			Lunge(deltaTime);
 
 			if (lungeDurationTimer >= lungeDuration) {
@@ -50,7 +54,6 @@ namespace HillRaider
 				lungeDurationTimer += deltaTime;
 			}
 		}
-
 		SetPosition(x, y);
 	}
 	
@@ -83,8 +86,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Render(Tmpl8::Surface* screen)
 	{
-		playerSprite->SetPosition(x - (playerSprite->GetWidth() / 2), y - (playerSprite->GetHeight() / 2));
-		playerSprite->DrawImage(screen);
+		legsAnimation->SetPosition(x - (bodyAnimation->GetWidth() / 2), y - (bodyAnimation->GetHeight() / 2));
+		bodyAnimation->SetPosition(x - (bodyAnimation->GetWidth() / 2), y - (bodyAnimation->GetHeight() / 2));
+		
+		legsAnimation->DrawAnimation(screen);
+		bodyAnimation->DrawAnimation(screen);
 	}
 
 	// --------------------------------------------------
@@ -122,10 +128,12 @@ namespace HillRaider
 	void Player::SetDirection(Entity::MovementDirection iDirection) {
 		direction = iDirection;
 
+		legsAnimation->SetCurrentYFrame((int)direction);
+		bodyAnimation->SetCurrentYFrame((int)direction);
+
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
-			playerSprite->SetCurrentYFrame(0);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
@@ -134,7 +142,6 @@ namespace HillRaider
 			break;
 		
 		case Entity::MovementDirection::RIGHT:
-			playerSprite->SetCurrentYFrame(1);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);
@@ -143,7 +150,6 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::DOWN:
-			playerSprite->SetCurrentYFrame(2);
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			hitbox->SetWidth(width);
 			hitbox->SetHeight(height);
@@ -152,7 +158,6 @@ namespace HillRaider
 			break;
 
 		case Entity::MovementDirection::LEFT:
-			playerSprite->SetCurrentYFrame(3);
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			hitbox->SetWidth(height);
 			hitbox->SetHeight(width);
@@ -172,9 +177,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Image* Player::GetSprite()
+	Animation* Player::GetSprite()
 	{
-		return playerSprite;
+		return bodyAnimation;
 	}
 
 	// --------------------------------------------------
@@ -182,9 +187,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	Player::~Player()
 	{
-		if (playerSprite != nullptr) {
-			delete playerSprite;
-			playerSprite = nullptr;
+		if (legsAnimation != nullptr) {
+			delete legsAnimation;
+			legsAnimation = nullptr;
+		}
+
+		if (bodyAnimation != nullptr) {
+			delete bodyAnimation;
+			bodyAnimation = nullptr;
 		}
 
 		if (attackHitbox != nullptr) {
@@ -293,6 +303,7 @@ namespace HillRaider
 		{
 		case MovementDirection::UP:
 			if (inputManager->KeyDown(InputManager::Keys::UP)) {
+				legsAnimation->UpdateAnimation(deltaTime);
 				distanceMoved = (int)(speed * (deltaTime / 1000));
 				y -= distanceMoved;
 			}
@@ -300,6 +311,7 @@ namespace HillRaider
 
 		case MovementDirection::RIGHT:
 			if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
+				legsAnimation->UpdateAnimation(deltaTime);
 				distanceMoved = (int)(speed * (deltaTime / 1000));
 				x += distanceMoved;
 			}
@@ -307,6 +319,7 @@ namespace HillRaider
 
 		case MovementDirection::DOWN:
 			if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
+				legsAnimation->UpdateAnimation(deltaTime);
 				distanceMoved = (int)(speed * (deltaTime / 1000));
 				y += distanceMoved;
 			}
@@ -314,6 +327,7 @@ namespace HillRaider
 
 		case MovementDirection::LEFT:
 			if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
+				legsAnimation->UpdateAnimation(deltaTime);
 				distanceMoved = (int)(speed * (deltaTime / 1000));
 				x -= distanceMoved;
 			}

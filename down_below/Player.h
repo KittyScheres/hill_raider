@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 #include "RagDoll.h"
-#include "Image.h"
+#include "Animation.h"
 #include "InputManager.h"
 #include "GameData.h"
 
@@ -18,7 +18,8 @@ namespace HillRaider
 		const float lungeCooldown = 2000.f;
 	private:
 		InputManager* inputManager = nullptr;
-		Image* playerSprite = nullptr;
+		Animation* legsAnimation = nullptr;
+		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
 		float speed = 0.f;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
@@ -35,7 +36,7 @@ namespace HillRaider
 		void SetPosition(int iX, int iY);
 		void SetDirection(Entity::MovementDirection iDirection);
 		MovementDirection GetDirection();
-		Image* GetSprite();
+		Animation* GetSprite();
 		~Player();
 	private:
 		void CheckForKeyPressed();

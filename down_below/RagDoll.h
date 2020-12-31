@@ -3,7 +3,7 @@
 #include "RoomCallback.h"
 #include "Entity.h"
 #include "Player.h"
-#include "Image.h"
+#include "Animation.h"
 #include "AStar.h"
 #include <random>
 
@@ -22,7 +22,8 @@ namespace HillRaider
 		const float lungeCooldown = 2000.f;
 	private:
 		RoomCallback* callback = nullptr;
-		Image* ragDollSprite = nullptr;
+		Animation* legsAnimation = nullptr;
+		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
 		Hitbox* lineScan = nullptr;
 		float speed = 0.f;
@@ -45,7 +46,7 @@ namespace HillRaider
 		void SetPosition(int iX, int iY);
 		void SetDirection(Entity::MovementDirection iDirection);
 		MovementDirection GetDirection();
-		Image* GetSprite();
+		Animation* GetSprite();
 		~RagDoll();
 	private:
 		void UpdateDirection();

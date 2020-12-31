@@ -1,30 +1,30 @@
 #pragma once
 
-#include "surface.h";
+#include "Image.h";
 
 namespace HillRaider
 {
 	class Animation
 	{
 	private:
-		Tmpl8::Sprite* src = nullptr;
-		unsigned int frames = 0;
+		Image* src = nullptr;
+		short xFrames = 0;
+		short yFrames = 0;
 		float timePerFrame = 0.f;
 		bool loop = false;
-		int x = 0;
-		int y = 0;
 		float animationTimer = 0.f;
-		unsigned int currentFrame = 0;
+		short currentXFrame = 0;
 
 	public: 
-		Animation(char* srcPath, unsigned int iFrames, float iTimePerFrame, bool iLoop, int iX, int iY);
+		Animation(char* srcPath, short iXFrames, short iYFrames, float iTimePerFrame, int iX, int iY, bool iLoop);
 		void UpdateAnimation(float deltaTime);
 		void DrawAnimation(Tmpl8::Surface* screen);
 		void SetPosition(int iX, int iY);
+		void SetCurrentXFrame(short iCurrentXFrame);
+		void SetCurrentYFrame(short iCurrentYFrame);
 		int* GetPosition();
 		int GetWidth();
 		int GetHeight();
-		unsigned int GetCurrentFrame();
 		~Animation();
 	};
 }
