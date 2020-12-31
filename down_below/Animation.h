@@ -20,6 +20,7 @@ namespace HillRaider
 		void UpdateAnimation(float deltaTime);
 		void DrawAnimation(Tmpl8::Surface* screen);
 		void SetPosition(int iX, int iY);
+		void SetTimePerFrame(float iTimePerFrame);
 		void SetCurrentXFrame(short iCurrentXFrame);
 		void SetCurrentYFrame(short iCurrentYFrame);
 		int* GetPosition();

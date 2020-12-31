@@ -13,7 +13,9 @@ namespace HillRaider
 	private:
 		const short attackHitboxWidth = 20;
 		const short attackHitboxHeight = 10;
+		const float timePerframeWalkingAnimation = 20.f;
 		const short lungeSpeedIncrease = 200;
+		const float lungeTimePerFrameWalkingAnimation = 10.f;
 		const float lungeDuration = 200.f;
 		const float lungeCooldown = 2000.f;
 	private:

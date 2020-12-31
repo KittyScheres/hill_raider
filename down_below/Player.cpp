@@ -9,7 +9,7 @@ namespace HillRaider
 	{
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
-		legsAnimation = new Animation("assets/gameplay/entities/black_ant_legs.png", 4, 4, 20.f, iX, iY, true);
+		legsAnimation = new Animation("assets/gameplay/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
 		bodyAnimation = new Animation("assets/gameplay/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 	}
@@ -26,6 +26,7 @@ namespace HillRaider
 			
 			if (!lungeCooldownFlag) {
 				if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
+					legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
 					lungeFlag = true;
 					lungeCooldownFlag = true;
 				}
@@ -47,6 +48,7 @@ namespace HillRaider
 			Lunge(deltaTime);
 
 			if (lungeDurationTimer >= lungeDuration) {
+				legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
 				lungeFlag = false;
 				lungeDurationTimer = 0.f;
 			}

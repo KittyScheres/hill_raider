@@ -8,7 +8,7 @@ namespace HillRaider
 	RagDoll::RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
 	{
 		speed = iSpeed;
-		legsAnimation = new Animation("assets/gameplay/entities/red_ant_legs.png", 4, 4, 30.f, iX, iY, true);
+		legsAnimation = new Animation("assets/gameplay/entities/red_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
 		bodyAnimation = new Animation("assets/gameplay/entities/red_ant_body.png", 4, 4, 75.f, iX, iY, false);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 		lineScan = new Hitbox(x, y + lineScanOffset, lineScanWidth, lineScanHeight);
@@ -49,6 +49,7 @@ namespace HillRaider
 			Lunge(deltaTime);
 
 			if (lungeDurationTimer >= lungeDuration) {
+				legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
 				lungeFlag = false;
 				lungeDurationTimer = 0.f;
 			}
@@ -103,6 +104,7 @@ namespace HillRaider
 
 		if (playerInLineOfSide) {
 			if ((rand() & 1) == 0) {
+				legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
 				lungeFlag = true;
 				lungeCooldownFlag = true;
 			}

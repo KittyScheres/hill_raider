@@ -53,6 +53,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
+	void Animation::SetTimePerFrame(float iTimePerFrame)
+	{
+		timePerFrame = iTimePerFrame;
+	}
+
+	// --------------------------------------------------
+	// 
+	// --------------------------------------------------
 	void Animation::SetCurrentXFrame(short iCurrentXFrame)
 	{
 		currentXFrame = iCurrentXFrame;
