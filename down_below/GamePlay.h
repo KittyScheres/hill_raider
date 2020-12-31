@@ -2,6 +2,7 @@
 
 #include "State.h"
 #include "StateCallback.h"
+#include "StartMenu.h"
 #include "InputManager.h"
 #include "PauseScreen.h"
 #include "Ui.h"

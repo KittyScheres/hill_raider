@@ -53,6 +53,10 @@ namespace HillRaider
 			CheckTileMapCollision(player->GetHitbox()->GetBoxPoints());
 			floor->GetCurrentRoom()->RoomCheckTileMapCollsion();
 		}
+
+		if (GameData::GetInstance()->playerHealth == 0) {
+			callback->SetState(new StartMenu(callback));
+		}
 	}
 
 	// --------------------------------------------------
