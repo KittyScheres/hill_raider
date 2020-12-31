@@ -11,7 +11,7 @@ namespace HillRaider
 		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen();
 		ui = new Ui();
-		player = new Player(64 * 8, 64 * 5, 325.f, 40, 60);
+		player = new Player(64 * 8, 64 * 5, 325.f, 38, 62);
 		floor = new Floor();
 		GameData::GetInstance();
 		AStar::GetIntance()->SetEndGoal(player);
@@ -182,11 +182,11 @@ namespace HillRaider
 		switch (hitboxPointIndex & 2)
 		{
 		case 0:
-			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - ((hitboxPointYPos & 63) - 1)));
+			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - (hitboxPointYPos & 63)));
 			break;
 
 		case 2:
-			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - ((hitboxPointYPos & 63) + 1));
+			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - (hitboxPointYPos & 63));
 			break;
 		}
 
@@ -200,11 +200,11 @@ namespace HillRaider
 		switch (hitboxPointIndex & 1)
 		{
 		case 0:
-			player->SetPosition(player->GetPosition()[0] + (64 - ((hitboxPointXPos & 63) - 1)), player->GetPosition()[1]);
+			player->SetPosition(player->GetPosition()[0] + (64 - (hitboxPointXPos & 63)), player->GetPosition()[1]);
 			break;
 
 		case 1:
-			player->SetPosition(player->GetPosition()[0] - ((hitboxPointXPos & 63) + 1), player->GetPosition()[1]);
+			player->SetPosition(player->GetPosition()[0] - (hitboxPointXPos & 63), player->GetPosition()[1]);
 			break;
 		}
 	}
