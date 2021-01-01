@@ -7,7 +7,7 @@ namespace HillRaider
 	class StateCallback
 	{
 	public:
-		virtual void SetState(HillRaider::State* newState) {}
+		virtual void SetNextState(HillRaider::State* newState) {}
 		virtual void CloseGame() {}
 	};
 }

@@ -12,7 +12,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		SetState(new HillRaider::StartMenu(this));
+		currentState = new HillRaider::StartMenu(this);
 		inputManager = HillRaider::InputManager::GetInstance();
 		srand(time(NULL));
 	}
@@ -22,6 +22,11 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
+		if (nextState != nullptr) {
+			delete nextState;
+			nextState = nullptr;
+		}
+
 		if (currentState != nullptr) {
 			delete currentState;
 			currentState = nullptr;
@@ -47,15 +52,28 @@ namespace Tmpl8
 			currentState->LateUpdate();
 			// draw objects
 			currentState->Render(screen);
+			// update game state
+			SetState();
 		}
 	}
 
 	// -----------------------------------------------------------
 	// Set the current state of the game
 	// -----------------------------------------------------------
-	void Game::SetState(HillRaider::State* newState) {
-		delete currentState;
-		currentState = newState;
+	void Game::SetState()
+	{
+		if (nextState != nullptr) {
+			delete currentState;
+			currentState = nextState;
+			nextState = nullptr;
+		}
+	}
+
+	// -----------------------------------------------------------
+	// Set the next state of the game
+	// -----------------------------------------------------------
+	void Game::SetNextState(HillRaider::State* newState) {
+		nextState = newState;
 	}
 
 	// -----------------------------------------------------------

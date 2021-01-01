@@ -55,7 +55,7 @@ namespace HillRaider
 		}
 
 		if (GameData::GetInstance()->playerHealth == 0) {
-			callback->SetState(new StartMenu(callback));
+			callback->SetNextState(new StartMenu(callback));
 		}
 	}
 
