@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "RagDoll.h"
+#include "EnemyAnt.h"
 #include "Animation.h"
 #include "InputManager.h"
 #include "GameData.h"

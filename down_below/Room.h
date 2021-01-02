@@ -3,7 +3,7 @@
 #include "RoomCallback.h"
 #include "Player.h"
 #include "TileMap.h"
-#include "RagDoll.h"
+#include "EnemyAnt.h"
 #include <list>
 #include <typeinfo>
 

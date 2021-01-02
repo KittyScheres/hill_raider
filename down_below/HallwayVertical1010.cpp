@@ -17,16 +17,16 @@ namespace HillRaider
 	static std::list<Entity*> GetEntityList() {
 		switch (std::rand() & 3) {
 		case 0:
-			return std::list<Entity*>{ new RagDoll((64 * 12) + 32, (64 * 1) + 32), new RagDoll((64 * 2) + 32, (64 * 7) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 1) + 32), new EnemyAnt((64 * 2) + 32, (64 * 7) + 32) };
 
 		case 1:
-			return std::list<Entity*>{ new RagDoll((64 * 12) + 32, (64 * 7) + 32), new RagDoll((64 * 2) + 32, (64 * 7) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, (64 * 7) + 32) };
 
 		case 2:
-			return std::list<Entity*>{ new RagDoll((64 * 12) + 32, (64 * 1) + 32), new RagDoll((64 * 2) + 32, (64 * 1) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 1) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
 
 		case 3:
-			return std::list<Entity*>{ new RagDoll((64 * 12) + 32, (64 * 7) + 32), new RagDoll((64 * 2) + 32, (64 * 1) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
 		}
 	}
 

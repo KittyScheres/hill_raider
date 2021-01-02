@@ -239,13 +239,14 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RagDoll.cpp" />
+    <ClCompile Include="EnemyAnt.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="StartingRoom1111.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="TSplit1101.cpp" />
     <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +267,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RagDoll.h" />
+    <ClInclude Include="EnemyAnt.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomCallback.h" />
     <ClInclude Include="StartingRoom1111.h" />
@@ -276,6 +277,7 @@
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TSplit1101.h" />
     <ClInclude Include="Ui.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 
 #include <random>
 #include "Room.h"
-#include "RagDoll.h"
+#include "EnemyAnt.h"
 
 namespace HillRaider
 {

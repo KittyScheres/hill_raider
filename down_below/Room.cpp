@@ -11,9 +11,9 @@ namespace HillRaider
 		enemyList = enemies;
 		
 		for (Entity* enemy : enemyList) {
-			RagDoll* ragdoll = dynamic_cast<RagDoll*>(enemy);
-			if (ragdoll != nullptr) {
-				ragdoll->SetRoomCallback(this);
+			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(enemy);
+			if (enemyAnt != nullptr) {
+				enemyAnt->SetRoomCallback(this);
 			}
 		}
 	}

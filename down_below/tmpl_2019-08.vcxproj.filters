@@ -47,9 +47,6 @@
     <ClCompile Include="Entity.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
-    <ClCompile Include="RagDoll.cpp">
-      <Filter>hill_raider\cpp_files\game_components\entities</Filter>
-    </ClCompile>
     <ClCompile Include="AStar.cpp">
       <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
     </ClCompile>
@@ -73,6 +70,12 @@
     </ClCompile>
     <ClCompile Include="HallwayHorizontal0101.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="TSplit1101.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAnt.cpp">
+      <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +128,6 @@
     <ClInclude Include="Entity.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="RagDoll.h">
-      <Filter>hill_raider\header_files\game_components\entities</Filter>
-    </ClInclude>
     <ClInclude Include="StateCallback.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
@@ -157,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="HallwayHorizontal0101.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="TSplit1101.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAnt.h">
+      <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

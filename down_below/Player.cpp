@@ -71,9 +71,9 @@ namespace HillRaider
 
 			if (lungeFlag) {
 				if (TestBoxCollision(attackHitbox, entity)) {
-					RagDoll* ragdoll = dynamic_cast<RagDoll*>(entity);
-					if (ragdoll != nullptr) {
-						ragdoll->TakeDamage();
+					EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
+					if (enemyAnt != nullptr) {
+						enemyAnt->TakeDamage();
 						lungeFlag = false;
 						lungeDurationTimer = 0.f;
 					}
