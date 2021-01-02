@@ -5,9 +5,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Player::Player(int iX, int iY, float iSpeed, int iWidth, int iHeight): Entity(iX, iY, iWidth, iHeight)
+	Player::Player(int iX, int iY): Entity(iX, iY, 38, 62)
 	{
-		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
 		legsAnimation = new Animation("assets/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
 		bodyAnimation = new Animation("assets/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);

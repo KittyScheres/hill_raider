@@ -232,6 +232,8 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="HallwayHorizontal0101.cpp" />
+    <ClCompile Include="HallwayVertical1010.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -239,6 +241,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RagDoll.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="StartingRoom1111.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
@@ -256,6 +259,8 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="HallwayHorizontal0101.h" />
+    <ClInclude Include="HallwayVertical1010.h" />
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
@@ -264,6 +269,7 @@
     <ClInclude Include="RagDoll.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomCallback.h" />
+    <ClInclude Include="StartingRoom1111.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateCallback.h" />

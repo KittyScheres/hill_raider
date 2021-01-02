@@ -1,3 +1,8 @@
-﻿  GamePlay.cpp
+﻿  HallwayHorizontal0101.cpp
 D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  HallwayVertical1010.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+D:\breda\game\down_below\down_below\HallwayVertical1010.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\HallwayHorizontal0101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86.exe

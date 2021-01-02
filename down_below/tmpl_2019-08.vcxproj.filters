@@ -41,9 +41,6 @@
     <ClCompile Include="Floor.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>hill_raider\cpp_files\game_components</Filter>
-    </ClCompile>
     <ClCompile Include="Hitbox.cpp">
       <Filter>hill_raider\cpp_files\game_components\physics</Filter>
     </ClCompile>
@@ -64,6 +61,18 @@
     </ClCompile>
     <ClCompile Include="FrameRateManager.cpp">
       <Filter>hill_raider\cpp_files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="StartingRoom1111.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="HallwayVertical1010.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="HallwayHorizontal0101.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +119,6 @@
     <ClInclude Include="Floor.h">
       <Filter>hill_raider\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>hill_raider\header_files\game_components</Filter>
-    </ClInclude>
     <ClInclude Include="Hitbox.h">
       <Filter>hill_raider\header_files\game_components\physics</Filter>
     </ClInclude>
@@ -134,11 +140,23 @@
     <ClInclude Include="AStarNode.h">
       <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
     </ClInclude>
-    <ClInclude Include="RoomCallback.h">
-      <Filter>hill_raider\header_files\game_components</Filter>
-    </ClInclude>
     <ClInclude Include="FrameRateManager.h">
       <Filter>hill_raider\header_files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomCallback.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="StartingRoom1111.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="HallwayVertical1010.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="HallwayHorizontal0101.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +225,12 @@
     </Filter>
     <Filter Include="hill_raider\header_files\game_components\algoritmes\a_star">
       <UniqueIdentifier>{540682df-a136-4849-bd6b-564deaba63aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\cpp_files\game_components\rooms">
+      <UniqueIdentifier>{fb0eb3b3-2420-4825-b782-001a34f509e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\game_components\rooms">
+      <UniqueIdentifier>{5a093a6d-fe87-4680-acb8-c84ed6074fec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

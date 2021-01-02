@@ -23,14 +23,14 @@ namespace HillRaider
 		Animation* legsAnimation = nullptr;
 		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
-		float speed = 0.f;
+		float speed = 325.f;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
 		bool lungeFlag = false;
 		bool lungeCooldownFlag = false;
 		float lungeDurationTimer = 0.f;
 		float lungeCooldownTimer = 0.f;
 	public:
-		Player(int iX, int iY, float iSpeed, int iWidth, int iHeight);
+		Player(int iX, int iY);
 		void Update(float deltaTime);
 		void LateUpdate(std::list<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);

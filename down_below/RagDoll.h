@@ -28,7 +28,7 @@ namespace HillRaider
 		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
 		Hitbox* lineScan = nullptr;
-		float speed = 0.f;
+		float speed = 150.f;
 		int ragdollHealt = 2;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
 		short lineScanOffset = (height / 2) + (lineScanHeight / 2);
@@ -39,7 +39,7 @@ namespace HillRaider
 		float lungeDurationTimer = 0.f;
 		float lungeCooldownTimer = 0.f;
 	public:
-		RagDoll(int iX, int iY, float iSpeed, int iWidth, int iHeight);
+		RagDoll(int iX, int iY);
 		void Update(float deltaTime);
 		void LateUpdate(std::list<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);

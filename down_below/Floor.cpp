@@ -13,47 +13,9 @@ namespace HillRaider
 			}
 		}
 
-		char tilemap0[9][46]{
-		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"beaca ca ca ca ca ca ca ca ca ca ca ca ca afd",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
-		};
-
-		floorMap[1][1] = new Room(new TileMap("assets/tile_maps/tile_map.png", tilemap0, 64, 64), std::list<Entity*>{new RagDoll(64 * 4, 64* 4, 150.f, 38, 62)});
-
-		char tilemap1[9][46]{
-		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca edxefxebxca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
-		};
-
-		floorMap[1][0] = new Room(new TileMap("assets/tile_maps/tile_map.png", tilemap1, 64, 64), std::list<Entity*>{});
-
-		char tilemap2[9][46]{
-		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca edxefxebxca ca ca ca ca afd",
-		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
-		};
-
-		floorMap[0][1] = new Room(new TileMap("assets/tile_maps/tile_map.png", tilemap2, 64, 64), std::list<Entity*>{});
+		floorMap[1][1] = new StartingRoom1111();
+		floorMap[1][0] = new HallwayVertical1010();
+		floorMap[0][1] = new HallwayHorizontal0101();
 
 		char tilemap3[9][46]{
 		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",

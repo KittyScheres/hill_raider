@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Player.h"
-#include "Room.h"
+#include "StartingRoom1111.h"
+#include "HallwayVertical1010.h"
+#include "HallwayHorizontal0101.h"
 #include "AStar.h"
 
 namespace HillRaider
