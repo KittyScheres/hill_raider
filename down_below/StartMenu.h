@@ -16,12 +16,6 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	class StartMenu: public State
 	{
-	public:
-		StartMenu(StateCallback* iCallback);
-		void Update(float deltaTime);
-		void Render(Tmpl8::Surface* screen);
-		~StartMenu();
-
 	private:
 		StateCallback* callback = nullptr;
 		InputManager* inputManager = nullptr;
@@ -29,16 +23,20 @@ namespace HillRaider
 		Image* background = nullptr;
 		Image* title = nullptr;
 
-		int menuButtonsY[3] {4 * 64, (5 * 64) + 32 , 7 * 64};
-		Image* playGameButtonBackground = nullptr;
-		Image* checkControlsButtonBackground = nullptr;
-		Image* exitGameButtonBackground = nullptr;
+		Image* buttonBackground = nullptr;
 		
 		Image* playGameButtonText = nullptr;
 		Image* checkControlsButtonText = nullptr;
 		Image* exitGameButtonText = nullptr;
+		int menuButtonsY[3]{ 4 * 64, (5 * 64) + 32 , 7 * 64 };
 
 		short selectedMenuItem = 0;
 		Image* menuItemHighlight = nullptr;
+
+	public:
+		StartMenu(StateCallback* iCallback);
+		void Update(float deltaTime);
+		void Render(Tmpl8::Surface* screen);
+		~StartMenu();
 	};
 }

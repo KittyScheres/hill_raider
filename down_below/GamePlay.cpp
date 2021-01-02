@@ -9,7 +9,7 @@ namespace HillRaider
 	{
 		callback = iCallback;
 		inputManager = InputManager::GetInstance();
-		pauseScreen = new PauseScreen();
+		pauseScreen = new PauseScreen(callback);
 		ui = new Ui();
 		player = new Player(64 * 8, 64 * 5, 325.f, 38, 62);
 		floor = new Floor();

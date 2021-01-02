@@ -10,18 +10,16 @@ namespace HillRaider
 		callback = iCallback;
 		inputManager = InputManager::GetInstance();
 
-		background = new Image("assets/title_screen/background.png", 0, 0);
-		title = new Image("assets/title_screen/game_title.png", 4 * 64, 32);
+		background = new Image("assets/ui/background.png", 0, 0);
+		title = new Image("assets/ui/game_title.png", 4 * 64, 32);
 
-		playGameButtonBackground = new Image("assets/title_screen/menu_item_background.png", 5 * 64, menuButtonsY[0]);
-		checkControlsButtonBackground = new Image("assets/title_screen/menu_item_background.png", 5 * 64, menuButtonsY[1]);
-		exitGameButtonBackground = new Image("assets/title_screen/menu_item_background.png", 5 * 64, menuButtonsY[2]);
+		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, menuButtonsY[0]);
 
-		playGameButtonText = new Image("assets/title_screen/play_button_text.png", 5 * 64, menuButtonsY[0]);
-		checkControlsButtonText = new Image("assets/title_screen/controls_button_text.png", 5 * 64, menuButtonsY[1]);
-		exitGameButtonText = new Image("assets/title_screen/quit_button_text.png", 5 * 64, menuButtonsY[2]);
+		playGameButtonText = new Image("assets/ui/play_button_text.png", 5 * 64, menuButtonsY[0]);
+		checkControlsButtonText = new Image("assets/ui/controls_button_text.png", 5 * 64, menuButtonsY[1]);
+		exitGameButtonText = new Image("assets/ui/quit_button_text.png", 5 * 64, menuButtonsY[2]);
 
-		menuItemHighlight = new Image("assets/title_screen/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
+		menuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
 	}
 
 	// --------------------------------------------------
@@ -29,15 +27,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void StartMenu::Update(float deltaTime)
 	{
-		if (inputManager->KeyPressed(InputManager::Keys::UP)) {
-			if (selectedMenuItem > 0) {
-				menuItemHighlight->SetPosition(5 * 64, menuButtonsY[--selectedMenuItem]);
-			}
+		if (inputManager->KeyPressed(InputManager::Keys::UP) && selectedMenuItem > 0) {
+			--selectedMenuItem;
 		}
-		else if (inputManager->KeyPressed(InputManager::Keys::DOWN)) {
-			if (selectedMenuItem < 2) {
-				menuItemHighlight->SetPosition(5 * 64, menuButtonsY[++selectedMenuItem]);
-			}
+		
+		if (inputManager->KeyPressed(InputManager::Keys::DOWN) && selectedMenuItem < 2) {
+			++selectedMenuItem;
 		}
 
 		if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
@@ -66,10 +61,12 @@ namespace HillRaider
 		background->DrawImage(screen);
 		title->DrawImage(screen);
 
-		playGameButtonBackground->DrawImage(screen);
-		checkControlsButtonBackground->DrawImage(screen);
-		exitGameButtonBackground->DrawImage(screen);
+		for (short i = 0; i < 3; i++) {
+			buttonBackground->SetPosition(5 * 64, menuButtonsY[i]);
+			buttonBackground->DrawImage(screen);
+		}
 
+		menuItemHighlight->SetPosition(5 * 64, menuButtonsY[selectedMenuItem]);
 		menuItemHighlight->DrawImage(screen);
 
 		playGameButtonText->DrawImage(screen);
@@ -92,19 +89,9 @@ namespace HillRaider
 			title = nullptr;
 		}
 
-		if (playGameButtonBackground != nullptr) {
-			delete playGameButtonBackground;
-			playGameButtonBackground = nullptr;
-		}
-
-		if (checkControlsButtonBackground != nullptr) {
-			delete checkControlsButtonBackground;
-			checkControlsButtonBackground = nullptr;
-		}
-
-		if (exitGameButtonBackground != nullptr) {
-			delete exitGameButtonBackground;
-			exitGameButtonBackground = nullptr;
+		if (buttonBackground != nullptr) {
+			delete buttonBackground;
+			buttonBackground = nullptr;
 		}
 
 		if (playGameButtonText != nullptr) {

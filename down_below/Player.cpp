@@ -9,8 +9,8 @@ namespace HillRaider
 	{
 		speed = iSpeed;
 		inputManager = InputManager::GetInstance();
-		legsAnimation = new Animation("assets/gameplay/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
-		bodyAnimation = new Animation("assets/gameplay/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);
+		legsAnimation = new Animation("assets/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
+		bodyAnimation = new Animation("assets/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);
 		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
 	}
 
