@@ -1,4 +1,10 @@
-﻿  TSplit1101.cpp
+﻿  EnemyAnt.cpp
 D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\breda\game\down_below\down_below\TSplit1101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\EnemyAnt.cpp(90,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Entity.cpp
+D:\breda\game\down_below\down_below\Entity.cpp(86,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\breda\game\down_below\down_below\Entity.cpp(111,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Room.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe

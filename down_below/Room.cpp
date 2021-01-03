@@ -76,9 +76,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::RemoveEntity(Entity* entity) {
 		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
+			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
+			if (enemyAnt != nullptr) {
+				delete enemyAnt;
+				enemyAnt = nullptr;
+			}
 			enemyList.remove(entity);
-			delete entity;
-			entity = nullptr;
 		}
 	}
 	
@@ -102,8 +105,11 @@ namespace HillRaider
 
 		if (!enemyList.empty()) {
 			for (Entity* enemy : enemyList) {
-				delete enemy;
-				enemy = nullptr;
+				EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(enemy);
+				if (enemyAnt != nullptr) {
+					delete enemyAnt;
+					enemyAnt = nullptr;
+				}
 			}
 			enemyList.clear();
 		}
