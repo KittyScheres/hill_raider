@@ -20,6 +20,8 @@ namespace HillRaider
 		floorMap[2][1] = new TSplit1011();
 		floorMap[0][2] = new Corner1100();
 		floorMap[0][0] = new Corner0110();
+		floorMap[2][0] = new Corner0011();
+		floorMap[2][2] = new Corner1001();
 
 		currentRoom[0] = 1;
 		currentRoom[1] = 1;

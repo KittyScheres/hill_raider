@@ -95,6 +95,9 @@
     <ClCompile Include="Corner0011.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
+    <ClCompile Include="Corner1001.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -198,6 +201,9 @@
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
     <ClInclude Include="Corner0011.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Corner1001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
   </ItemGroup>

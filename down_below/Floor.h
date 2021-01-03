@@ -10,6 +10,8 @@
 #include "TSplit1011.h"
 #include "Corner1100.h"
 #include "Corner0110.h"
+#include "Corner0011.h"
+#include "Corner1001.h"
 #include "AStar.h"
 
 namespace HillRaider

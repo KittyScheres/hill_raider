@@ -228,6 +228,7 @@
     <ClCompile Include="AStarNode.cpp" />
     <ClCompile Include="Corner0011.cpp" />
     <ClCompile Include="Corner0110.cpp" />
+    <ClCompile Include="Corner1001.cpp" />
     <ClCompile Include="Corner1100.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="AStarNode.h" />
     <ClInclude Include="Corner0011.h" />
     <ClInclude Include="Corner0110.h" />
+    <ClInclude Include="Corner1001.h" />
     <ClInclude Include="Corner1100.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
