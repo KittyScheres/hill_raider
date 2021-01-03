@@ -98,6 +98,18 @@
     <ClCompile Include="Corner1001.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
+    <ClCompile Include="DeadEnd1000.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadEnd0100.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadEnd0010.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadEnd0001.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -204,6 +216,18 @@
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
     <ClInclude Include="Corner1001.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadEnd1000.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadEnd0100.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadEnd0010.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadEnd0001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
   </ItemGroup>

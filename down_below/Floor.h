@@ -12,6 +12,10 @@
 #include "Corner0110.h"
 #include "Corner0011.h"
 #include "Corner1001.h"
+#include "DeadEnd1000.h"
+#include "DeadEnd0100.h"
+#include "DeadEnd0010.h"
+#include "DeadEnd0001.h"
 #include "AStar.h"
 
 namespace HillRaider
@@ -22,7 +26,7 @@ namespace HillRaider
 		enum class MoveDirection {UP = 0, RIGHT, DOWN, LEFT};
 
 	private:
-		Room* floorMap[3][3];
+		Room* floorMap[9][8];
 		int currentRoom[2];
 
 	public:

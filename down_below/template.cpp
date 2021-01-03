@@ -395,6 +395,7 @@ int main( int argc, char **argv )
 		frameRateManager.ConstrainFrameRate();
 	}
 	game->Shutdown();
+	delete game;
 	SDL_Quit();
 	return 0;
 }

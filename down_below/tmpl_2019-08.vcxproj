@@ -230,6 +230,10 @@
     <ClCompile Include="Corner0110.cpp" />
     <ClCompile Include="Corner1001.cpp" />
     <ClCompile Include="Corner1100.cpp" />
+    <ClCompile Include="DeadEnd0001.cpp" />
+    <ClCompile Include="DeadEnd0010.cpp" />
+    <ClCompile Include="DeadEnd0100.cpp" />
+    <ClCompile Include="DeadEnd1000.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="FrameRateManager.cpp" />
@@ -265,6 +269,10 @@
     <ClInclude Include="Corner0110.h" />
     <ClInclude Include="Corner1001.h" />
     <ClInclude Include="Corner1100.h" />
+    <ClInclude Include="DeadEnd0001.h" />
+    <ClInclude Include="DeadEnd0010.h" />
+    <ClInclude Include="DeadEnd0100.h" />
+    <ClInclude Include="DeadEnd1000.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FrameRateManager.h" />
