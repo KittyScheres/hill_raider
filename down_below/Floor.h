@@ -5,6 +5,11 @@
 #include "HallwayVertical1010.h"
 #include "HallwayHorizontal0101.h"
 #include "TSplit1101.h"
+#include "TSplit1110.h"
+#include "TSplit0111.h"
+#include "TSplit1011.h"
+#include "Corner1100.h"
+#include "Corner0110.h"
 #include "AStar.h"
 
 namespace HillRaider

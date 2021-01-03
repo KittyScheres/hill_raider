@@ -14,23 +14,12 @@ namespace HillRaider
 		}
 
 		floorMap[1][1] = new StartingRoom1111();
-		floorMap[1][0] = new HallwayVertical1010();
-		floorMap[0][1] = new HallwayHorizontal0101();
+		floorMap[1][0] = new TSplit0111();
+		floorMap[0][1] = new TSplit1110();
 		floorMap[1][2] = new TSplit1101();
-
-		char tilemap4[9][46]{
-		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca eexca ca ca ca ca ca adx",
-		"beaca ca ca ca ca edxefxebxca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ecxca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
-		};
-
-		floorMap[2][1] = new Room(new TileMap("assets/tile_maps/tile_map.png", tilemap4, 64, 64), std::list<Entity*>{});
+		floorMap[2][1] = new TSplit1011();
+		floorMap[0][2] = new Corner1100();
+		floorMap[0][0] = new Corner0110();
 
 		currentRoom[0] = 1;
 		currentRoom[1] = 1;

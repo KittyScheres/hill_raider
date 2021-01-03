@@ -77,6 +77,24 @@
     <ClCompile Include="EnemyAnt.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
+    <ClCompile Include="TSplit1110.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="TSplit0111.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="TSplit1011.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="Corner1100.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="Corner0110.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="Corner0011.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -163,6 +181,24 @@
     </ClInclude>
     <ClInclude Include="EnemyAnt.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="TSplit1110.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="TSplit0111.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="TSplit1011.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Corner1100.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Corner0110.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Corner0011.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

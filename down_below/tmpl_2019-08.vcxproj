@@ -226,6 +226,9 @@
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="AStarGrid.cpp" />
     <ClCompile Include="AStarNode.cpp" />
+    <ClCompile Include="Corner0011.cpp" />
+    <ClCompile Include="Corner0110.cpp" />
+    <ClCompile Include="Corner1100.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="FrameRateManager.cpp" />
@@ -246,7 +249,10 @@
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="TSplit0111.cpp" />
+    <ClCompile Include="TSplit1011.cpp" />
     <ClCompile Include="TSplit1101.cpp" />
+    <ClCompile Include="TSplit1110.cpp" />
     <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +260,9 @@
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStarGrid.h" />
     <ClInclude Include="AStarNode.h" />
+    <ClInclude Include="Corner0011.h" />
+    <ClInclude Include="Corner0110.h" />
+    <ClInclude Include="Corner1100.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FrameRateManager.h" />
@@ -277,7 +286,10 @@
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TSplit0111.h" />
+    <ClInclude Include="TSplit1011.h" />
     <ClInclude Include="TSplit1101.h" />
+    <ClInclude Include="TSplit1110.h" />
     <ClInclude Include="Ui.h" />
   </ItemGroup>
   <ItemGroup>
