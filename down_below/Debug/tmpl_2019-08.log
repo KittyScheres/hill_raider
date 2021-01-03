@@ -1,2 +1,87 @@
-﻿  template.cpp
+﻿  AStar.cpp
+  AStarGrid.cpp
+D:\breda\game\down_below\down_below\AStarGrid.cpp(68,36): warning C4018: '<': signed/unsigned mismatch
+D:\breda\game\down_below\down_below\AStarGrid.cpp(72,36): warning C4018: '<': signed/unsigned mismatch
+  Animation.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner0011.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner0110.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner1001.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner1100.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0001.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0010.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0100.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd1000.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  EnemyAnt.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\down_below\down_below\EnemyAnt.cpp(90,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Entity.cpp
+D:\breda\game\down_below\down_below\Entity.cpp(86,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\breda\game\down_below\down_below\Entity.cpp(111,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Floor.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  FrameRateManager.cpp
+D:\breda\game\down_below\down_below\FrameRateManager.cpp(14,38): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+  GameData.cpp
+  GamePlay.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  HallwayHorizontal0101.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  HallwayVertical1010.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Hitbox.cpp
+D:\breda\game\down_below\down_below\Hitbox.cpp(69,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+D:\breda\game\down_below\down_below\HallwayVertical1010.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\HallwayHorizontal0101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\DeadEnd1000.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\DeadEnd0100.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\DeadEnd0010.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\DeadEnd0001.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\Corner1100.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\Corner1001.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\Corner0110.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\Corner0011.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+  Compiling...
+  Image.cpp
+  InputManager.cpp
+  PauseScreen.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Player.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Room.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  StartMenu.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  StartingRoom1111.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit0111.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit1011.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit1101.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit1110.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TileMap.cpp
+  Ui.cpp
+  game.cpp
+D:\breda\game\down_below\down_below\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\down_below\down_below\game.cpp(18,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  surface.cpp
+  template.cpp
+  Generating Code...
+D:\breda\game\down_below\down_below\TSplit1110.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\TSplit1101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\TSplit1011.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\TSplit0111.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
+D:\breda\game\down_below\down_below\Image.cpp(76): warning C4172: returning address of local variable or temporary: position
   tmpl_2019-08.vcxproj -> D:\breda\game\down_below\down_below\tmpl_2019-08_x86_debug.exe
