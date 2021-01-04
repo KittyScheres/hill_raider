@@ -10,9 +10,11 @@ namespace HillRaider
 	class AStarGrid
 	{
 	private:
+		TileMap* map = nullptr;
 		std::vector<std::vector<AStarNode*>> nodeGrid;
 	public:
 		AStarGrid(TileMap* tileMap);
+		void ResetWalkableNodes();
 		void DebugRender(Tmpl8::Surface* screen);
 		std::vector<std::vector<AStarNode*>> GetNodeGrid();
 		AStarNode* GetNodeFromGrid(int x, int y);

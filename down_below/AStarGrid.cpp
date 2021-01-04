@@ -7,6 +7,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStarGrid::AStarGrid(TileMap* tileMap)
 	{
+		map = tileMap;
+
 		for (int y = 0; y < TileMap::TILE_MAP_HEIGHT; y++) {
 			std::vector<AStarNode*> newRow;
 			for (int x = 0; x < TileMap::TILE_MAP_WIDHT; x++) {
@@ -23,6 +25,18 @@ namespace HillRaider
 				}
 			}
 			nodeGrid.push_back(newRow);
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void AStarGrid::ResetWalkableNodes()
+	{
+		for (std::vector<AStarNode*> nodeLine : nodeGrid) {
+			for (AStarNode* node : nodeLine) {
+				node->SetWalkable(map->GetCollision(node->GetPosition()[0], node->GetPosition()[1]) == ' ');
+			}
 		}
 	}
 

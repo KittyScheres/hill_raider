@@ -39,6 +39,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
+	void AStar::SetEntitiesListReference(std::list<Entity*>* entitiesList)
+	{
+		entitiesListReference = entitiesList;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void AStar::SetEndGoal(Entity* entity)
 	{
 		endGoal = entity;
@@ -57,7 +65,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	std::vector<AStarNode*> AStar::FindPath(std::vector<int> startPosition, std::vector<int> comparePosition)
+	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition)
 	{
 		std::vector<AStarNode*> path;
 
@@ -70,6 +78,10 @@ namespace HillRaider
 		openSet.push_back(startNode);
 
 		if (startNode == compareNode) {
+			SetNonWalkableEntityNodes(pathFindingEntity);
+			startNode->SetWalkable(true);
+			endNode->SetWalkable(true);
+
 			while (openSet.size() > 0) {
 				// check for node clossesd to endNode
 				AStarNode* currentNode = *openSet.begin();
@@ -108,11 +120,43 @@ namespace HillRaider
 					}
 				}
 			}
+
+			nodeMap->ResetWalkableNodes();
 		}
 		
 		return path;
 	}
-	
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void AStar::SetNonWalkableEntityNodes(Entity* pathFindingEntity)
+	{
+		for (Entity* entity : *entitiesListReference) {
+			if (entity != pathFindingEntity) {
+				AStarNode* entityNode = nodeMap->GetNodeFromGrid(entity->GetPosition()[0], entity->GetPosition()[1]);
+				entityNode->SetWalkable(false);
+				switch (entity->GetDirection()) {
+				case Entity::MovementDirection::UP:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::RIGHT:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::DOWN:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::LEFT:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1]->SetWalkable(false);
+					break;
+				}
+			}
+		}
+	}
+
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
@@ -131,7 +175,7 @@ namespace HillRaider
 
 		path.push_back(currentNode);
 		std::reverse(path.begin(), path.end());
-		
+
 		return path;
 	}
 
@@ -145,11 +189,6 @@ namespace HillRaider
 
 		return (10 * distanceX) + (10 * distanceY);
 	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	AStar::AStar() {}
 
 	// --------------------------------------------------
 	//

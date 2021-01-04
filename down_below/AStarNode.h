@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "surface.h"
 
 namespace HillRaider
@@ -25,6 +26,7 @@ namespace HillRaider
 		void SetGCost(int g);
 		void SetHCost(int h);
 		void SetParent(AStarNode* iParent);
+		std::vector<int> GetPosition();
 		bool GetWalkable();
 		int GetGridX();
 		int GetGridY();
