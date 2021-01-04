@@ -4,13 +4,13 @@ namespace HillRaider
 {
 	static char tilemap[9][46]{
 		"aaxacxacxacxacxacxacxaewacxacxacxacxacxacxabx",
-		"bcxca ca ca ccxca ca ca ca ca eexca ca ca adx",
-		"bcxca ca ca ca ca ca ca ca ca dcxca ca ca adx",
-		"bcxca ca ca eexca ca ca ca ca dcxca ca ca adx",
+		"bcxca ca ca ccxca ca ca ca ca ccxca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca eexca ca ca ca ca eexca ca ca adx",
 		"bcxca ca ca dcxca ca ca ca ca dcxca ca ca adx",
-		"bcxca ca ca dcxca ca ca ca ca ecxca ca ca adx",
-		"bcxca ca ca dcxca ca ca ca ca ca ca ca ca adx",
-		"bcxca ca ca ecxca ca ca ca ca ccxca ca ca adx",
+		"bcxca ca ca ecxca ca ca ca ca ecxca ca ca adx",
+		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
+		"bcxca ca ca ccxca ca ca ca ca ccxca ca ca adx",
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 	};
 

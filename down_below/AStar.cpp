@@ -136,8 +136,22 @@ namespace HillRaider
 			if (entity != pathFindingEntity) {
 				AStarNode* entityNode = nodeMap->GetNodeFromGrid(entity->GetPosition()[0], entity->GetPosition()[1]);
 				entityNode->SetWalkable(false);
-				for (AStarNode* node : nodeMap->GetNeighbouringNodes(entityNode)) {
-					node->SetWalkable(false);
+				switch (entity->GetDirection()) {
+				case Entity::MovementDirection::UP:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::RIGHT:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::DOWN:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()]->SetWalkable(false);
+					break;
+
+				case Entity::MovementDirection::LEFT:
+					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1]->SetWalkable(false);
+					break;
 				}
 			}
 		}
