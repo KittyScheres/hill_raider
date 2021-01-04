@@ -53,6 +53,7 @@ namespace HillRaider
 		currentRoom[1] = 3;
 
 		AStar::GetIntance()->SetNodeMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
+		AStar::GetIntance()->SetEntitiesListReference(floorMap[currentRoom[0]][currentRoom[1]]->GetEnemyListReference());
 	}
 
 	// --------------------------------------------------
@@ -88,6 +89,7 @@ namespace HillRaider
 		}
 
 		AStar::GetIntance()->SetNodeMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
+		AStar::GetIntance()->SetEntitiesListReference(floorMap[currentRoom[0]][currentRoom[1]]->GetEnemyListReference());
 	}
 
 	// --------------------------------------------------

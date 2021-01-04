@@ -74,6 +74,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
+	std::list<Entity*>* Room::GetEnemyListReference()
+	{
+		return &enemyList;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
 	void Room::RemoveEntity(Entity* entity) {
 		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
 			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);

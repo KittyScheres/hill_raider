@@ -22,6 +22,7 @@ namespace HillRaider
 		void RoomCheckEntityCollision(Player* player);
 		void RoomCheckTileMapCollsion();
 		TileMap* GetTileMap();
+		std::list<Entity*>* GetEnemyListReference();
 		void RemoveEntity(Entity* entity);
 		bool RoomCleared();
 		~Room();
