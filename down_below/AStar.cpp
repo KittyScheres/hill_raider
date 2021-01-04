@@ -132,27 +132,37 @@ namespace HillRaider
 	// --------------------------------------------------
 	void AStar::SetNonWalkableEntityNodes(Entity* pathFindingEntity)
 	{
+		AStarNode* entityNode = nullptr;
+		AStarNode* infrontOfEntityNode = nullptr;
+
 		for (Entity* entity : *entitiesListReference) {
 			if (entity != pathFindingEntity) {
-				AStarNode* entityNode = nodeMap->GetNodeFromGrid(entity->GetPosition()[0], entity->GetPosition()[1]);
-				entityNode->SetWalkable(false);
 				switch (entity->GetDirection()) {
 				case Entity::MovementDirection::UP:
-					nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()]->SetWalkable(false);
+					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] + entity->GetHitbox()->GetHalfHeight()));
+					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()];
 					break;
 
 				case Entity::MovementDirection::RIGHT:
-					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1]->SetWalkable(false);
+					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] - entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
+					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1];
 					break;
 
 				case Entity::MovementDirection::DOWN:
-					nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()]->SetWalkable(false);
+					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] - entity->GetHitbox()->GetHalfHeight()));
+					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()];
 					break;
 
 				case Entity::MovementDirection::LEFT:
-					nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1]->SetWalkable(false);
+					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] + entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
+					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1];
 					break;
 				}
+
+				entityNode->SetWalkable(false);
+				entityNode->SetDebugColor(255 << 16);
+				infrontOfEntityNode->SetWalkable(false);
+				infrontOfEntityNode->SetDebugColor(255 << 16);
 			}
 		}
 	}

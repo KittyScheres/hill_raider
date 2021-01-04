@@ -102,7 +102,7 @@ namespace HillRaider
 		}
 
 		if (playerInLineOfSide) {
-			if ((rand() & 1) == 0) {
+			if ((rand() & 2) == 2) {
 				legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
 				lungeFlag = true;
 				lungeCooldownFlag = true;
