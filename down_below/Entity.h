@@ -11,6 +11,7 @@ namespace HillRaider
 	{
 	public:
 		enum class MovementDirection { UP = 0, RIGHT, DOWN, LEFT };
+
 	protected:
 		int x = 0;
 		int y = 0;
@@ -19,10 +20,12 @@ namespace HillRaider
 		MovementDirection direction = MovementDirection::UP;
 		Hitbox* hitbox = nullptr;
 		int distanceMoved = 0;
+
 	protected:
 		Entity(int iX, int iY, int iWidth, int iHeight);
 		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
 		void ApplyEntityCollision(Entity* otherEntity);
+
 	public:
 		virtual void Update(float deltaTime) {}
 		virtual void LateUpdate(std::list<Entity*> entityList) {}

@@ -7,9 +7,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::Ui()
 	{
-		gameData = GameData::GetInstance();
-
-		for (int i = 0; i < gameData->MAX_HEALTH; i++) {
+		for (int i = 0; i < GameData::GetInstance()->MAX_HEALTH; i++) {
 			if (i % 2 == 0) {
 				healthBar[i] = new Image("assets/ui/half_heart_1.png", 64 * (1 + (i / 2)), 0);
 			}
@@ -24,7 +22,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Ui::Render(Tmpl8::Surface* screen)
 	{
-		for (int i = 0; i < gameData->playerHealth; i++) {
+		for (int i = 0; i < GameData::GetInstance()->playerHealth; i++) {
 			healthBar[i]->DrawImage(screen);
 		}
 	}
@@ -40,7 +38,5 @@ namespace HillRaider
 				halfHeart = nullptr;
 			}
 		}
-
-		gameData = nullptr;
 	}
 }

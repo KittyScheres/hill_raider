@@ -27,6 +27,7 @@ namespace HillRaider
 
 	public:
 		GamePlay(StateCallback* iCallback);
+		void SetupSingletons();
 		void Update(float deltaTime);
 		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);

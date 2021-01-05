@@ -8,13 +8,20 @@ namespace HillRaider
 	GamePlay::GamePlay(StateCallback* iCallback)
 	{
 		callback = iCallback;
-		inputManager = InputManager::GetInstance();
 		pauseScreen = new PauseScreen(callback);
-		ui = new Ui();
 		player = new Player((64 * 7) + 32, (64 * 4) + 32);
 		floor = new Floor();
+		ui = new Ui();
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void GamePlay::SetupSingletons()
+	{
 		GameData::GetInstance();
 		AStar::GetIntance()->SetEndGoal(player);
+		inputManager = InputManager::GetInstance();
 	}
 
 	// --------------------------------------------------

@@ -24,7 +24,7 @@ namespace HillRaider
 			MovePlayer(deltaTime);
 			
 			if (!lungeCooldownFlag) {
-				if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
+				if (inputManager->KeyPressed(InputManager::Keys::SPACE)) {
 					legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
 					lungeFlag = true;
 					lungeCooldownFlag = true;

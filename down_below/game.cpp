@@ -73,6 +73,7 @@ namespace Tmpl8
 			delete currentState;
 			currentState = nextState;
 			nextState = nullptr;
+			currentState->SetupSingletons();
 		}
 	}
 

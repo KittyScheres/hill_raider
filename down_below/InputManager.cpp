@@ -1,5 +1,10 @@
 #include "InputManager.h"
 
+#define VK_W              0x57
+#define VK_D              0x44
+#define VK_S              0x53
+#define VK_A              0x41
+
 namespace HillRaider
 {
 	InputManager* InputManager::instance = nullptr;
@@ -43,10 +48,11 @@ namespace HillRaider
 
 		currentKeysState[(int)Keys::ENTER] = GetAsyncKeyState(VK_RETURN);
 		currentKeysState[(int)Keys::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
-		currentKeysState[(int)Keys::UP] = GetAsyncKeyState(VK_UP);
-		currentKeysState[(int)Keys::RIGHT] = GetAsyncKeyState(VK_RIGHT);
-		currentKeysState[(int)Keys::DOWN] = GetAsyncKeyState(VK_DOWN);
-		currentKeysState[(int)Keys::LEFT] = GetAsyncKeyState(VK_LEFT);
+		currentKeysState[(int)Keys::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
+		currentKeysState[(int)Keys::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
+		currentKeysState[(int)Keys::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
+		currentKeysState[(int)Keys::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
+		currentKeysState[(int)Keys::SPACE] = GetAsyncKeyState(VK_SPACE);
 	}
 
 	// --------------------------------------------------
