@@ -65,7 +65,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition)
+	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition, bool bypassCheck)
 	{
 		std::vector<AStarNode*> path;
 
@@ -77,7 +77,7 @@ namespace HillRaider
 		std::unordered_set<AStarNode*> closedSet;
 		openSet.push_back(startNode);
 
-		if (startNode == compareNode) {
+		if ((startNode == compareNode) || bypassCheck) {
 			SetNonWalkableEntityNodes(pathFindingEntity);
 			startNode->SetWalkable(true);
 			endNode->SetWalkable(true);

@@ -51,8 +51,9 @@ namespace HillRaider
 		Animation* GetSprite();
 		~EnemyAnt();
 	private:
-		void UpdateDirection();
+		void UpdateDirection(bool bypassCheck = false);
 		void MoveRagdoll(float deltaTime);
 		void Lunge(float deltaTime);
+		void GetAntUnstuck(Entity* entity);
 	};
 }

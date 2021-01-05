@@ -72,6 +72,7 @@ namespace HillRaider
 		for (auto entity : entityList) {
 			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
+				GetAntUnstuck(entity);
 			}
 
 			if (lungeFlag) {
@@ -268,26 +269,26 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	void EnemyAnt::UpdateDirection()
+	void EnemyAnt::UpdateDirection(bool bypassCheck)
 	{
 		std::vector<AStarNode*> path;
 
 		switch (direction)
 		{
 		case Entity::MovementDirection::UP:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y + hitbox->GetHalfHeight()}, std::vector<int>{x, y - hitbox->GetHalfHeight()});
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y + hitbox->GetHalfHeight()}, std::vector<int>{x, y - hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
 		case Entity::MovementDirection::RIGHT:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x - hitbox->GetHalfWidth(), y}, std::vector<int>{x + hitbox->GetHalfWidth(), y});
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x - hitbox->GetHalfWidth(), y}, std::vector<int>{x + hitbox->GetHalfWidth(), y}, bypassCheck);
 			break;
 
 		case Entity::MovementDirection::DOWN:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y - hitbox->GetHalfHeight()}, std::vector<int>{x, y + hitbox->GetHalfHeight()});
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y - hitbox->GetHalfHeight()}, std::vector<int>{x, y + hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
 		case Entity::MovementDirection::LEFT:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x + hitbox->GetHalfWidth(), y}, std::vector<int>{x - hitbox->GetHalfWidth(), y});
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x + hitbox->GetHalfWidth(), y}, std::vector<int>{x - hitbox->GetHalfWidth(), y}, bypassCheck);
 			break;
 		}
 
@@ -368,6 +369,16 @@ namespace HillRaider
 			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			x -= distanceMoved;
 			break;
+		}
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void EnemyAnt::GetAntUnstuck(Entity* entity) {
+		Player* player = dynamic_cast<Player*>(entity);
+		if (player == nullptr) {
+			UpdateDirection(true);
 		}
 	}
 }
