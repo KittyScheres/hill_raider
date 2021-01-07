@@ -44,13 +44,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::RoomCheckEntityCollision(Player* player)
 	{
+		player->LateUpdate(enemyList);
 		for (Entity* enemy : enemyList) {
 			std::list<Entity*> entityCheckList = std::list<Entity*>(enemyList);
 			entityCheckList.remove(enemy);
 			entityCheckList.push_back(player);
 			enemy->LateUpdate(entityCheckList);
 		}
-		player->LateUpdate(enemyList);
 	}
 
 	// --------------------------------------------------

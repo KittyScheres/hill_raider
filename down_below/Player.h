@@ -13,17 +13,17 @@ namespace HillRaider
 	private:
 		const short attackHitboxWidth = 20;
 		const short attackHitboxHeight = 10;
-		const float timePerframeWalkingAnimation = 20.f;
+		const float timePerframeWalkingAnimation = 25.f;
 		const short lungeSpeedIncrease = 200;
-		const float lungeTimePerFrameWalkingAnimation = 10.f;
+		const float lungeTimePerFrameWalkingAnimation = 15.f;
 		const float lungeDuration = 200.f;
-		const float lungeCooldown = 2000.f;
+		const float lungeCooldown = 3000.f;
 	private:
 		InputManager* inputManager = nullptr;
 		Animation* legsAnimation = nullptr;
 		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
-		float speed = 325.f;
+		float speed = 300.f;
 		short attackHitboxOffset = (height / 2) + (attackHitboxHeight / 2);
 		bool lungeFlag = false;
 		bool lungeCooldownFlag = false;

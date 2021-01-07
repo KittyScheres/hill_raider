@@ -5,7 +5,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	EnemyAnt::EnemyAnt(int iX, int iY): Entity(iX, iY, 38, 62)
+	EnemyAnt::EnemyAnt(int iX, int iY): Entity(iX, iY, 28, 62)
 	{
 		legsAnimation = new Animation("assets/entities/red_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
 		bodyAnimation = new Animation("assets/entities/red_ant_body.png", 4, 4, 75.f, iX, iY, false);
@@ -94,14 +94,14 @@ namespace HillRaider
 						playerInLineOfSide = true;
 						smallestDistance = distance;
 					}
-					else if(distance < smallestDistance) {
+					else if (distance < smallestDistance) {
 						playerInLineOfSide = false;
 						smallestDistance = distance;
 					}
 				}
-			}			
+			}
 		}
-
+		
 		if (playerInLineOfSide) {
 			if ((rand() & 2) == 2) {
 				legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
@@ -119,7 +119,7 @@ namespace HillRaider
 	{
 		legsAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
 		bodyAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
-	
+		
 		legsAnimation->DrawAnimation(screen);
 		bodyAnimation->DrawAnimation(screen);
 	}
@@ -128,6 +128,14 @@ namespace HillRaider
 	//
 	// --------------------------------------------------
 	void EnemyAnt::TakeDamage() {
+		makeDecisionFlag = false;
+		makeDecisionTimer = 0.f;
+
+		lungeFlag = false;
+		lungeCooldownFlag = false;
+		lungeDurationTimer = 0.f;
+		legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
+
 		if (--ragdollHealt <= 0) {
 			callback->RemoveEntity(this);
 		}

@@ -14,7 +14,7 @@ namespace HillRaider
 	private:
 		const short attackHitboxWidth = 20;
 		const short attackHitboxHeight = 10;
-		const short lineScanWidth = 2;
+		const short lineScanWidth = 10;
 		const short lineScanHeight = 90;
 		const float timePerframeWalkingAnimation = 30.f;
 		const short lungeSpeedIncrease = 200;
@@ -22,6 +22,7 @@ namespace HillRaider
 		const float makeDecisionCooldown = 1000.f;
 		const float lungeDuration = 300.f;
 		const float lungeCooldown = 2000.f;
+
 	private:
 		RoomCallback* callback = nullptr;
 		Animation* legsAnimation = nullptr;
@@ -38,6 +39,7 @@ namespace HillRaider
 		float makeDecisionTimer = 0.f;
 		float lungeDurationTimer = 0.f;
 		float lungeCooldownTimer = 0.f;
+
 	public:
 		EnemyAnt(int iX, int iY);
 		void Update(float deltaTime);
@@ -50,6 +52,7 @@ namespace HillRaider
 		MovementDirection GetDirection();
 		Animation* GetSprite();
 		~EnemyAnt();
+
 	private:
 		void UpdateDirection(bool bypassCheck = false);
 		void MoveRagdoll(float deltaTime);

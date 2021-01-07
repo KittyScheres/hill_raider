@@ -5,7 +5,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	Player::Player(int iX, int iY): Entity(iX, iY, 38, 62)
+	Player::Player(int iX, int iY): Entity(iX, iY, 28, 62)
 	{
 		inputManager = InputManager::GetInstance();
 		legsAnimation = new Animation("assets/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
