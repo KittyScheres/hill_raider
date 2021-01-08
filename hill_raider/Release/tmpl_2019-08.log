@@ -1,10 +1,10 @@
-﻿  Animation.cpp
-D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  AStar.cpp
+﻿  AStar.cpp
   AStarGrid.cpp
 D:\breda\game\hill_raider\hill_raider\AStarGrid.cpp(82,36): warning C4018: '<': signed/unsigned mismatch
 D:\breda\game\hill_raider\hill_raider\AStarGrid.cpp(86,36): warning C4018: '<': signed/unsigned mismatch
   AStarNode.cpp
+  Animation.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Corner0011.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Corner0110.cpp
@@ -21,6 +21,9 @@ D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpect
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   DeadEnd1000.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  EnemyAnt.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\hill_raider\hill_raider\EnemyAnt.cpp(91,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Entity.cpp
 D:\breda\game\hill_raider\hill_raider\Entity.cpp(86,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\breda\game\hill_raider\hill_raider\Entity.cpp(111,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -28,16 +31,14 @@ D:\breda\game\hill_raider\hill_raider\Entity.cpp(111,31): warning C4244: 'argume
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   FrameRateManager.cpp
 D:\breda\game\hill_raider\hill_raider\FrameRateManager.cpp(14,38): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-  game.cpp
-D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\breda\game\hill_raider\hill_raider\game.cpp(19,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  GameData.cpp
   GamePlay.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   HallwayHorizontal0101.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   HallwayVertical1010.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Hitbox.cpp
+D:\breda\game\hill_raider\hill_raider\Hitbox.cpp(69,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating Code...
 D:\breda\game\hill_raider\hill_raider\HallwayVertical1010.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
 D:\breda\game\hill_raider\hill_raider\HallwayHorizontal0101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
@@ -50,26 +51,17 @@ D:\breda\game\hill_raider\hill_raider\Corner1001.cpp(25): warning C4715: 'HillRa
 D:\breda\game\hill_raider\hill_raider\Corner0110.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
 D:\breda\game\hill_raider\hill_raider\Corner0011.cpp(25): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
   Compiling...
-  Hitbox.cpp
-D:\breda\game\hill_raider\hill_raider\Hitbox.cpp(69,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Image.cpp
-  InputManager.cpp
   PauseScreen.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Player.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  EnemyAnt.cpp
-D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\breda\game\hill_raider\hill_raider\EnemyAnt.cpp(91,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Room.cpp
-D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  StartingRoom1111.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   StartMenu.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  surface.cpp
-  template.cpp
-  TileMap.cpp
+  StartingRoom1111.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   TSplit0111.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   TSplit1011.cpp
@@ -78,7 +70,13 @@ D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpect
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   TSplit1110.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TileMap.cpp
   Ui.cpp
+  game.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\hill_raider\hill_raider\game.cpp(19,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  surface.cpp
+  template.cpp
   Generating Code...
 D:\breda\game\hill_raider\hill_raider\TSplit1110.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value
 D:\breda\game\hill_raider\hill_raider\TSplit1101.cpp(31): warning C4715: 'HillRaider::GetEntityList': not all control paths return a value

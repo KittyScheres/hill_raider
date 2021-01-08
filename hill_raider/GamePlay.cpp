@@ -61,7 +61,7 @@ namespace HillRaider
 			floor->GetCurrentRoom()->RoomCheckTileMapCollsion();
 		}
 
-		if (GameData::GetInstance()->playerHealth == 0) {
+		if (GameData::GetInstance()->playerHealth <= 0) {
 			callback->SetNextState(new StartMenu(callback));
 		}
 	}
