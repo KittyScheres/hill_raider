@@ -7,7 +7,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	PauseScreen::PauseScreen(StateCallback* iCallback)
+	PauseScreen::PauseScreen(GameCallback* iCallback)
 	{
 		inputManager = InputManager::GetInstance();
 		callback = iCallback;

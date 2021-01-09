@@ -2,6 +2,9 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class contains global variables for the game.
+	// --------------------------------------------------
 	class GameData
 	{
 	private:
@@ -16,7 +19,7 @@ namespace HillRaider
 		static void DestroyInstance();
 
 	private:
-		GameData();
-		~GameData();
+		GameData() {};
+		~GameData() {};
 	};
 }

@@ -5,7 +5,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	// 
 	// --------------------------------------------------
-	StartMenu::StartMenu(StateCallback* iCallback)
+	StartMenu::StartMenu(GameCallback* iCallback)
 	{
 		callback = iCallback;
 		inputManager = InputManager::GetInstance();

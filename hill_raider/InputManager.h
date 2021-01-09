@@ -4,6 +4,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class contains methods for getting and checking
+	// the keyboard inputs for the game.
+	// --------------------------------------------------
 	class InputManager
 	{
 	public:
@@ -24,7 +28,7 @@ namespace HillRaider
 		bool KeyLetGo(Keys key);
 
 	private:
-		InputManager();
-		~InputManager();
+		InputManager() {};
+		~InputManager() {};
 	};
 }

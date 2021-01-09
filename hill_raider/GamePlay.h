@@ -1,7 +1,7 @@
 #pragma once
 
 #include "State.h"
-#include "StateCallback.h"
+#include "GameCallback.h"
 #include "StartMenu.h"
 #include "InputManager.h"
 #include "PauseScreen.h"
@@ -17,7 +17,7 @@ namespace HillRaider
 	class GamePlay: public State
 	{
 	private:
-		StateCallback* callback = nullptr;
+		GameCallback* callback = nullptr;
 		InputManager* inputManager = nullptr;
 		bool gamePaused = false;
 		PauseScreen* pauseScreen = nullptr;
@@ -26,7 +26,7 @@ namespace HillRaider
 		Floor* floor = nullptr;
 
 	public:
-		GamePlay(StateCallback* iCallback);
+		GamePlay(GameCallback* iCallback);
 		void SetupSingletons();
 		void Update(float deltaTime);
 		void LateUpdate();

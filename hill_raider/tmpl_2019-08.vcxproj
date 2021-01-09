@@ -292,7 +292,7 @@
     <ClInclude Include="StartingRoom1111.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
-    <ClInclude Include="StateCallback.h" />
+    <ClInclude Include="GameCallback.h" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
     <ClInclude Include="TileMap.h" />

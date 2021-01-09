@@ -198,6 +198,11 @@ namespace HillRaider
 			bodyAnimation = nullptr;
 		}
 
+		if (hitbox != nullptr) {
+			delete hitbox;
+			hitbox = nullptr;
+		}
+
 		if (attackHitbox != nullptr) {
 			delete attackHitbox;
 			attackHitbox = nullptr;

@@ -10,12 +10,8 @@ namespace HillRaider
 	InputManager* InputManager::instance = nullptr;
 
 	// --------------------------------------------------
-	// 
-	// --------------------------------------------------
-	InputManager::InputManager(){}
-
-	// --------------------------------------------------
-	// 
+	// This method returns the singelton instance of
+	// the input manager class.
 	// --------------------------------------------------
 	InputManager* InputManager::GetInstance()
 	{
@@ -27,7 +23,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method destroys the singleton instance of 
+	// the input manager class.
 	// --------------------------------------------------
 	void InputManager::DestroyInstance()
 	{
@@ -38,7 +35,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the previous key state
+	// and the current key state lists for the input manager.
 	// --------------------------------------------------
 	void InputManager::UpdateKeysState()
 	{
@@ -56,7 +54,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to check if a key is being 
+	// pressed.
 	// --------------------------------------------------
 	bool InputManager::KeyDown(Keys key)
 	{
@@ -64,7 +63,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// 
+	// This mehtod is used to check if a key is not being 
+	// pressed
 	// --------------------------------------------------
 	bool InputManager::KeyUp(Keys key)
 	{
@@ -72,7 +72,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// 
+	// This mehtod is used to check if a key has just 
+	// been pressed.
 	// --------------------------------------------------
 	bool InputManager::KeyPressed(Keys key)
 	{
@@ -80,14 +81,10 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to check if a key has just
+	// been let go off.
 	// --------------------------------------------------
 	bool InputManager::KeyLetGo(Keys key) {
 		return previousKeyState[(int)key] && !currentKeysState[(int)key];
 	}
-
-	// --------------------------------------------------
-	// 
-	// --------------------------------------------------
-	InputManager::~InputManager(){}
 }

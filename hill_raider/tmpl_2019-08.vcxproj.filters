@@ -161,9 +161,6 @@
     <ClInclude Include="Entity.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="StateCallback.h">
-      <Filter>hill_raider\header_files\states</Filter>
-    </ClInclude>
     <ClInclude Include="AStar.h">
       <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
     </ClInclude>
@@ -229,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="DeadEnd0001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCallback.h">
+      <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

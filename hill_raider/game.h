@@ -1,13 +1,13 @@
 #pragma once
 
 #include "template.h"
-#include "StateCallback.h"
+#include "GameCallback.h"
 #include "InputManager.h"
 
 namespace Tmpl8
 {
 	class Surface;
-	class Game : public HillRaider::StateCallback
+	class Game : public HillRaider::GameCallback
 	{
 	public:
 		void SetTarget(Surface* surface) { screen = surface; }

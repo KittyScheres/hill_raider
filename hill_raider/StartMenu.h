@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StateCallback.h"
+#include "GameCallback.h"
 #include "surface.h"
 #include "Image.h"
 #include "Animation.h"
@@ -17,7 +17,7 @@ namespace HillRaider
 	class StartMenu: public State
 	{
 	private:
-		StateCallback* callback = nullptr;
+		GameCallback* callback = nullptr;
 		InputManager* inputManager = nullptr;
 
 		Image* background = nullptr;
@@ -34,7 +34,7 @@ namespace HillRaider
 		Image* menuItemHighlight = nullptr;
 
 	public:
-		StartMenu(StateCallback* iCallback);
+		StartMenu(GameCallback* iCallback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~StartMenu();

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "InputManager.h"
-#include "StateCallback.h"
+#include "GameCallback.h"
 #include "Image.h"
 
 namespace HillRaider
@@ -10,7 +10,7 @@ namespace HillRaider
 	{
 	private:
 		InputManager* inputManager = nullptr;
-		StateCallback* callback = nullptr;
+		GameCallback* callback = nullptr;
 
 		Image* buttonBackground = nullptr;
 
@@ -22,7 +22,7 @@ namespace HillRaider
 		Image* buttonHighlight = nullptr;
 
 	public:
-		PauseScreen(StateCallback* iCallback);
+		PauseScreen(GameCallback* iCallback);
 		void GamePause();
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);

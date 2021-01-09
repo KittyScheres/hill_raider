@@ -5,7 +5,7 @@
 namespace HillRaider 
 {
 	// -------------------------------------------------------------------
-	// The state is a template which can be used to create state classes.
+	// The state class is a template which can be used to create state objects.
 	// -------------------------------------------------------------------
 	class State
 	{

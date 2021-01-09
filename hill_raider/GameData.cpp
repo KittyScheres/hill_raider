@@ -5,7 +5,8 @@ namespace HillRaider
 	GameData* GameData::instance = nullptr;
 
 	// --------------------------------------------------
-	//
+	// This method returns the singelton instance of
+	// the game data class.
 	// --------------------------------------------------
 	GameData* GameData::GetInstance()
 	{
@@ -16,7 +17,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method destroys the singleton instance of 
+	// the game data class.
 	// --------------------------------------------------
 	void GameData::DestroyInstance()
 	{
@@ -25,14 +27,4 @@ namespace HillRaider
 			instance = nullptr;
 		}
 	}
-
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	GameData::GameData() {}
-	
-	// --------------------------------------------------
-	//
-	// --------------------------------------------------
-	GameData::~GameData() {}
 }

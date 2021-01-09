@@ -37,6 +37,6 @@ namespace HillRaider
 		int GetHeight();
 		MovementDirection GetDirection();
 		Hitbox* GetHitbox();
-		~Entity();
+		virtual ~Entity();
 	};
 }

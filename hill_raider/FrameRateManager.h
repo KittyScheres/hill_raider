@@ -7,6 +7,10 @@
 
 namespace HillRaider
 {
+	// -----------------------------------------------------------
+	// This class contains methods for implementing a frames per
+	// second cap.
+	// -----------------------------------------------------------
 	class FrameRateManager
 	{
 	private:

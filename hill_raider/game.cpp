@@ -40,6 +40,8 @@ namespace Tmpl8
 		}
 
 		inputManager->DestroyInstance();
+
+		delete this;
 	}
 
 	// -----------------------------------------------------------
@@ -47,19 +49,12 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		// check if application hasn't been paused
 		if (deltaTime < 100.f) {
-			// clear the graphics window
 			screen->Clear(0);
-			// get new key inputs
 			inputManager->UpdateKeysState();
-			// call update for the game
 			currentState->Update(deltaTime);
-			// check and apply collision
 			currentState->LateUpdate();
-			// draw objects
 			currentState->Render(screen);
-			// update game state
 			SetState();
 		}
 	}
@@ -85,7 +80,7 @@ namespace Tmpl8
 	}
 
 	// -----------------------------------------------------------
-	// Close the game
+	// End the application
 	// -----------------------------------------------------------
 	void Game::CloseGame() {
 		SDL_Event closeWindowEvent;

@@ -5,7 +5,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	//
 	// --------------------------------------------------
-	GamePlay::GamePlay(StateCallback* iCallback)
+	GamePlay::GamePlay(GameCallback* iCallback)
 	{
 		callback = iCallback;
 		pauseScreen = new PauseScreen(callback);
