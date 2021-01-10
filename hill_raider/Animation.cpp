@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// 
+	// This constructor is used to initialize the animation.
 	// --------------------------------------------------
 	Animation::Animation(char* srcPath, short iXFrames, short iYFrames, float iTimePerFrame, int iX, int iY, bool iLoop)
 	{
@@ -14,7 +14,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the animation.
 	// --------------------------------------------------
 	void Animation::UpdateAnimation(float deltaTime)
 	{
@@ -35,7 +35,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to the animation on to the 
+	// screen.
 	// --------------------------------------------------
 	void Animation::DrawAnimation(Tmpl8::Surface* screen)
 	{
@@ -43,7 +44,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to set the position of the 
+	// animation.
 	// --------------------------------------------------
 	void Animation::SetPosition(int iX, int iY)
 	{
@@ -51,7 +53,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to set the time per frame for
+	// the animation.
 	// --------------------------------------------------
 	void Animation::SetTimePerFrame(float iTimePerFrame)
 	{
@@ -59,7 +62,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the current x axis
+	// of the sampel frame from the animation source.
 	// --------------------------------------------------
 	void Animation::SetCurrentXFrame(short iCurrentXFrame)
 	{
@@ -68,7 +72,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the current y axis
+	// of the sampel frame from the animation source.
 	// --------------------------------------------------
 	void Animation::SetCurrentYFrame(short iCurrentYFrame)
 	{
@@ -76,7 +81,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the current position
+	// the animation.
 	// --------------------------------------------------
 	int* Animation::GetPosition()
 	{
@@ -84,7 +90,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the display width of
+	// the animation.
 	// --------------------------------------------------
 	int Animation::GetWidth()
 	{
@@ -92,7 +99,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the display height of
+	// the animation.
 	// --------------------------------------------------
 	int Animation::GetHeight()
 	{
@@ -100,7 +108,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This deconstructor is used to safly free up the
+	// memory of the animation source.
 	// --------------------------------------------------
 	Animation::~Animation()
 	{

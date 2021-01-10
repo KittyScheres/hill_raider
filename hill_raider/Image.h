@@ -4,6 +4,9 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to draw an image on to the screen.
+	// --------------------------------------------------
 	class Image
 	{
 	private: 

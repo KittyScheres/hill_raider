@@ -63,7 +63,7 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This mehtod is used to check if a key is not being 
+	// This method is used to check if a key is not being 
 	// pressed
 	// --------------------------------------------------
 	bool InputManager::KeyUp(Keys key)

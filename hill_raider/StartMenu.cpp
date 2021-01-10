@@ -3,7 +3,8 @@
 namespace HillRaider 
 {
 	// --------------------------------------------------
-	// 
+	// This constructor is used to initialize the components
+	// for the start menu.
 	// --------------------------------------------------
 	StartMenu::StartMenu(GameCallback* iCallback)
 	{
@@ -23,7 +24,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the components on the
+	// start menu.
 	// --------------------------------------------------
 	void StartMenu::Update(float deltaTime)
 	{
@@ -54,7 +56,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to render all of the components
+	// on the start menu.
 	// --------------------------------------------------
 	void StartMenu::Render(Tmpl8::Surface* screen)
 	{
@@ -75,7 +78,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This deconstructor is used to safely free the memory
+	// of the components for the start menu.
 	// --------------------------------------------------
 	StartMenu::~StartMenu()
 	{

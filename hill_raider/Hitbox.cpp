@@ -66,7 +66,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	float Hitbox::GetHalfDiameter()
 	{
-		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));;
+		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));
 	}
 
 	// --------------------------------------------------
@@ -76,8 +76,8 @@ namespace HillRaider
 	{
 		std::vector<std::vector<int>> boxPoints;
 
-		for (int y = 0; y < 2; y++) {
-			for (int x = 0; x < 2; x++){
+		for (short y = 0; y < 2; y++) {
+			for (short x = 0; x < 2; x++){
 				std::vector<int> point;
 				
 				switch (x)

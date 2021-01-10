@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// 
+	// This constructor is used to initialize the image.
 	// --------------------------------------------------
 	Image::Image(char* srcPath, int iX, int iY, short iXFrames, short iYFrames)
 	{
@@ -17,7 +17,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to draw the image on to the 
+	// screen.
 	// --------------------------------------------------
 	void Image::DrawImage(Tmpl8::Surface* screen)
 	{
@@ -39,7 +40,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to change the position of the 
+	// image.
 	// --------------------------------------------------
 	void Image::SetPosition(int iX, int iY)
 	{
@@ -48,7 +50,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the current x axis
+	// of the sampel frame from the image source.
 	// --------------------------------------------------
 	void Image::SetCurrentXFrame(int iCurrentXFrame)
 	{
@@ -58,7 +61,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to update the current y axis
+	// of the sampel frame from the image source.
 	// --------------------------------------------------
 	void Image::SetCurrentYFrame(int iCurrentYFrame)
 	{
@@ -68,7 +72,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the current position of
+	// the image.
 	// --------------------------------------------------
 	int* Image::GetPosition()
 	{
@@ -77,7 +82,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the display width of
+	// the image.
 	// --------------------------------------------------
 	int Image::GetWidth()
 	{
@@ -85,7 +91,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This method is used to get the display height of
+	// the image.
 	// --------------------------------------------------
 	int Image::GetHeight()
 	{
@@ -93,7 +100,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// 
+	// This deconstructor is used to safly free up the
+	// memory of the image source.
 	// --------------------------------------------------
 	Image::~Image()
 	{

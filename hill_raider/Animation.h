@@ -4,6 +4,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to create and update an 
+	// animation which can be drawn on to the screen.
+	// --------------------------------------------------
 	class Animation
 	{
 	private:
