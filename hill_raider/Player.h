@@ -18,6 +18,7 @@ namespace HillRaider
 		const float lungeTimePerFrameWalkingAnimation = 15.f;
 		const float lungeDuration = 200.f;
 		const float lungeCooldown = 3000.f;
+
 	private:
 		InputManager* inputManager = nullptr;
 		Animation* legsAnimation = nullptr;
@@ -29,6 +30,7 @@ namespace HillRaider
 		bool lungeCooldownFlag = false;
 		float lungeDurationTimer = 0.f;
 		float lungeCooldownTimer = 0.f;
+
 	public:
 		Player(int iX, int iY);
 		void Update(float deltaTime);
@@ -40,6 +42,7 @@ namespace HillRaider
 		MovementDirection GetDirection();
 		Animation* GetSprite();
 		~Player();
+
 	private:
 		void CheckForKeyPressed();
 		void CheckForKeyLetGo();

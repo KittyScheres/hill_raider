@@ -12,6 +12,7 @@ namespace HillRaider
 	private:
 		TileMap* map = nullptr;
 		std::vector<std::vector<AStarNode*>> nodeGrid;
+
 	public:
 		AStarGrid(TileMap* tileMap);
 		void ResetWalkableNodes();

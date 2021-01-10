@@ -32,6 +32,7 @@ namespace HillRaider
 		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);
 		~GamePlay();
+
 	private:
 		void CheckTileMapCollision(std::vector<std::vector<int>> hitbox);
 		void ApplyVerticalTileMapCollision(int hitboxPointIndex , int hitboxPointYPos);

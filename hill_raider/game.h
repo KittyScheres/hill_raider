@@ -17,13 +17,14 @@ namespace Tmpl8
 		void SetState();
 		void SetNextState(HillRaider::State* newState);
 		void CloseGame();
-		void MouseUp( int button ) { /* implement if you want to detect mouse button presses */ }
-		void MouseDown( int button ) { /* implement if you want to detect mouse button presses */ }
-		void MouseMove( int x, int y ) { /* implement if you want to detect mouse movement */ }
+		void MouseUp( int button ) {}
+		void MouseDown( int button ) {}
+		void MouseMove( int x, int y ) {}
+
 	private:
 		Surface* screen;
 		HillRaider::InputManager* inputManager = nullptr;
 		HillRaider::State* currentState = nullptr;
 		HillRaider::State* nextState = nullptr;
 	};
-}; // namespace Tmpl8
+};

@@ -9,6 +9,7 @@ namespace HillRaider
 	{
 	private:
 		Image* healthBar[GameData::MAX_HEALTH];
+
 	public:
 		Ui();
 		void Render(Tmpl8::Surface* screen);

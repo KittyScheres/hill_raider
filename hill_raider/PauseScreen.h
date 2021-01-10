@@ -11,13 +11,10 @@ namespace HillRaider
 	private:
 		InputManager* inputManager = nullptr;
 		GameCallback* callback = nullptr;
-
 		Image* buttonBackground = nullptr;
-
 		Image* backToMenuButtonText = nullptr;
 		Image* restartGameButtonText = nullptr;
 		int buttonsYPos[2]{64 * 3, 64 * 5};
-
 		int selectedButton = 0;
 		Image* buttonHighlight = nullptr;
 

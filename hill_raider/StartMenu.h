@@ -11,25 +11,21 @@
 namespace HillRaider 
 {
 	// ------------------------------------------------------------
-	// Start menu is a state class. It detremens the functionality
-	// of the games start menu.
+	// The start menu state class is used to initialize and keep
+	// track off everything on de start menu of the game.
 	// ------------------------------------------------------------
 	class StartMenu: public State
 	{
 	private:
 		GameCallback* callback = nullptr;
 		InputManager* inputManager = nullptr;
-
 		Image* background = nullptr;
 		Image* title = nullptr;
-
 		Image* buttonBackground = nullptr;
-		
 		Image* playGameButtonText = nullptr;
 		Image* checkControlsButtonText = nullptr;
 		Image* exitGameButtonText = nullptr;
-		int menuButtonsY[3]{ 4 * 64, (5 * 64) + 32 , 7 * 64 };
-
+		int menuButtonsY[3]{ 4 * 64, 5 * 64 , 7 * 64 };
 		short selectedMenuItem = 0;
 		Image* menuItemHighlight = nullptr;
 
