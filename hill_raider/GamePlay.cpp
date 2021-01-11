@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to initialize the components
+	// for the gameplay state.
 	// --------------------------------------------------
 	GamePlay::GamePlay(GameCallback* iCallback)
 	{
@@ -15,7 +16,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to setup the singleton components
+	// for the gameplay state which might have been destroyed
+	// on the state change.
 	// --------------------------------------------------
 	void GamePlay::SetupSingletons()
 	{
@@ -25,7 +28,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the components for
+	// the gameplay state.
 	// --------------------------------------------------
 	void GamePlay::Update(float deltaTime)
 	{
@@ -48,7 +52,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to execute the collision checks
+	// for the components for the gameplay state.
 	// --------------------------------------------------
 	void GamePlay::LateUpdate()
 	{
@@ -67,7 +72,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw the components for the
+	// gameplay state on to the screen.
 	// --------------------------------------------------
 	void GamePlay::Render(Tmpl8::Surface* screen)
 	{
@@ -82,7 +88,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This deconstructor is used to safely free the memory
+	// of the components for the gameplay state.
 	// --------------------------------------------------
 	GamePlay::~GamePlay()
 	{
@@ -114,7 +121,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check the tile map collision
+	// for the player.
 	// --------------------------------------------------
 	void GamePlay::CheckTileMapCollision(std::vector<std::vector<int>> hitbox) {
 		char collisionChar = ' ';
@@ -186,7 +194,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to push the player away from
+	// tile map obsticals the player has collided with 
+	// while moving in a vertical direction.
 	// --------------------------------------------------
 	void GamePlay::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
 	{
@@ -204,7 +214,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to push the player away from
+	// tile map obsticals the player has collided with 
+	// while moving in a horizontal direction.
 	// --------------------------------------------------
 	void GamePlay::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)
 	{

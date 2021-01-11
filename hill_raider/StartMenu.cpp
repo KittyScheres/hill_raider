@@ -4,7 +4,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the start menu.
+	// for the start menu state.
 	// --------------------------------------------------
 	StartMenu::StartMenu(GameCallback* iCallback)
 	{

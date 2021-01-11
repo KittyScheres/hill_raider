@@ -15,7 +15,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// The gameplay state class is used to initialize and keep
+	// track off everything for the gameplay of the game.
 	// --------------------------------------------------
 	class GamePlay: public State
 	{
