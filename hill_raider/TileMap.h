@@ -4,6 +4,9 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to create tile maps for the game.
+	// --------------------------------------------------
 	class TileMap
 	{
 	public:

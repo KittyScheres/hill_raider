@@ -5,7 +5,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to initialize the components
+	// for the pause screen.
 	// --------------------------------------------------
 	PauseScreen::PauseScreen(GameCallback* iCallback)
 	{
@@ -21,7 +22,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to reset the pause screen object
+	// when the game gets paused.
 	// --------------------------------------------------
 	void PauseScreen::GamePause()
 	{
@@ -29,7 +31,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the components for
+	// the pause screen.
 	// --------------------------------------------------
 	void PauseScreen::Update(float deltaTime)
 	{
@@ -56,7 +59,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to draw the components for
+	// the pause screen on to the screen.
 	// --------------------------------------------------
 	void PauseScreen::Render(Tmpl8::Surface* screen)
 	{
@@ -73,7 +77,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory
+	// of the components for the pause screen.
 	// --------------------------------------------------
 	PauseScreen::~PauseScreen()
 	{

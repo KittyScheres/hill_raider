@@ -3,12 +3,13 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to initialize the components
+	// for the ui.
 	// --------------------------------------------------
 	Ui::Ui()
 	{
-		for (int i = 0; i < GameData::GetInstance()->MAX_HEALTH; i++) {
-			if (i % 2 == 0) {
+		for (short i = 0; i < GameData::GetInstance()->MAX_HEALTH; i++) {
+			if ((i & 1) == 0) {
 				healthBar[i] = new Image("assets/ui/half_heart_1.png", 64 * (1 + (i / 2)), 0);
 			}
 			else {
@@ -18,21 +19,22 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to draw the ui on to the screen.
 	// --------------------------------------------------
 	void Ui::Render(Tmpl8::Surface* screen)
 	{
-		for (int i = 0; i < GameData::GetInstance()->playerHealth; i++) {
+		for (short i = 0; i < GameData::GetInstance()->playerHealth; i++) {
 			healthBar[i]->DrawImage(screen);
 		}
 	}
 	
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory for
+	// the components of the ui.
 	// --------------------------------------------------
 	Ui::~Ui()
 	{
-		for (auto halfHeart : healthBar) {
+		for (Image* halfHeart : healthBar) {
 			if (halfHeart != nullptr) {
 				delete halfHeart;
 				halfHeart = nullptr;

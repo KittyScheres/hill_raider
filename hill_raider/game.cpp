@@ -8,7 +8,7 @@
 namespace Tmpl8
 {
 	// -----------------------------------------------------------
-	// Initialize the application
+	// Initialize the application.
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
@@ -20,7 +20,7 @@ namespace Tmpl8
 	}
 	
 	// -----------------------------------------------------------
-	// Close down application
+	// Close down application.
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
@@ -45,7 +45,7 @@ namespace Tmpl8
 	}
 
 	// -----------------------------------------------------------
-	// Main application tick function
+	// Main application tick function.
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
@@ -60,7 +60,7 @@ namespace Tmpl8
 	}
 
 	// -----------------------------------------------------------
-	// Set the current state of the game
+	// Set the current state of the game.
 	// -----------------------------------------------------------
 	void Game::SetState()
 	{
@@ -73,14 +73,14 @@ namespace Tmpl8
 	}
 
 	// -----------------------------------------------------------
-	// Set the next state of the game
+	// Set the next state of the game.
 	// -----------------------------------------------------------
 	void Game::SetNextState(HillRaider::State* newState) {
 		nextState = newState;
 	}
 
 	// -----------------------------------------------------------
-	// End the application
+	// End the application.
 	// -----------------------------------------------------------
 	void Game::CloseGame() {
 		SDL_Event closeWindowEvent;

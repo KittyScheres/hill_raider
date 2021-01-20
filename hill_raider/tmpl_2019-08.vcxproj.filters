@@ -62,9 +62,6 @@
     <ClCompile Include="Room.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="StartingRoom1111.cpp">
-      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
-    </ClCompile>
     <ClCompile Include="HallwayVertical1010.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
@@ -108,6 +105,9 @@
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
     <ClCompile Include="DeadEnd0001.cpp">
+      <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossRoad1111.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,9 +179,6 @@
     <ClInclude Include="RoomCallback.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="StartingRoom1111.h">
-      <Filter>hill_raider\header_files\game_components\rooms</Filter>
-    </ClInclude>
     <ClInclude Include="HallwayVertical1010.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
@@ -229,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="GameCallback.h">
       <Filter>hill_raider\header_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossRoad1111.h">
+      <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// The ui class is used to initialize and keep track
+	// of the ui for the game.
+	// --------------------------------------------------
 	class Ui
 	{
 	private:

@@ -15,7 +15,7 @@ namespace HillRaider
 
 		floorMap[1][0] = new DeadEnd0010();
 		floorMap[0][1] = new DeadEnd0100();
-		floorMap[1][1] = new StartingRoom1111();
+		floorMap[1][1] = new CrossRoad1111();
 		floorMap[2][1] = new HallwayHorizontal0101();
 		floorMap[3][1] = new Corner0011();
 		floorMap[7][1] = new DeadEnd0010();
@@ -25,9 +25,9 @@ namespace HillRaider
 		floorMap[6][2] = new TSplit0111();
 		floorMap[7][2] = new Corner1001();
 		floorMap[0][3] = new DeadEnd0100();
-		floorMap[1][3] = new StartingRoom1111();
+		floorMap[1][3] = new CrossRoad1111();
 		floorMap[2][3] = new HallwayHorizontal0101();
-		floorMap[3][3] = new StartingRoom1111();
+		floorMap[3][3] = new CrossRoad1111();
 		floorMap[4][3] = new HallwayHorizontal0101();
 		floorMap[5][3] = new TSplit1011();
 		floorMap[6][3] = new HallwayVertical1010();
@@ -51,9 +51,6 @@ namespace HillRaider
 
 		currentRoom[0] = 3;
 		currentRoom[1] = 3;
-
-		AStar::GetIntance()->SetNodeMap(floorMap[currentRoom[0]][currentRoom[1]]->GetTileMap());
-		AStar::GetIntance()->SetEntitiesListReference(floorMap[currentRoom[0]][currentRoom[1]]->GetEnemyListReference());
 	}
 
 	// --------------------------------------------------

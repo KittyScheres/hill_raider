@@ -18,7 +18,8 @@ namespace HillRaider
 
 		playGameButtonText = new Image("assets/ui/play_button_text.png", 5 * 64, menuButtonsY[0]);
 		checkControlsButtonText = new Image("assets/ui/controls_button_text.png", 5 * 64, menuButtonsY[1]);
-		exitGameButtonText = new Image("assets/ui/quit_button_text.png", 5 * 64, menuButtonsY[2]);
+		creditsButtonText = new Image("assets/ui/credits_button_text.png", 5 * 64, menuButtonsY[2]);
+		exitGameButtonText = new Image("assets/ui/quit_button_text.png", 5 * 64, menuButtonsY[3]);
 
 		menuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
 	}
@@ -33,7 +34,7 @@ namespace HillRaider
 			--selectedMenuItem;
 		}
 		
-		if (inputManager->KeyPressed(InputManager::Keys::DOWN) && selectedMenuItem < 2) {
+		if (inputManager->KeyPressed(InputManager::Keys::DOWN) && selectedMenuItem < 3) {
 			++selectedMenuItem;
 		}
 
@@ -49,6 +50,10 @@ namespace HillRaider
 				break;
 
 			case 2:
+
+				break;
+
+			case 3:
 				callback->CloseGame();
 				break;
 			}
@@ -64,7 +69,7 @@ namespace HillRaider
 		background->DrawImage(screen);
 		title->DrawImage(screen);
 
-		for (short i = 0; i < 3; i++) {
+		for (short i = 0; i < 4; i++) {
 			buttonBackground->SetPosition(5 * 64, menuButtonsY[i]);
 			buttonBackground->DrawImage(screen);
 		}
@@ -74,6 +79,7 @@ namespace HillRaider
 
 		playGameButtonText->DrawImage(screen);
 		checkControlsButtonText->DrawImage(screen);
+		creditsButtonText->DrawImage(screen);
 		exitGameButtonText->DrawImage(screen);
 	}
 
@@ -106,6 +112,11 @@ namespace HillRaider
 		if (checkControlsButtonText != nullptr) {
 			delete checkControlsButtonText;
 			checkControlsButtonText = nullptr;
+		}
+
+		if (creditsButtonText != nullptr) {
+			delete creditsButtonText;
+			creditsButtonText = nullptr;
 		}
 
 		if (exitGameButtonText != nullptr) {

@@ -24,8 +24,9 @@ namespace HillRaider
 		Image* buttonBackground = nullptr;
 		Image* playGameButtonText = nullptr;
 		Image* checkControlsButtonText = nullptr;
+		Image* creditsButtonText = nullptr;
 		Image* exitGameButtonText = nullptr;
-		int menuButtonsY[3]{ 4 * 64, 5 * 64 , 7 * 64 };
+		int menuButtonsY[4]{ 4 * 64, 5 * 64, 6 * 64, 7 * 64 };
 		short selectedMenuItem = 0;
 		Image* menuItemHighlight = nullptr;
 

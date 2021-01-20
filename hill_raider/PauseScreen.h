@@ -6,6 +6,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// THe pause screen class is used to initialize and 
+	// keep track of the pause screen for the game.
+	// --------------------------------------------------
 	class PauseScreen
 	{
 	private:
@@ -15,7 +19,7 @@ namespace HillRaider
 		Image* backToMenuButtonText = nullptr;
 		Image* restartGameButtonText = nullptr;
 		int buttonsYPos[2]{64 * 3, 64 * 5};
-		int selectedButton = 0;
+		short selectedButton = 0;
 		Image* buttonHighlight = nullptr;
 
 	public:

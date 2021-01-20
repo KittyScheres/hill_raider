@@ -249,7 +249,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="EnemyAnt.cpp" />
     <ClCompile Include="Room.cpp" />
-    <ClCompile Include="StartingRoom1111.cpp" />
+    <ClCompile Include="CrossRoad1111.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
@@ -289,7 +289,7 @@
     <ClInclude Include="EnemyAnt.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomCallback.h" />
-    <ClInclude Include="StartingRoom1111.h" />
+    <ClInclude Include="CrossRoad1111.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="GameCallback.h" />

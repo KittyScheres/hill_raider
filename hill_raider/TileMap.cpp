@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to initialize and setup
+	// the tile map object.
 	// --------------------------------------------------
 	TileMap::TileMap(char* TileMapSurfacePath, char iTileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT + 1], int iTileWidth, int iTileHeight)
 	{
@@ -18,7 +19,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw a tile on to the screen.
 	// --------------------------------------------------
 	void TileMap::DrawTile(Tmpl8::Surface* screen, int xScreen, int yScreen, int xSurface, int ySurface)
 	{
@@ -34,7 +35,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This mehtod is used to draw all of the tiles of
+	// the tilemap on to the screen.
 	// --------------------------------------------------
 	void TileMap::Render(Tmpl8::Surface* screen)
 	{
@@ -46,7 +48,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to get the collision char for
+	// a spesific tile on the tile map.
 	// --------------------------------------------------
 	char TileMap::GetCollision(int x, int y)
 	{
@@ -56,7 +59,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This mehtod is used to get the height of a tile
+	// on the tile map.
 	// --------------------------------------------------
 	int TileMap::GetTileHeight()
 	{
@@ -64,7 +68,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This mehtod is used to get the width of a tile
+	// on the tile map.
 	// --------------------------------------------------
 	int TileMap::GetTileWidth()
 	{
@@ -72,7 +77,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory
+	// for the source of the tile map.
 	// --------------------------------------------------
 	TileMap::~TileMap()
 	{

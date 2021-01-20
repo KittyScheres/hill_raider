@@ -23,11 +23,11 @@ namespace HillRaider
 	private:
 		GameCallback* callback = nullptr;
 		InputManager* inputManager = nullptr;
-		bool gamePaused = false;
 		PauseScreen* pauseScreen = nullptr;
 		Ui* ui = nullptr;
 		Player* player = nullptr;
 		Floor* floor = nullptr;
+		bool gamePaused = false;
 
 	public:
 		GamePlay(GameCallback* iCallback);
