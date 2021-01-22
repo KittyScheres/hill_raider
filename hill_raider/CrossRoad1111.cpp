@@ -14,7 +14,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 	};
 
-	CrossRoad1111::CrossRoad1111() : Room(new TileMap("assets/tile_maps/tile_map.png", tilemap, 64, 64), std::list<Entity*>{}) {}
+	CrossRoad1111::CrossRoad1111() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), std::list<Entity*>{}) {}
 
 	CrossRoad1111::~CrossRoad1111() {}
 }

@@ -24,7 +24,7 @@ namespace HillRaider
 		}
 	}
 
-	DeadEnd0010::DeadEnd0010() : Room(new TileMap("assets/tile_maps/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
+	DeadEnd0010::DeadEnd0010() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
 	
 	DeadEnd0010::~DeadEnd0010() {}
 }

@@ -8,12 +8,55 @@ namespace HillRaider
 	Room::Room(TileMap* iTilemap, std::list<Entity*> enemies)
 	{
 		tileMap = iTilemap;
+		doorBlockade = new Image("assets/environments/doorway_blockade.png", 0, 0, 4);
+		SetDoorBlockadePositionVector();
 		enemyList = enemies;
 		
 		for (Entity* enemy : enemyList) {
 			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(enemy);
 			if (enemyAnt != nullptr) {
 				enemyAnt->SetRoomCallback(this);
+			}
+		}
+
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Room::SetDoorBlockadePositionVector() {
+		int tileHeight = tileMap->GetTileHeight();
+		int tileWidth = tileMap->GetTileWidth();
+			
+		for (int y = 0; y < TileMap::TILE_MAP_HEIGHT; y++) {
+			for (int x = 0; x < TileMap::TILE_MAP_WIDHT; x++) {
+				std::vector<int> doorBlockadePos;
+				doorBlockadePos.push_back(0);
+				doorBlockadePos.push_back(x * tileWidth);
+				doorBlockadePos.push_back(y * tileHeight);
+
+				switch (tileMap->GetCollision(tileWidth * x, tileHeight * y))
+				{
+				case 'w':
+					doorBlockadePos[0] = 0;
+					doorBlockadePositionList.push_back(doorBlockadePos);
+					break;
+
+				case 'd':
+					doorBlockadePos[0] = 1;
+					doorBlockadePositionList.push_back(doorBlockadePos);
+					break;
+
+				case 's':
+					doorBlockadePos[0] = 3;
+					doorBlockadePositionList.push_back(doorBlockadePos);
+					break;
+
+				case 'a':
+					doorBlockadePos[0] = 2;
+					doorBlockadePositionList.push_back(doorBlockadePos);
+					break;
+				}
 			}
 		}
 	}
@@ -34,6 +77,15 @@ namespace HillRaider
 	void Room::Render(Tmpl8::Surface* screen)
 	{
 		tileMap->Render(screen);
+
+		if (!RoomCleared()) {
+			for (std::vector<int> position : doorBlockadePositionList) {
+				doorBlockade->SetCurrentXFrame(position[0]);
+				doorBlockade->SetPosition(position[1], position[2]);
+				doorBlockade->DrawImage(screen);
+			}
+		}
+		
 		for (Entity* enemy : enemyList) {
 			enemy->Render(screen);
 		}
@@ -108,6 +160,11 @@ namespace HillRaider
 		if (tileMap != nullptr) {
 			delete tileMap;
 			tileMap = nullptr;
+		}
+
+		if (doorBlockade != nullptr) {
+			delete doorBlockade;
+			doorBlockade = nullptr;
 		}
 
 		if (!enemyList.empty()) {

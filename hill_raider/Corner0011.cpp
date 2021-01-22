@@ -24,7 +24,7 @@ namespace HillRaider
 		}
 	}
 
-	Corner0011::Corner0011() : Room(new TileMap("assets/tile_maps/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
+	Corner0011::Corner0011() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
 
 	Corner0011::~Corner0011() {}
 }

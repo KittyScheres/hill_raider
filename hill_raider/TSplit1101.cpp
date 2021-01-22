@@ -30,7 +30,7 @@ namespace HillRaider
 		}
 	}
 
-	TSplit1101::TSplit1101() : Room(new TileMap("assets/tile_maps/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
+	TSplit1101::TSplit1101() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
 
 	TSplit1101::~TSplit1101() {}
 }

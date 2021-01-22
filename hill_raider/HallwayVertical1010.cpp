@@ -30,7 +30,7 @@ namespace HillRaider
 		}
 	}
 
-	HallwayVertical1010::HallwayVertical1010() : Room(new TileMap("assets/tile_maps/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
+	HallwayVertical1010::HallwayVertical1010() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
 
 	HallwayVertical1010::~HallwayVertical1010() {}
 }

@@ -13,10 +13,13 @@ namespace HillRaider
 	{
 	private:
 		TileMap* tileMap = nullptr;
+		Image* doorBlockade = nullptr;
+		std::vector<std::vector<int>> doorBlockadePositionList = std::vector<std::vector<int>>{};
 		std::list<Entity*> enemyList = std::list<Entity*>{};
 
 	public:
 		Room(TileMap* iTilemap, std::list<Entity*> enemies);
+		void SetDoorBlockadePositionVector();
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		void RoomCheckEntityCollision(Player* player);
