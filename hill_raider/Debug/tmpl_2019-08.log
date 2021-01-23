@@ -1,3 +1,7 @@
-﻿  Room.cpp
+﻿  EnemyAnt.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\hill_raider\hill_raider\EnemyAnt.cpp(91,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Player.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86_debug.exe

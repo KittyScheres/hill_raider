@@ -16,10 +16,10 @@ namespace HillRaider
 
 		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, menuButtonsY[0]);
 
-		playGameButtonText = new Image("assets/ui/play_button_text.png", 5 * 64, menuButtonsY[0]);
-		checkControlsButtonText = new Image("assets/ui/controls_button_text.png", 5 * 64, menuButtonsY[1]);
-		creditsButtonText = new Image("assets/ui/credits_button_text.png", 5 * 64, menuButtonsY[2]);
-		exitGameButtonText = new Image("assets/ui/quit_button_text.png", 5 * 64, menuButtonsY[3]);
+		playGameButtonText = new Image("assets/text/play_button_text.png", 5 * 64, menuButtonsY[0]);
+		checkControlsButtonText = new Image("assets/text/controls_button_text.png", 5 * 64, menuButtonsY[1]);
+		creditsButtonText = new Image("assets/text/credits_button_text.png", 5 * 64, menuButtonsY[2]);
+		exitGameButtonText = new Image("assets/text/quit_button_text.png", 5 * 64, menuButtonsY[3]);
 
 		menuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
 	}

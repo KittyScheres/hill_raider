@@ -12,7 +12,9 @@ namespace HillRaider
 
 	public:
 		const static short MAX_HEALTH = 6;
+		const static int MAX_POINTS = 9999999;
 		short playerHealth = 6;
+		int playerPoints = 0;
 
 	public:
 		static GameData* GetInstance();

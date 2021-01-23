@@ -110,6 +110,9 @@
     <ClCompile Include="CrossRoad1111.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreBoard.cpp">
+      <Filter>hill_raider\cpp_files\graphics_objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="CrossRoad1111.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreBoard.h">
+      <Filter>hill_raider\header_files\graphics_objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

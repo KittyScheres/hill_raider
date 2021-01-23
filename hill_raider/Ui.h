@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Image.h"
+#include "ScoreBoard.h"
 #include "GameData.h"
 
 namespace HillRaider
@@ -13,10 +14,15 @@ namespace HillRaider
 	{
 	private:
 		Image* healthBar[GameData::MAX_HEALTH];
+		Image* foodScoreIcon = nullptr;
+		ScoreBoard* scoreBoard = nullptr;
 
 	public:
 		Ui();
 		void Render(Tmpl8::Surface* screen);
 		~Ui();
+
+	private:
+		std::string GetPointsString();
 	};
 }
