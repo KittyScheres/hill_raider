@@ -113,6 +113,9 @@
     <ClCompile Include="ScoreBoard.cpp">
       <Filter>hill_raider\cpp_files\graphics_objects</Filter>
     </ClCompile>
+    <ClCompile Include="FoodPointsPickup.cpp">
+      <Filter>hill_raider\cpp_files\game_components\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="ScoreBoard.h">
       <Filter>hill_raider\header_files\graphics_objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodPointsPickup.h">
+      <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

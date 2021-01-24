@@ -14,7 +14,7 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 	};
 
-	static std::list<Entity*> GetEntityList() {
+	static std::list<Entity*> GetEnemyList() {
 		switch (std::rand() & 3) {
 		case 0:
 			return std::list<Entity*>{ new EnemyAnt((64 * 1) + 32, (64 * 1) + 32), new EnemyAnt((64 * 3) + 32, (64 * 4) + 32), new EnemyAnt((64 * 1) + 32, (64 * 7) + 32)};
@@ -30,7 +30,11 @@ namespace HillRaider
 		}
 	}
 
-	TSplit1110::TSplit1110() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEntityList()) {}
+	static std::list<Entity*> GetPointsPickupList() {
+		return std::list<Entity*>();
+	}
+
+	TSplit1110::TSplit1110() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEnemyList(), GetPointsPickupList()) {}
 	
 	TSplit1110::~TSplit1110() {}
 }

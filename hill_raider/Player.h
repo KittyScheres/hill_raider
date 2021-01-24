@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "EnemyAnt.h"
+#include "FoodPointsPickup.h"
 #include "Animation.h"
 #include "InputManager.h"
 #include "GameData.h"

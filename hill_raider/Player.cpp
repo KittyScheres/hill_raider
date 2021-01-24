@@ -64,12 +64,16 @@ namespace HillRaider
 	void Player::LateUpdate(std::list<Entity*> entityList)
 	{
 		for (Entity* entity : entityList) {
-			if (TestBoxCollision(hitbox, entity)) {
-				ApplyEntityCollision(entity);
-				SetPosition(x, y);
+			FoodPointsPickup* foodPointPickup = dynamic_cast<FoodPointsPickup*>(entity);
+
+			if (foodPointPickup == nullptr) {
+				if (TestBoxCollision(hitbox, entity)) {
+					ApplyEntityCollision(entity);
+					SetPosition(x, y);
+				}
 			}
 
-			if (lungeFlag) {
+			if (lungeFlag && foodPointPickup == nullptr) {
 				if (TestBoxCollision(attackHitbox, entity)) {
 					EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
 					if (enemyAnt != nullptr) {
@@ -77,6 +81,17 @@ namespace HillRaider
 						lungeFlag = false;
 						lungeDurationTimer = 0.f;
 					}
+				}
+			}
+
+			if (foodPointPickup != nullptr) {
+				if (TestBoxCollision(hitbox, entity)) {
+					GameData* gameDataInstance = GameData::GetInstance();
+					gameDataInstance->playerPoints += foodPointPickup->GetPoints();
+					if (gameDataInstance->playerPoints > gameDataInstance->MAX_POINTS) {
+						gameDataInstance->playerPoints -= gameDataInstance->playerPoints % gameDataInstance->MAX_POINTS;
+					}
+					foodPointPickup->RemoveFoodPointsPickup();
 				}
 			}
 		}
