@@ -38,6 +38,7 @@ namespace HillRaider
 		~GamePlay();
 
 	private:
+		void HealPlayer();
 		void CheckTileMapCollision(std::vector<std::vector<int>> hitbox);
 		void ApplyVerticalTileMapCollision(int hitboxPointIndex , int hitboxPointYPos);
 		void ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos);

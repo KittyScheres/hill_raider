@@ -4,6 +4,7 @@
 #define VK_D              0x44
 #define VK_S              0x53
 #define VK_A              0x41
+#define VK_E			  0x45
 
 namespace HillRaider
 {
@@ -51,6 +52,7 @@ namespace HillRaider
 		currentKeysState[(int)Keys::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
 		currentKeysState[(int)Keys::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
 		currentKeysState[(int)Keys::SPACE] = GetAsyncKeyState(VK_SPACE);
+		currentKeysState[(int)Keys::E] = GetAsyncKeyState(VK_E);
 	}
 
 	// --------------------------------------------------

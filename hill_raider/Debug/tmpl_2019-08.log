@@ -1,3 +1,68 @@
-﻿  Room.cpp
+﻿  Corner0011.cpp
 D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner0110.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner1001.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Corner1100.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  CrossRoad1111.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0001.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0010.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd0100.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  DeadEnd1000.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  EnemyAnt.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\hill_raider\hill_raider\EnemyAnt.cpp(91,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Floor.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  GamePlay.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  HallwayHorizontal0101.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  HallwayVertical1010.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  InputManager.cpp
+  PauseScreen.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Player.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Room.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  StartMenu.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit0111.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+D:\breda\game\hill_raider\hill_raider\TSplit0111.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\HallwayVertical1010.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\HallwayHorizontal0101.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\DeadEnd1000.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\DeadEnd0100.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\DeadEnd0010.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\DeadEnd0001.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\Corner1100.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\Corner1001.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\Corner0110.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\Corner0011.cpp(25): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+  Compiling...
+  TSplit1011.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit1101.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TSplit1110.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  game.cpp
+D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\breda\game\hill_raider\hill_raider\game.cpp(19,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  template.cpp
+  Generating Code...
+D:\breda\game\hill_raider\hill_raider\TSplit1110.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\TSplit1101.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
+D:\breda\game\hill_raider\hill_raider\TSplit1011.cpp(31): warning C4715: 'HillRaider::GetEnemyList': not all control paths return a value
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86_debug.exe

@@ -8,6 +8,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::Ui()
 	{
+		healingIcon = new Image("assets/ui/healing_icon.png", 0, 0);
+		healingIcon->SetPosition(64 - healingIcon->GetWidth(), 32 - (healingIcon->GetHeight() / 2));
+
 		for (short i = 0; i < GameData::GetInstance()->MAX_HEALTH; i++) {
 			if ((i & 1) == 0) {
 				healthBar[i] = new Image("assets/ui/half_heart_1.png", 64 * (1 + (i / 2)), 0);
@@ -29,6 +32,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Ui::Render(Tmpl8::Surface* screen)
 	{
+		ShowHealingIcon(screen);
+
 		for (short i = 0; i < GameData::GetInstance()->playerHealth; i++) {
 			healthBar[i]->DrawImage(screen);
 		}
@@ -43,6 +48,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::~Ui()
 	{
+		if (healingIcon != nullptr) {
+			delete healingIcon;
+			healingIcon = nullptr;
+		}
+
 		for (Image* halfHeart : healthBar) {
 			if (halfHeart != nullptr) {
 				delete halfHeart;
@@ -78,5 +88,17 @@ namespace HillRaider
 		}
 		
 		return pointsString;
+	}
+
+	// --------------------------------------------------
+	// This method is used to check if the healing icon 
+	// needs to be displayed.
+	// --------------------------------------------------
+	void Ui::ShowHealingIcon(Tmpl8::Surface* screen)
+	{
+		GameData* gameDataInstance = GameData::GetInstance();
+		if (gameDataInstance->playerHealth < gameDataInstance->MAX_HEALTH && gameDataInstance->playerPoints >= gameDataInstance->POINTS_FOR_HEALTH) {
+			healingIcon->DrawImage(screen);
+		}
 	}
 }

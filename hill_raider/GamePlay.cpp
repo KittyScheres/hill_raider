@@ -46,6 +46,7 @@ namespace HillRaider
 				gamePaused = true;
 			}
 
+			HealPlayer();
 			player->Update(deltaTime);
 			floor->GetCurrentRoom()->Update(deltaTime);
 		}
@@ -118,6 +119,19 @@ namespace HillRaider
 
 		AStar::DestroyInstance();
 		GameData::DestroyInstance();
+	}
+
+	// --------------------------------------------------
+	// This method is used heal the player when it the 
+	// conditions have been met.
+	// --------------------------------------------------
+	void GamePlay::HealPlayer()
+	{
+		GameData* gameDataInstance = GameData::GetInstance();
+		if (gameDataInstance->playerHealth < gameDataInstance->MAX_HEALTH && gameDataInstance->playerPoints >= gameDataInstance->POINTS_FOR_HEALTH && inputManager->KeyPressed(InputManager::Keys::E)) {
+			++gameDataInstance->playerHealth;
+			gameDataInstance->playerPoints -= gameDataInstance->POINTS_FOR_HEALTH;
+		}
 	}
 
 	// --------------------------------------------------

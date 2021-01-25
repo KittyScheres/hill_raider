@@ -13,6 +13,7 @@ namespace HillRaider
 	public:
 		const static short MAX_HEALTH = 6;
 		const static int MAX_POINTS = 9999999;
+		const static short POINTS_FOR_HEALTH = 150;
 		short playerHealth = 6;
 		int playerPoints = 0;
 
