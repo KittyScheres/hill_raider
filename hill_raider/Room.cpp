@@ -92,13 +92,13 @@ namespace HillRaider
 				doorBlockade->DrawImage(screen);
 			}
 		}
-		
-		for (Entity* enemy : enemyList) {
-			enemy->Render(screen);
-		}
 
 		for (Entity* foodPointPickup : foodPointsPickupList) {
 			foodPointPickup->Render(screen);
+		}
+		
+		for (Entity* enemy : enemyList) {
+			enemy->Render(screen);
 		}
 	}
 
@@ -148,6 +148,7 @@ namespace HillRaider
 	void Room::RemoveEntity(Entity* entity) {
 		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
 			enemyList.remove(entity);
+			SpawnFoodPointsPickupEntity(entity->GetPosition());
 			if (entity != nullptr) {
 				delete entity;
 				entity = nullptr;
@@ -284,5 +285,42 @@ namespace HillRaider
 			checklist.push_back(*i);
 		}
 		return checklist;
+	}
+
+	// --------------------------------------------------
+	//
+	// --------------------------------------------------
+	void Room::SpawnFoodPointsPickupEntity(std::vector<int> posistion)
+	{
+		if ((rand() & 3) == 0) {
+			short pointsValue = 0;
+
+			switch (rand() & 7)
+			{
+			case 0:
+			case 1:
+				pointsValue = 25;
+				break;
+
+			case 2:
+			case 3:
+				pointsValue = 50;
+				break;
+
+			case 4:
+			case 5:
+				pointsValue = 75;
+				break;
+
+			case 6:
+			case 7:
+				pointsValue = 100;
+				break;
+			}
+
+			FoodPointsPickup* foodPointsPickupEntity = new FoodPointsPickup(pointsValue, posistion[0], posistion[1]);
+			foodPointsPickupEntity->SetRoomCallback(this);
+			foodPointsPickupList.push_back(foodPointsPickupEntity);
+		}
 	}
 }

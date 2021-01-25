@@ -37,5 +37,6 @@ namespace HillRaider
 		void ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos);
 		void ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos);
 		std::list<Entity*> GetPLayerCollisionCheckList();
+		void SpawnFoodPointsPickupEntity(std::vector<int> posistion);
 	};
 }
