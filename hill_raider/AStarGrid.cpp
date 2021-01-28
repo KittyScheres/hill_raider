@@ -79,11 +79,11 @@ namespace HillRaider
 		std::vector<AStarNode*> nodeList;
 
 		for (int offset = -1; offset <= 1; offset += 2) {
-			if ((node->GetGridY() + offset) < nodeGrid.size() && (node->GetGridY() + offset) >= 0) {
+			if ((node->GetGridY() + offset) < (int)nodeGrid.size() && (node->GetGridY() + offset) >= 0) {
 				nodeList.push_back(nodeGrid[node->GetGridY() + offset][node->GetGridX()]);
 			}
 
-			if ((node->GetGridX() + offset) < nodeGrid[0].size() && (node->GetGridX() + offset) >= 0) {
+			if ((node->GetGridX() + offset) < (int)nodeGrid[0].size() && (node->GetGridX() + offset) >= 0) {
 				nodeList.push_back(nodeGrid[node->GetGridY()][node->GetGridX() + offset]);
 			}
 		}

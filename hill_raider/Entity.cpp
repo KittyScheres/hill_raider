@@ -83,7 +83,7 @@ namespace HillRaider
 
 		int vectorX = otherEntity->GetPosition()[0] - myHitbox->GetPosition()[0];
 		int vectorY = otherEntity->GetPosition()[1] - myHitbox->GetPosition()[1];
-		float magnatude = sqrtf((vectorX * vectorX) + (vectorY * vectorY));
+		float magnatude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
 
 		// check for circel collision
 		if (magnatude < (myHitbox->GetHalfDiameter() + otherEntity->GetHitbox()->GetHalfDiameter())) {
@@ -108,7 +108,7 @@ namespace HillRaider
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
 		int vX = otherEntity->GetPosition()[0] - x;
 		int vY = otherEntity->GetPosition()[1] - y;
-		float mag = sqrtf((vX * vX) + (vY * vY));
+		float mag = sqrtf((float)(vX * vX) + (float)(vY * vY));
 		float nX = vX / mag;
 		float nY = vY / mag;
 

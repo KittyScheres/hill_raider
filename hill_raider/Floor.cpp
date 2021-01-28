@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This contructor is used to setup the floor map for
+	// the gameplay.
 	// --------------------------------------------------
 	Floor::Floor()
 	{
@@ -54,7 +55,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the room which the player
+	// is currently in.
 	// --------------------------------------------------
 	Room* Floor::GetCurrentRoom()
 	{
@@ -62,7 +64,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used move the player to a different
+	// room.
 	// --------------------------------------------------
 	void Floor::MoveToNextRoom(MoveDirection direction)
 	{
@@ -90,7 +93,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory
+	// for the floor map.
 	// --------------------------------------------------
 	Floor::~Floor()
 	{

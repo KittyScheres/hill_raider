@@ -18,7 +18,7 @@ namespace HillRaider
 	{
 		if (frameCapTimer.elapsed() < MILLISECCONDS_PER_FRAME)
 		{
-			SDL_Delay(MILLISECCONDS_PER_FRAME - frameCapTimer.elapsed());
+			SDL_Delay((Uint32)(MILLISECCONDS_PER_FRAME - frameCapTimer.elapsed()));
 		}
 	}
 }

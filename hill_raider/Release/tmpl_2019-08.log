@@ -1,3 +1,43 @@
-﻿  Room.cpp
-D:\breda\game\hill_raider\hill_raider\Animation.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  Animation.cpp
+  AStar.cpp
+  AStarGrid.cpp
+  AStarNode.cpp
+  Corner0011.cpp
+  Corner0110.cpp
+  Corner1001.cpp
+  Corner1100.cpp
+  DeadEnd0001.cpp
+  DeadEnd0010.cpp
+  DeadEnd0100.cpp
+  DeadEnd1000.cpp
+  Entity.cpp
+  Floor.cpp
+  FoodPointsPickup.cpp
+  FrameRateManager.cpp
+  game.cpp
+  GameData.cpp
+  GamePlay.cpp
+  HallwayHorizontal0101.cpp
+  Generating Code...
+  Compiling...
+  HallwayVertical1010.cpp
+  Hitbox.cpp
+  Image.cpp
+  InputManager.cpp
+  PauseScreen.cpp
+  Player.cpp
+  EnemyAnt.cpp
+  Room.cpp
+  CrossRoad1111.cpp
+  ScoreBoard.cpp
+  StartMenu.cpp
+  surface.cpp
+  template.cpp
+  TileMap.cpp
+  TSplit0111.cpp
+  TSplit1011.cpp
+  TSplit1101.cpp
+  TSplit1110.cpp
+  Ui.cpp
+  Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86.exe

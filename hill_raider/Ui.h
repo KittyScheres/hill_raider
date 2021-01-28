@@ -14,7 +14,7 @@ namespace HillRaider
 	{
 	private:
 		Image* healingIcon = nullptr;
-		Image* healthBar[GameData::MAX_HEALTH];
+		Image* healthBar[GameData::MAX_HEALTH] = {};
 		Image* foodScoreIcon = nullptr;
 		ScoreBoard* scoreBoard = nullptr;
 

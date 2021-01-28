@@ -84,7 +84,7 @@ namespace HillRaider
 	// This method is used to get the current position
 	// the animation.
 	// --------------------------------------------------
-	int* Animation::GetPosition()
+	std::vector<int> Animation::GetPosition()
 	{
 		return src->GetPosition();
 	}

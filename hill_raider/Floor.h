@@ -20,6 +20,11 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class contains the floor map for the game. It
+	// can be used to keep track of and update the players
+	// position in the ant hill.
+	// --------------------------------------------------
 	class Floor
 	{
 	public:

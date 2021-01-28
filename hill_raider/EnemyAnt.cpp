@@ -88,7 +88,7 @@ namespace HillRaider
 				if (TestBoxCollision(lineScan, entity)) {
 					int distanceVectorX = entity->GetPosition()[0] - x;
 					int distanceVectorY = entity->GetPosition()[1] - y;
-					float distance = sqrtf((distanceVectorX * distanceVectorX) + (distanceVectorY * distanceVectorY));
+					float distance = sqrtf((float)(distanceVectorX * distanceVectorX) + (float)(distanceVectorY * distanceVectorY));
 					Player* player = dynamic_cast<Player*>(entity);
 					if (player != nullptr && distance < smallestDistance) {
 						playerInLineOfSide = true;

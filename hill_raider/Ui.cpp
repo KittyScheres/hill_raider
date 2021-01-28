@@ -79,7 +79,7 @@ namespace HillRaider
 		std::string pointsString;
 		std::string playerPoints = std::to_string(GameData::GetInstance()->playerPoints);
 		
-		for (short i = playerPoints.size(); i < std::to_string(GameData::MAX_POINTS).size(); i++) {
+		for (short i = (short)playerPoints.size(); i < (short)std::to_string(GameData::MAX_POINTS).size(); i++) {
 			pointsString.push_back('0');
 		}
 

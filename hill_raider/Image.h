@@ -1,6 +1,7 @@
 #pragma once
 
 #include "surface.h"
+#include <vector>
 
 namespace HillRaider
 {
@@ -26,7 +27,7 @@ namespace HillRaider
 		void SetPosition(int iX, int iY);
 		void SetCurrentXFrame(int iCurrentXFrame);
 		void SetCurrentYFrame(int iCurrentYFrame);
-		int* GetPosition();
+		std::vector<int> GetPosition();
 		int GetWidth();
 		int GetHeight();
 		~Image();

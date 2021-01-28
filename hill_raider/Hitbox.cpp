@@ -66,7 +66,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	float Hitbox::GetHalfDiameter()
 	{
-		return sqrtf((halfWidth * halfWidth) + (halfHeight * halfHeight));
+		return sqrtf((float)(halfWidth * halfWidth) + (float)(halfHeight * halfHeight));
 	}
 
 	// --------------------------------------------------

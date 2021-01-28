@@ -75,10 +75,9 @@ namespace HillRaider
 	// This method is used to get the current position of
 	// the image.
 	// --------------------------------------------------
-	int* Image::GetPosition()
+	std::vector<int> Image::GetPosition()
 	{
-		int position[2]{ x, y };
-		return position;
+		return std::vector<int>{ x, y };
 	}
 
 	// --------------------------------------------------

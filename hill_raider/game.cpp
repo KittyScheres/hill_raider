@@ -16,7 +16,7 @@ namespace Tmpl8
 		//ShowWindow(GetConsoleWindow(), SW_HIDE);
 		currentState = new HillRaider::StartMenu(this);
 		inputManager = HillRaider::InputManager::GetInstance();
-		srand(time(NULL));
+		srand((int)time(NULL));
 	}
 	
 	// -----------------------------------------------------------

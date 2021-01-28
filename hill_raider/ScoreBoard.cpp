@@ -45,10 +45,9 @@ namespace HillRaider
 	// This method is used to get the position of the score
 	// board.
 	// --------------------------------------------------
-	int* ScoreBoard::GetPosition()
+	std::vector<int> ScoreBoard::GetPosition()
 	{
-		int position[2]{ x, y };
-		return position;
+		return std::vector<int>{ x, y };
 	}
 
 	// --------------------------------------------------

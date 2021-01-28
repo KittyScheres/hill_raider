@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Image.h";
+#include "Image.h"
 
 namespace HillRaider
 {
@@ -27,7 +27,7 @@ namespace HillRaider
 		void SetTimePerFrame(float iTimePerFrame);
 		void SetCurrentXFrame(short iCurrentXFrame);
 		void SetCurrentYFrame(short iCurrentYFrame);
-		int* GetPosition();
+		std::vector<int> GetPosition();
 		int GetWidth();
 		int GetHeight();
 		~Animation();

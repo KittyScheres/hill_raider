@@ -25,7 +25,7 @@ namespace HillRaider
 		case 2:
 			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 1) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
 
-		case 3:
+		default:
 			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
 		}
 	}

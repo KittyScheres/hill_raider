@@ -20,7 +20,7 @@ namespace HillRaider
 		ScoreBoard(int iX = 0, int iY = 0);
 		void DrawScore(std::string score, Tmpl8::Surface* screen);
 		void SetPosition(int iX, int iY);
-		int* GetPosition();
+		std::vector<int> GetPosition();
 		int GetCharWidth();
 		int GetCharHeight();
 		~ScoreBoard();

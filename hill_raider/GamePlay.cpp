@@ -89,7 +89,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This deconstructor is used to safely free the memory
+	// This destructor is used to safely free the memory
 	// of the components for the gameplay state.
 	// --------------------------------------------------
 	GamePlay::~GamePlay()
