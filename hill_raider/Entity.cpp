@@ -86,7 +86,7 @@ namespace HillRaider
 		float magnatude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
 
 		// check for circel collision
-		if (magnatude < (myHitbox->GetHalfDiameter() + otherEntity->GetHitbox()->GetHalfDiameter())) {
+		if (magnatude < (myHitbox->GetCircleRadius() + otherEntity->GetHitbox()->GetCircleRadius())) {
 			std::vector<std::vector<int>> myHitboxPoints = myHitbox->GetBoxPoints();
 			std::vector<std::vector<int>> entityHitboxPoints = otherEntity->GetHitbox()->GetBoxPoints();
 

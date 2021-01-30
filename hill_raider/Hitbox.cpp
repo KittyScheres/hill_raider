@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to setup the properties
+	// for a hitbox.
 	// --------------------------------------------------
 	Hitbox::Hitbox(int x, int y, int width, int Height)
 	{
@@ -14,7 +15,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the position of a hitbox.
 	// --------------------------------------------------
 	void Hitbox::SetPosition(int x, int y)
 	{
@@ -23,7 +24,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the width of a hitbox.
 	// --------------------------------------------------
 	void Hitbox::SetWidth(int width)
 	{
@@ -31,7 +32,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the height of a hitbox.
 	// --------------------------------------------------
 	void Hitbox::SetHeight(int height)
 	{
@@ -39,14 +40,16 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the position of a
+	// hitbox.
 	// --------------------------------------------------
 	std::vector<int> Hitbox::GetPosition() {
 		return std::vector<int>{xPos, yPos};
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get half of the width of
+	// a hitbox.
 	// --------------------------------------------------
 	int Hitbox::GetHalfWidth()
 	{
@@ -54,7 +57,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get half of the height of
+	// a hitbox. 
 	// --------------------------------------------------
 	int Hitbox::GetHalfHeight()
 	{
@@ -62,15 +66,17 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the radius of a circel
+	// drawn around a hitbox.
 	// --------------------------------------------------
-	float Hitbox::GetHalfDiameter()
+	float Hitbox::GetCircleRadius()
 	{
 		return sqrtf((float)(halfWidth * halfWidth) + (float)(halfHeight * halfHeight));
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the position of all 4
+	// corners of a hitbox.
 	// --------------------------------------------------
 	std::vector<std::vector<int>> Hitbox::GetBoxPoints()
 	{
@@ -110,7 +116,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw a hitbox on to the
+	// screen. This mehtod will only be used for debug
+	// purposes.
 	// --------------------------------------------------
 	void Hitbox::RenderHitbox(Tmpl8::Surface* screen){
 		int startXPos = xPos - halfWidth;

@@ -6,6 +6,11 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to setup and keep track of a
+	// which can be used to process entity on entity
+	// collision.
+	// --------------------------------------------------
 	class Hitbox
 	{
 	private:
@@ -23,7 +28,7 @@ namespace HillRaider
 		std::vector<int> GetPosition();
 		int GetHalfWidth();
 		int GetHalfHeight();
-		float GetHalfDiameter();
+		float GetCircleRadius();
 		std::vector<std::vector<int>> GetBoxPoints();
 		void RenderHitbox(Tmpl8::Surface* screen);
 	};

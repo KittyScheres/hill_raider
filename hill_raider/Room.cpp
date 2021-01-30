@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to initialize all of the
+	// componets contained inside of the room.
 	// --------------------------------------------------
 	Room::Room(TileMap* iTilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups)
 	{
@@ -29,7 +30,10 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the possitions of all of
+	// the doors in a room, these positions will be used to
+	// set the position for the blockade image when the 
+	// room has not been cleared.
 	// --------------------------------------------------
 	void Room::SetDoorBlockadePositionVector() {
 		int tileHeight = tileMap->GetTileHeight();
@@ -69,7 +73,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the enemies inside
+	// of a room.
 	// --------------------------------------------------
 	void Room::Update(float deltaTime)
 	{
@@ -79,7 +84,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw all of the componets
+	// of a room on to the screen.
 	// --------------------------------------------------
 	void Room::Render(Tmpl8::Surface* screen)
 	{
@@ -103,7 +109,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check entity on entity 
+	// collisions for all of the entitys (including the 
+	// player) inside of a room.
 	// --------------------------------------------------
 	void Room::RoomCheckEntityCollision(Player* player)
 	{
@@ -117,7 +125,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check the entity on tile map
+	// collisions for all of the movable entities inside
+	// of a room.
 	// --------------------------------------------------
 	void Room::RoomCheckTileMapCollsion()
 	{
@@ -127,7 +137,7 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to get the tile map for a room.
 	// --------------------------------------------------
 	TileMap* Room::GetTileMap()
 	{
@@ -135,7 +145,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the memory location of
+	// the enemy list of a room.
 	// --------------------------------------------------
 	std::list<Entity*>* Room::GetEnemyListReference()
 	{
@@ -143,7 +154,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to safely remove an entity from
+	// the room.
 	// --------------------------------------------------
 	void Room::RemoveEntity(Entity* entity) {
 		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
@@ -165,7 +177,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to check if a room still has
+	// enemy ants inside of it.
 	// --------------------------------------------------
 	bool Room::RoomCleared()
 	{
@@ -173,7 +186,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory
+	// of the propperties inside of a room.
 	// --------------------------------------------------
 	Room::~Room()
 	{
@@ -209,7 +223,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check if an entity has collided
+	// with a wall or blocked space on the tile map.
 	// --------------------------------------------------
 	void Room::CheckTileMapCollision(Entity* entity)
 	{
@@ -241,7 +256,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to re-positon an entity when it
+	// has collided with a blocked space on the tile map
+	// while walking in a vertical line.
 	// --------------------------------------------------
 	void Room::ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos)
 	{
@@ -257,9 +274,10 @@ namespace HillRaider
 		}
 
 	}
-
 	// --------------------------------------------------
-	//
+	// This method is used to re-positon an entity when it
+	// has collided with a blocked space on the tile map
+	// while walking in a horizontal line.
 	// --------------------------------------------------
 	void Room::ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos)
 	{
@@ -276,7 +294,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get a list of all of the 
+	// entity which the player can collide with.
 	// --------------------------------------------------
 	std::list<Entity*> Room::GetPLayerCollisionCheckList()
 	{
@@ -288,7 +307,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to spawn a food points pickup
+	// entity when an enemy ant has been defeated.
 	// --------------------------------------------------
 	void Room::SpawnFoodPointsPickupEntity(std::vector<int> posistion)
 	{
