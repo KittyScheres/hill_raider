@@ -1,5 +1,4 @@
-﻿  AStar.cpp
-  Corner0011.cpp
+﻿  Corner0011.cpp
   Corner0110.cpp
   Corner1001.cpp
   Corner1100.cpp
@@ -9,20 +8,18 @@
   DeadEnd0100.cpp
   DeadEnd1000.cpp
   EnemyAnt.cpp
-  Entity.cpp
   Floor.cpp
   FoodPointsPickup.cpp
   GamePlay.cpp
   HallwayHorizontal0101.cpp
   HallwayVertical1010.cpp
-  Hitbox.cpp
   PauseScreen.cpp
   Player.cpp
-  Generating Code...
-  Compiling...
   Room.cpp
   StartMenu.cpp
   TSplit0111.cpp
+  Generating Code...
+  Compiling...
   TSplit1011.cpp
   TSplit1101.cpp
   TSplit1110.cpp

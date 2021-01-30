@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to setup the properties 
+	// for a player entity.
 	// --------------------------------------------------
 	Player::Player(int iX, int iY): Entity(iX, iY, 28, 62)
 	{
@@ -14,7 +15,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update a player entity.
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
@@ -31,6 +32,7 @@ namespace HillRaider
 				}
 			}
 			else {
+				//attack cooldown timer
 				if (lungeCooldownTimer >= lungeCooldown) {
 					lungeCooldownFlag = false;
 					lungeCooldownTimer = 0.f;
@@ -43,6 +45,7 @@ namespace HillRaider
 			}
 		}
 		else {
+			//is attacking
 			legsAnimation->UpdateAnimation(deltaTime);
 			Lunge(deltaTime);
 
@@ -55,17 +58,20 @@ namespace HillRaider
 				lungeDurationTimer += deltaTime;
 			}
 		}
+
 		SetPosition(x, y);
 	}
 	
 	// --------------------------------------------------
-	//
+	// This method is used to process the collisions between
+	// a player entity and other entities.
 	// --------------------------------------------------
 	void Player::LateUpdate(std::list<Entity*> entityList)
 	{
 		for (Entity* entity : entityList) {
 			FoodPointsPickup* foodPointPickup = dynamic_cast<FoodPointsPickup*>(entity);
 
+			//entity on entity collision
 			if (foodPointPickup == nullptr) {
 				if (TestBoxCollision(hitbox, entity)) {
 					ApplyEntityCollision(entity);
@@ -73,6 +79,7 @@ namespace HillRaider
 				}
 			}
 
+			//entity on attack hitbox collision
 			if (lungeFlag && foodPointPickup == nullptr) {
 				if (TestBoxCollision(attackHitbox, entity)) {
 					EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
@@ -84,6 +91,7 @@ namespace HillRaider
 				}
 			}
 
+			//entity on food points pickup entity collision
 			if (foodPointPickup != nullptr) {
 				if (TestBoxCollision(hitbox, entity)) {
 					GameData* gameDataInstance = GameData::GetInstance();
@@ -98,7 +106,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw a player entity on
+	// to the screen.
 	// --------------------------------------------------
 	void Player::Render(Tmpl8::Surface* screen)
 	{
@@ -110,14 +119,16 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is called to make a player entity take
+	// damage.
 	// --------------------------------------------------
 	void Player::TakeDamage() {
 		--GameData::GetInstance()->playerHealth;
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the position of a player
+	// entity.
 	// --------------------------------------------------
 	void Player::SetPosition(int iX, int iY) {
 		x = iX;
@@ -139,7 +150,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the direction a player
+	// entity is facing.
 	// --------------------------------------------------
 	void Player::SetDirection(Entity::MovementDirection iDirection) {
 		direction = iDirection;
@@ -184,14 +196,16 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This methos is used to get the direction a player
+	// entity.
 	// --------------------------------------------------
 	Entity::MovementDirection Player::GetDirection() {
 		return direction;
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the sprite of a player
+	// entity.
 	// --------------------------------------------------
 	Animation* Player::GetSprite()
 	{
@@ -199,7 +213,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory
+	// of the propeties of a player entity.
 	// --------------------------------------------------
 	Player::~Player()
 	{
@@ -213,11 +228,6 @@ namespace HillRaider
 			bodyAnimation = nullptr;
 		}
 
-		if (hitbox != nullptr) {
-			delete hitbox;
-			hitbox = nullptr;
-		}
-
 		if (attackHitbox != nullptr) {
 			delete attackHitbox;
 			attackHitbox = nullptr;
@@ -227,7 +237,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check if a new direction key
+	// has been pressed.
 	// --------------------------------------------------
 	void Player::CheckForKeyPressed()
 	{
@@ -249,7 +260,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check if the direction key 
+	// of the current direction has been let go of.
 	// --------------------------------------------------
 	void Player::CheckForKeyLetGo()
 	{
@@ -314,7 +326,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to move a player entity in the
+	// current direction.
 	// --------------------------------------------------
 	void Player::MovePlayer(float deltaTime)
 	{
@@ -357,7 +370,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to move a player entity in 
+	// the current direction with an increade movement
+	// speed.
 	// --------------------------------------------------
 	void Player::Lunge(float deltaTime)
 	{

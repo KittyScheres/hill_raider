@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to setup the properties
+	// for a food points pickup entity.
 	// --------------------------------------------------
 	FoodPointsPickup::FoodPointsPickup(short iPoints, int iX, int iY): Entity(iX, iY, 44, 38)
 	{
@@ -13,7 +14,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw the food poins pickup
+	// on to the screen.
 	// --------------------------------------------------
 	void FoodPointsPickup::Render(Tmpl8::Surface* screen)
 	{
@@ -21,7 +23,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the room callback for 
+	// a food points pickup entity.
 	// --------------------------------------------------
 	void FoodPointsPickup::SetRoomCallback(RoomCallback* iCallback)
 	{
@@ -29,7 +32,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the position of a food
+	// points pickup entity.
 	// --------------------------------------------------
 	void FoodPointsPickup::SetPosition(int iX, int iY)
 	{
@@ -40,7 +44,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to remove a food points pickup
+	// entity from a room.
 	// --------------------------------------------------
 	void FoodPointsPickup::RemoveFoodPointsPickup()
 	{
@@ -48,7 +53,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the points value of a 
+	// food points pickup entity.
 	// --------------------------------------------------
 	short FoodPointsPickup::GetPoints()
 	{
@@ -56,7 +62,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This deconstructor is used to safely free the 
+	// memory of the properties of a food points pickup
+	// entity.
 	// --------------------------------------------------
 	FoodPointsPickup::~FoodPointsPickup()
 	{

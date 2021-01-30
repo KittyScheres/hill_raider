@@ -8,7 +8,9 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// The entity class is a base class for creating entities.
+	// The class contains methods and properties which can
+	// be used by all entities in the game.
 	// --------------------------------------------------
 	class Entity
 	{

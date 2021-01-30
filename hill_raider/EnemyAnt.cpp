@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This contructor is used to setup the properties
+	// for an enemy ant entity.
 	// --------------------------------------------------
 	EnemyAnt::EnemyAnt(int iX, int iY): Entity(iX, iY, 28, 62)
 	{
@@ -14,14 +15,15 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update an enemy ant entity.
 	// --------------------------------------------------
 	void EnemyAnt::Update(float deltaTime)
 	{
 		if (!lungeFlag) {
 			UpdateDirection();
-			MoveRagdoll(deltaTime);
+			MoveEnemyAnt(deltaTime);
 
+			//make decision timer
 			if (!makeDecisionFlag) {
 				if (makeDecisionTimer >= makeDecisionCooldown) {
 					makeDecisionFlag = true;
@@ -32,6 +34,7 @@ namespace HillRaider
 				}
 			}
 
+			//attack cooldown timer
 			if (lungeCooldownFlag) {
 				if (lungeCooldownTimer >= lungeCooldown) {
 					lungeCooldownFlag = false;
@@ -45,6 +48,7 @@ namespace HillRaider
 			}
 		}
 		else {
+			//is attacking
 			Lunge(deltaTime);
 
 			if (lungeDurationTimer >= lungeDuration) {
@@ -62,7 +66,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to process the collisions between
+	// an enemy ant entity and other entities.
 	// --------------------------------------------------
 	void EnemyAnt::LateUpdate(std::list<Entity*> entityList)
 	{
@@ -70,11 +75,13 @@ namespace HillRaider
 		bool playerInLineOfSide = false;
 
 		for (auto entity : entityList) {
+			//entity on entity collision
 			if (TestBoxCollision(hitbox, entity)) {
 				ApplyEntityCollision(entity);
 				GetAntUnstuck(entity);
 			}
 
+			//entity on attack hitbox collision
 			if (lungeFlag) {
 				Player* player = dynamic_cast<Player*>(entity);
 				if (player != nullptr && TestBoxCollision(attackHitbox, entity)) {
@@ -84,13 +91,13 @@ namespace HillRaider
 				}
 			}
 
+			//entity on attack range collision
 			if (makeDecisionFlag && !lungeCooldownFlag) {
 				if (TestBoxCollision(lineScan, entity)) {
 					int distanceVectorX = entity->GetPosition()[0] - x;
 					int distanceVectorY = entity->GetPosition()[1] - y;
 					float distance = sqrtf((float)(distanceVectorX * distanceVectorX) + (float)(distanceVectorY * distanceVectorY));
-					Player* player = dynamic_cast<Player*>(entity);
-					if (player != nullptr && distance < smallestDistance) {
+					if (dynamic_cast<Player*>(entity) != nullptr && distance < smallestDistance) {
 						playerInLineOfSide = true;
 						smallestDistance = distance;
 					}
@@ -102,6 +109,7 @@ namespace HillRaider
 			}
 		}
 		
+		//attack decision
 		if (playerInLineOfSide) {
 			if ((rand() & 1) == 0) {
 				legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
@@ -113,7 +121,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw an enemy ant entity
+	// on to the screen.
 	// --------------------------------------------------
 	void EnemyAnt::Render(Tmpl8::Surface* screen)
 	{
@@ -125,7 +134,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to make an enemy ant entity take
+	// damage.
 	// --------------------------------------------------
 	void EnemyAnt::TakeDamage() {
 		makeDecisionFlag = false;
@@ -142,7 +152,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the room callback for
+	// an enemy ant entity.
 	// --------------------------------------------------
 	void EnemyAnt::SetRoomCallback(RoomCallback* iCallback)
 	{
@@ -150,7 +161,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the position of an enemy
+	// ant entity.
 	// --------------------------------------------------
 	void EnemyAnt::SetPosition(int iX, int iY)
 	{
@@ -175,7 +187,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the direction of an 
+	// enemy ant entity.
 	// --------------------------------------------------
 	void EnemyAnt::SetDirection(Entity::MovementDirection iDirection)
 	{
@@ -233,7 +246,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the direction of an enemy
+	// ant entity.
 	// --------------------------------------------------
 	Entity::MovementDirection EnemyAnt::GetDirection()
 	{
@@ -241,7 +255,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This mehtod is used to get the sprite of an enemy
+	// ant entity.
 	// --------------------------------------------------
 	Animation* EnemyAnt::GetSprite()
 	{
@@ -249,7 +264,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This destructor is used to safely free the memory 
+	// of the properties of an enemy ant entity.
 	// --------------------------------------------------
 	EnemyAnt::~EnemyAnt()
 	{
@@ -261,11 +277,6 @@ namespace HillRaider
 		if (bodyAnimation != nullptr) {
 			delete bodyAnimation;
 			bodyAnimation = nullptr;
-		}
-
-		if (hitbox != nullptr) {
-			delete hitbox;
-			hitbox = nullptr;
 		}
 
 		if (attackHitbox != nullptr) {
@@ -280,7 +291,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the current movement
+	// direction of an enemy ant according to the output
+	// of the a* path finding algorithm.
 	// --------------------------------------------------
 	void EnemyAnt::UpdateDirection(bool bypassCheck)
 	{
@@ -324,9 +337,10 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// Thid method is used to move an enemy ant entitie
+	// according the current movement direction.
 	// --------------------------------------------------
-	void EnemyAnt::MoveRagdoll(float deltaTime)
+	void EnemyAnt::MoveEnemyAnt(float deltaTime)
 	{
 		distanceMoved = 0;
 
@@ -355,7 +369,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to make an enemy ant entity 
+	// move in the current direction with an icreased 
+	// movement speed.
 	// --------------------------------------------------
 	void EnemyAnt::Lunge(float deltaTime)
 	{
@@ -386,7 +402,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to update the movement direction
+	// of an enemy ant entity inorder to attempt to get
+	// it unstuck.
 	// --------------------------------------------------
 	void EnemyAnt::GetAntUnstuck(Entity* entity) {
 		Player* player = dynamic_cast<Player*>(entity);

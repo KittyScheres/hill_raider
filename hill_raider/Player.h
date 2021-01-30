@@ -9,6 +9,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to create and keep track of
+	// player entities in the game.
+	// --------------------------------------------------
 	class Player : public Entity
 	{
 	private:

@@ -9,6 +9,10 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to create and keep track of 
+	// enemy ant entities in the game.
+	// --------------------------------------------------
 	class EnemyAnt : public Entity
 	{
 	private:
@@ -55,7 +59,7 @@ namespace HillRaider
 
 	private:
 		void UpdateDirection(bool bypassCheck = false);
-		void MoveRagdoll(float deltaTime);
+		void MoveEnemyAnt(float deltaTime);
 		void Lunge(float deltaTime);
 		void GetAntUnstuck(Entity* entity);
 	};

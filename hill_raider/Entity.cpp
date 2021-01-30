@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to setup the properties 
+	// for a basic entity.
 	// --------------------------------------------------
 	Entity::Entity(int iX, int iY, int iWidth, int iHeight)
 	{
@@ -15,7 +16,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the position of an entity.
 	// --------------------------------------------------
 	void Entity::SetPosition(int iX, int iY)
 	{
@@ -25,7 +26,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the position of an entity.
 	// --------------------------------------------------
 	std::vector<int> Entity::GetPosition()
 	{
@@ -33,7 +34,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the width of an entity.
 	// --------------------------------------------------
 	int Entity::GetWidth()
 	{
@@ -41,7 +42,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the height of an entity.
 	// --------------------------------------------------
 	int Entity::GetHeight()
 	{
@@ -49,14 +50,15 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the direction an entity
+	// is facing.
 	// --------------------------------------------------
 	Entity::MovementDirection Entity::GetDirection() {
 		return direction;
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the hitbox of an entity.
 	// --------------------------------------------------
 	Hitbox* Entity::GetHitbox()
 	{
@@ -64,7 +66,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	//
+	// This deconstructor is used to safely free the memory
+	// for the propeties of a basic entity.
 	// --------------------------------------------------
 	Entity::~Entity()
 	{
@@ -75,7 +78,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to check for box on box collision.
 	// --------------------------------------------------
 	bool Entity::TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity)
 	{
@@ -103,7 +106,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to stop the movement of an entity
+	// when it is necessary.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
 		int vX = otherEntity->GetPosition()[0] - x;

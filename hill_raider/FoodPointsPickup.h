@@ -7,7 +7,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This class is used to create and keep track of
+	// food points pickup entities for the game.
 	// --------------------------------------------------
 	class FoodPointsPickup: public Entity
 	{
