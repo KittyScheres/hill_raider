@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constuctor is used to setup a node grid for the
+	// the grid class.
 	// --------------------------------------------------
 	AStarGrid::AStarGrid(TileMap* tileMap)
 	{
@@ -29,7 +30,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to reset the walkable state
+	// for all of the nodes on the node map.
 	// --------------------------------------------------
 	void AStarGrid::ResetWalkableNodes()
 	{
@@ -41,7 +43,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw all of the nodes in the
+	// node map on to the screen. This mehtod will only be
+	// used for debug purposes.
 	// --------------------------------------------------
 	void AStarGrid::DebugRender(Tmpl8::Surface* screen)
 	{
@@ -56,7 +60,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the node grid.
 	// --------------------------------------------------
 	std::vector<std::vector<AStarNode*>> AStarGrid::GetNodeGrid()
 	{
@@ -64,7 +68,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get a spesific node from the
+	// node grid.
 	// --------------------------------------------------
 	AStarNode* AStarGrid::GetNodeFromGrid(int x, int y)
 	{
@@ -72,7 +77,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get all of the neighbouring
+	// nodes of a spesific node.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStarGrid::GetNeighbouringNodes(AStarNode* node)
 	{
@@ -92,7 +98,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to safely free the memory of
+	// the node grid.
 	// --------------------------------------------------
 	AStarGrid::~AStarGrid()
 	{

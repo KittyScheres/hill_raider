@@ -5,6 +5,13 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is used to create nodes for the node grid
+	// which is used for the a* path finding implementation.
+	// This class is one of 3 classes which have been created
+	// with the help of a tutorial for the implementation
+	// of the a* path finding algorithm.
+	// --------------------------------------------------
 	class AStarNode
 	{
 	private:

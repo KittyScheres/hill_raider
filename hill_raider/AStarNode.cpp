@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	//
+	// This constructor is used to setup the properties
+	// for the node class.
 	// --------------------------------------------------
 	AStarNode::AStarNode(int iX, int iY, bool iWalkable, int iGridX, int iGridY)
 	{
@@ -15,7 +16,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw the node on to the 
+	// screen. This mehtod will only be used for debug
+	// purposes.
 	// --------------------------------------------------
 	void AStarNode::RenderNode(Tmpl8::Surface* screen)
 	{
@@ -31,7 +34,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set wether this node can be
+	// walked on or not.
 	// --------------------------------------------------
 	void AStarNode::SetWalkable(bool iWalkable)
 	{
@@ -39,7 +43,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the color for drawing
+	// the node on to the screen.
 	// --------------------------------------------------
 	void AStarNode::SetDebugColor(int iDebugColor)
 	{
@@ -47,7 +52,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the g cost of a node.
+	// The g cost of a node is the distance between the
+	// staring node and the currently selected node.
 	// --------------------------------------------------
 	void AStarNode::SetGCost(int g)
 	{
@@ -55,7 +62,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the h cost of a node.
+	// The h cost of a node is the distance between the
+	// end node and the currently selected node.
 	// --------------------------------------------------
 	void AStarNode::SetHCost(int h)
 	{
@@ -63,7 +72,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the parent for a node.
 	// --------------------------------------------------
 	void AStarNode::SetParent(AStarNode* iParent)
 	{
@@ -71,7 +80,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the position of a node.
 	// --------------------------------------------------
 	std::vector<int>  AStarNode::GetPosition()
 	{
@@ -79,7 +88,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the walkable state of a
+	// node.
 	// --------------------------------------------------
 	bool AStarNode::GetWalkable()
 	{
@@ -87,7 +97,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the x position of the node
+	// on the node grid.
 	// --------------------------------------------------
 	int AStarNode::GetGridX()
 	{
@@ -95,7 +106,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the y position of the node
+	// on the node grid.
 	// --------------------------------------------------
 	int AStarNode::GetGridY()
 	{
@@ -103,7 +115,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the g cost of a node.
+	// The g cost of a node is the distance between the
+	// staring node and the currently selected node.
 	// --------------------------------------------------
 	int AStarNode::GetGCost()
 	{
@@ -111,7 +125,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the h cost of a node.
+	// The h cost of a node is the distance between the
+	// end node and the currently selected node.
 	// --------------------------------------------------
 	int AStarNode::GetHCost()
 	{
@@ -119,7 +135,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the f cost of a node.
+	// The f cost of a node is the combined cost of the
+	// g and the h cost.
 	// --------------------------------------------------
 	int AStarNode::GetFCost()
 	{
@@ -127,7 +145,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the parent node of a node.
 	// --------------------------------------------------
 	AStarNode* AStarNode::GetParent()
 	{

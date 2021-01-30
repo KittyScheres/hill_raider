@@ -9,6 +9,14 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This singelton class is used to for the a* path 
+	// finding algorithm implementation which is used by 
+	// the ai to follow the player. This class is one of 3 
+	// classes which have been created with the help of a 
+	// tutorial for the implementation of the a* path 
+	// finding algorithm.
+	// --------------------------------------------------
 	class AStar
 	{
 	private:

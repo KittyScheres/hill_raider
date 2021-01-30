@@ -5,7 +5,8 @@ namespace HillRaider
 	AStar* AStar::instance = nullptr;
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the instance of the 
+	// AStar singleton class.
 	// --------------------------------------------------
 	AStar* AStar::GetIntance()
 	{
@@ -17,7 +18,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to destroy the instance of the 
+	// AStar singleton class.
 	// --------------------------------------------------
 	void AStar::DestroyInstance()
 	{
@@ -26,7 +28,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the node map for the
+	// current room.
 	// --------------------------------------------------
 	void AStar::SetNodeMap(TileMap* tileMap) {
 		if (nodeMap != nullptr) {
@@ -37,7 +40,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set a reference to the
+	// enemy entity list of the current room.
 	// --------------------------------------------------
 	void AStar::SetEntitiesListReference(std::list<Entity*>* entitiesList)
 	{
@@ -45,7 +49,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to set the end goal for the
+	// path finding algorithm.
 	// --------------------------------------------------
 	void AStar::SetEndGoal(Entity* entity)
 	{
@@ -53,7 +58,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to draw the node map on to the
+	// screen. This mehtod will only be used for debug 
+	// purposes.
 	// --------------------------------------------------
 	void AStar::DebugRenderNodeMap(Tmpl8::Surface* screen)
 	{
@@ -63,7 +70,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get a walkable path for the
+	// enemy ai. This method has been created with the help
+	// of a tutorial.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition, bool bypassCheck)
 	{
@@ -128,7 +137,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to the the nodes wich have been
+	// occupied by an enemy ai to not walkable.
 	// --------------------------------------------------
 	void AStar::SetNonWalkableEntityNodes(Entity* pathFindingEntity)
 	{
@@ -168,7 +178,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to create a list with nodes that
+	// creat a walkable path for the enemy ai.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStar::RetracePath(AStarNode* startNode, AStarNode* endNode)
 	{
@@ -190,7 +201,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This method is used to get the distance between two
+	// nodes on the node map.
 	// --------------------------------------------------
 	int AStar::GetDistanceBetween(AStarNode* node1, AStarNode* node2)
 	{
@@ -201,7 +213,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	//
+	// This mehtod is used to safly free the memory for 
+	// the node map used by the AStar class.
 	// --------------------------------------------------
 	AStar::~AStar() {
 		if (nodeMap != nullptr) {
