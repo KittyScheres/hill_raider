@@ -11,7 +11,7 @@ namespace HillRaider
 		"bcxca ca ca ca ca ccxca ccxca ca ca ca ca adx",
 		"bcxca ccxca ccxca ca ca ca ca ccxca ccxca adx",
 		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
-		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
+		"baxbdxbdxbdxbdxbdxbdxfdgbdxbdxbdxbdxbdxbdxbbx"
 	};
 
 	// --------------------------------------------------

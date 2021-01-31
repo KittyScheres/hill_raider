@@ -262,6 +262,7 @@
     <ClCompile Include="TSplit1101.cpp" />
     <ClCompile Include="TSplit1110.cpp" />
     <ClCompile Include="Ui.cpp" />
+    <ClCompile Include="Win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -307,6 +308,7 @@
     <ClInclude Include="TSplit1101.h" />
     <ClInclude Include="TSplit1110.h" />
     <ClInclude Include="Ui.h" />
+    <ClInclude Include="Win.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="_readme.txt" />

@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	static char tilemap[9][46]{
-		"aaxacxacxacxacxacxacxacxacxacxacxacxacxacxabx",
+		"aaxacxacxacxacxacxacxfatacxacxacxacxacxacxabx",
 		"bcxca ca ca ca ca ca ca ca ca ca ca ca ca adx",
 		"bcxca ccxca ccxca ca ca ca ca ccxca ccxca adx",
 		"bcxca ca ca ca ca ccxca ccxca ca ca ca ca adx",

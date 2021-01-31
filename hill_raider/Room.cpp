@@ -49,21 +49,25 @@ namespace HillRaider
 				switch (tileMap->GetCollision(tileWidth * x, tileHeight * y))
 				{
 				case 'w':
+				case 't':
 					doorBlockadePos[0] = 0;
 					doorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 'd':
+				case 'h':
 					doorBlockadePos[0] = 1;
 					doorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 's':
+				case 'g':
 					doorBlockadePos[0] = 3;
 					doorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 'a':
+				case 'f':
 					doorBlockadePos[0] = 2;
 					doorBlockadePositionList.push_back(doorBlockadePos);
 					break;

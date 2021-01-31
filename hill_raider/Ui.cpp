@@ -24,7 +24,7 @@ namespace HillRaider
 		foodScoreIcon->SetPosition((64 * 9) + 52, 32 - (foodScoreIcon->GetHeight() / 2));
 
 		scoreBoard = new ScoreBoard();
-		scoreBoard->SetPosition((64 * 10) + 32, 32 - (scoreBoard->GetCharHeight() / 2));
+		scoreBoard->SetPosition((64 * 10) + 32, 32 - (scoreBoard->GetHeightOfChar() / 2));
 	}
 	
 	// --------------------------------------------------

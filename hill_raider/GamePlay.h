@@ -3,6 +3,7 @@
 #include "State.h"
 #include "GameCallback.h"
 #include "Lose.h"
+#include "Win.h"
 #include "InputManager.h"
 #include "PauseScreen.h"
 #include "Ui.h"

@@ -24,7 +24,7 @@ namespace HillRaider
 			short number = ((int)score[i]) - ((int)'0');
 
 			if (number >= 0 && number <= 9) {
-				src->SetPosition(x + (i * GetCharWidth()), y);
+				src->SetPosition(x + (i * GetWidthOfChar()), y);
 				src->SetCurrentXFrame(number);
 				src->DrawImage(screen);
 			}
@@ -54,7 +54,7 @@ namespace HillRaider
 	// This method is used to get the width of 1 number on
 	// on the score board.
 	// --------------------------------------------------
-	int ScoreBoard::GetCharWidth()
+	int ScoreBoard::GetWidthOfChar()
 	{
 		return src->GetWidth();
 	}
@@ -63,7 +63,7 @@ namespace HillRaider
 	// This method is used to get the height a 1 char on 
 	// the score board.
 	// --------------------------------------------------
-	int ScoreBoard::GetCharHeight()
+	int ScoreBoard::GetHeightOfChar()
 	{
 		return src->GetHeight();
 	}

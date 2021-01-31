@@ -190,6 +190,26 @@ namespace HillRaider
 			}
 			break;
 
+		case 't':
+		case 'g':
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				callback->SetNextState(new Win(callback, GameData::GetInstance()->playerPoints));
+			}
+			else {
+				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
+			}
+			break;
+
+		case 'h':
+		case 'f':
+			if (floor->GetCurrentRoom()->RoomCleared()) {
+				callback->SetNextState(new Win(callback, GameData::GetInstance()->playerPoints));
+			}
+			else {
+				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
+			}
+			break;
+
 		case 'x':
 			switch (player->GetDirection())
 			{
