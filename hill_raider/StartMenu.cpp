@@ -69,8 +69,8 @@ namespace HillRaider
 		background->DrawImage(screen);
 		title->DrawImage(screen);
 
-		for (short i = 0; i < 4; i++) {
-			buttonBackground->SetPosition(5 * 64, menuButtonsY[i]);
+		for (int yPos: menuButtonsY) {
+			buttonBackground->SetPosition(5 * 64, yPos);
 			buttonBackground->DrawImage(screen);
 		}
 

@@ -1,8 +1,7 @@
-﻿  Corner0011.cpp
-  Corner0110.cpp
-  Corner1001.cpp
-  Corner1100.cpp
+﻿  GamePlay.cpp
+  Lose.cpp
+  PauseScreen.cpp
+  StartMenu.cpp
   game.cpp
-  CrossRoad1111.cpp
   Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86_debug.exe

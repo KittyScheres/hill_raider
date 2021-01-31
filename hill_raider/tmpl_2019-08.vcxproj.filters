@@ -116,6 +116,9 @@
     <ClCompile Include="FoodPointsPickup.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
+    <ClCompile Include="Lose.cpp">
+      <Filter>hill_raider\cpp_files\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="FoodPointsPickup.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Lose.h">
+      <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

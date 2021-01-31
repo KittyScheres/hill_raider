@@ -2,7 +2,7 @@
 
 #include "State.h"
 #include "GameCallback.h"
-#include "StartMenu.h"
+#include "Lose.h"
 #include "InputManager.h"
 #include "PauseScreen.h"
 #include "Ui.h"

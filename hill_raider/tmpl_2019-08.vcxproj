@@ -246,6 +246,7 @@
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Lose.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="EnemyAnt.cpp" />
@@ -287,6 +288,7 @@
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Lose.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="EnemyAnt.h" />
