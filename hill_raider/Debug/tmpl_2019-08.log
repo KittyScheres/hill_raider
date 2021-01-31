@@ -2,27 +2,7 @@
   Corner0110.cpp
   Corner1001.cpp
   Corner1100.cpp
-  CrossRoad1111.cpp
-  DeadEnd0001.cpp
-  DeadEnd0010.cpp
-  DeadEnd0100.cpp
-  DeadEnd1000.cpp
-  EnemyAnt.cpp
-  Floor.cpp
-  FoodPointsPickup.cpp
-  GamePlay.cpp
-  HallwayHorizontal0101.cpp
-  HallwayVertical1010.cpp
-  PauseScreen.cpp
-  Player.cpp
-  Room.cpp
-  StartMenu.cpp
-  TSplit0111.cpp
-  Generating Code...
-  Compiling...
-  TSplit1011.cpp
-  TSplit1101.cpp
-  TSplit1110.cpp
   game.cpp
+  CrossRoad1111.cpp
   Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86_debug.exe

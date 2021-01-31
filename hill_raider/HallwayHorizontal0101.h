@@ -6,10 +6,13 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is one of many premade room classes
+	// which can be used to easily create a game level.
+	// --------------------------------------------------
 	class HallwayHorizontal0101 : public Room
 	{
 	public:
 		HallwayHorizontal0101();
-		~HallwayHorizontal0101();
 	};
 }

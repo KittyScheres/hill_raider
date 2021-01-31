@@ -6,10 +6,13 @@
 
 namespace HillRaider
 {
+	// --------------------------------------------------
+	// This class is one of many premade room classes
+	// which can be used to easily create a game level.
+	// --------------------------------------------------
 	class TSplit1101 : public Room
 	{
 	public:
 		TSplit1101();
-		~TSplit1101();
 	};
 }

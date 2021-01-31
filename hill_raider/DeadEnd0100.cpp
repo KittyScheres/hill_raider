@@ -14,6 +14,10 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbdxbbx"
 	};
 
+	// --------------------------------------------------
+	// This method is used to get a randomly selected enemy
+	// list for the room.
+	// --------------------------------------------------
 	static std::list<Entity*> GetEnemyList() {
 		switch (std::rand() & 1) {
 		case 0:
@@ -24,11 +28,16 @@ namespace HillRaider
 		}
 	}
 
+	// --------------------------------------------------
+	// This method is used to get a randomly selected 
+	// food points pickup list for the room.
+	// --------------------------------------------------
 	static std::list<Entity*> GetPointsPickupList() {
 		return std::list<Entity*>();
 	}
 
+	// --------------------------------------------------
+	// This constructor is used to setup the premade room.
+	// --------------------------------------------------
 	DeadEnd0100::DeadEnd0100() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEnemyList(), GetPointsPickupList()) {}
-
-	DeadEnd0100::~DeadEnd0100() {}
 }

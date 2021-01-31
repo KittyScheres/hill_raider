@@ -14,6 +14,10 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 	};
 
+	// --------------------------------------------------
+	// This method is used to get a randomly selected enemy
+	// list for the room.
+	// --------------------------------------------------
 	static std::list<Entity*> GetEnemyList() {
 		switch (std::rand() & 3) {
 		case 0:
@@ -30,11 +34,16 @@ namespace HillRaider
 		}
 	}
 
+	// --------------------------------------------------
+	// This method is used to get a randomly selected 
+	// food points pickup list for the room.
+	// --------------------------------------------------
 	static std::list<Entity*> GetPointsPickupList() {
 		return std::list<Entity*>();
 	}
 
+	// --------------------------------------------------
+	// This constructor is used to setup the premade room.
+	// --------------------------------------------------
 	TSplit1011::TSplit1011() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), GetEnemyList(), GetPointsPickupList()) {}
-
-	TSplit1011::~TSplit1011() {}
 }

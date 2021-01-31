@@ -14,11 +14,16 @@ namespace HillRaider
 		"baxbdxbdxbdxbdxbdxbdxbfsbdxbdxbdxbdxbdxbdxbbx"
 	};
 
+	// --------------------------------------------------
+	// This method is used to get a randomly selected 
+	// food points pickup list for the room.
+	// --------------------------------------------------
 	static std::list<Entity*> GetPointsPickupList() {
 		return std::list<Entity*>();
 	}
 
+	// --------------------------------------------------
+	// This constructor is used to setup the premade room.
+	// --------------------------------------------------
 	CrossRoad1111::CrossRoad1111() : Room(new TileMap("assets/environments/tile_map.png", tilemap, 64, 64), std::list<Entity*>{}, GetPointsPickupList()) {}
-
-	CrossRoad1111::~CrossRoad1111() {}
 }
