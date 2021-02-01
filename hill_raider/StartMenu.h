@@ -6,7 +6,7 @@
 #include "Animation.h"
 #include "InputManager.h"
 #include "GamePlay.h"
-#include <cstdio>
+#include "Controls.h"
 
 namespace HillRaider 
 {

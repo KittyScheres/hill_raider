@@ -226,6 +226,7 @@
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="AStarGrid.cpp" />
     <ClCompile Include="AStarNode.cpp" />
+    <ClCompile Include="Controls.cpp" />
     <ClCompile Include="Corner0011.cpp" />
     <ClCompile Include="Corner0110.cpp" />
     <ClCompile Include="Corner1001.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStarGrid.h" />
     <ClInclude Include="AStarNode.h" />
+    <ClInclude Include="Controls.h" />
     <ClInclude Include="Corner0011.h" />
     <ClInclude Include="Corner0110.h" />
     <ClInclude Include="Corner1001.h" />

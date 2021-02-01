@@ -46,7 +46,7 @@ namespace HillRaider
 				break;
 
 			case 1:
-				
+				callback->SetNextState(new Controls(callback));
 				break;
 
 			case 2:

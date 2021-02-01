@@ -122,6 +122,9 @@
     <ClCompile Include="Win.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
+    <ClCompile Include="Controls.cpp">
+      <Filter>hill_raider\cpp_files\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -252,6 +255,9 @@
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
     <ClInclude Include="Win.h">
+      <Filter>hill_raider\header_files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
   </ItemGroup>

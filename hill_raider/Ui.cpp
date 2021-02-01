@@ -21,10 +21,10 @@ namespace HillRaider
 		}
 
 		foodScoreIcon = new Image("assets/entities/food_pickup.png", 0, 0);
-		foodScoreIcon->SetPosition((64 * 9) + 52, 32 - (foodScoreIcon->GetHeight() / 2));
+		foodScoreIcon->SetPosition((64 * 10) + 52, 32 - (foodScoreIcon->GetHeight() / 2));
 
 		scoreBoard = new ScoreBoard();
-		scoreBoard->SetPosition((64 * 10) + 32, 32 - (scoreBoard->GetHeightOfChar() / 2));
+		scoreBoard->SetPosition((64 * 11) + 32, 32 - (scoreBoard->GetHeightOfChar() / 2));
 	}
 	
 	// --------------------------------------------------
