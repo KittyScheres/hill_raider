@@ -138,10 +138,10 @@ namespace HillRaider
 			winTextDynamic = new Image("assets/text/win_text_dynamic_to_little.png", 0, 0);
 		}
 		else if (iScore < 1000) {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_to_little.png", 0, 0);
+			winTextDynamic = new Image("assets/text/win_text_dynamic_enough.png", 0, 0);
 		}
 		else {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_to_little.png", 0, 0);
+			winTextDynamic = new Image("assets/text/win_text_dynamic_more_than_enough.png", 0, 0);
 		}
 	}
 }
