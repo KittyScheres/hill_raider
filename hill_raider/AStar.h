@@ -29,7 +29,7 @@ namespace HillRaider
 		static AStar* GetIntance();
 		static void DestroyInstance();
 		void SetNodeMap(TileMap* tileMap);
-		void SetEntitiesListReference(std::list<Entity*>* entitiesList);
+		void SetEntitiesListReference(std::list<Entity*>* const entitiesList);
 		void SetEndGoal(Entity* entity);
 		void DebugRenderNodeMap(Tmpl8::Surface* screen);
 		std::vector<AStarNode*> FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition, bool bypassCheck);

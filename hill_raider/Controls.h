@@ -10,7 +10,7 @@ namespace HillRaider
 {
 	// ------------------------------------------------------------
 	// The controls state class is used to initialize and keep
-	// track off everything on de controls screen of the game.
+	// track off everything on the controls screen.
 	// ------------------------------------------------------------
 	class Controls: public State
 	{

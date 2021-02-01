@@ -11,7 +11,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// The win state class is used to initialize and keep
-	// track off everything on de win screen of the game.
+	// track off everything on the win screen.
 	// --------------------------------------------------
 	class Win: public State
 	{

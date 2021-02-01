@@ -43,7 +43,7 @@ namespace HillRaider
 	// This method is used to set a reference to the
 	// enemy entity list of the current room.
 	// --------------------------------------------------
-	void AStar::SetEntitiesListReference(std::list<Entity*>* entitiesList)
+	void AStar::SetEntitiesListReference(std::list<Entity*>* const entitiesList)
 	{
 		entitiesListReference = entitiesList;
 	}

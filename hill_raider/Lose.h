@@ -11,7 +11,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// The lose state class is used to initialize and keep
-	// track off everything on de lose screen of the game.
+	// track off everything on the lose screen.
 	// --------------------------------------------------
 	class Lose: public State
 	{

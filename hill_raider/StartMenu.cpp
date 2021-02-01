@@ -50,7 +50,7 @@ namespace HillRaider
 				break;
 
 			case 2:
-
+				callback->SetNextState(new Credits(callback));
 				break;
 
 			case 3:

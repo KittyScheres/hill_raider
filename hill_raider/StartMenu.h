@@ -7,12 +7,13 @@
 #include "InputManager.h"
 #include "GamePlay.h"
 #include "Controls.h"
+#include "Credits.h"
 
 namespace HillRaider 
 {
 	// ------------------------------------------------------------
 	// The start menu state class is used to initialize and keep
-	// track off everything on de start menu of the game.
+	// track off everything on the start menu screen.
 	// ------------------------------------------------------------
 	class StartMenu: public State
 	{

@@ -231,6 +231,7 @@
     <ClCompile Include="Corner0110.cpp" />
     <ClCompile Include="Corner1001.cpp" />
     <ClCompile Include="Corner1100.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="DeadEnd0001.cpp" />
     <ClCompile Include="DeadEnd0010.cpp" />
     <ClCompile Include="DeadEnd0100.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="Corner0110.h" />
     <ClInclude Include="Corner1001.h" />
     <ClInclude Include="Corner1100.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="DeadEnd0001.h" />
     <ClInclude Include="DeadEnd0010.h" />
     <ClInclude Include="DeadEnd0100.h" />
