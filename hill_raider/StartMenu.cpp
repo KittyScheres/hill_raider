@@ -12,7 +12,8 @@ namespace HillRaider
 		inputManager = InputManager::GetInstance();
 
 		background = new Image("assets/ui/background.png", 0, 0);
-		title = new Image("assets/ui/game_title.png", 4 * 64, 32);
+		title = new Image("assets/text/game_title.png", 0, 0);
+		title->SetPosition(480 - (title->GetWidth() / 2), 64);
 
 		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, menuButtonsY[0]);
 
