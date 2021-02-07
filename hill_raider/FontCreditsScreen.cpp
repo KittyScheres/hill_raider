@@ -3,7 +3,8 @@
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// 
+	// This contructor is used to initialize the componenets for
+	// the font credits screen.
 	// ------------------------------------------------------------
 	FontCreditsScreen::FontCreditsScreen()
 	{
@@ -15,7 +16,7 @@ namespace HillRaider
 	}
 
 	// ------------------------------------------------------------
-	// 
+	// This method is used to draw the components on to the screen.
 	// ------------------------------------------------------------
 	void FontCreditsScreen::Render(Tmpl8::Surface* screen)
 	{
@@ -24,7 +25,8 @@ namespace HillRaider
 	}
 
 	// ------------------------------------------------------------
-	// 
+	// This destructor is used to safely free the memory for the
+	// components of the font credits screen.
 	// ------------------------------------------------------------
 	FontCreditsScreen::~FontCreditsScreen()
 	{

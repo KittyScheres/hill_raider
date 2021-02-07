@@ -7,7 +7,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// THe pause screen class is used to initialize and 
+	// The pause screen class is used to initialize and 
 	// keep track of the pause screen for the game.
 	// --------------------------------------------------
 	class PauseScreen

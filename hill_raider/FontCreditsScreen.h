@@ -5,7 +5,8 @@
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// 
+	// The font credits screen class is used to initialize and 
+	// keep track of the font credits screen for the game.
 	// ------------------------------------------------------------
 	class FontCreditsScreen
 	{
