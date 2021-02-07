@@ -24,7 +24,7 @@
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
-      <Filter>hill_raider\cpp_files\game_components\screens</Filter>
+      <Filter>hill_raider\cpp_files\screens</Filter>
     </ClCompile>
     <ClCompile Include="GameData.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
@@ -128,6 +128,15 @@
     <ClCompile Include="Credits.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
+    <ClCompile Include="ArtCreditsScreen.cpp">
+      <Filter>hill_raider\cpp_files\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="FontCreditsScreen.cpp">
+      <Filter>hill_raider\cpp_files\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgrammingCreditsScreen.cpp">
+      <Filter>hill_raider\cpp_files\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -156,7 +165,7 @@
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
     <ClInclude Include="PauseScreen.h">
-      <Filter>hill_raider\header_files\game_components\screens</Filter>
+      <Filter>hill_raider\header_files\screens</Filter>
     </ClInclude>
     <ClInclude Include="GameData.h">
       <Filter>hill_raider\header_files\game_components</Filter>
@@ -266,6 +275,15 @@
     <ClInclude Include="Credits.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
+    <ClInclude Include="ArtCreditsScreen.h">
+      <Filter>hill_raider\header_files\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="FontCreditsScreen.h">
+      <Filter>hill_raider\header_files\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgrammingCreditsScreen.h">
+      <Filter>hill_raider\header_files\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -288,9 +306,6 @@
     </Filter>
     <Filter Include="hill_raider\header_files\game_components">
       <UniqueIdentifier>{d21b1384-2acc-487b-b51e-3b052840794e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="hill_raider\header_files\game_components\screens">
-      <UniqueIdentifier>{4ae28eb4-f73a-43cc-b174-e6c8b3fe8982}</UniqueIdentifier>
     </Filter>
     <Filter Include="hill_raider\header_files\game_components\entities">
       <UniqueIdentifier>{2e3af917-0025-40ef-92dc-8cda04d04332}</UniqueIdentifier>
@@ -316,9 +331,6 @@
     <Filter Include="hill_raider\cpp_files\game_components">
       <UniqueIdentifier>{f325dc8d-dca6-4dc1-a354-2e65dbd11d9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="hill_raider\cpp_files\game_components\screens">
-      <UniqueIdentifier>{8ed0514a-d6f1-4800-9038-706c5e48eb30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="hill_raider\cpp_files\game_components\entities">
       <UniqueIdentifier>{080542ac-91d4-426c-9bd1-7b113e11ac42}</UniqueIdentifier>
     </Filter>
@@ -339,6 +351,12 @@
     </Filter>
     <Filter Include="hill_raider\header_files\game_components\rooms">
       <UniqueIdentifier>{5a093a6d-fe87-4680-acb8-c84ed6074fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\cpp_files\screens">
+      <UniqueIdentifier>{8ed0514a-d6f1-4800-9038-706c5e48eb30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\screens">
+      <UniqueIdentifier>{4ae28eb4-f73a-43cc-b174-e6c8b3fe8982}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

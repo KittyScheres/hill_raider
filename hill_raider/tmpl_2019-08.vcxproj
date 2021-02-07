@@ -223,6 +223,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="ArtCreditsScreen.cpp" />
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="AStarGrid.cpp" />
     <ClCompile Include="AStarNode.cpp" />
@@ -238,6 +239,7 @@
     <ClCompile Include="DeadEnd1000.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="FontCreditsScreen.cpp" />
     <ClCompile Include="FoodPointsPickup.cpp" />
     <ClCompile Include="FrameRateManager.cpp" />
     <ClCompile Include="game.cpp" />
@@ -252,6 +254,7 @@
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="EnemyAnt.cpp" />
+    <ClCompile Include="ProgrammingCreditsScreen.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="CrossRoad1111.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
@@ -268,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="ArtCreditsScreen.h" />
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStarGrid.h" />
     <ClInclude Include="AStarNode.h" />
@@ -283,6 +287,7 @@
     <ClInclude Include="DeadEnd1000.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="FontCreditsScreen.h" />
     <ClInclude Include="FoodPointsPickup.h" />
     <ClInclude Include="FrameRateManager.h" />
     <ClInclude Include="game.h" />
@@ -297,6 +302,7 @@
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="EnemyAnt.h" />
+    <ClInclude Include="ProgrammingCreditsScreen.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomCallback.h" />
     <ClInclude Include="CrossRoad1111.h" />
