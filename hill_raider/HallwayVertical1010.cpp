@@ -21,16 +21,16 @@ namespace HillRaider
 	static std::list<Entity*> GetEnemyList() {
 		switch (std::rand() & 3) {
 		case 0:
-			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 1) + 32), new EnemyAnt((64 * 2) + 32, (64 * 7) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, 64 + 32), new EnemyAnt((64 * 2) + 32, (64 * 7) + 32) };
 
 		case 1:
 			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, (64 * 7) + 32) };
 
 		case 2:
-			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 1) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, 64 + 32), new EnemyAnt((64 * 2) + 32, 64 + 32) };
 
 		default:
-			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, (64 * 1) + 32) };
+			return std::list<Entity*>{ new EnemyAnt((64 * 12) + 32, (64 * 7) + 32), new EnemyAnt((64 * 2) + 32, 64 + 32) };
 		}
 	}
 
@@ -39,7 +39,18 @@ namespace HillRaider
 	// food points pickup list for the room.
 	// --------------------------------------------------
 	static std::list<Entity*> GetPointsPickupList() {
-		return std::list<Entity*>();
+		switch (std::rand() & 3)
+		{
+		case 0:
+			return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 2) + 32, (64 * 3) + 32), new FoodPointsPickup(20, (64 * 11) + 32, (64 * 4) + 32), new FoodPointsPickup(20, (64 * 6) + 32, (64 * 7) + 32) };
+
+		case 1:
+		case 2:
+			return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 12) + 32, (64 * 2) + 32), new FoodPointsPickup(20, (64 * 2) + 32, (64 * 5) + 32) };
+
+		default:
+			return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 7) + 32, (64 * 4) + 32) };
+		}
 	}
 
 	// --------------------------------------------------

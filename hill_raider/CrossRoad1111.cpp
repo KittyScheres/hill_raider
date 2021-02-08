@@ -19,7 +19,27 @@ namespace HillRaider
 	// food points pickup list for the room.
 	// --------------------------------------------------
 	static std::list<Entity*> GetPointsPickupList() {
-		return std::list<Entity*>();
+		switch (std::rand() & 1) {
+		case 0:
+			switch (std::rand() & 3)
+			{
+			case 0:
+				return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 11) + 32, (64 * 2) + 32) };
+
+			case 1:
+				return std::list<Entity*>{ new FoodPointsPickup(20, 64 + 32, (64 * 7) + 32) };
+
+			case 2:
+				return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 4) + 32, (64 * 3) + 32) };
+
+			default:
+				return std::list<Entity*>{ new FoodPointsPickup(20, (64 * 10) + 32, (64 * 6) + 32) };
+			}
+			break;
+
+		default:
+			return std::list<Entity*>{};
+		}
 	}
 
 	// --------------------------------------------------
