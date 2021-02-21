@@ -68,7 +68,7 @@ namespace HillRaider
 
 		if (foodCredits != nullptr) {
 			delete foodCredits;
-			foodCredits != nullptr;
+			foodCredits = nullptr;
 		}
 
 		if (keyboardKeysCredits != nullptr) {
