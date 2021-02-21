@@ -135,7 +135,7 @@ namespace HillRaider
 	void Win::SetDynamicWinText(int iScore)
 	{
 		if (iScore < 500) {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_to_little.png", 0, 0);
+			winTextDynamic = new Image("assets/text/win_text_dynamic_too_little.png", 0, 0);
 		}
 		else if (iScore < 1000) {
 			winTextDynamic = new Image("assets/text/win_text_dynamic_enough.png", 0, 0);

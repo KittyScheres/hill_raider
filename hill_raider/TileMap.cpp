@@ -53,9 +53,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	char TileMap::GetCollision(int x, int y)
 	{
+		char collisionChar = ' ';
 		x = x / tileWidth;
 		y = y / tileHeight;
-		return tileMap[y][(x * 3) + 2];
+		
+		if (x < (TILE_MAP_WIDHT / 3) && y < TILE_MAP_HEIGHT) {
+			collisionChar = tileMap[y][(x * 3) + 2];
+		}
+
+		return collisionChar;
 	}
 
 	// --------------------------------------------------

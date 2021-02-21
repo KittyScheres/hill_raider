@@ -14,7 +14,7 @@ namespace HillRaider
 		returnToMenu = new Image("assets/text/return_to_menu_text.png", 16, 32);
 		keyBindings = new Image("assets/text/key_bindings_text.png", 16, 125);
 		lungeAttackExplanation = new Image("assets/text/lunge_attack_explanation_text.png", 64 * 6, 32);
-		healExplanation = new Image("assets/text/heal_explanation_text.png", 64 * 6, 64 * 5);
+		healExplanation = new Image("assets/text/heal_explanation_text.png", 64 * 6, 32 + (64 * 5));
 	}
 
 	// ------------------------------------------------------------
