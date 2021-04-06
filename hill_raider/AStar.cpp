@@ -58,18 +58,6 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw the node map on to the
-	// screen. This mehtod will only be used for debug 
-	// purposes.
-	// --------------------------------------------------
-	void AStar::DebugRenderNodeMap(Tmpl8::Surface* screen)
-	{
-		if (nodeMap != nullptr) {
-			nodeMap->DebugRender(screen);
-		}
-	}
-
-	// --------------------------------------------------
 	// This method is used to get a walkable path for the
 	// enemy ai. This method has been created with the help
 	// of a tutorial.
@@ -170,9 +158,7 @@ namespace HillRaider
 				}
 
 				entityNode->SetWalkable(false);
-				entityNode->SetDebugColor(255 << 16);
 				infrontOfEntityNode->SetWalkable(false);
-				infrontOfEntityNode->SetDebugColor(255 << 16);
 			}
 		}
 	}
@@ -185,13 +171,11 @@ namespace HillRaider
 	{
 		std::vector<AStarNode*> path;
 		AStarNode* currentNode = endNode;
-		currentNode->SetDebugColor(0);
 
 		while (currentNode != startNode)
 		{
 			path.push_back(currentNode);
 			currentNode = currentNode->GetParent();
-			currentNode->SetDebugColor(0);
 		}
 
 		path.push_back(currentNode);

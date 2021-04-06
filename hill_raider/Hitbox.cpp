@@ -114,24 +114,4 @@ namespace HillRaider
 
 		return boxPoints;
 	}
-
-	// --------------------------------------------------
-	// This method is used to draw a hitbox on to the
-	// screen. This mehtod will only be used for debug
-	// purposes.
-	// --------------------------------------------------
-	void Hitbox::RenderHitbox(Tmpl8::Surface* screen){
-		int startXPos = xPos - halfWidth;
-		int startYPos = yPos - halfHeight;
-
-		for (int y = 0; y < (halfHeight * 2); y++) {
-			if (startYPos + y < screen->GetHeight() && startYPos + y >= 0) {
-				for (int x = 0; x < (halfWidth * 2); x++) {
-					if (startXPos + x < screen->GetWidth() && startXPos + x >= 0) {
-						screen->GetBuffer()[(startXPos + x) + ((startYPos + y) * screen->GetWidth())] = debugColour;
-					}
-				}
-			}
-		}
-	}
 }

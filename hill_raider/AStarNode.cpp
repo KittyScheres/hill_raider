@@ -16,39 +16,12 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw the node on to the 
-	// screen. This mehtod will only be used for debug
-	// purposes.
-	// --------------------------------------------------
-	void AStarNode::RenderNode(Tmpl8::Surface* screen)
-	{
-		for (int iY = 0; iY < 64; iY++) {
-			if ((y + iY) < screen->GetHeight()) {
-				for (int iX = 0; iX < 64; iX++) {
-					if ((x + iX) < screen->GetWidth()) {
-						screen->GetBuffer()[(x + iX) + ((y + iY) * screen->GetWidth())] = debugColor;
-					}
-				}
-			}
-		}
-	}
-
-	// --------------------------------------------------
 	// This method is used to set wether this node can be
 	// walked on or not.
 	// --------------------------------------------------
 	void AStarNode::SetWalkable(bool iWalkable)
 	{
 		walkable = iWalkable;
-	}
-
-	// --------------------------------------------------
-	// This method is used to set the color for drawing
-	// the node on to the screen.
-	// --------------------------------------------------
-	void AStarNode::SetDebugColor(int iDebugColor)
-	{
-		debugColor = iDebugColor;
 	}
 
 	// --------------------------------------------------
