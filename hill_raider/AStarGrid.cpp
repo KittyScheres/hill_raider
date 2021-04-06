@@ -18,7 +18,6 @@ namespace HillRaider
 
 				if (tileMap->GetCollision(xPos, yPos) != ' ') {
 					AStarNode* newNode = new AStarNode(xPos, yPos, false, x, y);
-					newNode->SetDebugColor(255 << 16);
 					newRow.push_back(newNode);
 				}
 				else {
@@ -38,23 +37,6 @@ namespace HillRaider
 		for (std::vector<AStarNode*> nodeLine : nodeGrid) {
 			for (AStarNode* node : nodeLine) {
 				node->SetWalkable(map->GetCollision(node->GetPosition()[0], node->GetPosition()[1]) == ' ');
-			}
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to draw all of the nodes in the
-	// node map on to the screen. This mehtod will only be
-	// used for debug purposes.
-	// --------------------------------------------------
-	void AStarGrid::DebugRender(Tmpl8::Surface* screen)
-	{
-		for (std::vector<AStarNode*> nodeRow : nodeGrid) {
-			for (AStarNode* node : nodeRow) {
-				node->RenderNode(screen);
-				if (node->GetWalkable()) {
-					node->SetDebugColor((127 << 16) + (127 << 8) + 127);
-				}
 			}
 		}
 	}

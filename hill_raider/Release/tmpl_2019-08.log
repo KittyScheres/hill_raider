@@ -1,50 +1,52 @@
-﻿  AStar.cpp
+﻿  Animation.cpp
+  ArtCreditsScreen.cpp
+  AStar.cpp
   AStarGrid.cpp
   AStarNode.cpp
-  Animation.cpp
-  ArtCreditsScreen.cpp
-D:\breda\game\hill_raider\hill_raider\ArtCreditsScreen.cpp(71,16): warning C4552: '!=': result of expression not used
   Controls.cpp
   Corner0011.cpp
   Corner0110.cpp
   Corner1001.cpp
   Corner1100.cpp
   Credits.cpp
-  CrossRoad1111.cpp
   DeadEnd0001.cpp
   DeadEnd0010.cpp
   DeadEnd0100.cpp
   DeadEnd1000.cpp
-  EnemyAnt.cpp
   Entity.cpp
   Floor.cpp
   FontCreditsScreen.cpp
+  FoodPointsPickup.cpp
+  FrameRateManager.cpp
   Generating Code...
   Compiling...
-  FoodPointsPickup.cpp
+  game.cpp
+  GameData.cpp
   GamePlay.cpp
   HallwayHorizontal0101.cpp
   HallwayVertical1010.cpp
   Hitbox.cpp
   Image.cpp
+  InputManager.cpp
   Lose.cpp
   PauseScreen.cpp
   Player.cpp
+  EnemyAnt.cpp
   ProgrammingCreditsScreen.cpp
   Room.cpp
+  CrossRoad1111.cpp
   ScoreBoard.cpp
   StartMenu.cpp
+  surface.cpp
+  template.cpp
+  TileMap.cpp
+  Generating Code...
+  Compiling...
   TSplit0111.cpp
   TSplit1011.cpp
   TSplit1101.cpp
   TSplit1110.cpp
-  TileMap.cpp
   Ui.cpp
   Win.cpp
-  Generating Code...
-  Compiling...
-  game.cpp
-  surface.cpp
-  template.cpp
   Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86.exe
