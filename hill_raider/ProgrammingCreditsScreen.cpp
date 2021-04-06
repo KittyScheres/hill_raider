@@ -8,21 +8,24 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	ProgrammingCreditsScreen::ProgrammingCreditsScreen()
 	{
-		screentitle = new Image("assets/text/programming_credits_title.png", 0, 0);
+		screentitle = new Image("assets/text/titels/programming_credits_title.png", 0, 0);
 		screentitle->SetPosition(480 - (screentitle->GetWidth() / 2), 32);
 
-		cppFastTrackCredits = new Image("assets/text/template_credits.png", 0, 0);
-		cppFastTrackCredits->SetPosition(480 - (cppFastTrackCredits->GetWidth() / 2), 64 + 32);
+		cppFastTrackCredits = new Image("assets/text/credits/template_credits.png", 0, 0);
+		cppFastTrackCredits->SetPosition(240 - (cppFastTrackCredits->GetWidth() / 2), 64 + 32);
 
-		sdlCredits = new Image("assets/text/sdl2_credits.png", 0, 0);
-		sdlCredits->SetPosition(480 - (sdlCredits->GetWidth() / 2), 32 + (64 * 3));
+		aStarCredits = new Image("assets/text/credits/a_star_credits.png", 0, 0);
+		aStarCredits->SetPosition(240 - (aStarCredits->GetWidth() / 2), 64 * 6);
 
-		freeImageCredits = new Image("assets/text/free_image_credits.png", 0, 0);
-		freeImageCredits->SetPosition(480 - (freeImageCredits->GetWidth() / 2), 64 * 5);
+		sdlCredits = new Image("assets/text/credits/sdl2_credits.png", 0, 0);
+		sdlCredits->SetPosition(720 - (sdlCredits->GetWidth() / 2), 64 + 32);
 
+		freeImageCredits = new Image("assets/text/credits/free_image_credits.png", 0, 0);
+		freeImageCredits->SetPosition(720 - (freeImageCredits->GetWidth() / 2), 64 * 4);
 
-		aStarCredits = new Image("assets/text/a_star_credits.png", 0, 0);
-		aStarCredits->SetPosition(480 - (aStarCredits->GetWidth() / 2), 32 + (64 * 6));
+		gameCodeCredits = new Image("assets/text/credits/game_code_credits.png", 0, 0);
+		gameCodeCredits->SetPosition(720 - (gameCodeCredits->GetWidth() / 2), 64 * 6);
+
 	}
 
 	// ------------------------------------------------------------
@@ -32,9 +35,10 @@ namespace HillRaider
 	{
 		screentitle->DrawImage(screen);
 		cppFastTrackCredits->DrawImage(screen);
+		aStarCredits->DrawImage(screen);
 		sdlCredits->DrawImage(screen);
 		freeImageCredits->DrawImage(screen);
-		aStarCredits->DrawImage(screen);
+		gameCodeCredits->DrawImage(screen);
 	}
 
 	// ------------------------------------------------------------
@@ -53,6 +57,11 @@ namespace HillRaider
 			cppFastTrackCredits = nullptr;
 		}
 
+		if (aStarCredits != nullptr) {
+			delete aStarCredits;
+			aStarCredits = nullptr;
+		}
+
 		if (sdlCredits != nullptr) {
 			delete sdlCredits;
 			sdlCredits = nullptr;
@@ -63,9 +72,9 @@ namespace HillRaider
 			freeImageCredits = nullptr;
 		}
 
-		if (aStarCredits != nullptr) {
-			delete aStarCredits;
-			aStarCredits = nullptr;
+		if (gameCodeCredits != nullptr) {
+			delete gameCodeCredits;
+			gameCodeCredits = nullptr;
 		}
 	}
 }

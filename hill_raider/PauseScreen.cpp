@@ -15,8 +15,8 @@ namespace HillRaider
 
 		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, buttonsYPos[0]);
 
-		backToMenuButtonText = new Image("assets/text/back_to_menu_button_text.png", 5 * 64, buttonsYPos[0]);
-		restartGameButtonText = new Image("assets/text/restart_button_text.png", 5 * 64, buttonsYPos[1]);
+		backToMenuButtonText = new Image("assets/text/buttons/back_to_menu_button_text.png", 5 * 64, buttonsYPos[0]);
+		restartGameButtonText = new Image("assets/text/buttons/restart_button_text.png", 5 * 64, buttonsYPos[1]);
 
 		buttonHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, buttonsYPos[0]);
 	}

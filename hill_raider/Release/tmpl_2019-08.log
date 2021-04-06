@@ -1,52 +1,6 @@
-﻿  Animation.cpp
-  ArtCreditsScreen.cpp
-  AStar.cpp
-  AStarGrid.cpp
-  AStarNode.cpp
-  Controls.cpp
-  Corner0011.cpp
-  Corner0110.cpp
-  Corner1001.cpp
-  Corner1100.cpp
-  Credits.cpp
-  DeadEnd0001.cpp
-  DeadEnd0010.cpp
-  DeadEnd0100.cpp
-  DeadEnd1000.cpp
-  Entity.cpp
-  Floor.cpp
-  FontCreditsScreen.cpp
-  FoodPointsPickup.cpp
-  FrameRateManager.cpp
-  Generating Code...
-  Compiling...
-  game.cpp
-  GameData.cpp
-  GamePlay.cpp
-  HallwayHorizontal0101.cpp
-  HallwayVertical1010.cpp
-  Hitbox.cpp
-  Image.cpp
-  InputManager.cpp
-  Lose.cpp
+﻿  Lose.cpp
   PauseScreen.cpp
-  Player.cpp
-  EnemyAnt.cpp
-  ProgrammingCreditsScreen.cpp
-  Room.cpp
-  CrossRoad1111.cpp
-  ScoreBoard.cpp
   StartMenu.cpp
-  surface.cpp
-  template.cpp
-  TileMap.cpp
-  Generating Code...
-  Compiling...
-  TSplit0111.cpp
-  TSplit1011.cpp
-  TSplit1101.cpp
-  TSplit1110.cpp
-  Ui.cpp
   Win.cpp
   Generating Code...
   tmpl_2019-08.vcxproj -> D:\breda\game\hill_raider\hill_raider\tmpl_2019-08_x86.exe

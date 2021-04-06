@@ -8,23 +8,26 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	ArtCreditsScreen::ArtCreditsScreen()
 	{
-		screenTitle = new Image("assets/text/art_credits_title.png", 0, 0);
+		screenTitle = new Image("assets/text/titels/art_credits_title.png", 0, 0);
 		screenTitle->SetPosition(480 - (screenTitle->GetWidth() / 2), 32);
 		
-		tileMapCredits = new Image("assets/text/tilemap_credits.png", 0, 0);
-		tileMapCredits->SetPosition(480 - (tileMapCredits->GetWidth() / 2), 64 + 32);
+		tileMapCredits = new Image("assets/text/credits/tilemap_credits.png", 0, 0);
+		tileMapCredits->SetPosition(240 - (tileMapCredits->GetWidth() / 2), 64 + 32);
 
-		buttonsCredits = new Image("assets/text/buttons_credits.png", 0, 0);
-		buttonsCredits->SetPosition(480 - (buttonsCredits->GetWidth() / 2), 52 + (64 * 2));
+		buttonsCredits = new Image("assets/text/credits/buttons_credits.png", 0, 0);
+		buttonsCredits->SetPosition(240 - (buttonsCredits->GetWidth() / 2), 64 * 4);
 
-		backgroundCredits = new Image("assets/text/background_credits.png", 0, 0);
-		backgroundCredits->SetPosition(480 - (backgroundCredits->GetWidth() / 2), 12 + (64 * 4));
+		backgroundCredits = new Image("assets/text/credits/background_credits.png", 0, 0);
+		backgroundCredits->SetPosition(240 - (backgroundCredits->GetWidth() / 2), 64 * 6);
 
-		foodCredits = new Image("assets/text/food_credits.png", 0, 0);
-		foodCredits->SetPosition(480 - (foodCredits->GetWidth() / 2), 32 + (64 * 5));
+		foodCredits = new Image("assets/text/credits/food_credits.png", 0, 0);
+		foodCredits->SetPosition(720 - (foodCredits->GetWidth() / 2), 64 + 32);
 
-		keyboardKeysCredits = new Image("assets/text/keyboard_keys_credits.png", 0, 0);
-		keyboardKeysCredits->SetPosition(480 - (keyboardKeysCredits->GetWidth() / 2), 54 + (64 * 6));
+		keyboardKeysCredits = new Image("assets/text/credits/keyboard_keys_credits.png", 0, 0);
+		keyboardKeysCredits->SetPosition(720 - (keyboardKeysCredits->GetWidth() / 2), 64 * 4);
+
+		heartsAntsCredits = new Image("assets/text/credits/hearts_ants_credits.png", 0, 0);
+		heartsAntsCredits->SetPosition(720 - (heartsAntsCredits->GetWidth() / 2), 64 * 6);
 	}
 
 	// ------------------------------------------------------------
@@ -37,6 +40,7 @@ namespace HillRaider
 		buttonsCredits->DrawImage(screen);
 		backgroundCredits->DrawImage(screen);
 		foodCredits->DrawImage(screen);
+		heartsAntsCredits->DrawImage(screen);
 		keyboardKeysCredits->DrawImage(screen);
 	}
 
@@ -74,6 +78,11 @@ namespace HillRaider
 		if (keyboardKeysCredits != nullptr) {
 			delete keyboardKeysCredits;
 			keyboardKeysCredits = nullptr;
+		}
+
+		if (heartsAntsCredits != nullptr) {
+			delete heartsAntsCredits;
+			heartsAntsCredits = nullptr;
 		}
 	}
 }

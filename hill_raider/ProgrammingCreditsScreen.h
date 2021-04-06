@@ -16,6 +16,7 @@ namespace HillRaider
 		Image* sdlCredits = nullptr;
 		Image* freeImageCredits = nullptr;
 		Image* aStarCredits = nullptr;
+		Image* gameCodeCredits = nullptr;
 
 	public:
 		ProgrammingCreditsScreen();

@@ -12,15 +12,15 @@ namespace HillRaider
 		inputManager = InputManager::GetInstance();
 
 		background = new Image("assets/ui/background.png", 0, 0);
-		title = new Image("assets/text/game_title.png", 0, 0);
+		title = new Image("assets/text/titels/game_title.png", 0, 0);
 		title->SetPosition(480 - (title->GetWidth() / 2), 64);
 
 		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, menuButtonsY[0]);
 
-		playGameButtonText = new Image("assets/text/play_button_text.png", 5 * 64, menuButtonsY[0]);
-		checkControlsButtonText = new Image("assets/text/controls_button_text.png", 5 * 64, menuButtonsY[1]);
-		creditsButtonText = new Image("assets/text/credits_button_text.png", 5 * 64, menuButtonsY[2]);
-		exitGameButtonText = new Image("assets/text/quit_button_text.png", 5 * 64, menuButtonsY[3]);
+		playGameButtonText = new Image("assets/text/buttons/play_button_text.png", 5 * 64, menuButtonsY[0]);
+		checkControlsButtonText = new Image("assets/text/buttons/controls_button_text.png", 5 * 64, menuButtonsY[1]);
+		creditsButtonText = new Image("assets/text/buttons/credits_button_text.png", 5 * 64, menuButtonsY[2]);
+		exitGameButtonText = new Image("assets/text/buttons/quit_button_text.png", 5 * 64, menuButtonsY[3]);
 
 		menuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
 	}

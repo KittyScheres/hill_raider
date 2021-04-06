@@ -17,6 +17,7 @@ namespace HillRaider
 		Image* backgroundCredits = nullptr;
 		Image* foodCredits = nullptr;
 		Image* keyboardKeysCredits = nullptr;
+		Image* heartsAntsCredits = nullptr;
 
 	public:
 		ArtCreditsScreen();
