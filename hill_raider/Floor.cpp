@@ -67,23 +67,23 @@ namespace HillRaider
 	// This method is used move the player to a different
 	// room.
 	// --------------------------------------------------
-	void Floor::MoveToNextRoom(MoveDirection direction)
+	void Floor::MoveToNextRoom(Direction direction)
 	{
 		switch (direction)
 		{
-		case MoveDirection::UP:
+		case Direction::UP:
 			--currentRoom[1];
 			break;
 
-		case MoveDirection::RIGHT:
+		case Direction::RIGHT:
 			++currentRoom[0];
 			break;
 
-		case MoveDirection::DOWN:
+		case Direction::DOWN:
 			++currentRoom[1];
 			break;
 
-		case MoveDirection::LEFT:
+		case Direction::LEFT:
 			--currentRoom[0];
 			break;
 		}

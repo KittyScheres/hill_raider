@@ -69,10 +69,12 @@ namespace HillRaider
 	// This method is used to process the collisions between
 	// an enemy ant entity and other entities.
 	// --------------------------------------------------
-	void EnemyAnt::LateUpdate(std::list<Entity*> entityList)
+	void EnemyAnt::LateUpdate(TileMap* tileMap, std::list<Entity*> entityList)
 	{
 		float smallestDistance = 10000.f;
 		bool playerInLineOfSide = false;
+
+		ProcessTileMapCollision(tileMap);
 
 		for (auto entity : entityList) {
 			//entity on entity collision
@@ -147,7 +149,7 @@ namespace HillRaider
 		legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
 
 		if (--ragdollHealt <= 0) {
-			callback->RemoveEntity(this);
+			roomCallback->RemoveEntity(this);
 		}
 	}
 
@@ -155,9 +157,9 @@ namespace HillRaider
 	// This method is used to set the room callback for
 	// an enemy ant entity.
 	// --------------------------------------------------
-	void EnemyAnt::SetRoomCallback(RoomCallback* iCallback)
+	void EnemyAnt::SetRoomCallback(RoomCallback* callback)
 	{
-		callback = iCallback;
+		roomCallback = callback;
 	}
 
 	// --------------------------------------------------
@@ -172,14 +174,14 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case Entity::MovementDirection::UP:
-		case Entity::MovementDirection::DOWN:
+		case Direction::UP:
+		case Direction::DOWN:
 			attackHitbox->SetPosition(x, y + attackHitboxOffset);
 			lineScan->SetPosition(x, y + lineScanOffset);
 			break;
 
-		case Entity::MovementDirection::LEFT:
-		case Entity::MovementDirection::RIGHT:
+		case Direction::LEFT:
+		case Direction::RIGHT:
 			attackHitbox->SetPosition(x + attackHitboxOffset, y);
 			lineScan->SetPosition(x + lineScanOffset, y);
 			break;
@@ -190,7 +192,7 @@ namespace HillRaider
 	// This method is used to set the direction of an 
 	// enemy ant entity.
 	// --------------------------------------------------
-	void EnemyAnt::SetDirection(Entity::MovementDirection iDirection)
+	void EnemyAnt::SetDirection(Direction iDirection)
 	{
 		direction = iDirection;
 
@@ -199,7 +201,7 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case Entity::MovementDirection::UP:
+		case Direction::UP:
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -210,7 +212,7 @@ namespace HillRaider
 			lineScan->SetHeight(lineScanHeight);
 			break;
 
-		case Entity::MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(height);
@@ -221,7 +223,7 @@ namespace HillRaider
 			lineScan->SetHeight(lineScanWidth);
 			break;
 
-		case Entity::MovementDirection::DOWN:
+		case Direction::DOWN:
 			attackHitboxOffset = std::abs(attackHitboxOffset);
 			lineScanOffset = std::abs(lineScanOffset);
 			hitbox->SetWidth(width);
@@ -232,7 +234,7 @@ namespace HillRaider
 			lineScan->SetHeight(lineScanHeight);
 			break;
 
-		case Entity::MovementDirection::LEFT:
+		case Direction::LEFT:
 			attackHitboxOffset = -std::abs(attackHitboxOffset);
 			lineScanOffset = -std::abs(lineScanOffset);
 			hitbox->SetWidth(height);
@@ -249,7 +251,7 @@ namespace HillRaider
 	// This method is used to get the direction of an enemy
 	// ant entity.
 	// --------------------------------------------------
-	Entity::MovementDirection EnemyAnt::GetDirection()
+	Direction EnemyAnt::GetDirection()
 	{
 		return direction;
 	}
@@ -301,19 +303,19 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case Entity::MovementDirection::UP:
+		case Direction::UP:
 			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y + hitbox->GetHalfHeight()}, std::vector<int>{x, y - hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x - hitbox->GetHalfWidth(), y}, std::vector<int>{x + hitbox->GetHalfWidth(), y}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::DOWN:
+		case Direction::DOWN:
 			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y - hitbox->GetHalfHeight()}, std::vector<int>{x, y + hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::LEFT:
+		case Direction::LEFT:
 			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x + hitbox->GetHalfWidth(), y}, std::vector<int>{x - hitbox->GetHalfWidth(), y}, bypassCheck);
 			break;
 		}
@@ -322,16 +324,16 @@ namespace HillRaider
 			std::vector<int> directionVector{ path[1]->GetGridX() - path[0]->GetGridX(), path[1]->GetGridY() - path[0]->GetGridY() };
 
 			if (directionVector == std::vector<int>{0, -1}) {
-				SetDirection(Entity::MovementDirection::UP);
+				SetDirection(Direction::UP);
 			}
 			else if (directionVector == std::vector<int>{1, 0}) {
-				SetDirection(Entity::MovementDirection::RIGHT);
+				SetDirection(Direction::RIGHT);
 			}
 			else if (directionVector == std::vector<int>{0, 1}) {
-				SetDirection(Entity::MovementDirection::DOWN);
+				SetDirection(Direction::DOWN);
 			}
 			else if (directionVector == std::vector<int>{-1, 0}) {
-				SetDirection(Entity::MovementDirection::LEFT);
+				SetDirection(Direction::LEFT);
 			}
 		}
 	}
@@ -346,22 +348,22 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case Entity::MovementDirection::UP:
+		case Direction::UP:
 			distanceMoved = (int)(speed * (deltaTime / 1000));
 			y -= distanceMoved;
 			break;
 			
-		case Entity::MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			distanceMoved = (int)(speed * (deltaTime / 1000));
 			x += distanceMoved;
 			break;
 
-		case Entity::MovementDirection::DOWN:
+		case Direction::DOWN:
 			distanceMoved = (int)(speed * (deltaTime / 1000));
 			y += distanceMoved;
 			break;
 
-		case Entity::MovementDirection::LEFT:
+		case Direction::LEFT:
 			distanceMoved = (int)(speed * (deltaTime / 1000));
 			x -= distanceMoved;
 			break;
@@ -379,22 +381,22 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case MovementDirection::UP:
+		case Direction::UP:
 			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			y -= distanceMoved;
 			break;
 
-		case MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			x += distanceMoved;
 			break;
 
-		case MovementDirection::DOWN:
+		case Direction::DOWN:
 			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			y += distanceMoved;
 			break;
 
-		case MovementDirection::LEFT:
+		case Direction::LEFT:
 			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
 			x -= distanceMoved;
 			break;
@@ -410,6 +412,31 @@ namespace HillRaider
 		Player* player = dynamic_cast<Player*>(entity);
 		if (player == nullptr) {
 			UpdateDirection(true);
+		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to process tile map collision
+	// for an enemy ant.
+	// --------------------------------------------------
+	void EnemyAnt::ProcessTileMapCollision(TileMap* tileMap) {
+		char tileMapCollisionChar = ' ';
+		short hitboxPointIndex = -1;
+		CheckTileMapCollision(hitboxPointIndex, tileMapCollisionChar, tileMap);
+
+		if (tileMapCollisionChar != ' ') {
+			switch (direction)
+			{
+			case Direction::UP:
+			case Direction::DOWN:
+				ApplyVerticalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				break;
+
+			case Direction::LEFT:
+			case Direction::RIGHT:
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				break;
+			}
 		}
 	}
 }

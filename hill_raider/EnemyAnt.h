@@ -28,7 +28,7 @@ namespace HillRaider
 		const float lungeCooldown = 2000.f;
 
 	private:
-		RoomCallback* callback = nullptr;
+		RoomCallback* roomCallback = nullptr;
 		Animation* legsAnimation = nullptr;
 		Animation* bodyAnimation = nullptr;
 		Hitbox* attackHitbox = nullptr;
@@ -47,13 +47,13 @@ namespace HillRaider
 	public:
 		EnemyAnt(int iX, int iY);
 		void Update(float deltaTime);
-		void LateUpdate(std::list<Entity*> entityList);
+		void LateUpdate(TileMap* tileMap, std::list<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);
 		void TakeDamage();
-		void SetRoomCallback(RoomCallback* iCallback);
+		void SetRoomCallback(RoomCallback* callback);
 		void SetPosition(int iX, int iY);
-		void SetDirection(Entity::MovementDirection iDirection);
-		MovementDirection GetDirection();
+		void SetDirection(Direction iDirection);
+		Direction GetDirection();
 		Animation* GetSprite();
 		~EnemyAnt();
 
@@ -62,5 +62,6 @@ namespace HillRaider
 		void MoveEnemyAnt(float deltaTime);
 		void Lunge(float deltaTime);
 		void GetAntUnstuck(Entity* entity);
+		void ProcessTileMapCollision(TileMap* tileMap);
 	};
 }

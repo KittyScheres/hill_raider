@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "InputManager.h"
 #include "GameData.h"
+#include "GamePlayCallback.h"
 
 namespace HillRaider
 {
@@ -25,6 +26,7 @@ namespace HillRaider
 		const float lungeCooldown = 2000.f;
 
 	private:
+		GameplayCallback* gameplayCallback = nullptr;
 		InputManager* inputManager = nullptr;
 		Animation* legsAnimation = nullptr;
 		Animation* bodyAnimation = nullptr;
@@ -39,19 +41,22 @@ namespace HillRaider
 	public:
 		Player(int iX, int iY);
 		void Update(float deltaTime);
-		void LateUpdate(std::list<Entity*> entityList);
+		void LateUpdate(TileMap* tileMap, std::list<Entity*> entityList);
 		void Render(Tmpl8::Surface* screen);
 		void TakeDamage();
+		void SetGamePlayCallback(GameplayCallback* callback);
 		void SetPosition(int iX, int iY);
-		void SetDirection(Entity::MovementDirection iDirection);
-		MovementDirection GetDirection();
+		void SetDirection(Direction iDirection);
+		Direction GetDirection();
 		Animation* GetSprite();
 		~Player();
 
 	private:
-		void CheckForKeyPressed();
-		void CheckForKeyLetGo();
+		void CheckForMovementKeyPressed();
+		void CheckForMovementKeyLetGo();
 		void MovePlayer(float deltaTime);
 		void Lunge(float deltaTime);
+		void Heal();
+		void ProcessTileMapCollision(TileMap* tileMap);
 	};
 }

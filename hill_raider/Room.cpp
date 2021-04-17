@@ -88,6 +88,22 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
+	// This method is used to call the late update method
+	// for all of the entities in a room, this includes
+	// the player.
+	// --------------------------------------------------
+	void Room::LateUpdate(Player* player)
+	{
+		player->LateUpdate(tileMap, GetPLayerCollisionCheckList());
+		for (Entity* enemy : enemyList) {
+			std::list<Entity*> entityCheckList = std::list<Entity*>(enemyList);
+			entityCheckList.remove(enemy);
+			entityCheckList.push_back(player);
+			enemy->LateUpdate(tileMap, entityCheckList);
+		}
+	}
+
+	// --------------------------------------------------
 	// This method is used to draw all of the componets
 	// of a room on to the screen.
 	// --------------------------------------------------
@@ -109,34 +125,6 @@ namespace HillRaider
 		
 		for (Entity* enemy : enemyList) {
 			enemy->Render(screen);
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to check entity on entity 
-	// collisions for all of the entitys (including the 
-	// player) inside of a room.
-	// --------------------------------------------------
-	void Room::RoomCheckEntityCollision(Player* player)
-	{
-		player->LateUpdate(GetPLayerCollisionCheckList());
-		for (Entity* enemy : enemyList) {
-			std::list<Entity*> entityCheckList = std::list<Entity*>(enemyList);
-			entityCheckList.remove(enemy);
-			entityCheckList.push_back(player);
-			enemy->LateUpdate(entityCheckList);
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to check the entity on tile map
-	// collisions for all of the movable entities inside
-	// of a room.
-	// --------------------------------------------------
-	void Room::RoomCheckTileMapCollsion()
-	{
-		for (Entity* enemy : enemyList) {
-			CheckTileMapCollision(enemy);
 		}
 	}
 	
@@ -223,77 +211,6 @@ namespace HillRaider
 				}
 			}
 			foodPointsPickupList.clear();
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to check if an entity has collided
-	// with a wall or blocked space on the tile map.
-	// --------------------------------------------------
-	void Room::CheckTileMapCollision(Entity* entity)
-	{
-		std::vector<std::vector<int>> hitbox = entity->GetHitbox()->GetBoxPoints();
-		char collisionChar = ' ';
-		int index = 0;
-
-		for (int i = 0; i < 4; i++) {
-			if (tileMap->GetCollision(hitbox[i][0], hitbox[i][1]) != ' ' && collisionChar != 'x') {
-				collisionChar = tileMap->GetCollision(hitbox[i][0], hitbox[i][1]);
-				index = i;
-			}
-		}
-
-		if(collisionChar != ' '){
-			switch (entity->GetDirection())
-			{
-			case Entity::MovementDirection::UP:
-			case Entity::MovementDirection::DOWN:
-				ApplyVerticalTileMapCollision(entity, index, hitbox[index][1]);
-				break;
-
-			case Entity::MovementDirection::LEFT:
-			case Entity::MovementDirection::RIGHT:
-				ApplyHorizontalTileMapCollision(entity, index, hitbox[index][0]);
-				break;
-			}
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to re-positon an entity when it
-	// has collided with a blocked space on the tile map
-	// while walking in a vertical line.
-	// --------------------------------------------------
-	void Room::ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos)
-	{
-		switch (hitboxPointIndex & 2)
-		{
-		case 0:
-			entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] + (64 - ((hitboxPointYPos & 63) - 1)));
-			break;
-
-		case 2:
-			entity->SetPosition(entity->GetPosition()[0], entity->GetPosition()[1] - ((hitboxPointYPos & 63) + 1));
-			break;
-		}
-
-	}
-	// --------------------------------------------------
-	// This method is used to re-positon an entity when it
-	// has collided with a blocked space on the tile map
-	// while walking in a horizontal line.
-	// --------------------------------------------------
-	void Room::ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos)
-	{
-		switch (hitboxPointIndex & 1)
-		{
-		case 0:
-			entity->SetPosition(entity->GetPosition()[0] + (64 - ((hitboxPointXPos & 63) - 1)), entity->GetPosition()[1]);
-			break;
-
-		case 1:
-			entity->SetPosition(entity->GetPosition()[0] - ((hitboxPointXPos & 63) + 1), entity->GetPosition()[1]);
-			break;
 		}
 	}
 

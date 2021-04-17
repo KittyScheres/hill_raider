@@ -53,7 +53,7 @@ namespace HillRaider
 	// This method is used to get the direction an entity
 	// is facing.
 	// --------------------------------------------------
-	Entity::MovementDirection Entity::GetDirection() {
+	Direction Entity::GetDirection() {
 		return direction;
 	}
 
@@ -118,25 +118,25 @@ namespace HillRaider
 
 		switch (direction)
 		{
-		case Entity::MovementDirection::UP:
+		case Direction::UP:
 			if ((nX > -0.75f && nX < 0.75f) && nY < 0.f) {
 				y += distanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			if ((nY > -0.75f && nY < 0.75f) && nX > 0.f) {
 				x -= distanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::DOWN:
+		case Direction::DOWN:
 			if ((nX > -0.75f && nX < 0.75f) && nY > 0.f) {
 				y -= distanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::LEFT:
+		case Direction::LEFT:
 			if ((nY > -0.75f && nY < 0.75f) && nX < 0.f) {
 				x += distanceMoved;
 			}
@@ -144,5 +144,61 @@ namespace HillRaider
 		}
 
 		this->SetPosition(x, y);
+	}
+
+	// --------------------------------------------------
+	// This method is used to check the tile map collision
+	// for an entity.
+	// --------------------------------------------------
+	void Entity::CheckTileMapCollision(short& _hitboxPoint, char& _collisionChar, TileMap* tileMap) {
+		std::vector<std::vector<int>> hitboxPoints = hitbox->GetBoxPoints();
+		char collisionChar = ' ';
+		short index = 0;
+
+		for (int i = 0; i < 4; i++) {
+			if (tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]) != ' ' && collisionChar != 'x') {
+				_collisionChar = tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]);
+				_hitboxPoint = i;
+			}
+		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to push an entity away from
+	// tile map obsticals the entity has collided with 
+	// while moving in a vertical direction.
+	// --------------------------------------------------
+	void Entity::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
+	{
+		switch (hitboxPointIndex & 2)
+		{
+		case 0:
+			SetPosition(x, y + (64 - (hitboxPointYPos & 63)));
+			break;
+
+		case 2:
+			SetPosition(x, y - (hitboxPointYPos & 63));
+			break;
+		}
+
+	}
+
+	// --------------------------------------------------
+	// This method is used to push an entity away from
+	// tile map obsticals the entity has collided with 
+	// while moving in a horizontal direction.
+	// --------------------------------------------------
+	void Entity::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)
+	{
+		switch (hitboxPointIndex & 1)
+		{
+		case 0:
+			SetPosition(x + (64 - (hitboxPointXPos & 63)), y);
+			break;
+
+		case 1:
+			SetPosition(x - (hitboxPointXPos & 63), y);
+			break;
+		}
 	}
 }

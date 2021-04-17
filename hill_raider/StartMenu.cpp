@@ -43,7 +43,7 @@ namespace HillRaider
 			switch (selectedMenuItem)
 			{
 			case 0:
-				callback->SetNextState(new GamePlay(callback));
+				callback->SetNextState(new Gameplay(callback));
 				break;
 
 			case 1:

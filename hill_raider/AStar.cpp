@@ -136,22 +136,22 @@ namespace HillRaider
 		for (Entity* entity : *entitiesListReference) {
 			if (entity != pathFindingEntity) {
 				switch (entity->GetDirection()) {
-				case Entity::MovementDirection::UP:
+				case Direction::UP:
 					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] + entity->GetHitbox()->GetHalfHeight()));
 					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()];
 					break;
 
-				case Entity::MovementDirection::RIGHT:
+				case Direction::RIGHT:
 					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] - entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
 					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1];
 					break;
 
-				case Entity::MovementDirection::DOWN:
+				case Direction::DOWN:
 					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] - entity->GetHitbox()->GetHalfHeight()));
 					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()];
 					break;
 
-				case Entity::MovementDirection::LEFT:
+				case Direction::LEFT:
 					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] + entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
 					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1];
 					break;

@@ -43,7 +43,7 @@ namespace HillRaider
 				break;
 			
 			case 1:
-				callback->SetNextState(new GamePlay(callback));
+				callback->SetNextState(new Gameplay(callback));
 				break;
 			}
 		}

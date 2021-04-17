@@ -29,9 +29,8 @@ namespace HillRaider
 		Room(TileMap* iTilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups);
 		void SetDoorBlockadePositionVector();
 		void Update(float deltaTime);
+		void LateUpdate(Player* player);
 		void Render(Tmpl8::Surface* screen);
-		void RoomCheckEntityCollision(Player* player);
-		void RoomCheckTileMapCollsion();
 		TileMap* GetTileMap();
 		std::list<Entity*>* GetEnemyListReference();
 		void RemoveEntity(Entity* entity);
@@ -39,9 +38,6 @@ namespace HillRaider
 		~Room();
 
 	private:
-		void CheckTileMapCollision(Entity* entity);
-		void ApplyVerticalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointYPos);
-		void ApplyHorizontalTileMapCollision(Entity* entity, int hitboxPointIndex, int hitboxPointXPos);
 		std::list<Entity*> GetPLayerCollisionCheckList();
 		void SpawnFoodPointsPickupEntity(std::vector<int> posistion);
 	};

@@ -2,6 +2,7 @@
 
 #include "State.h"
 #include "GameCallback.h"
+#include "GamePlayCallback.h"
 #include "Lose.h"
 #include "Win.h"
 #include "InputManager.h"
@@ -19,7 +20,7 @@ namespace HillRaider
 	// The gameplay state class is used to initialize and keep
 	// track off everything for the gameplay of the game.
 	// --------------------------------------------------
-	class GamePlay: public State
+	class Gameplay: public State, public GameplayCallback
 	{
 	private:
 		GameCallback* callback = nullptr;
@@ -31,17 +32,14 @@ namespace HillRaider
 		bool gamePaused = false;
 
 	public:
-		GamePlay(GameCallback* iCallback);
+		Gameplay(GameCallback* iCallback);
 		void SetupSingletons();
 		void Update(float deltaTime);
 		void LateUpdate();
 		void Render(Tmpl8::Surface* screen);
-		~GamePlay();
-
-	private:
-		void HealPlayer();
-		void CheckTileMapCollision(std::vector<std::vector<int>> hitbox);
-		void ApplyVerticalTileMapCollision(int hitboxPointIndex , int hitboxPointYPos);
-		void ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos);
+		bool HasRoomBeenCleared();
+		void MovePlayerToNextRoom(Direction direction);
+		void PlayerHasWonTheGame();
+		~Gameplay();
 	};
 }
