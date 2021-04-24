@@ -168,22 +168,22 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::SetPosition(int x, int y)
 	{
-		x = x;
-		y = y;
+		m_X = x;
+		m_Y = y;
 		m_Hitbox->SetPosition(x, y);
 
 		switch (m_Direction)
 		{
 		case Direction::UP:
 		case Direction::DOWN:
-			m_AttackHitbox->SetPosition(x, y + m_AttackHitboxOffset);
-			m_LineScan->SetPosition(x, y + m_LineScanOffset);
+			m_AttackHitbox->SetPosition(m_X, y + m_AttackHitboxOffset);
+			m_LineScan->SetPosition(m_X, y + m_LineScanOffset);
 			break;
 
 		case Direction::LEFT:
 		case Direction::RIGHT:
-			m_AttackHitbox->SetPosition(x + m_AttackHitboxOffset, y);
-			m_LineScan->SetPosition(x + m_LineScanOffset, y);
+			m_AttackHitbox->SetPosition(m_X + m_AttackHitboxOffset, m_Y);
+			m_LineScan->SetPosition(m_X + m_LineScanOffset, m_Y);
 			break;
 		}
 	}
@@ -349,22 +349,22 @@ namespace HillRaider
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 			m_Y -= m_DistanceMoved;
 			break;
 			
 		case Direction::RIGHT:
-			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 			m_X += m_DistanceMoved;
 			break;
 
 		case Direction::DOWN:
-			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 			m_Y += m_DistanceMoved;
 			break;
 
 		case Direction::LEFT:
-			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 			m_X -= m_DistanceMoved;
 			break;
 		}
@@ -382,22 +382,22 @@ namespace HillRaider
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
 			m_Y -= m_DistanceMoved;
 			break;
 
 		case Direction::RIGHT:
-			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
 			m_X += m_DistanceMoved;
 			break;
 
 		case Direction::DOWN:
-			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
 			m_Y += m_DistanceMoved;
 			break;
 
 		case Direction::LEFT:
-			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
 			m_X -= m_DistanceMoved;
 			break;
 		}

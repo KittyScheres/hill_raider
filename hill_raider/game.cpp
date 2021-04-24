@@ -12,7 +12,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		//ShowWindow(GetConsoleWindow(), SW_HIDE);
+		ShowWindow(GetConsoleWindow(), SW_HIDE);
 		m_CurrentState = new HillRaider::StartMenu(this);
 		m_InputManager = HillRaider::InputManager::GetInstance();
 		srand((int)time(NULL));

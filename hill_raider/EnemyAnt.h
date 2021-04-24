@@ -33,7 +33,7 @@ namespace HillRaider
 		Animation* m_BodyAnimation = nullptr;
 		Hitbox* m_AttackHitbox = nullptr;
 		Hitbox* m_LineScan = nullptr;
-		float m_Speed = 160.f;
+		float m_Speed = 170.f;
 		int m_RagdollHealth = 2;
 		short m_AttackHitboxOffset = (m_Height / 2) + (c_AttackHitboxHeight / 2);
 		short m_LineScanOffset = (m_Height / 2) + (c_LineScanHeight / 2);

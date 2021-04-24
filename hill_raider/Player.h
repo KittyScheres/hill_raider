@@ -31,7 +31,7 @@ namespace HillRaider
 		Animation* m_LegsAnimation = nullptr;
 		Animation* m_BodyAnimation = nullptr;
 		Hitbox* m_AttackHitbox = nullptr;
-		float m_Speed = 260.f;
+		float m_Speed = 220.f;
 		short m_AttackHitboxOffset = (m_Height / 2) + (c_AttackHitboxHeight / 2);
 		bool m_LungeFlag = false;
 		bool m_LungeCooldownFlag = false;

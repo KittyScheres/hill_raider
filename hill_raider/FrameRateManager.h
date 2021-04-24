@@ -1,6 +1,6 @@
 #pragma once
 
-#define FPS_GOAL 70
+#define FPS_GOAL 60
 
 #include "SDL.h"
 #include "template.h"
@@ -14,7 +14,7 @@ namespace HillRaider
 	class FrameRateManager
 	{
 	private:
-		const int c_MillisecondsPerFrame = 1000 / FPS_GOAL;
+		const float c_MillisecondsPerFrame = 1000 / FPS_GOAL;
 		Tmpl8::timer m_FrameCapTimer;
 
 	public:

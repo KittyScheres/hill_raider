@@ -152,11 +152,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Entity::CheckTileMapCollision(short& _hitboxPoint, char& _collisionChar, TileMap* tileMap) {
 		std::vector<std::vector<int>> hitboxPoints = m_Hitbox->GetBoxPoints();
-		char collisionChar = ' ';
-		short index = 0;
 
 		for (int i = 0; i < 4; i++) {
-			if (tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]) != ' ' && collisionChar != 'x') {
+			if (tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]) != ' ' && _collisionChar != 'x') {
 				_collisionChar = tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]);
 				_hitboxPoint = i;
 			}
