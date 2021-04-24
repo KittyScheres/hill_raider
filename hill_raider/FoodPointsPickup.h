@@ -13,15 +13,15 @@ namespace HillRaider
 	class FoodPointsPickup: public Entity
 	{
 	private:
-		RoomCallback* callback = nullptr;
-		Image* foodPickupTexture = nullptr;
-		short points = 0;
+		RoomCallback* m_RoomCallback = nullptr;
+		Image* m_FoodPickupTexture = nullptr;
+		short m_Points = 0;
 
 	public:
-		FoodPointsPickup(short iPoints, int iX, int iY);
+		FoodPointsPickup(short points, int x, int y);
 		void Render(Tmpl8::Surface* screen);
-		void SetRoomCallback(RoomCallback* iCallback);
-		void SetPosition(int iX, int iY);
+		void SetRoomCallback(RoomCallback* callback);
+		void SetPosition(int x, int y);
 		void RemoveFoodPointsPickup();
 		short GetPoints();
 		~FoodPointsPickup();

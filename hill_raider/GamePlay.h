@@ -23,16 +23,16 @@ namespace HillRaider
 	class Gameplay: public State, public GameplayCallback
 	{
 	private:
-		GameCallback* callback = nullptr;
-		InputManager* inputManager = nullptr;
-		PauseScreen* pauseScreen = nullptr;
-		Ui* ui = nullptr;
-		Player* player = nullptr;
-		Floor* floor = nullptr;
-		bool gamePaused = false;
+		GameCallback* m_GameCallback = nullptr;
+		InputManager* m_InputManager = nullptr;
+		PauseScreen* m_PauseScreen = nullptr;
+		Ui* m_Ui = nullptr;
+		Player* m_Player = nullptr;
+		Floor* m_Floor = nullptr;
+		bool m_GamePaused = false;
 
 	public:
-		Gameplay(GameCallback* iCallback);
+		Gameplay(GameCallback* callback);
 		void SetupSingletons();
 		void Update(float deltaTime);
 		void LateUpdate();

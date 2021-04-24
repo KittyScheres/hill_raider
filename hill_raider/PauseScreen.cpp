@@ -8,17 +8,17 @@ namespace HillRaider
 	// This constructor is used to initialize the components
 	// for the pause screen.
 	// --------------------------------------------------
-	PauseScreen::PauseScreen(GameCallback* iCallback)
+	PauseScreen::PauseScreen(GameCallback* callback)
 	{
-		inputManager = InputManager::GetInstance();
-		callback = iCallback;
+		m_InputManager = InputManager::GetInstance();
+		m_GameCallback = callback;
 
-		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, buttonsYPos[0]);
+		m_ButtonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, m_ButtonsYPos[0]);
 
-		backToMenuButtonText = new Image("assets/text/buttons/back_to_menu_button_text.png", 5 * 64, buttonsYPos[0]);
-		restartGameButtonText = new Image("assets/text/buttons/restart_button_text.png", 5 * 64, buttonsYPos[1]);
+		m_BackToMenuButtonText = new Image("assets/text/buttons/back_to_menu_button_text.png", 5 * 64, m_ButtonsYPos[0]);
+		m_RestartGameButtonText = new Image("assets/text/buttons/restart_button_text.png", 5 * 64, m_ButtonsYPos[1]);
 
-		buttonHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, buttonsYPos[0]);
+		m_ButtonHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, m_ButtonsYPos[0]);
 	}
 
 	// --------------------------------------------------
@@ -27,7 +27,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void PauseScreen::GamePause()
 	{
-		selectedButton = 0;
+		m_SelectedButton = 0;
 	}
 
 	// --------------------------------------------------
@@ -36,23 +36,23 @@ namespace HillRaider
 	// --------------------------------------------------
 	void PauseScreen::Update(float deltaTime)
 	{
-		if (inputManager->KeyPressed(InputManager::Keys::UP) && selectedButton > 0) {
-			--selectedButton;
+		if (m_InputManager->KeyPressed(InputManager::Keys::UP) && m_SelectedButton > 0) {
+			--m_SelectedButton;
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::DOWN) && selectedButton < 1) {
-			++selectedButton;
+		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN) && m_SelectedButton < 1) {
+			++m_SelectedButton;
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
-			switch (selectedButton)
+		if (m_InputManager->KeyPressed(InputManager::Keys::ENTER)) {
+			switch (m_SelectedButton)
 			{
 			case 0:
-				callback->SetNextState(new StartMenu(callback));
+				m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 				break;
 
 			case 1:
-				callback->SetNextState(new Gameplay(callback));
+				m_GameCallback->SetNextState(new Gameplay(m_GameCallback));
 				break;
 			}
 		}
@@ -65,15 +65,15 @@ namespace HillRaider
 	void PauseScreen::Render(Tmpl8::Surface* screen)
 	{
 		for (short i = 0; i < 2; i++) {
-			buttonBackground->SetPosition(5 * 64, buttonsYPos[i]);
-			buttonBackground->DrawImage(screen);
+			m_ButtonBackground->SetPosition(5 * 64, m_ButtonsYPos[i]);
+			m_ButtonBackground->DrawImage(screen);
 		}
 
-		buttonHighlight->SetPosition(5 * 64, buttonsYPos[selectedButton]);
-		buttonHighlight->DrawImage(screen);
+		m_ButtonHighlight->SetPosition(5 * 64, m_ButtonsYPos[m_SelectedButton]);
+		m_ButtonHighlight->DrawImage(screen);
 
-		backToMenuButtonText->DrawImage(screen);
-		restartGameButtonText->DrawImage(screen);
+		m_BackToMenuButtonText->DrawImage(screen);
+		m_RestartGameButtonText->DrawImage(screen);
 	}
 	
 	// --------------------------------------------------
@@ -82,24 +82,24 @@ namespace HillRaider
 	// --------------------------------------------------
 	PauseScreen::~PauseScreen()
 	{
-		if (buttonBackground != nullptr) {
-			delete buttonBackground;
-			buttonBackground = nullptr;
+		if (m_ButtonBackground != nullptr) {
+			delete m_ButtonBackground;
+			m_ButtonBackground = nullptr;
 		}
 
-		if (backToMenuButtonText != nullptr) {
-			delete backToMenuButtonText;
-			backToMenuButtonText = nullptr;
+		if (m_BackToMenuButtonText != nullptr) {
+			delete m_BackToMenuButtonText;
+			m_BackToMenuButtonText = nullptr;
 		}
 
-		if (restartGameButtonText != nullptr) {
-			delete restartGameButtonText;
-			restartGameButtonText = nullptr;
+		if (m_RestartGameButtonText != nullptr) {
+			delete m_RestartGameButtonText;
+			m_RestartGameButtonText = nullptr;
 		}
 
-		if (buttonHighlight != nullptr) {
-			delete buttonHighlight;
-			buttonHighlight = nullptr;
+		if (m_ButtonHighlight != nullptr) {
+			delete m_ButtonHighlight;
+			m_ButtonHighlight = nullptr;
 		}
 	}
 }

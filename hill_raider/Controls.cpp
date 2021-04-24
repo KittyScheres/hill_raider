@@ -6,15 +6,15 @@ namespace HillRaider
 	// This constructor is used to initialize the components
 	// of the controls screen.
 	// ------------------------------------------------------------
-	Controls::Controls(GameCallback* iCallback)
+	Controls::Controls(GameCallback* callback)
 	{
-		callback = iCallback;
+		m_GameCallback = callback;
 
-		background = new Image("assets/ui/background.png", 0, 0);
-		returnToMenu = new Image("assets/text/return_to_menu_text.png", 16, 32);
-		keyBindings = new Image("assets/text/key_bindings_text.png", 16, 125);
-		lungeAttackExplanation = new Image("assets/text/lunge_attack_explanation_text.png", 64 * 6, 32);
-		healExplanation = new Image("assets/text/heal_explanation_text.png", 64 * 6, 32 + (64 * 5));
+		m_Background = new Image("assets/ui/background.png", 0, 0);
+		m_ReturnToMenu = new Image("assets/text/return_to_menu_text.png", 16, 32);
+		m_KeyBindings = new Image("assets/text/key_bindings_text.png", 16, 125);
+		m_LungeAttackExplanation = new Image("assets/text/lunge_attack_explanation_text.png", 64 * 6, 32);
+		m_HealExplanation = new Image("assets/text/heal_explanation_text.png", 64 * 6, 32 + (64 * 5));
 	}
 
 	// ------------------------------------------------------------
@@ -24,7 +24,7 @@ namespace HillRaider
 	void Controls::Update(float deltaTime)
 	{
 		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ESCAPE)) {
-			callback->SetNextState(new StartMenu(callback));
+			m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 		}
 	}
 
@@ -34,11 +34,11 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void Controls::Render(Tmpl8::Surface* screen)
 	{
-		background->DrawImage(screen);
-		returnToMenu->DrawImage(screen);
-		keyBindings->DrawImage(screen);
-		lungeAttackExplanation->DrawImage(screen);
-		healExplanation->DrawImage(screen);
+		m_Background->DrawImage(screen);
+		m_ReturnToMenu->DrawImage(screen);
+		m_KeyBindings->DrawImage(screen);
+		m_LungeAttackExplanation->DrawImage(screen);
+		m_HealExplanation->DrawImage(screen);
 	}
 	
 	// ------------------------------------------------------------
@@ -47,31 +47,31 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	Controls::~Controls()
 	{
-		if (background != nullptr) {
-			delete background;
-			background = nullptr;
+		if (m_Background != nullptr) {
+			delete m_Background;
+			m_Background = nullptr;
 		}
 
-		if (returnToMenu != nullptr) {
-			delete returnToMenu;
-			returnToMenu = nullptr;
+		if (m_ReturnToMenu != nullptr) {
+			delete m_ReturnToMenu;
+			m_ReturnToMenu = nullptr;
 		}
 
-		if (keyBindings != nullptr) {
-			delete keyBindings;
-			keyBindings = nullptr;
+		if (m_KeyBindings != nullptr) {
+			delete m_KeyBindings;
+			m_KeyBindings = nullptr;
 		}
 
-		if (lungeAttackExplanation != nullptr) {
-			delete lungeAttackExplanation;
-			lungeAttackExplanation = nullptr;
+		if (m_LungeAttackExplanation != nullptr) {
+			delete m_LungeAttackExplanation;
+			m_LungeAttackExplanation = nullptr;
 		}
 
-		if (healExplanation != nullptr) {
-			delete healExplanation;
-			healExplanation = nullptr;
+		if (m_HealExplanation != nullptr) {
+			delete m_HealExplanation;
+			m_HealExplanation = nullptr;
 		}
 
-		callback = nullptr;
+		m_GameCallback = nullptr;
 	}
 }

@@ -17,20 +17,20 @@ namespace HillRaider
 	class Entity
 	{
 	protected:
-		int x = 0;
-		int y = 0;
-		int width = 0;
-		int height = 0;
-		Direction direction = Direction::UP;
-		Hitbox* hitbox = nullptr;
-		int distanceMoved = 0;
+		int m_X = 0;
+		int m_Y = 0;
+		int m_Width = 0;
+		int m_Height = 0;
+		Direction m_Direction = Direction::UP;
+		Hitbox* m_Hitbox = nullptr;
+		int m_DistanceMoved = 0;
 
 	public:
 		virtual void Update(float deltaTime) {}
 		virtual void LateUpdate(TileMap* tileMap, std::list<Entity*> entityList) {}
 		virtual void Render(Tmpl8::Surface* screen) {}
 		virtual void TakeDamage() {}
-		virtual void SetPosition(int iX, int iY);
+		virtual void SetPosition(int x, int y);
 		std::vector<int> GetPosition();
 		int GetWidth();
 		int GetHeight();
@@ -39,7 +39,7 @@ namespace HillRaider
 		virtual ~Entity();
 
 	protected:
-		Entity(int iX, int iY, int iWidth, int iHeight);
+		Entity(int x, int y, int width, int height);
 		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
 		void ApplyEntityCollision(Entity* otherEntity);
 		void CheckTileMapCollision(short& _hitboxPoint, char& _collisionChar, TileMap* tileMap);

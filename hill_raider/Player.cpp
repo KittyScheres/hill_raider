@@ -6,12 +6,12 @@ namespace HillRaider
 	// This constructor is used to setup the properties 
 	// for a player entity.
 	// --------------------------------------------------
-	Player::Player(int iX, int iY): Entity(iX, iY, 28, 62)
+	Player::Player(int x, int y): Entity(x, y, 28, 62)
 	{
-		inputManager = InputManager::GetInstance();
-		legsAnimation = new Animation("assets/entities/black_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
-		bodyAnimation = new Animation("assets/entities/black_ant_body.png", 4, 4, 75.f, iX, iY, false);
-		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
+		m_InputManager = InputManager::GetInstance();
+		m_LegsAnimation = new Animation("assets/entities/black_ant_legs.png", 4, 4, c_TimePerframeWalkingAnimation, x, y, true);
+		m_BodyAnimation = new Animation("assets/entities/black_ant_body.png", 4, 4, 75.f, x, y, false);
+		m_AttackHitbox = new Hitbox(m_X, m_Y + m_AttackHitboxOffset, c_AttackHitboxWidth, c_AttackHitboxHeight);
 	}
 
 	// --------------------------------------------------
@@ -19,51 +19,51 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
-		if (inputManager->KeyPressed(InputManager::Keys::E)) {
+		if (m_InputManager->KeyPressed(InputManager::Keys::E)) {
 			Heal();
 		}
 
-		if (!lungeFlag) {
+		if (!m_LungeFlag) {
 			CheckForMovementKeyPressed();
 			CheckForMovementKeyLetGo();
 			MovePlayer(deltaTime);
 			
-			if (!lungeCooldownFlag) {
-				if (inputManager->KeyPressed(InputManager::Keys::SPACE)) {
-					legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
-					lungeFlag = true;
-					lungeCooldownFlag = true;
+			if (!m_LungeCooldownFlag) {
+				if (m_InputManager->KeyPressed(InputManager::Keys::SPACE)) {
+					m_LegsAnimation->SetTimePerFrame(c_LungeTimePerFrameWalkingAnimation);
+					m_LungeFlag = true;
+					m_LungeCooldownFlag = true;
 				}
 			}
 			else {
 				//attack cooldown timer
-				if (lungeCooldownTimer >= lungeCooldown) {
-					lungeCooldownFlag = false;
-					lungeCooldownTimer = 0.f;
-					bodyAnimation->SetCurrentXFrame(0);
+				if (m_LungeCooldownTimer >= c_LungeCooldown) {
+					m_LungeCooldownFlag = false;
+					m_LungeCooldownTimer = 0.f;
+					m_BodyAnimation->SetCurrentXFrame(0);
 				}
 				else {
-					lungeCooldownTimer += deltaTime;
-					bodyAnimation->UpdateAnimation(deltaTime);
+					m_LungeCooldownTimer += deltaTime;
+					m_BodyAnimation->UpdateAnimation(deltaTime);
 				}
 			}
 		}
 		else {
 			//is attacking
-			legsAnimation->UpdateAnimation(deltaTime);
+			m_LegsAnimation->UpdateAnimation(deltaTime);
 			Lunge(deltaTime);
 
-			if (lungeDurationTimer >= lungeDuration) {
-				legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
-				lungeFlag = false;
-				lungeDurationTimer = 0.f;
+			if (m_LungeDurationTimer >= c_LungeDuration) {
+				m_LegsAnimation->SetTimePerFrame(c_TimePerframeWalkingAnimation);
+				m_LungeFlag = false;
+				m_LungeDurationTimer = 0.f;
 			}
 			else {
-				lungeDurationTimer += deltaTime;
+				m_LungeDurationTimer += deltaTime;
 			}
 		}
 
-		SetPosition(x, y);
+		SetPosition(m_X, m_Y);
 	}
 	
 	// --------------------------------------------------
@@ -79,31 +79,31 @@ namespace HillRaider
 
 			//entity on entity collision
 			if (foodPointPickup == nullptr) {
-				if (TestBoxCollision(hitbox, entity)) {
+				if (TestBoxCollision(m_Hitbox, entity)) {
 					ApplyEntityCollision(entity);
-					SetPosition(x, y);
+					SetPosition(m_X, m_Y);
 				}
 			}
 
 			//entity on attack hitbox collision
-			if (lungeFlag && foodPointPickup == nullptr) {
-				if (TestBoxCollision(attackHitbox, entity)) {
+			if (m_LungeFlag && foodPointPickup == nullptr) {
+				if (TestBoxCollision(m_AttackHitbox, entity)) {
 					EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
 					if (enemyAnt != nullptr) {
 						enemyAnt->TakeDamage();
-						lungeFlag = false;
-						lungeDurationTimer = 0.f;
+						m_LungeFlag = false;
+						m_LungeDurationTimer = 0.f;
 					}
 				}
 			}
 
 			//entity on food points pickup entity collision
 			if (foodPointPickup != nullptr) {
-				if (TestBoxCollision(hitbox, entity)) {
+				if (TestBoxCollision(m_Hitbox, entity)) {
 					GameData* gameDataInstance = GameData::GetInstance();
-					gameDataInstance->playerPoints += foodPointPickup->GetPoints();
-					if (gameDataInstance->playerPoints > gameDataInstance->MAX_POINTS) {
-						gameDataInstance->playerPoints -= gameDataInstance->playerPoints % gameDataInstance->MAX_POINTS;
+					gameDataInstance->m_PlayerPoints += foodPointPickup->GetPoints();
+					if (gameDataInstance->m_PlayerPoints > gameDataInstance->c_s_MaxPoints) {
+						gameDataInstance->m_PlayerPoints -= gameDataInstance->m_PlayerPoints % gameDataInstance->c_s_MaxPoints;
 					}
 					foodPointPickup->RemoveFoodPointsPickup();
 				}
@@ -117,11 +117,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Render(Tmpl8::Surface* screen)
 	{
-		legsAnimation->SetPosition(x - (bodyAnimation->GetWidth() / 2), y - (bodyAnimation->GetHeight() / 2));
-		bodyAnimation->SetPosition(x - (bodyAnimation->GetWidth() / 2), y - (bodyAnimation->GetHeight() / 2));
+		m_LegsAnimation->SetPosition(m_X - (m_BodyAnimation->GetWidth() / 2), m_Y - (m_BodyAnimation->GetHeight() / 2));
+		m_BodyAnimation->SetPosition(m_X - (m_BodyAnimation->GetWidth() / 2), m_Y - (m_BodyAnimation->GetHeight() / 2));
 		
-		legsAnimation->DrawAnimation(screen);
-		bodyAnimation->DrawAnimation(screen);
+		m_LegsAnimation->DrawAnimation(screen);
+		m_BodyAnimation->DrawAnimation(screen);
 	}
 
 	// --------------------------------------------------
@@ -129,7 +129,7 @@ namespace HillRaider
 	// damage.
 	// --------------------------------------------------
 	void Player::TakeDamage() {
-		--GameData::GetInstance()->playerHealth;
+		--GameData::GetInstance()->m_PlayerHealth;
 	}
 
 	// --------------------------------------------------
@@ -137,28 +137,28 @@ namespace HillRaider
 	// for the player.
 	// --------------------------------------------------
 	void Player::SetGamePlayCallback(GameplayCallback* callback) {
-		gameplayCallback = callback;
+		m_GameplayCallback = callback;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the position of a player
 	// entity.
 	// --------------------------------------------------
-	void Player::SetPosition(int iX, int iY) {
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
+	void Player::SetPosition(int x, int y) {
+		m_X = x;
+		m_Y = y;
+		m_Hitbox->SetPosition(m_X, m_Y);
 
-		switch (direction)
+		switch (m_Direction)
 		{
 		case Direction::UP :
 		case Direction::DOWN :
-			attackHitbox->SetPosition(x, y + attackHitboxOffset);
+			m_AttackHitbox->SetPosition(m_X, m_Y + m_AttackHitboxOffset);
 			break;
 
 		case Direction::LEFT :
 		case Direction::RIGHT :
-			attackHitbox->SetPosition(x + attackHitboxOffset, y);
+			m_AttackHitbox->SetPosition(m_X + m_AttackHitboxOffset, m_Y);
 			break;
 		}
 	}
@@ -167,44 +167,44 @@ namespace HillRaider
 	// This method is used to set the direction a player
 	// entity is facing.
 	// --------------------------------------------------
-	void Player::SetDirection(Direction iDirection) {
-		direction = iDirection;
+	void Player::SetDirection(Direction direction) {
+		m_Direction = direction;
 
-		legsAnimation->SetCurrentYFrame((int)direction);
-		bodyAnimation->SetCurrentYFrame((int)direction);
+		m_LegsAnimation->SetCurrentYFrame((int)m_Direction);
+		m_BodyAnimation->SetCurrentYFrame((int)m_Direction);
 
-		switch (direction)
+		switch (m_Direction)
 		{
 		case Direction::UP:
-			attackHitboxOffset = -std::abs(attackHitboxOffset);
-			hitbox->SetWidth(width);
-			hitbox->SetHeight(height);
-			attackHitbox->SetWidth(attackHitboxWidth);
-			attackHitbox->SetHeight(attackHitboxHeight);
+			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
+			m_Hitbox->SetWidth(m_Width);
+			m_Hitbox->SetHeight(m_Height);
+			m_AttackHitbox->SetWidth(c_AttackHitboxWidth);
+			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
 			break;
 		
 		case Direction::RIGHT:
-			attackHitboxOffset = std::abs(attackHitboxOffset);
-			hitbox->SetWidth(height);
-			hitbox->SetHeight(width);
-			attackHitbox->SetWidth(attackHitboxHeight);
-			attackHitbox->SetHeight(attackHitboxWidth);
+			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
+			m_Hitbox->SetWidth(m_Height);
+			m_Hitbox->SetHeight(m_Width);
+			m_AttackHitbox->SetWidth(c_AttackHitboxHeight);
+			m_AttackHitbox->SetHeight(c_AttackHitboxWidth);
 			break;
 
 		case Direction::DOWN:
-			attackHitboxOffset = std::abs(attackHitboxOffset);
-			hitbox->SetWidth(width);
-			hitbox->SetHeight(height);
-			attackHitbox->SetWidth(attackHitboxWidth);
-			attackHitbox->SetHeight(attackHitboxHeight);
+			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
+			m_Hitbox->SetWidth(m_Width);
+			m_Hitbox->SetHeight(m_Height);
+			m_AttackHitbox->SetWidth(c_AttackHitboxWidth);
+			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
 			break;
 
 		case Direction::LEFT:
-			attackHitboxOffset = -std::abs(attackHitboxOffset);
-			hitbox->SetWidth(height);
-			hitbox->SetHeight(width);
-			attackHitbox->SetWidth(attackHitboxHeight);
-			attackHitbox->SetHeight(attackHitboxWidth);
+			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
+			m_Hitbox->SetWidth(m_Height);
+			m_Hitbox->SetHeight(m_Width);
+			m_AttackHitbox->SetWidth(c_AttackHitboxHeight);
+			m_AttackHitbox->SetHeight(c_AttackHitboxWidth);
 			break;
 		}
 	}
@@ -214,7 +214,7 @@ namespace HillRaider
 	// entity.
 	// --------------------------------------------------
 	Direction Player::GetDirection() {
-		return direction;
+		return m_Direction;
 	}
 
 	// --------------------------------------------------
@@ -223,7 +223,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Animation* Player::GetSprite()
 	{
-		return bodyAnimation;
+		return m_BodyAnimation;
 	}
 
 	// --------------------------------------------------
@@ -232,23 +232,23 @@ namespace HillRaider
 	// --------------------------------------------------
 	Player::~Player()
 	{
-		if (legsAnimation != nullptr) {
-			delete legsAnimation;
-			legsAnimation = nullptr;
+		if (m_LegsAnimation != nullptr) {
+			delete m_LegsAnimation;
+			m_LegsAnimation = nullptr;
 		}
 
-		if (bodyAnimation != nullptr) {
-			delete bodyAnimation;
-			bodyAnimation = nullptr;
+		if (m_BodyAnimation != nullptr) {
+			delete m_BodyAnimation;
+			m_BodyAnimation = nullptr;
 		}
 
-		if (attackHitbox != nullptr) {
-			delete attackHitbox;
-			attackHitbox = nullptr;
+		if (m_AttackHitbox != nullptr) {
+			delete m_AttackHitbox;
+			m_AttackHitbox = nullptr;
 		}
 
-		gameplayCallback = nullptr;
-		inputManager = nullptr;
+		m_GameplayCallback = nullptr;
+		m_InputManager = nullptr;
 	}
 
 	// --------------------------------------------------
@@ -257,19 +257,19 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::CheckForMovementKeyPressed()
 	{
-		if (inputManager->KeyPressed(InputManager::Keys::UP)) {
+		if (m_InputManager->KeyPressed(InputManager::Keys::UP)) {
 			SetDirection(Direction::UP);
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::RIGHT)) {
+		if (m_InputManager->KeyPressed(InputManager::Keys::RIGHT)) {
 			SetDirection(Direction::RIGHT);
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::DOWN)) {
+		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN)) {
 			SetDirection(Direction::DOWN);
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::LEFT)) {
+		if (m_InputManager->KeyPressed(InputManager::Keys::LEFT)) {
 			SetDirection(Direction::LEFT);
 		}
 	}
@@ -280,60 +280,60 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::CheckForMovementKeyLetGo()
 	{
-		switch (direction)
+		switch (m_Direction)
 		{
 		case Direction::UP:
-			if (inputManager->KeyLetGo(InputManager::Keys::UP)) {
-				if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
+			if (m_InputManager->KeyLetGo(InputManager::Keys::UP)) {
+				if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
 					SetDirection(Direction::RIGHT);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
 					SetDirection(Direction::DOWN);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
 			}
 			break;
 
 		case Direction::RIGHT:
-			if (inputManager->KeyLetGo(InputManager::Keys::RIGHT)) {
-				if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
+			if (m_InputManager->KeyLetGo(InputManager::Keys::RIGHT)) {
+				if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
 					SetDirection(Direction::DOWN);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::UP)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
 					SetDirection(Direction::UP);
 				}
 			}
 			break;
 
 		case Direction::DOWN:
-			if (inputManager->KeyLetGo(InputManager::Keys::DOWN)) {
-				if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
+			if (m_InputManager->KeyLetGo(InputManager::Keys::DOWN)) {
+				if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::UP)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
 					SetDirection(Direction::UP);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
+				else if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
 					SetDirection(Direction::RIGHT);
 				}
 			}
 			break;
 
 		case Direction::LEFT:
-			if (inputManager->KeyLetGo(InputManager::Keys::LEFT)) {
-				if (inputManager->KeyDown(InputManager::Keys::UP)) {
-					SetDirection(direction = Direction::UP);
+			if (m_InputManager->KeyLetGo(InputManager::Keys::LEFT)) {
+				if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+					SetDirection(m_Direction = Direction::UP);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-					SetDirection(direction = Direction::RIGHT);
+				else if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+					SetDirection(m_Direction = Direction::RIGHT);
 				}
-				else if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-					SetDirection(direction = Direction::DOWN);
+				else if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+					SetDirection(m_Direction = Direction::DOWN);
 				}
 			}
 			break;
@@ -346,39 +346,39 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::MovePlayer(float deltaTime)
 	{
-		distanceMoved = 0;
+		m_DistanceMoved = 0;
 
-		switch (direction)
+		switch (m_Direction)
 		{
 		case Direction::UP:
-			if (inputManager->KeyDown(InputManager::Keys::UP)) {
-				legsAnimation->UpdateAnimation(deltaTime);
-				distanceMoved = (int)(speed * (deltaTime / 1000));
-				y -= distanceMoved;
+			if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+				m_LegsAnimation->UpdateAnimation(deltaTime);
+				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+				m_Y -= m_DistanceMoved;
 			}
 			break;
 
 		case Direction::RIGHT:
-			if (inputManager->KeyDown(InputManager::Keys::RIGHT)) {
-				legsAnimation->UpdateAnimation(deltaTime);
-				distanceMoved = (int)(speed * (deltaTime / 1000));
-				x += distanceMoved;
+			if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+				m_LegsAnimation->UpdateAnimation(deltaTime);
+				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+				m_X += m_DistanceMoved;
 			}
 			break;
 
 		case Direction::DOWN:
-			if (inputManager->KeyDown(InputManager::Keys::DOWN)) {
-				legsAnimation->UpdateAnimation(deltaTime);
-				distanceMoved = (int)(speed * (deltaTime / 1000));
-				y += distanceMoved;
+			if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+				m_LegsAnimation->UpdateAnimation(deltaTime);
+				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+				m_Y += m_DistanceMoved;
 			}
 			break;
 
 		case Direction::LEFT:
-			if (inputManager->KeyDown(InputManager::Keys::LEFT)) {
-				legsAnimation->UpdateAnimation(deltaTime);
-				distanceMoved = (int)(speed * (deltaTime / 1000));
-				x -= distanceMoved;
+			if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
+				m_LegsAnimation->UpdateAnimation(deltaTime);
+				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000));
+				m_X -= m_DistanceMoved;
 			}
 			break;
 		}
@@ -391,28 +391,28 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Lunge(float deltaTime)
 	{
-		distanceMoved = 0;
+		m_DistanceMoved = 0;
 
-		switch (direction)
+		switch (m_Direction)
 		{
 		case Direction::UP:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			y -= distanceMoved;
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_Y -= m_DistanceMoved;
 			break;
 
 		case Direction::RIGHT:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			x += distanceMoved;
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_X += m_DistanceMoved;
 			break;
 
 		case Direction::DOWN:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			y += distanceMoved;
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_Y += m_DistanceMoved;
 			break;
 
 		case Direction::LEFT:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			x -= distanceMoved;
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000));
+			m_X -= m_DistanceMoved;
 			break;
 		}
 	}
@@ -424,9 +424,9 @@ namespace HillRaider
 	void Player::Heal()
 	{
 		GameData* gameDataInstance = GameData::GetInstance();
-		if (gameDataInstance->playerHealth < gameDataInstance->MAX_HEALTH && gameDataInstance->playerPoints >= gameDataInstance->POINTS_FOR_HEALTH) {
-			++gameDataInstance->playerHealth;
-			gameDataInstance->playerPoints -= gameDataInstance->POINTS_FOR_HEALTH;
+		if (gameDataInstance->m_PlayerHealth < gameDataInstance->c_s_MaxHealth && gameDataInstance->m_PlayerPoints >= gameDataInstance->c_s_PointsForHealth) {
+			++gameDataInstance->m_PlayerHealth;
+			gameDataInstance->m_PlayerPoints -= gameDataInstance->c_s_PointsForHealth;
 		}
 	}
 
@@ -442,76 +442,76 @@ namespace HillRaider
 		switch (tileMapCollisionChar)
 		{
 		case 'w':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->MovePlayerToNextRoom(Direction::UP);
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->MovePlayerToNextRoom(Direction::UP);
 				SetPosition((7 * 64) + (GetSprite()->GetWidth() / 2), (7 * 64) + (GetSprite()->GetHeight() / 2));
 			}
 			else {
-				ApplyVerticalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				ApplyVerticalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][1]);
 			}
 			break;
 
 		case 'd':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->MovePlayerToNextRoom(Direction::RIGHT);
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->MovePlayerToNextRoom(Direction::RIGHT);
 				SetPosition(64 + (GetSprite()->GetWidth() / 2), (4 * 64) + (GetSprite()->GetHeight() / 2));
 			}
 			else {
-				ApplyHorizontalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][0]);
 			}
 			break;
 
 		case 's':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->MovePlayerToNextRoom(Direction::DOWN);
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->MovePlayerToNextRoom(Direction::DOWN);
 				SetPosition((7 * 64) + (GetSprite()->GetWidth() / 2), 64 + (GetSprite()->GetHeight() / 2));
 			}
 			else {
-				ApplyVerticalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				ApplyVerticalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][1]);
 			}
 			break;
 
 		case 'a':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->MovePlayerToNextRoom(Direction::LEFT);
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->MovePlayerToNextRoom(Direction::LEFT);
 				SetPosition((13 * 64) + (GetSprite()->GetWidth() / 2), (4 * 64) + (GetSprite()->GetHeight() / 2));
 			}
 			else {
-				ApplyHorizontalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][0]);
 			}
 			break;
 
 		case 't':
 		case 'g':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->PlayerHasWonTheGame();
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->PlayerHasWonTheGame();
 			}
 			else {
-				ApplyVerticalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				ApplyVerticalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][1]);
 			}
 			break;
 
 		case 'h':
 		case 'f':
-			if (gameplayCallback->HasRoomBeenCleared()) {
-				gameplayCallback->PlayerHasWonTheGame();
+			if (m_GameplayCallback->HasRoomBeenCleared()) {
+				m_GameplayCallback->PlayerHasWonTheGame();
 			}
 			else {
-				ApplyHorizontalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][0]);
 			}
 			break;
 
 		case 'x':
-			switch (direction)
+			switch (m_Direction)
 			{
 			case Direction::UP:
 			case Direction::DOWN:
-				ApplyVerticalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				ApplyVerticalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][1]);
 				break;
 
 			case Direction::LEFT:
 			case Direction::RIGHT:
-				ApplyHorizontalTileMapCollision(hitboxPointIndex, hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][0]);
 				break;
 			}
 			break;

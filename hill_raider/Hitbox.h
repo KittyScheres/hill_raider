@@ -14,10 +14,10 @@ namespace HillRaider
 	class Hitbox
 	{
 	private:
-		int xPos = 0;
-		int yPos = 0;
-		int halfWidth = 0;
-		int halfHeight = 0;
+		int m_X = 0;
+		int m_Y = 0;
+		int m_HalfWidth = 0;
+		int m_HalfHeight = 0;
 
 	public:
 		Hitbox(int x, int y, int width, int Height);

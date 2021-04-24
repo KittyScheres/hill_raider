@@ -6,23 +6,23 @@ namespace HillRaider
 	// This constructor is used to initialize the components
 	// for the start menu state.
 	// --------------------------------------------------
-	StartMenu::StartMenu(GameCallback* iCallback)
+	StartMenu::StartMenu(GameCallback* callback)
 	{
-		callback = iCallback;
-		inputManager = InputManager::GetInstance();
+		m_GameCallback = callback;
+		m_InputManager = InputManager::GetInstance();
 
-		background = new Image("assets/ui/background.png", 0, 0);
-		title = new Image("assets/text/titels/game_title.png", 0, 0);
-		title->SetPosition(480 - (title->GetWidth() / 2), 64);
+		m_Background = new Image("assets/ui/background.png", 0, 0);
+		m_Title = new Image("assets/text/titels/game_title.png", 0, 0);
+		m_Title->SetPosition(480 - (m_Title->GetWidth() / 2), 64);
 
-		buttonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, menuButtonsY[0]);
+		m_ButtonBackground = new Image("assets/ui/menu_item_background.png", 5 * 64, m_MenuButtonsY[0]);
 
-		playGameButtonText = new Image("assets/text/buttons/play_button_text.png", 5 * 64, menuButtonsY[0]);
-		checkControlsButtonText = new Image("assets/text/buttons/controls_button_text.png", 5 * 64, menuButtonsY[1]);
-		creditsButtonText = new Image("assets/text/buttons/credits_button_text.png", 5 * 64, menuButtonsY[2]);
-		exitGameButtonText = new Image("assets/text/buttons/quit_button_text.png", 5 * 64, menuButtonsY[3]);
+		m_PlayGameButtonText = new Image("assets/text/buttons/play_button_text.png", 5 * 64, m_MenuButtonsY[0]);
+		m_CheckControlsButtonText = new Image("assets/text/buttons/controls_button_text.png", 5 * 64, m_MenuButtonsY[1]);
+		m_CreditsButtonText = new Image("assets/text/buttons/credits_button_text.png", 5 * 64, m_MenuButtonsY[2]);
+		m_ExitGameButtonText = new Image("assets/text/buttons/quit_button_text.png", 5 * 64, m_MenuButtonsY[3]);
 
-		menuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, menuButtonsY[selectedMenuItem]);
+		m_MenuItemHighlight = new Image("assets/ui/menu_item_highlight.png", 5 * 64, m_MenuButtonsY[m_SelectedMenuItem]);
 	}
 
 	// --------------------------------------------------
@@ -31,31 +31,31 @@ namespace HillRaider
 	// --------------------------------------------------
 	void StartMenu::Update(float deltaTime)
 	{
-		if (inputManager->KeyPressed(InputManager::Keys::UP) && selectedMenuItem > 0) {
-			--selectedMenuItem;
+		if (m_InputManager->KeyPressed(InputManager::Keys::UP) && m_SelectedMenuItem > 0) {
+			--m_SelectedMenuItem;
 		}
 		
-		if (inputManager->KeyPressed(InputManager::Keys::DOWN) && selectedMenuItem < 3) {
-			++selectedMenuItem;
+		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN) && m_SelectedMenuItem < 3) {
+			++m_SelectedMenuItem;
 		}
 
-		if (inputManager->KeyPressed(InputManager::Keys::ENTER)) {
-			switch (selectedMenuItem)
+		if (m_InputManager->KeyPressed(InputManager::Keys::ENTER)) {
+			switch (m_SelectedMenuItem)
 			{
 			case 0:
-				callback->SetNextState(new Gameplay(callback));
+				m_GameCallback->SetNextState(new Gameplay(m_GameCallback));
 				break;
 
 			case 1:
-				callback->SetNextState(new Controls(callback));
+				m_GameCallback->SetNextState(new Controls(m_GameCallback));
 				break;
 
 			case 2:
-				callback->SetNextState(new Credits(callback));
+				m_GameCallback->SetNextState(new Credits(m_GameCallback));
 				break;
 
 			case 3:
-				callback->CloseGame();
+				m_GameCallback->CloseGame();
 				break;
 			}
 		}
@@ -67,21 +67,21 @@ namespace HillRaider
 	// --------------------------------------------------
 	void StartMenu::Render(Tmpl8::Surface* screen)
 	{
-		background->DrawImage(screen);
-		title->DrawImage(screen);
+		m_Background->DrawImage(screen);
+		m_Title->DrawImage(screen);
 
-		for (int yPos: menuButtonsY) {
-			buttonBackground->SetPosition(5 * 64, yPos);
-			buttonBackground->DrawImage(screen);
+		for (int yPos: m_MenuButtonsY) {
+			m_ButtonBackground->SetPosition(5 * 64, yPos);
+			m_ButtonBackground->DrawImage(screen);
 		}
 
-		menuItemHighlight->SetPosition(5 * 64, menuButtonsY[selectedMenuItem]);
-		menuItemHighlight->DrawImage(screen);
+		m_MenuItemHighlight->SetPosition(5 * 64, m_MenuButtonsY[m_SelectedMenuItem]);
+		m_MenuItemHighlight->DrawImage(screen);
 
-		playGameButtonText->DrawImage(screen);
-		checkControlsButtonText->DrawImage(screen);
-		creditsButtonText->DrawImage(screen);
-		exitGameButtonText->DrawImage(screen);
+		m_PlayGameButtonText->DrawImage(screen);
+		m_CheckControlsButtonText->DrawImage(screen);
+		m_CreditsButtonText->DrawImage(screen);
+		m_ExitGameButtonText->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
@@ -90,46 +90,46 @@ namespace HillRaider
 	// --------------------------------------------------
 	StartMenu::~StartMenu()
 	{
-		if (background != nullptr) {
-			delete background;
-			background = nullptr;
+		if (m_Background != nullptr) {
+			delete m_Background;
+			m_Background = nullptr;
 		}
 
-		if (title != nullptr) {
-			delete title;
-			title = nullptr;
+		if (m_Title != nullptr) {
+			delete m_Title;
+			m_Title = nullptr;
 		}
 
-		if (buttonBackground != nullptr) {
-			delete buttonBackground;
-			buttonBackground = nullptr;
+		if (m_ButtonBackground != nullptr) {
+			delete m_ButtonBackground;
+			m_ButtonBackground = nullptr;
 		}
 
-		if (playGameButtonText != nullptr) {
-			delete playGameButtonText;
-			playGameButtonText = nullptr;
+		if (m_PlayGameButtonText != nullptr) {
+			delete m_PlayGameButtonText;
+			m_PlayGameButtonText = nullptr;
 		}
 
-		if (checkControlsButtonText != nullptr) {
-			delete checkControlsButtonText;
-			checkControlsButtonText = nullptr;
+		if (m_CheckControlsButtonText != nullptr) {
+			delete m_CheckControlsButtonText;
+			m_CheckControlsButtonText = nullptr;
 		}
 
-		if (creditsButtonText != nullptr) {
-			delete creditsButtonText;
-			creditsButtonText = nullptr;
+		if (m_CreditsButtonText != nullptr) {
+			delete m_CreditsButtonText;
+			m_CreditsButtonText = nullptr;
 		}
 
-		if (exitGameButtonText != nullptr) {
-			delete exitGameButtonText;
-			exitGameButtonText = nullptr;
+		if (m_ExitGameButtonText != nullptr) {
+			delete m_ExitGameButtonText;
+			m_ExitGameButtonText = nullptr;
 		}
 
-		if (menuItemHighlight != nullptr) {
-			delete menuItemHighlight;
-			menuItemHighlight = nullptr;
+		if (m_MenuItemHighlight != nullptr) {
+			delete m_MenuItemHighlight;
+			m_MenuItemHighlight = nullptr;
 		}
 
-		callback = nullptr;
+		m_GameCallback = nullptr;
 	}
 }

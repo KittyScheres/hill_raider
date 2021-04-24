@@ -8,23 +8,23 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	ProgrammingCreditsScreen::ProgrammingCreditsScreen()
 	{
-		screentitle = new Image("assets/text/titels/programming_credits_title.png", 0, 0);
-		screentitle->SetPosition(480 - (screentitle->GetWidth() / 2), 32);
+		m_Screentitle = new Image("assets/text/titels/programming_credits_title.png", 0, 0);
+		m_Screentitle->SetPosition(480 - (m_Screentitle->GetWidth() / 2), 32);
 
-		cppFastTrackCredits = new Image("assets/text/credits/template_credits.png", 0, 0);
-		cppFastTrackCredits->SetPosition(240 - (cppFastTrackCredits->GetWidth() / 2), 64 + 32);
+		m_CppFastTrackCredits = new Image("assets/text/credits/template_credits.png", 0, 0);
+		m_CppFastTrackCredits->SetPosition(240 - (m_CppFastTrackCredits->GetWidth() / 2), 64 + 32);
 
-		aStarCredits = new Image("assets/text/credits/a_star_credits.png", 0, 0);
-		aStarCredits->SetPosition(240 - (aStarCredits->GetWidth() / 2), 64 * 6);
+		m_AStarCredits = new Image("assets/text/credits/a_star_credits.png", 0, 0);
+		m_AStarCredits->SetPosition(240 - (m_AStarCredits->GetWidth() / 2), 64 * 6);
 
-		sdlCredits = new Image("assets/text/credits/sdl2_credits.png", 0, 0);
-		sdlCredits->SetPosition(720 - (sdlCredits->GetWidth() / 2), 64 + 32);
+		m_SdlCredits = new Image("assets/text/credits/sdl2_credits.png", 0, 0);
+		m_SdlCredits->SetPosition(720 - (m_SdlCredits->GetWidth() / 2), 64 + 32);
 
-		freeImageCredits = new Image("assets/text/credits/free_image_credits.png", 0, 0);
-		freeImageCredits->SetPosition(720 - (freeImageCredits->GetWidth() / 2), 64 * 4);
+		m_FreeImageCredits = new Image("assets/text/credits/free_image_credits.png", 0, 0);
+		m_FreeImageCredits->SetPosition(720 - (m_FreeImageCredits->GetWidth() / 2), 64 * 4);
 
-		gameCodeCredits = new Image("assets/text/credits/game_code_credits.png", 0, 0);
-		gameCodeCredits->SetPosition(720 - (gameCodeCredits->GetWidth() / 2), 64 * 6);
+		m_GameCodeCredits = new Image("assets/text/credits/game_code_credits.png", 0, 0);
+		m_GameCodeCredits->SetPosition(720 - (m_GameCodeCredits->GetWidth() / 2), 64 * 6);
 
 	}
 
@@ -33,12 +33,12 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void ProgrammingCreditsScreen::Render(Tmpl8::Surface* screen)
 	{
-		screentitle->DrawImage(screen);
-		cppFastTrackCredits->DrawImage(screen);
-		aStarCredits->DrawImage(screen);
-		sdlCredits->DrawImage(screen);
-		freeImageCredits->DrawImage(screen);
-		gameCodeCredits->DrawImage(screen);
+		m_Screentitle->DrawImage(screen);
+		m_CppFastTrackCredits->DrawImage(screen);
+		m_AStarCredits->DrawImage(screen);
+		m_SdlCredits->DrawImage(screen);
+		m_FreeImageCredits->DrawImage(screen);
+		m_GameCodeCredits->DrawImage(screen);
 	}
 
 	// ------------------------------------------------------------
@@ -47,34 +47,34 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	ProgrammingCreditsScreen::~ProgrammingCreditsScreen()
 	{
-		if (screentitle != nullptr) {
-			delete screentitle;
-			screentitle = nullptr;
+		if (m_Screentitle != nullptr) {
+			delete m_Screentitle;
+			m_Screentitle = nullptr;
 		}
 
-		if (cppFastTrackCredits != nullptr) {
-			delete cppFastTrackCredits;
-			cppFastTrackCredits = nullptr;
+		if (m_CppFastTrackCredits != nullptr) {
+			delete m_CppFastTrackCredits;
+			m_CppFastTrackCredits = nullptr;
 		}
 
-		if (aStarCredits != nullptr) {
-			delete aStarCredits;
-			aStarCredits = nullptr;
+		if (m_AStarCredits != nullptr) {
+			delete m_AStarCredits;
+			m_AStarCredits = nullptr;
 		}
 
-		if (sdlCredits != nullptr) {
-			delete sdlCredits;
-			sdlCredits = nullptr;
+		if (m_SdlCredits != nullptr) {
+			delete m_SdlCredits;
+			m_SdlCredits = nullptr;
 		}
 
-		if (freeImageCredits != nullptr) {
-			delete freeImageCredits;
-			freeImageCredits = nullptr;
+		if (m_FreeImageCredits != nullptr) {
+			delete m_FreeImageCredits;
+			m_FreeImageCredits = nullptr;
 		}
 
-		if (gameCodeCredits != nullptr) {
-			delete gameCodeCredits;
-			gameCodeCredits = nullptr;
+		if (m_GameCodeCredits != nullptr) {
+			delete m_GameCodeCredits;
+			m_GameCodeCredits = nullptr;
 		}
 	}
 }

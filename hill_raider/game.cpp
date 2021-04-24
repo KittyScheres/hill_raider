@@ -13,8 +13,8 @@ namespace Tmpl8
 	void Game::Init()
 	{
 		//ShowWindow(GetConsoleWindow(), SW_HIDE);
-		currentState = new HillRaider::StartMenu(this);
-		inputManager = HillRaider::InputManager::GetInstance();
+		m_CurrentState = new HillRaider::StartMenu(this);
+		m_InputManager = HillRaider::InputManager::GetInstance();
 		srand((int)time(NULL));
 	}
 	
@@ -23,22 +23,22 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		if (screen != nullptr) {
-			delete screen;
-			screen = nullptr;
+		if (m_Screen != nullptr) {
+			delete m_Screen;
+			m_Screen = nullptr;
 		}
 
-		if (nextState != nullptr) {
-			delete nextState;
-			nextState = nullptr;
+		if (m_NextState != nullptr) {
+			delete m_NextState;
+			m_NextState = nullptr;
 		}
 
-		if (currentState != nullptr) {
-			delete currentState;
-			currentState = nullptr;
+		if (m_CurrentState != nullptr) {
+			delete m_CurrentState;
+			m_CurrentState = nullptr;
 		}
 
-		inputManager->DestroyInstance();
+		m_InputManager->DestroyInstance();
 
 		delete this;
 	}
@@ -49,11 +49,11 @@ namespace Tmpl8
 	void Game::Tick(float deltaTime)
 	{
 		if (deltaTime < 100.f) {
-			screen->Clear(0);
-			inputManager->UpdateKeysState();
-			currentState->Update(deltaTime);
-			currentState->LateUpdate();
-			currentState->Render(screen);
+			m_Screen->Clear(0);
+			m_InputManager->UpdateKeysState();
+			m_CurrentState->Update(deltaTime);
+			m_CurrentState->LateUpdate();
+			m_CurrentState->Render(m_Screen);
 			SetState();
 		}
 	}
@@ -63,11 +63,11 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::SetState()
 	{
-		if (nextState != nullptr) {
-			delete currentState;
-			currentState = nextState;
-			nextState = nullptr;
-			currentState->SetupSingletons();
+		if (m_NextState != nullptr) {
+			delete m_CurrentState;
+			m_CurrentState = m_NextState;
+			m_NextState = nullptr;
+			m_CurrentState->SetupSingletons();
 		}
 	}
 
@@ -75,7 +75,7 @@ namespace Tmpl8
 	// Set the next state of the game.
 	// -----------------------------------------------------------
 	void Game::SetNextState(HillRaider::State* newState) {
-		nextState = newState;
+		m_NextState = newState;
 	}
 
 	// -----------------------------------------------------------

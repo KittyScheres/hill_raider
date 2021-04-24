@@ -5,12 +5,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This constructor is used to initialize the animation.
 	// --------------------------------------------------
-	Animation::Animation(char* srcPath, short iXFrames, short iYFrames, float iTimePerFrame, int iX, int iY, bool iLoop)
+	Animation::Animation(char* sourcePath, short xFrames, short yFrames, float timePerFrame, int x, int y, bool loop)
 	{
-		src = new Image(srcPath, iX, iY, iXFrames, iYFrames);
-		xFrames = iXFrames;
-		timePerFrame = iTimePerFrame;
-		loop = iLoop;
+		m_Source = new Image(sourcePath, x, y, xFrames, yFrames);
+		m_XFrames = xFrames;
+		m_TimePerFrame = timePerFrame;
+		m_Loop = loop;
 	}
 
 	// --------------------------------------------------
@@ -18,19 +18,19 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Animation::UpdateAnimation(float deltaTime)
 	{
-		if (animationTimer >= timePerFrame) {
-			if (currentXFrame < xFrames) {
-				src->SetCurrentXFrame(++currentXFrame);
-				animationTimer = 0.f;
+		if (m_AnimationTimer >= m_TimePerFrame) {
+			if (m_CurrentXFrame < m_XFrames) {
+				m_Source->SetCurrentXFrame(++m_CurrentXFrame);
+				m_AnimationTimer = 0.f;
 			}
-			else if (loop) {
-				src->SetCurrentXFrame(0);
-				currentXFrame = 0;
-				animationTimer = 0.f;
+			else if (m_Loop) {
+				m_Source->SetCurrentXFrame(0);
+				m_CurrentXFrame = 0;
+				m_AnimationTimer = 0.f;
 			}
 		}
 		else {
-			animationTimer += deltaTime;
+			m_AnimationTimer += deltaTime;
 		}
 	}
 
@@ -40,44 +40,44 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Animation::DrawAnimation(Tmpl8::Surface* screen)
 	{
-		src->DrawImage(screen);
+		m_Source->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the position of the 
 	// animation.
 	// --------------------------------------------------
-	void Animation::SetPosition(int iX, int iY)
+	void Animation::SetPosition(int x, int y)
 	{
-		src->SetPosition(iX, iY);
+		m_Source->SetPosition(x, y);
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the time per frame for
 	// the animation.
 	// --------------------------------------------------
-	void Animation::SetTimePerFrame(float iTimePerFrame)
+	void Animation::SetTimePerFrame(float timePerFrame)
 	{
-		timePerFrame = iTimePerFrame;
+		m_TimePerFrame = timePerFrame;
 	}
 
 	// --------------------------------------------------
 	// This method is used to update the current x axis
 	// of the sampel frame from the animation source.
 	// --------------------------------------------------
-	void Animation::SetCurrentXFrame(short iCurrentXFrame)
+	void Animation::SetCurrentXFrame(short currentXFrame)
 	{
-		currentXFrame = iCurrentXFrame;
-		src->SetCurrentXFrame(iCurrentXFrame);
+		m_CurrentXFrame = currentXFrame;
+		m_Source->SetCurrentXFrame(currentXFrame);
 	}
 
 	// --------------------------------------------------
 	// This method is used to update the current y axis
 	// of the sampel frame from the animation source.
 	// --------------------------------------------------
-	void Animation::SetCurrentYFrame(short iCurrentYFrame)
+	void Animation::SetCurrentYFrame(short currentYFrame)
 	{
-		src->SetCurrentYFrame(iCurrentYFrame);
+		m_Source->SetCurrentYFrame(currentYFrame);
 	}
 
 	// --------------------------------------------------
@@ -86,7 +86,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<int> Animation::GetPosition()
 	{
-		return src->GetPosition();
+		return m_Source->GetPosition();
 	}
 
 	// --------------------------------------------------
@@ -95,7 +95,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Animation::GetWidth()
 	{
-		return src->GetWidth();
+		return m_Source->GetWidth();
 	}
 
 	// --------------------------------------------------
@@ -104,7 +104,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Animation::GetHeight()
 	{
-		return src->GetHeight();
+		return m_Source->GetHeight();
 	}
 
 	// --------------------------------------------------
@@ -113,9 +113,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	Animation::~Animation()
 	{
-		if (src != nullptr) {
-			delete src;
-			src = nullptr;
+		if (m_Source != nullptr) {
+			delete m_Source;
+			m_Source = nullptr;
 		}
 	}
 }

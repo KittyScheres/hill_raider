@@ -6,14 +6,14 @@ namespace HillRaider
 	// This constructor is used to initialize the components
 	// for the gameplay state.
 	// --------------------------------------------------
-	Gameplay::Gameplay(GameCallback* iCallback)
+	Gameplay::Gameplay(GameCallback* callback)
 	{
-		callback = iCallback;
-		pauseScreen = new PauseScreen(callback);
-		player = new Player((64 * 7) + 32, (64 * 4) + 32);
-		player->SetGamePlayCallback(this);
-		floor = new Floor();
-		ui = new Ui();
+		m_GameCallback = callback;
+		m_PauseScreen = new PauseScreen(m_GameCallback);
+		m_Player = new Player((64 * 7) + 32, (64 * 4) + 32);
+		m_Player->SetGamePlayCallback(this);
+		m_Floor = new Floor();
+		m_Ui = new Ui();
 	}
 
 	// --------------------------------------------------
@@ -24,8 +24,8 @@ namespace HillRaider
 	void Gameplay::SetupSingletons()
 	{
 		GameData::GetInstance();
-		AStar::GetIntance()->SetEndGoal(player);
-		inputManager = InputManager::GetInstance();
+		AStar::GetIntance()->SetEndGoal(m_Player);
+		m_InputManager = InputManager::GetInstance();
 	}
 
 	// --------------------------------------------------
@@ -34,21 +34,21 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Gameplay::Update(float deltaTime)
 	{
-		if (gamePaused) {
-			if (inputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
-				gamePaused = false;
-				pauseScreen->GamePause();
+		if (m_GamePaused) {
+			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+				m_GamePaused = false;
+				m_PauseScreen->GamePause();
 			}
 
-			pauseScreen->Update(deltaTime);
+			m_PauseScreen->Update(deltaTime);
 		}
 		else {
-			if (inputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
-				gamePaused = true;
+			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+				m_GamePaused = true;
 			}
 
-			player->Update(deltaTime);
-			floor->GetCurrentRoom()->Update(deltaTime);
+			m_Player->Update(deltaTime);
+			m_Floor->GetCurrentRoom()->Update(deltaTime);
 		}
 	}
 
@@ -58,12 +58,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Gameplay::LateUpdate()
 	{
-		if (!gamePaused) {
-			floor->GetCurrentRoom()->LateUpdate(player);
+		if (!m_GamePaused) {
+			m_Floor->GetCurrentRoom()->LateUpdate(m_Player);
 		}
 
-		if (GameData::GetInstance()->playerHealth <= 0) {
-			callback->SetNextState(new Lose(callback));
+		if (GameData::GetInstance()->m_PlayerHealth <= 0) {
+			m_GameCallback->SetNextState(new Lose(m_GameCallback));
 		}
 	}
 
@@ -73,13 +73,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Gameplay::Render(Tmpl8::Surface* screen)
 	{
-		if (gamePaused) {
-			pauseScreen->Render(screen);
+		if (m_GamePaused) {
+			m_PauseScreen->Render(screen);
 		}
 		else {
-			floor->GetCurrentRoom()->Render(screen);
-			player->Render(screen);
-			ui->Render(screen);
+			m_Floor->GetCurrentRoom()->Render(screen);
+			m_Player->Render(screen);
+			m_Ui->Render(screen);
 		}
 	}
 
@@ -88,7 +88,7 @@ namespace HillRaider
 	// cleared.
 	// --------------------------------------------------
 	bool Gameplay::HasRoomBeenCleared() {
-		return floor->GetCurrentRoom()->RoomCleared();
+		return m_Floor->GetCurrentRoom()->RoomCleared();
 	}
 
 	// --------------------------------------------------
@@ -96,7 +96,7 @@ namespace HillRaider
 	// new room.
 	// --------------------------------------------------
 	void Gameplay::MovePlayerToNextRoom(Direction direction) {
-		floor->MoveToNextRoom(direction);
+		m_Floor->MoveToNextRoom(direction);
 	}
 
 	// --------------------------------------------------
@@ -104,7 +104,7 @@ namespace HillRaider
 	// the win condition of the game.
 	// --------------------------------------------------
 	void Gameplay::PlayerHasWonTheGame() {
-		callback->SetNextState(new Win(callback, GameData::GetInstance()->playerPoints));
+		m_GameCallback->SetNextState(new Win(m_GameCallback, GameData::GetInstance()->m_PlayerPoints));
 	}
 
 	// --------------------------------------------------
@@ -113,27 +113,27 @@ namespace HillRaider
 	// --------------------------------------------------
 	Gameplay::~Gameplay()
 	{
-		callback = nullptr;
-		inputManager = nullptr;
+		m_GameCallback = nullptr;
+		m_InputManager = nullptr;
 
-		if (pauseScreen != nullptr) {
-			delete pauseScreen;
-			pauseScreen = nullptr;
+		if (m_PauseScreen != nullptr) {
+			delete m_PauseScreen;
+			m_PauseScreen = nullptr;
 		}
 
-		if (ui != nullptr) {
-			delete ui;
-			ui = nullptr;
+		if (m_Ui != nullptr) {
+			delete m_Ui;
+			m_Ui = nullptr;
 		}
 
-		if (player != nullptr) {
-			delete player;
-			player = nullptr;
+		if (m_Player != nullptr) {
+			delete m_Player;
+			m_Player = nullptr;
 		}
 
-		if (floor != nullptr) {
-			delete floor;
-			floor = nullptr;
+		if (m_Floor != nullptr) {
+			delete m_Floor;
+			m_Floor = nullptr;
 		}
 
 		AStar::DestroyInstance();

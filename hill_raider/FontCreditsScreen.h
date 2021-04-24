@@ -11,8 +11,8 @@ namespace HillRaider
 	class FontCreditsScreen
 	{
 	private:
-		Image* screenTitle = nullptr;
-		Image* fontCredits = nullptr;
+		Image* m_ScreenTitle = nullptr;
+		Image* m_FontCredits = nullptr;
 
 	public:
 		FontCreditsScreen();

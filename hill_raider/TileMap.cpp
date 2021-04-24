@@ -6,16 +6,16 @@ namespace HillRaider
 	// This constructor is used to initialize and setup
 	// the tile map object.
 	// --------------------------------------------------
-	TileMap::TileMap(char* TileMapSurfacePath, char iTileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT + 1], int iTileWidth, int iTileHeight)
+	TileMap::TileMap(char* tileMapSurfacePath, char tileMap[c_s_TileMapHeight][c_s_TileMapWidth + 1], int tileWidth, int tileHeight)
 	{
-		tileMapSurface = new Tmpl8::Surface(TileMapSurfacePath);
-		for (int i = 0; i < TILE_MAP_HEIGHT; i++) {
-			for (int k = 0; k < TILE_MAP_WIDHT; k++) {
-				tileMap[i][k] = iTileMap[i][k];
+		m_TileMapSurface = new Tmpl8::Surface(tileMapSurfacePath);
+		for (int i = 0; i < c_s_TileMapHeight; i++) {
+			for (int k = 0; k < c_s_TileMapWidth; k++) {
+				m_TileMap[i][k] = tileMap[i][k];
 			}
 		}
-		tileHeight = iTileHeight;
-		tileWidth = iTileWidth;
+		m_TileHeight = tileHeight;
+		m_TileWidth = tileWidth;
 	}
 
 	// --------------------------------------------------
@@ -23,11 +23,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void TileMap::DrawTile(Tmpl8::Surface* screen, int xScreen, int yScreen, int xSurface, int ySurface)
 	{
-		for (int y = 0; y < tileHeight; y++) {
-			if ((((y + yScreen) <= screen->GetHeight()) && ((y + yScreen) >= 0)) && (((y + ySurface) <= tileMapSurface->GetHeight()) && ((y + ySurface) >= 0))) {
-				for (int x = 0; x < tileWidth; x++) {
-					if ((((x + xScreen) <= screen->GetWidth()) && ((x + xScreen) >= 0)) && (((x + xSurface) <= tileMapSurface->GetWidth()) && ((x + xSurface) >= 0))) {
-						screen->GetBuffer()[(x + xScreen) + ((y + yScreen) * screen->GetWidth())] = tileMapSurface->GetBuffer()[(x + xSurface) + ((y + ySurface) * tileMapSurface->GetWidth())];
+		for (int y = 0; y < m_TileHeight; y++) {
+			if ((((y + yScreen) <= screen->GetHeight()) && ((y + yScreen) >= 0)) && (((y + ySurface) <= m_TileMapSurface->GetHeight()) && ((y + ySurface) >= 0))) {
+				for (int x = 0; x < m_TileWidth; x++) {
+					if ((((x + xScreen) <= screen->GetWidth()) && ((x + xScreen) >= 0)) && (((x + xSurface) <= m_TileMapSurface->GetWidth()) && ((x + xSurface) >= 0))) {
+						screen->GetBuffer()[(x + xScreen) + ((y + yScreen) * screen->GetWidth())] = m_TileMapSurface->GetBuffer()[(x + xSurface) + ((y + ySurface) * m_TileMapSurface->GetWidth())];
 					}
 				}
 			}
@@ -40,9 +40,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	void TileMap::Render(Tmpl8::Surface* screen)
 	{
-		for (int y = 0; y < TILE_MAP_HEIGHT; y++) {
-			for (int x = 0; x < (TILE_MAP_WIDHT / 3); x++) {
-				DrawTile(screen, x * tileWidth, y * tileHeight, (tileMap[y][(x * 3) + 1] - 'a') * tileHeight, (tileMap[y][(x * 3)] - 'a') * tileWidth);
+		for (int y = 0; y < c_s_TileMapHeight; y++) {
+			for (int x = 0; x < (c_s_TileMapWidth / 3); x++) {
+				DrawTile(screen, x * m_TileWidth, y * m_TileHeight, (m_TileMap[y][(x * 3) + 1] - 'a') * m_TileHeight, (m_TileMap[y][(x * 3)] - 'a') * m_TileWidth);
 			}
 		}
 	}
@@ -54,11 +54,11 @@ namespace HillRaider
 	char TileMap::GetCollision(int x, int y)
 	{
 		char collisionChar = ' ';
-		x = x / tileWidth;
-		y = y / tileHeight;
+		x = x / m_TileWidth;
+		y = y / m_TileHeight;
 		
-		if (x < (TILE_MAP_WIDHT / 3) && y < TILE_MAP_HEIGHT) {
-			collisionChar = tileMap[y][(x * 3) + 2];
+		if (x < (c_s_TileMapWidth / 3) && y < c_s_TileMapHeight) {
+			collisionChar = m_TileMap[y][(x * 3) + 2];
 		}
 
 		return collisionChar;
@@ -70,7 +70,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int TileMap::GetTileHeight()
 	{
-		return tileHeight;
+		return m_TileHeight;
 	}
 
 	// --------------------------------------------------
@@ -79,7 +79,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int TileMap::GetTileWidth()
 	{
-		return tileWidth;
+		return m_TileWidth;
 	}
 	
 	// --------------------------------------------------
@@ -88,9 +88,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	TileMap::~TileMap()
 	{
-		if (tileMapSurface != nullptr) {
-			delete tileMapSurface;
-			tileMapSurface = nullptr;
+		if (m_TileMapSurface != nullptr) {
+			delete m_TileMapSurface;
+			m_TileMapSurface = nullptr;
 		}
 	}
 }

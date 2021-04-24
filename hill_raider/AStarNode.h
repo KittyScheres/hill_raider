@@ -15,21 +15,21 @@ namespace HillRaider
 	class AStarNode
 	{
 	private:
-		bool walkable = true;
-		int gridX = 0;
-		int gridY = 0;
-		int x = 0;
-		int y = 0;
-		int gCost = 0;
-		int hCost = 0;
-		AStarNode* parent = nullptr;
+		bool m_Walkable = true;
+		int m_GridX = 0;
+		int m_GridY = 0;
+		int m_X = 0;
+		int m_Y = 0;
+		int m_GCost = 0;
+		int m_HCost = 0;
+		AStarNode* m_Parent = nullptr;
 
 	public:
-		AStarNode(int iX, int iY, bool iWalkable, int iGridX, int iGridY);
-		void SetWalkable(bool iWalkable);
-		void SetGCost(int g);
-		void SetHCost(int h);
-		void SetParent(AStarNode* iParent);
+		AStarNode(int x, int y, bool walkable, int gridX, int gridY);
+		void SetWalkable(bool walkable);
+		void SetGCost(int gCost);
+		void SetHCost(int hCost);
+		void SetParent(AStarNode* parent);
 		std::vector<int> GetPosition();
 		bool GetWalkable();
 		int GetGridX();

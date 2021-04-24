@@ -13,17 +13,17 @@ namespace HillRaider
 	class PauseScreen
 	{
 	private:
-		InputManager* inputManager = nullptr;
-		GameCallback* callback = nullptr;
-		Image* buttonBackground = nullptr;
-		Image* backToMenuButtonText = nullptr;
-		Image* restartGameButtonText = nullptr;
-		int buttonsYPos[2]{64 * 3, 64 * 5};
-		short selectedButton = 0;
-		Image* buttonHighlight = nullptr;
+		InputManager* m_InputManager = nullptr;
+		GameCallback* m_GameCallback = nullptr;
+		Image* m_ButtonBackground = nullptr;
+		Image* m_BackToMenuButtonText = nullptr;
+		Image* m_RestartGameButtonText = nullptr;
+		int m_ButtonsYPos[2]{64 * 3, 64 * 5};
+		short m_SelectedButton = 0;
+		Image* m_ButtonHighlight = nullptr;
 
 	public:
-		PauseScreen(GameCallback* iCallback);
+		PauseScreen(GameCallback* callback);
 		void GamePause();
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);

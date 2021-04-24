@@ -7,7 +7,7 @@ namespace HillRaider
 	// -----------------------------------------------------------
 	void FrameRateManager::ResetFrameCapTimer()
 	{
-		frameCapTimer.reset();
+		m_FrameCapTimer.reset();
 	}
 
 	// -----------------------------------------------------------
@@ -16,9 +16,9 @@ namespace HillRaider
 	// -----------------------------------------------------------
 	void FrameRateManager::ConstrainFrameRate()
 	{
-		if (frameCapTimer.elapsed() < MILLISECCONDS_PER_FRAME)
+		if (m_FrameCapTimer.elapsed() < c_MillisecondsPerFrame)
 		{
-			SDL_Delay((Uint32)(MILLISECCONDS_PER_FRAME - frameCapTimer.elapsed()));
+			SDL_Delay((Uint32)(c_MillisecondsPerFrame - m_FrameCapTimer.elapsed()));
 		}
 	}
 }

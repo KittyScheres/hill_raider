@@ -19,14 +19,14 @@ namespace HillRaider
 	class Room : public RoomCallback
 	{
 	private:
-		TileMap* tileMap = nullptr;
-		Image* doorBlockade = nullptr;
-		std::vector<std::vector<int>> doorBlockadePositionList = std::vector<std::vector<int>>{};
-		std::list<Entity*> enemyList = std::list<Entity*>{};
-		std::list<Entity*> foodPointsPickupList = std::list<Entity*>{};
+		TileMap* m_TileMap = nullptr;
+		Image* m_DoorBlockade = nullptr;
+		std::vector<std::vector<int>> m_DoorBlockadePositionList = std::vector<std::vector<int>>{};
+		std::list<Entity*> m_EnemyList = std::list<Entity*>{};
+		std::list<Entity*> m_FoodPointsPickupList = std::list<Entity*>{};
 
 	public:
-		Room(TileMap* iTilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups);
+		Room(TileMap* tilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups);
 		void SetDoorBlockadePositionVector();
 		void Update(float deltaTime);
 		void LateUpdate(Player* player);

@@ -17,8 +17,8 @@ namespace HillRaider
 	class AStarGrid
 	{
 	private:
-		TileMap* map = nullptr;
-		std::vector<std::vector<AStarNode*>> nodeGrid;
+		TileMap* m_Map = nullptr;
+		std::vector<std::vector<AStarNode*>> m_NodeGrid;
 
 	public:
 		AStarGrid(TileMap* tileMap);

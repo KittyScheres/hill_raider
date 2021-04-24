@@ -28,8 +28,8 @@ namespace HillRaider
 	class Floor
 	{
 	private:
-		Room* floorMap[9][8];
-		int currentRoom[2];
+		Room* m_FloorMap[9][8];
+		int m_CurrentRoom[2];
 
 	public:
 		Floor();

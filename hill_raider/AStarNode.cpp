@@ -6,22 +6,22 @@ namespace HillRaider
 	// This constructor is used to setup the properties
 	// for the node class.
 	// --------------------------------------------------
-	AStarNode::AStarNode(int iX, int iY, bool iWalkable, int iGridX, int iGridY)
+	AStarNode::AStarNode(int x, int y, bool walkable, int gridX, int gridY)
 	{
-		x = iX;
-		y = iY;
-		walkable = iWalkable;
-		gridX = iGridX;
-		gridY = iGridY;
+		m_X = x;
+		m_Y = y;
+		m_Walkable = walkable;
+		m_GridX = gridX;
+		m_GridY = gridY;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set wether this node can be
 	// walked on or not.
 	// --------------------------------------------------
-	void AStarNode::SetWalkable(bool iWalkable)
+	void AStarNode::SetWalkable(bool walkable)
 	{
-		walkable = iWalkable;
+		m_Walkable = walkable;
 	}
 
 	// --------------------------------------------------
@@ -29,9 +29,9 @@ namespace HillRaider
 	// The g cost of a node is the distance between the
 	// staring node and the currently selected node.
 	// --------------------------------------------------
-	void AStarNode::SetGCost(int g)
+	void AStarNode::SetGCost(int gCost)
 	{
-		gCost = g;
+		m_GCost = gCost;
 	}
 
 	// --------------------------------------------------
@@ -39,17 +39,17 @@ namespace HillRaider
 	// The h cost of a node is the distance between the
 	// end node and the currently selected node.
 	// --------------------------------------------------
-	void AStarNode::SetHCost(int h)
+	void AStarNode::SetHCost(int hCost)
 	{
-		hCost = h;
+		m_HCost = hCost;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the parent for a node.
 	// --------------------------------------------------
-	void AStarNode::SetParent(AStarNode* iParent)
+	void AStarNode::SetParent(AStarNode* parent)
 	{
-		parent = iParent;
+		m_Parent = parent;
 	}
 
 	// --------------------------------------------------
@@ -57,7 +57,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<int>  AStarNode::GetPosition()
 	{
-		return std::vector<int>{ x, y };
+		return std::vector<int>{ m_X, m_Y };
 	}
 
 	// --------------------------------------------------
@@ -66,7 +66,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool AStarNode::GetWalkable()
 	{
-		return walkable;
+		return m_Walkable;
 	}
 
 	// --------------------------------------------------
@@ -75,7 +75,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int AStarNode::GetGridX()
 	{
-		return gridX;
+		return m_GridX;
 	}
 
 	// --------------------------------------------------
@@ -84,7 +84,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int AStarNode::GetGridY()
 	{
-		return gridY;
+		return m_GridY;
 	}
 
 	// --------------------------------------------------
@@ -94,7 +94,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int AStarNode::GetGCost()
 	{
-		return gCost;
+		return m_GCost;
 	}
 
 	// --------------------------------------------------
@@ -104,7 +104,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int AStarNode::GetHCost()
 	{
-		return hCost;
+		return m_HCost;
 	}
 
 	// --------------------------------------------------
@@ -114,7 +114,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int AStarNode::GetFCost()
 	{
-		return gCost + hCost;
+		return m_GCost + m_HCost;
 	}
 
 	// --------------------------------------------------
@@ -122,6 +122,6 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStarNode* AStarNode::GetParent()
 	{
-		return parent;
+		return m_Parent;
 	}
 }

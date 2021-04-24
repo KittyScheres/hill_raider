@@ -6,22 +6,22 @@ namespace HillRaider
 	// This constructor is used to initialize all of the
 	// componets contained inside of the room.
 	// --------------------------------------------------
-	Room::Room(TileMap* iTilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups)
+	Room::Room(TileMap* tilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups)
 	{
-		tileMap = iTilemap;
-		doorBlockade = new Image("assets/environments/doorway_blockade.png", 0, 0, 4);
+		m_TileMap = tilemap;
+		m_DoorBlockade = new Image("assets/environments/doorway_blockade.png", 0, 0, 4);
 		SetDoorBlockadePositionVector();
-		enemyList = enemies;
-		foodPointsPickupList = foodPointsPickups;
+		m_EnemyList = enemies;
+		m_FoodPointsPickupList = foodPointsPickups;
 		
-		for (Entity* enemy : enemyList) {
+		for (Entity* enemy : m_EnemyList) {
 			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(enemy);
 			if (enemyAnt != nullptr) {
 				enemyAnt->SetRoomCallback(this);
 			}
 		}
  
-		for (Entity* Pickup : foodPointsPickupList) {
+		for (Entity* Pickup : m_FoodPointsPickupList) {
 			FoodPointsPickup* foodPointPickup = dynamic_cast<FoodPointsPickup*>(Pickup);
 			if (foodPointPickup != nullptr) {
 				foodPointPickup->SetRoomCallback(this);
@@ -36,40 +36,40 @@ namespace HillRaider
 	// room has not been cleared.
 	// --------------------------------------------------
 	void Room::SetDoorBlockadePositionVector() {
-		int tileHeight = tileMap->GetTileHeight();
-		int tileWidth = tileMap->GetTileWidth();
+		int tileHeight = m_TileMap->GetTileHeight();
+		int tileWidth = m_TileMap->GetTileWidth();
 			
-		for (int y = 0; y < TileMap::TILE_MAP_HEIGHT; y++) {
-			for (int x = 0; x < TileMap::TILE_MAP_WIDHT; x++) {
+		for (int y = 0; y < TileMap::c_s_TileMapHeight; y++) {
+			for (int x = 0; x < TileMap::c_s_TileMapWidth; x++) {
 				std::vector<int> doorBlockadePos;
 				doorBlockadePos.push_back(0);
 				doorBlockadePos.push_back(x * tileWidth);
 				doorBlockadePos.push_back(y * tileHeight);
 
-				switch (tileMap->GetCollision(tileWidth * x, tileHeight * y))
+				switch (m_TileMap->GetCollision(tileWidth * x, tileHeight * y))
 				{
 				case 'w':
 				case 't':
 					doorBlockadePos[0] = 0;
-					doorBlockadePositionList.push_back(doorBlockadePos);
+					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 'd':
 				case 'h':
 					doorBlockadePos[0] = 1;
-					doorBlockadePositionList.push_back(doorBlockadePos);
+					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 's':
 				case 'g':
 					doorBlockadePos[0] = 3;
-					doorBlockadePositionList.push_back(doorBlockadePos);
+					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
 				case 'a':
 				case 'f':
 					doorBlockadePos[0] = 2;
-					doorBlockadePositionList.push_back(doorBlockadePos);
+					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 				}
 			}
@@ -82,7 +82,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::Update(float deltaTime)
 	{
-		for (Entity* enemy : enemyList) {
+		for (Entity* enemy : m_EnemyList) {
 			enemy->Update(deltaTime);
 		}
 	}
@@ -94,12 +94,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::LateUpdate(Player* player)
 	{
-		player->LateUpdate(tileMap, GetPLayerCollisionCheckList());
-		for (Entity* enemy : enemyList) {
-			std::list<Entity*> entityCheckList = std::list<Entity*>(enemyList);
+		player->LateUpdate(m_TileMap, GetPLayerCollisionCheckList());
+		for (Entity* enemy : m_EnemyList) {
+			std::list<Entity*> entityCheckList = std::list<Entity*>(m_EnemyList);
 			entityCheckList.remove(enemy);
 			entityCheckList.push_back(player);
-			enemy->LateUpdate(tileMap, entityCheckList);
+			enemy->LateUpdate(m_TileMap, entityCheckList);
 		}
 	}
 
@@ -109,21 +109,21 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Room::Render(Tmpl8::Surface* screen)
 	{
-		tileMap->Render(screen);
+		m_TileMap->Render(screen);
 
 		if (!RoomCleared()) {
-			for (std::vector<int> position : doorBlockadePositionList) {
-				doorBlockade->SetCurrentXFrame(position[0]);
-				doorBlockade->SetPosition(position[1], position[2]);
-				doorBlockade->DrawImage(screen);
+			for (std::vector<int> position : m_DoorBlockadePositionList) {
+				m_DoorBlockade->SetCurrentXFrame(position[0]);
+				m_DoorBlockade->SetPosition(position[1], position[2]);
+				m_DoorBlockade->DrawImage(screen);
 			}
 		}
 
-		for (Entity* foodPointPickup : foodPointsPickupList) {
+		for (Entity* foodPointPickup : m_FoodPointsPickupList) {
 			foodPointPickup->Render(screen);
 		}
 		
-		for (Entity* enemy : enemyList) {
+		for (Entity* enemy : m_EnemyList) {
 			enemy->Render(screen);
 		}
 	}
@@ -133,7 +133,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	TileMap* Room::GetTileMap()
 	{
-		return tileMap;
+		return m_TileMap;
 	}
 
 	// --------------------------------------------------
@@ -142,7 +142,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::list<Entity*>* Room::GetEnemyListReference()
 	{
-		return &enemyList;
+		return &m_EnemyList;
 	}
 
 	// --------------------------------------------------
@@ -150,8 +150,8 @@ namespace HillRaider
 	// the room.
 	// --------------------------------------------------
 	void Room::RemoveEntity(Entity* entity) {
-		if (std::find(enemyList.begin(), enemyList.end(), entity) != enemyList.end()) {
-			enemyList.remove(entity);
+		if (std::find(m_EnemyList.begin(), m_EnemyList.end(), entity) != m_EnemyList.end()) {
+			m_EnemyList.remove(entity);
 			SpawnFoodPointsPickupEntity(entity->GetPosition());
 			if (entity != nullptr) {
 				delete entity;
@@ -159,8 +159,8 @@ namespace HillRaider
 			}
 		}
 
-		if (std::find(foodPointsPickupList.begin(), foodPointsPickupList.end(), entity) != foodPointsPickupList.end()) {
-			foodPointsPickupList.remove(entity);
+		if (std::find(m_FoodPointsPickupList.begin(), m_FoodPointsPickupList.end(), entity) != m_FoodPointsPickupList.end()) {
+			m_FoodPointsPickupList.remove(entity);
 			if (entity != nullptr) {
 				delete entity;
 				entity = nullptr;
@@ -174,7 +174,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool Room::RoomCleared()
 	{
-		return enemyList.empty();
+		return m_EnemyList.empty();
 	}
 
 	// --------------------------------------------------
@@ -183,34 +183,34 @@ namespace HillRaider
 	// --------------------------------------------------
 	Room::~Room()
 	{
-		if (tileMap != nullptr) {
-			delete tileMap;
-			tileMap = nullptr;
+		if (m_TileMap != nullptr) {
+			delete m_TileMap;
+			m_TileMap = nullptr;
 		}
 
-		if (doorBlockade != nullptr) {
-			delete doorBlockade;
-			doorBlockade = nullptr;
+		if (m_DoorBlockade != nullptr) {
+			delete m_DoorBlockade;
+			m_DoorBlockade = nullptr;
 		}
 
-		if (!enemyList.empty()) {
-			for (Entity* enemy : enemyList) {
+		if (!m_EnemyList.empty()) {
+			for (Entity* enemy : m_EnemyList) {
 				if (enemy != nullptr) {
 					delete enemy;
 					enemy = nullptr;
 				}
 			}
-			enemyList.clear();
+			m_EnemyList.clear();
 		}
 
-		if (!foodPointsPickupList.empty()) {
-			for (Entity* foodPointPickup : foodPointsPickupList) {
+		if (!m_FoodPointsPickupList.empty()) {
+			for (Entity* foodPointPickup : m_FoodPointsPickupList) {
 				if (foodPointPickup != nullptr) {
 					delete foodPointPickup;
 					foodPointPickup = nullptr;
 				}
 			}
-			foodPointsPickupList.clear();
+			m_FoodPointsPickupList.clear();
 		}
 	}
 
@@ -220,8 +220,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::list<Entity*> Room::GetPLayerCollisionCheckList()
 	{
-		std::list<Entity*> checklist = enemyList;
-		for (std::list<Entity*>::const_iterator i = foodPointsPickupList.begin(); i != foodPointsPickupList.end(); i++) {
+		std::list<Entity*> checklist = m_EnemyList;
+		for (std::list<Entity*>::const_iterator i = m_FoodPointsPickupList.begin(); i != m_FoodPointsPickupList.end(); i++) {
 			checklist.push_back(*i);
 		}
 		return checklist;
@@ -261,7 +261,7 @@ namespace HillRaider
 
 			FoodPointsPickup* foodPointsPickupEntity = new FoodPointsPickup(pointsValue, posistion[0], posistion[1]);
 			foodPointsPickupEntity->SetRoomCallback(this);
-			foodPointsPickupList.push_back(foodPointsPickupEntity);
+			m_FoodPointsPickupList.push_back(foodPointsPickupEntity);
 		}
 	}
 }

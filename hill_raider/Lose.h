@@ -16,18 +16,18 @@ namespace HillRaider
 	class Lose: public State
 	{
 	private:
-		GameCallback* callback = nullptr;
-		Image* background = nullptr;
-		Image* loseMessage = nullptr;
-		Image* buttonBackground = nullptr;
-		int buttonsXPos[2] { 2 * 64, 8 * 64 };
-		Image* buttonHighlight = nullptr;
-		Image* backToMenuButtonText = nullptr;
-		Image* retryButtonText = nullptr;
-		int selectedButton = 0;
+		GameCallback* m_GameCallback = nullptr;
+		Image* m_Background = nullptr;
+		Image* m_LoseMessage = nullptr;
+		Image* m_ButtonBackground = nullptr;
+		int m_ButtonsXPos[2] { 2 * 64, 8 * 64 };
+		Image* m_ButtonHighlight = nullptr;
+		Image* m_BackToMenuButtonText = nullptr;
+		Image* m_RetryButtonText = nullptr;
+		int m_SelectedButton = 0;
 
 	public:
-		Lose(GameCallback* iCallback);
+		Lose(GameCallback* callback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~Lose();

@@ -8,23 +8,23 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::Ui()
 	{
-		healingIcon = new Image("assets/ui/healing_icon.png", 0, 0);
-		healingIcon->SetPosition(64 - healingIcon->GetWidth(), 32 - (healingIcon->GetHeight() / 2));
+		m_HealingIcon = new Image("assets/ui/healing_icon.png", 0, 0);
+		m_HealingIcon->SetPosition(64 - m_HealingIcon->GetWidth(), 32 - (m_HealingIcon->GetHeight() / 2));
 
-		for (short i = 0; i < GameData::GetInstance()->MAX_HEALTH; i++) {
+		for (short i = 0; i < GameData::GetInstance()->c_s_MaxHealth; i++) {
 			if ((i & 1) == 0) {
-				healthBar[i] = new Image("assets/ui/half_heart_1.png", 64 * (1 + (i / 2)), 0);
+				m_HealthBar[i] = new Image("assets/ui/half_heart_1.png", 64 * (1 + (i / 2)), 0);
 			}
 			else {
-				healthBar[i] = new Image("assets/ui/half_heart_2.png", 64 * (1 + (i / 2)), 0);
+				m_HealthBar[i] = new Image("assets/ui/half_heart_2.png", 64 * (1 + (i / 2)), 0);
 			}			
 		}
 
-		foodScoreIcon = new Image("assets/entities/food_pickup.png", 0, 0);
-		foodScoreIcon->SetPosition((64 * 10) + 52, 32 - (foodScoreIcon->GetHeight() / 2));
+		m_FoodScoreIcon = new Image("assets/entities/food_pickup.png", 0, 0);
+		m_FoodScoreIcon->SetPosition((64 * 10) + 52, 32 - (m_FoodScoreIcon->GetHeight() / 2));
 
-		scoreBoard = new ScoreBoard();
-		scoreBoard->SetPosition((64 * 11) + 32, 32 - (scoreBoard->GetHeightOfChar() / 2));
+		m_ScoreBoard = new ScoreBoard();
+		m_ScoreBoard->SetPosition((64 * 11) + 32, 32 - (m_ScoreBoard->GetHeightOfChar() / 2));
 	}
 	
 	// --------------------------------------------------
@@ -34,12 +34,12 @@ namespace HillRaider
 	{
 		ShowHealingIcon(screen);
 
-		for (short i = 0; i < GameData::GetInstance()->playerHealth; i++) {
-			healthBar[i]->DrawImage(screen);
+		for (short i = 0; i < GameData::GetInstance()->m_PlayerHealth; i++) {
+			m_HealthBar[i]->DrawImage(screen);
 		}
 
-		foodScoreIcon->DrawImage(screen);
-		scoreBoard->DrawScore(GetPointsString(), screen);
+		m_FoodScoreIcon->DrawImage(screen);
+		m_ScoreBoard->DrawScore(GetPointsString(), screen);
 	}
 	
 	// --------------------------------------------------
@@ -48,26 +48,26 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::~Ui()
 	{
-		if (healingIcon != nullptr) {
-			delete healingIcon;
-			healingIcon = nullptr;
+		if (m_HealingIcon != nullptr) {
+			delete m_HealingIcon;
+			m_HealingIcon = nullptr;
 		}
 
-		for (Image* halfHeart : healthBar) {
+		for (Image* halfHeart : m_HealthBar) {
 			if (halfHeart != nullptr) {
 				delete halfHeart;
 				halfHeart = nullptr;
 			}
 		}
 
-		if (foodScoreIcon != nullptr) {
-			delete foodScoreIcon;
-			foodScoreIcon = nullptr;
+		if (m_FoodScoreIcon != nullptr) {
+			delete m_FoodScoreIcon;
+			m_FoodScoreIcon = nullptr;
 		}
 
-		if (scoreBoard != nullptr) {
-			delete scoreBoard;
-			scoreBoard = nullptr;
+		if (m_ScoreBoard != nullptr) {
+			delete m_ScoreBoard;
+			m_ScoreBoard = nullptr;
 		}
 	}
 
@@ -77,9 +77,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::string Ui::GetPointsString() {
 		std::string pointsString;
-		std::string playerPoints = std::to_string(GameData::GetInstance()->playerPoints);
+		std::string playerPoints = std::to_string(GameData::GetInstance()->m_PlayerPoints);
 		
-		for (short i = (short)playerPoints.size(); i < (short)std::to_string(GameData::MAX_POINTS).size(); i++) {
+		for (short i = (short)playerPoints.size(); i < (short)std::to_string(GameData::c_s_MaxPoints).size(); i++) {
 			pointsString.push_back('0');
 		}
 
@@ -97,8 +97,8 @@ namespace HillRaider
 	void Ui::ShowHealingIcon(Tmpl8::Surface* screen)
 	{
 		GameData* gameDataInstance = GameData::GetInstance();
-		if (gameDataInstance->playerHealth < gameDataInstance->MAX_HEALTH && gameDataInstance->playerPoints >= gameDataInstance->POINTS_FOR_HEALTH) {
-			healingIcon->DrawImage(screen);
+		if (gameDataInstance->m_PlayerHealth < gameDataInstance->c_s_MaxHealth && gameDataInstance->m_PlayerPoints >= gameDataInstance->c_s_PointsForHealth) {
+			m_HealingIcon->DrawImage(screen);
 		}
 	}
 }
