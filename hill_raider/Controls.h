@@ -15,15 +15,15 @@ namespace HillRaider
 	class Controls: public State
 	{
 	private:
-		GameCallback* callback = nullptr;
-		Image* background = nullptr;
-		Image* returnToMenu = nullptr;
-		Image* keyBindings = nullptr;
-		Image* lungeAttackExplanation = nullptr;
-		Image* healExplanation = nullptr;
+		GameCallback* m_GameCallback = nullptr;
+		Image* m_Background = nullptr;
+		Image* m_ReturnToMenu = nullptr;
+		Image* m_KeyBindings = nullptr;
+		Image* m_LungeAttackExplanation = nullptr;
+		Image* m_HealExplanation = nullptr;
 
 	public:
-		Controls(GameCallback* iCallback);
+		Controls(GameCallback* callback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~Controls();

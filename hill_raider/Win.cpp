@@ -6,26 +6,26 @@ namespace HillRaider
 	// This constructor is used to setup the components 
 	// for the win screen.
 	// --------------------------------------------------
-	Win::Win(GameCallback* iCallback, int iScore)
+	Win::Win(GameCallback* callback, int score)
 	{
-		callback = iCallback;
-		background = new Image("assets/ui/background.png", 0, 0);
+		m_GameCallback = callback;
+		m_Background = new Image("assets/ui/background.png", 0, 0);
 
-		winTextStatic = new Image("assets/text/win_message_static_text.png", 0, 0);
-		winTextStatic->SetPosition(480 - (winTextStatic->GetWidth() / 2), 70);
+		m_WinTextStatic = new Image("assets/text/win_message_static_text.png", 0, 0);
+		m_WinTextStatic->SetPosition(480 - (m_WinTextStatic->GetWidth() / 2), 70);
 
-		score = std::to_string(iScore);
-		playerScore = new ScoreBoard();
-		playerScore->SetPosition(480 - ((playerScore->GetWidthOfChar() * score.size()) / 2), 220);
+		m_Score = std::to_string(score);
+		m_PlayerScore = new ScoreBoard();
+		m_PlayerScore->SetPosition(480 - ((m_PlayerScore->GetWidthOfChar() * m_Score.size()) / 2), 220);
 
-		SetDynamicWinText(iScore);
-		winTextDynamic->SetPosition(480 - (winTextDynamic->GetWidth() / 2), 290);
+		SetDynamicWinText(score);
+		m_WinTextDynamic->SetPosition(480 - (m_WinTextDynamic->GetWidth() / 2), 290);
 
-		buttonBackground = new Image("assets/ui/menu_item_background.png", buttonsXPos[0], 7 * 64);
-		buttonHighlight = new Image("assets/ui/menu_item_highlight.png", buttonsXPos[selectedButton], 7 * 64);
+		m_ButtonBackground = new Image("assets/ui/menu_item_background.png", m_ButtonsXPos[0], 7 * 64);
+		m_ButtonHighlight = new Image("assets/ui/menu_item_highlight.png", m_ButtonsXPos[m_SelectedButton], 7 * 64);
 
-		backToMenuButtonText = new Image("assets/text/back_to_menu_button_text.png", buttonsXPos[0], 7 * 64);
-		retryButtonText = new Image("assets/text/try_again_button_text.png", buttonsXPos[1], 7 * 64);
+		m_BackToMenuButtonText = new Image("assets/text/buttons/back_to_menu_button_text.png", m_ButtonsXPos[0], 7 * 64);
+		m_RetryButtonText = new Image("assets/text/buttons/try_again_button_text.png", m_ButtonsXPos[1], 7 * 64);
 	}
 
 	// --------------------------------------------------
@@ -34,23 +34,23 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Win::Update(float deltaTime)
 	{
-		if (selectedButton > 0 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::LEFT)) {
-			--selectedButton;
+		if (m_SelectedButton > 0 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::LEFT)) {
+			--m_SelectedButton;
 		}
 
-		if (selectedButton < 1 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::RIGHT)) {
-			++selectedButton;
+		if (m_SelectedButton < 1 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::RIGHT)) {
+			++m_SelectedButton;
 		}
 
 		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ENTER)) {
-			switch (selectedButton)
+			switch (m_SelectedButton)
 			{
 			case 0:
-				callback->SetNextState(new StartMenu(callback));
+				m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 				break;
 
 			case 1:
-				callback->SetNextState(new GamePlay(callback));
+				m_GameCallback->SetNextState(new Gameplay(m_GameCallback));
 				break;
 			}
 		}
@@ -62,21 +62,21 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Win::Render(Tmpl8::Surface* screen)
 	{
-		background->DrawImage(screen);
-		winTextStatic->DrawImage(screen);
-		playerScore->DrawScore(score, screen);
-		winTextDynamic->DrawImage(screen);
+		m_Background->DrawImage(screen);
+		m_WinTextStatic->DrawImage(screen);
+		m_PlayerScore->DrawScore(m_Score, screen);
+		m_WinTextDynamic->DrawImage(screen);
 
-		for (int xPos : buttonsXPos) {
-			buttonBackground->SetPosition(xPos, 7 * 64);
-			buttonBackground->DrawImage(screen);
+		for (int xPos : m_ButtonsXPos) {
+			m_ButtonBackground->SetPosition(xPos, 7 * 64);
+			m_ButtonBackground->DrawImage(screen);
 		}
 
-		buttonHighlight->SetPosition(buttonsXPos[selectedButton], 7 * 64);
-		buttonHighlight->DrawImage(screen);
+		m_ButtonHighlight->SetPosition(m_ButtonsXPos[m_SelectedButton], 7 * 64);
+		m_ButtonHighlight->DrawImage(screen);
 
-		backToMenuButtonText->DrawImage(screen);
-		retryButtonText->DrawImage(screen);
+		m_BackToMenuButtonText->DrawImage(screen);
+		m_RetryButtonText->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
@@ -85,63 +85,63 @@ namespace HillRaider
 	// --------------------------------------------------
 	Win::~Win()
 	{
-		if (background != nullptr) {
-			delete background;
-			background = nullptr;
+		if (m_Background != nullptr) {
+			delete m_Background;
+			m_Background = nullptr;
 		}
 
-		if (winTextStatic != nullptr) {
-			delete winTextStatic;
-			winTextStatic = nullptr;
+		if (m_WinTextStatic != nullptr) {
+			delete m_WinTextStatic;
+			m_WinTextStatic = nullptr;
 		}
 
-		if (playerScore != nullptr) {
-			delete playerScore;
-			playerScore = nullptr;
+		if (m_PlayerScore != nullptr) {
+			delete m_PlayerScore;
+			m_PlayerScore = nullptr;
 		}
 
-		if (winTextDynamic != nullptr) {
-			delete winTextDynamic;
-			winTextDynamic = nullptr;
+		if (m_WinTextDynamic != nullptr) {
+			delete m_WinTextDynamic;
+			m_WinTextDynamic = nullptr;
 		}
 
-		if (buttonBackground != nullptr) {
-			delete buttonBackground;
-			buttonBackground = nullptr;
+		if (m_ButtonBackground != nullptr) {
+			delete m_ButtonBackground;
+			m_ButtonBackground = nullptr;
 		}
 
-		if (buttonHighlight != nullptr) {
-			delete buttonHighlight;
-			buttonHighlight = nullptr;
+		if (m_ButtonHighlight != nullptr) {
+			delete m_ButtonHighlight;
+			m_ButtonHighlight = nullptr;
 		}
 
-		if (backToMenuButtonText != nullptr) {
-			delete backToMenuButtonText;
-			backToMenuButtonText = nullptr;
+		if (m_BackToMenuButtonText != nullptr) {
+			delete m_BackToMenuButtonText;
+			m_BackToMenuButtonText = nullptr;
 		}
 
-		if (retryButtonText != nullptr) {
-			delete retryButtonText;
-			retryButtonText = nullptr;
+		if (m_RetryButtonText != nullptr) {
+			delete m_RetryButtonText;
+			m_RetryButtonText = nullptr;
 		}
 
-		callback = nullptr;
+		m_GameCallback = nullptr;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the dynamic text according
 	// to the the score of the player.
 	// --------------------------------------------------
-	void Win::SetDynamicWinText(int iScore)
+	void Win::SetDynamicWinText(int score)
 	{
-		if (iScore < 500) {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_too_little.png", 0, 0);
+		if (score < 500) {
+			m_WinTextDynamic = new Image("assets/text/win_text_dynamic_too_little.png", 0, 0);
 		}
-		else if (iScore < 1000) {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_enough.png", 0, 0);
+		else if (score < 1000) {
+			m_WinTextDynamic = new Image("assets/text/win_text_dynamic_enough.png", 0, 0);
 		}
 		else {
-			winTextDynamic = new Image("assets/text/win_text_dynamic_more_than_enough.png", 0, 0);
+			m_WinTextDynamic = new Image("assets/text/win_text_dynamic_more_than_enough.png", 0, 0);
 		}
 	}
 }

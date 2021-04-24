@@ -6,12 +6,12 @@ namespace HillRaider
 	// This contructor is used to setup the properties
 	// for an enemy ant entity.
 	// --------------------------------------------------
-	EnemyAnt::EnemyAnt(int iX, int iY): Entity(iX, iY, 28, 62)
+	EnemyAnt::EnemyAnt(int x, int y): Entity(x, y, 28, 62)
 	{
-		legsAnimation = new Animation("assets/entities/red_ant_legs.png", 4, 4, timePerframeWalkingAnimation, iX, iY, true);
-		bodyAnimation = new Animation("assets/entities/red_ant_body.png", 4, 4, 75.f, iX, iY, false);
-		attackHitbox = new Hitbox(x, y + attackHitboxOffset, attackHitboxWidth, attackHitboxHeight);
-		lineScan = new Hitbox(x, y + lineScanOffset, lineScanWidth, lineScanHeight);
+		m_LegsAnimation = new Animation("assets/entities/red_ant_legs.png", 4, 4, c_TimePerframeWalkingAnimation, x, y, true);
+		m_BodyAnimation = new Animation("assets/entities/red_ant_body.png", 4, 4, 75.f, x, y, false);
+		m_AttackHitbox = new Hitbox(x, y + m_AttackHitboxOffset, c_AttackHitboxWidth, c_AttackHitboxHeight);
+		m_LineScan = new Hitbox(x, y + m_LineScanOffset, c_LineScanWidth, c_LineScanHeight);
 	}
 
 	// --------------------------------------------------
@@ -19,31 +19,31 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::Update(float deltaTime)
 	{
-		if (!lungeFlag) {
+		if (!m_LungeFlag) {
 			UpdateDirection();
 			MoveEnemyAnt(deltaTime);
 
 			//make decision timer
-			if (!makeDecisionFlag) {
-				if (makeDecisionTimer >= makeDecisionCooldown) {
-					makeDecisionFlag = true;
-					makeDecisionTimer = 0.f;
+			if (!m_MakeDecisionFlag) {
+				if (m_MakeDecisionTimer >= c_MakeDecisionCooldown) {
+					m_MakeDecisionFlag = true;
+					m_MakeDecisionTimer = 0.f;
 				}
 				else {
-					makeDecisionTimer += deltaTime;
+					m_MakeDecisionTimer += deltaTime;
 				}
 			}
 
 			//attack cooldown timer
-			if (lungeCooldownFlag) {
-				if (lungeCooldownTimer >= lungeCooldown) {
-					lungeCooldownFlag = false;
-					lungeCooldownTimer = 0.f;
-					bodyAnimation->SetCurrentXFrame(0);
+			if (m_LungeCooldownFlag) {
+				if (m_LungeCooldownTimer >= c_LungeCooldown) {
+					m_LungeCooldownFlag = false;
+					m_LungeCooldownTimer = 0.f;
+					m_BodyAnimation->SetCurrentXFrame(0);
 				}
 				else {
-					lungeCooldownTimer += deltaTime;
-					bodyAnimation->UpdateAnimation(deltaTime);
+					m_LungeCooldownTimer += deltaTime;
+					m_BodyAnimation->UpdateAnimation(deltaTime);
 				}
 			}
 		}
@@ -51,51 +51,53 @@ namespace HillRaider
 			//is attacking
 			Lunge(deltaTime);
 
-			if (lungeDurationTimer >= lungeDuration) {
-				legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
-				lungeFlag = false;
-				lungeDurationTimer = 0.f;
+			if (m_LungeDurationTimer >= c_LungeDuration) {
+				m_LegsAnimation->SetTimePerFrame(c_TimePerframeWalkingAnimation);
+				m_LungeFlag = false;
+				m_LungeDurationTimer = 0.f;
 			}
 			else {
-				lungeDurationTimer += deltaTime;
+				m_LungeDurationTimer += deltaTime;
 			}
 		}
 
-		legsAnimation->UpdateAnimation(deltaTime);
-		SetPosition(x, y);
+		m_LegsAnimation->UpdateAnimation(deltaTime);
+		SetPosition(m_X, m_Y);
 	}
 
 	// --------------------------------------------------
 	// This method is used to process the collisions between
 	// an enemy ant entity and other entities.
 	// --------------------------------------------------
-	void EnemyAnt::LateUpdate(std::list<Entity*> entityList)
+	void EnemyAnt::LateUpdate(TileMap* tileMap, std::list<Entity*> entityList)
 	{
 		float smallestDistance = 10000.f;
 		bool playerInLineOfSide = false;
 
+		ProcessTileMapCollision(tileMap);
+
 		for (auto entity : entityList) {
 			//entity on entity collision
-			if (TestBoxCollision(hitbox, entity)) {
+			if (TestBoxCollision(m_Hitbox, entity)) {
 				ApplyEntityCollision(entity);
 				GetAntUnstuck(entity);
 			}
 
 			//entity on attack hitbox collision
-			if (lungeFlag) {
+			if (m_LungeFlag) {
 				Player* player = dynamic_cast<Player*>(entity);
-				if (player != nullptr && TestBoxCollision(attackHitbox, entity)) {
+				if (player != nullptr && TestBoxCollision(m_AttackHitbox, entity)) {
 					player->TakeDamage();
-					lungeFlag = false;
-					lungeDurationTimer = 0.f;
+					m_LungeFlag = false;
+					m_LungeDurationTimer = 0.f;
 				}
 			}
 
 			//entity on attack range collision
-			if (makeDecisionFlag && !lungeCooldownFlag) {
-				if (TestBoxCollision(lineScan, entity)) {
-					int distanceVectorX = entity->GetPosition()[0] - x;
-					int distanceVectorY = entity->GetPosition()[1] - y;
+			if (m_MakeDecisionFlag && !m_LungeCooldownFlag) {
+				if (TestBoxCollision(m_LineScan, entity)) {
+					int distanceVectorX = entity->GetPosition()[0] - m_X;
+					int distanceVectorY = entity->GetPosition()[1] - m_Y;
 					float distance = sqrtf((float)(distanceVectorX * distanceVectorX) + (float)(distanceVectorY * distanceVectorY));
 					if (dynamic_cast<Player*>(entity) != nullptr && distance < smallestDistance) {
 						playerInLineOfSide = true;
@@ -112,11 +114,11 @@ namespace HillRaider
 		//attack decision
 		if (playerInLineOfSide) {
 			if ((rand() & 1) == 0) {
-				legsAnimation->SetTimePerFrame(lungeTimePerFrameWalkingAnimation);
-				lungeFlag = true;
-				lungeCooldownFlag = true;
+				m_LegsAnimation->SetTimePerFrame(c_LungeTimePerFrameWalkingAnimation);
+				m_LungeFlag = true;
+				m_LungeCooldownFlag = true;
 			}
-			makeDecisionFlag = false;
+			m_MakeDecisionFlag = false;
 		}
 	}
 
@@ -126,11 +128,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::Render(Tmpl8::Surface* screen)
 	{
-		legsAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
-		bodyAnimation->SetPosition(x - (bodyAnimation->GetWidth()) / 2, y - (bodyAnimation->GetHeight() / 2));
+		m_LegsAnimation->SetPosition(m_X - (m_BodyAnimation->GetWidth()) / 2, m_Y - (m_BodyAnimation->GetHeight() / 2));
+		m_BodyAnimation->SetPosition(m_X - (m_BodyAnimation->GetWidth()) / 2, m_Y - (m_BodyAnimation->GetHeight() / 2));
 		
-		legsAnimation->DrawAnimation(screen);
-		bodyAnimation->DrawAnimation(screen);
+		m_LegsAnimation->DrawAnimation(screen);
+		m_BodyAnimation->DrawAnimation(screen);
 	}
 
 	// --------------------------------------------------
@@ -138,16 +140,16 @@ namespace HillRaider
 	// damage.
 	// --------------------------------------------------
 	void EnemyAnt::TakeDamage() {
-		makeDecisionFlag = false;
-		makeDecisionTimer = 0.f;
+		m_MakeDecisionFlag = false;
+		m_MakeDecisionTimer = 0.f;
 
-		lungeFlag = false;
-		lungeCooldownFlag = false;
-		lungeDurationTimer = 0.f;
-		legsAnimation->SetTimePerFrame(timePerframeWalkingAnimation);
+		m_LungeFlag = false;
+		m_LungeCooldownFlag = false;
+		m_LungeDurationTimer = 0.f;
+		m_LegsAnimation->SetTimePerFrame(c_TimePerframeWalkingAnimation);
 
-		if (--ragdollHealt <= 0) {
-			callback->RemoveEntity(this);
+		if (--m_RagdollHealth <= 0) {
+			m_RoomCallback->RemoveEntity(this);
 		}
 	}
 
@@ -155,33 +157,33 @@ namespace HillRaider
 	// This method is used to set the room callback for
 	// an enemy ant entity.
 	// --------------------------------------------------
-	void EnemyAnt::SetRoomCallback(RoomCallback* iCallback)
+	void EnemyAnt::SetRoomCallback(RoomCallback* callback)
 	{
-		callback = iCallback;
+		m_RoomCallback = callback;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the position of an enemy
 	// ant entity.
 	// --------------------------------------------------
-	void EnemyAnt::SetPosition(int iX, int iY)
+	void EnemyAnt::SetPosition(int x, int y)
 	{
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
+		m_X = x;
+		m_Y = y;
+		m_Hitbox->SetPosition(x, y);
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case Entity::MovementDirection::UP:
-		case Entity::MovementDirection::DOWN:
-			attackHitbox->SetPosition(x, y + attackHitboxOffset);
-			lineScan->SetPosition(x, y + lineScanOffset);
+		case Direction::UP:
+		case Direction::DOWN:
+			m_AttackHitbox->SetPosition(m_X, y + m_AttackHitboxOffset);
+			m_LineScan->SetPosition(m_X, y + m_LineScanOffset);
 			break;
 
-		case Entity::MovementDirection::LEFT:
-		case Entity::MovementDirection::RIGHT:
-			attackHitbox->SetPosition(x + attackHitboxOffset, y);
-			lineScan->SetPosition(x + lineScanOffset, y);
+		case Direction::LEFT:
+		case Direction::RIGHT:
+			m_AttackHitbox->SetPosition(m_X + m_AttackHitboxOffset, m_Y);
+			m_LineScan->SetPosition(m_X + m_LineScanOffset, m_Y);
 			break;
 		}
 	}
@@ -190,57 +192,57 @@ namespace HillRaider
 	// This method is used to set the direction of an 
 	// enemy ant entity.
 	// --------------------------------------------------
-	void EnemyAnt::SetDirection(Entity::MovementDirection iDirection)
+	void EnemyAnt::SetDirection(Direction direction)
 	{
-		direction = iDirection;
+		m_Direction = direction;
 
-		legsAnimation->SetCurrentYFrame((int)direction);
-		bodyAnimation->SetCurrentYFrame((int)direction);
+		m_LegsAnimation->SetCurrentYFrame((int)m_Direction);
+		m_BodyAnimation->SetCurrentYFrame((int)m_Direction);
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case Entity::MovementDirection::UP:
-			attackHitboxOffset = -std::abs(attackHitboxOffset);
-			lineScanOffset = -std::abs(lineScanOffset);
-			hitbox->SetWidth(width);
-			hitbox->SetHeight(height);
-			attackHitbox->SetWidth(attackHitboxWidth);
-			attackHitbox->SetHeight(attackHitboxHeight);
-			lineScan->SetWidth(lineScanWidth);
-			lineScan->SetHeight(lineScanHeight);
+		case Direction::UP:
+			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
+			m_LineScanOffset = -std::abs(m_LineScanOffset);
+			m_Hitbox->SetWidth(m_Width);
+			m_Hitbox->SetHeight(m_Height);
+			m_AttackHitbox->SetWidth(c_AttackHitboxWidth);
+			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
+			m_LineScan->SetWidth(c_LineScanWidth);
+			m_LineScan->SetHeight(c_LineScanHeight);
 			break;
 
-		case Entity::MovementDirection::RIGHT:
-			attackHitboxOffset = std::abs(attackHitboxOffset);
-			lineScanOffset = std::abs(lineScanOffset);
-			hitbox->SetWidth(height);
-			hitbox->SetHeight(width);
-			attackHitbox->SetWidth(attackHitboxHeight);
-			attackHitbox->SetHeight(attackHitboxWidth);
-			lineScan->SetWidth(lineScanHeight);
-			lineScan->SetHeight(lineScanWidth);
+		case Direction::RIGHT:
+			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
+			m_LineScanOffset = std::abs(m_LineScanOffset);
+			m_Hitbox->SetWidth(m_Height);
+			m_Hitbox->SetHeight(m_Width);
+			m_AttackHitbox->SetWidth(c_AttackHitboxHeight);
+			m_AttackHitbox->SetHeight(c_AttackHitboxWidth);
+			m_LineScan->SetWidth(c_LineScanHeight);
+			m_LineScan->SetHeight(c_LineScanWidth);
 			break;
 
-		case Entity::MovementDirection::DOWN:
-			attackHitboxOffset = std::abs(attackHitboxOffset);
-			lineScanOffset = std::abs(lineScanOffset);
-			hitbox->SetWidth(width);
-			hitbox->SetHeight(height);
-			attackHitbox->SetWidth(attackHitboxWidth);
-			attackHitbox->SetHeight(attackHitboxHeight);
-			lineScan->SetWidth(lineScanWidth);
-			lineScan->SetHeight(lineScanHeight);
+		case Direction::DOWN:
+			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
+			m_LineScanOffset = std::abs(m_LineScanOffset);
+			m_Hitbox->SetWidth(m_Width);
+			m_Hitbox->SetHeight(m_Height);
+			m_AttackHitbox->SetWidth(c_AttackHitboxWidth);
+			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
+			m_LineScan->SetWidth(c_LineScanWidth);
+			m_LineScan->SetHeight(c_LineScanHeight);
 			break;
 
-		case Entity::MovementDirection::LEFT:
-			attackHitboxOffset = -std::abs(attackHitboxOffset);
-			lineScanOffset = -std::abs(lineScanOffset);
-			hitbox->SetWidth(height);
-			hitbox->SetHeight(width);
-			attackHitbox->SetWidth(attackHitboxHeight);
-			attackHitbox->SetHeight(attackHitboxWidth);
-			lineScan->SetWidth(lineScanHeight);
-			lineScan->SetHeight(lineScanWidth);
+		case Direction::LEFT:
+			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
+			m_LineScanOffset = -std::abs(m_LineScanOffset);
+			m_Hitbox->SetWidth(m_Height);
+			m_Hitbox->SetHeight(m_Width);
+			m_AttackHitbox->SetWidth(c_AttackHitboxHeight);
+			m_AttackHitbox->SetHeight(c_AttackHitboxWidth);
+			m_LineScan->SetWidth(c_LineScanHeight);
+			m_LineScan->SetHeight(c_LineScanWidth);
 			break;
 		}
 	}
@@ -249,9 +251,9 @@ namespace HillRaider
 	// This method is used to get the direction of an enemy
 	// ant entity.
 	// --------------------------------------------------
-	Entity::MovementDirection EnemyAnt::GetDirection()
+	Direction EnemyAnt::GetDirection()
 	{
-		return direction;
+		return m_Direction;
 	}
 
 	// --------------------------------------------------
@@ -260,7 +262,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Animation* EnemyAnt::GetSprite()
 	{
-		return bodyAnimation;
+		return m_BodyAnimation;
 	}
 
 	// --------------------------------------------------
@@ -269,24 +271,24 @@ namespace HillRaider
 	// --------------------------------------------------
 	EnemyAnt::~EnemyAnt()
 	{
-		if (legsAnimation != nullptr) {
-			delete legsAnimation;
-			legsAnimation = nullptr;
+		if (m_LegsAnimation != nullptr) {
+			delete m_LegsAnimation;
+			m_LegsAnimation = nullptr;
 		}
 
-		if (bodyAnimation != nullptr) {
-			delete bodyAnimation;
-			bodyAnimation = nullptr;
+		if (m_BodyAnimation != nullptr) {
+			delete m_BodyAnimation;
+			m_BodyAnimation = nullptr;
 		}
 
-		if (attackHitbox != nullptr) {
-			delete attackHitbox;
-			attackHitbox = nullptr;
+		if (m_AttackHitbox != nullptr) {
+			delete m_AttackHitbox;
+			m_AttackHitbox = nullptr;
 		}
 
-		if (lineScan != nullptr) {
-			delete lineScan;
-			lineScan = nullptr;
+		if (m_LineScan != nullptr) {
+			delete m_LineScan;
+			m_LineScan = nullptr;
 		}
 	}
 
@@ -299,22 +301,22 @@ namespace HillRaider
 	{
 		std::vector<AStarNode*> path;
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case Entity::MovementDirection::UP:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y + hitbox->GetHalfHeight()}, std::vector<int>{x, y - hitbox->GetHalfHeight()}, bypassCheck);
+		case Direction::UP:
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{m_X, m_Y + m_Hitbox->GetHalfHeight()}, std::vector<int>{m_X, m_Y - m_Hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::RIGHT:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x - hitbox->GetHalfWidth(), y}, std::vector<int>{x + hitbox->GetHalfWidth(), y}, bypassCheck);
+		case Direction::RIGHT:
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{m_X - m_Hitbox->GetHalfWidth(), m_Y}, std::vector<int>{m_X + m_Hitbox->GetHalfWidth(), m_Y}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::DOWN:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x, y - hitbox->GetHalfHeight()}, std::vector<int>{x, y + hitbox->GetHalfHeight()}, bypassCheck);
+		case Direction::DOWN:
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{m_X, m_Y - m_Hitbox->GetHalfHeight()}, std::vector<int>{m_X, m_Y + m_Hitbox->GetHalfHeight()}, bypassCheck);
 			break;
 
-		case Entity::MovementDirection::LEFT:
-			path = AStar::GetIntance()->FindPath(this, std::vector<int>{x + hitbox->GetHalfWidth(), y}, std::vector<int>{x - hitbox->GetHalfWidth(), y}, bypassCheck);
+		case Direction::LEFT:
+			path = AStar::GetIntance()->FindPath(this, std::vector<int>{m_X + m_Hitbox->GetHalfWidth(), m_Y}, std::vector<int>{m_X - m_Hitbox->GetHalfWidth(), m_Y}, bypassCheck);
 			break;
 		}
 
@@ -322,16 +324,16 @@ namespace HillRaider
 			std::vector<int> directionVector{ path[1]->GetGridX() - path[0]->GetGridX(), path[1]->GetGridY() - path[0]->GetGridY() };
 
 			if (directionVector == std::vector<int>{0, -1}) {
-				SetDirection(Entity::MovementDirection::UP);
+				SetDirection(Direction::UP);
 			}
 			else if (directionVector == std::vector<int>{1, 0}) {
-				SetDirection(Entity::MovementDirection::RIGHT);
+				SetDirection(Direction::RIGHT);
 			}
 			else if (directionVector == std::vector<int>{0, 1}) {
-				SetDirection(Entity::MovementDirection::DOWN);
+				SetDirection(Direction::DOWN);
 			}
 			else if (directionVector == std::vector<int>{-1, 0}) {
-				SetDirection(Entity::MovementDirection::LEFT);
+				SetDirection(Direction::LEFT);
 			}
 		}
 	}
@@ -342,28 +344,28 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::MoveEnemyAnt(float deltaTime)
 	{
-		distanceMoved = 0;
+		m_DistanceMoved = 0;
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case Entity::MovementDirection::UP:
-			distanceMoved = (int)(speed * (deltaTime / 1000));
-			y -= distanceMoved;
+		case Direction::UP:
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
+			m_Y -= m_DistanceMoved;
 			break;
 			
-		case Entity::MovementDirection::RIGHT:
-			distanceMoved = (int)(speed * (deltaTime / 1000));
-			x += distanceMoved;
+		case Direction::RIGHT:
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
+			m_X += m_DistanceMoved;
 			break;
 
-		case Entity::MovementDirection::DOWN:
-			distanceMoved = (int)(speed * (deltaTime / 1000));
-			y += distanceMoved;
+		case Direction::DOWN:
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
+			m_Y += m_DistanceMoved;
 			break;
 
-		case Entity::MovementDirection::LEFT:
-			distanceMoved = (int)(speed * (deltaTime / 1000));
-			x -= distanceMoved;
+		case Direction::LEFT:
+			m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
+			m_X -= m_DistanceMoved;
 			break;
 		}
 	}
@@ -375,28 +377,28 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::Lunge(float deltaTime)
 	{
-		distanceMoved = 0;
+		m_DistanceMoved = 0;
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case MovementDirection::UP:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			y -= distanceMoved;
+		case Direction::UP:
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
+			m_Y -= m_DistanceMoved;
 			break;
 
-		case MovementDirection::RIGHT:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			x += distanceMoved;
+		case Direction::RIGHT:
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
+			m_X += m_DistanceMoved;
 			break;
 
-		case MovementDirection::DOWN:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			y += distanceMoved;
+		case Direction::DOWN:
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
+			m_Y += m_DistanceMoved;
 			break;
 
-		case MovementDirection::LEFT:
-			distanceMoved = (int)((speed + lungeSpeedIncrease) * (deltaTime / 1000));
-			x -= distanceMoved;
+		case Direction::LEFT:
+			m_DistanceMoved = (int)((m_Speed + c_LungeSpeedIncrease) * (deltaTime / 1000.f));
+			m_X -= m_DistanceMoved;
 			break;
 		}
 	}
@@ -410,6 +412,31 @@ namespace HillRaider
 		Player* player = dynamic_cast<Player*>(entity);
 		if (player == nullptr) {
 			UpdateDirection(true);
+		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to process tile map collision
+	// for an enemy ant.
+	// --------------------------------------------------
+	void EnemyAnt::ProcessTileMapCollision(TileMap* tileMap) {
+		char tileMapCollisionChar = ' ';
+		short hitboxPointIndex = -1;
+		CheckTileMapCollision(hitboxPointIndex, tileMapCollisionChar, tileMap);
+
+		if (tileMapCollisionChar != ' ') {
+			switch (m_Direction)
+			{
+			case Direction::UP:
+			case Direction::DOWN:
+				ApplyVerticalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][1]);
+				break;
+
+			case Direction::LEFT:
+			case Direction::RIGHT:
+				ApplyHorizontalTileMapCollision(hitboxPointIndex, m_Hitbox->GetBoxPoints()[hitboxPointIndex][0]);
+				break;
+			}
 		}
 	}
 }

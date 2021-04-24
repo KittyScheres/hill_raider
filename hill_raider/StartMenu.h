@@ -18,21 +18,21 @@ namespace HillRaider
 	class StartMenu: public State
 	{
 	private:
-		GameCallback* callback = nullptr;
-		InputManager* inputManager = nullptr;
-		Image* background = nullptr;
-		Image* title = nullptr;
-		Image* buttonBackground = nullptr;
-		Image* playGameButtonText = nullptr;
-		Image* checkControlsButtonText = nullptr;
-		Image* creditsButtonText = nullptr;
-		Image* exitGameButtonText = nullptr;
-		int menuButtonsY[4]{ 4 * 64, 5 * 64, 6 * 64, 7 * 64 };
-		short selectedMenuItem = 0;
-		Image* menuItemHighlight = nullptr;
+		GameCallback* m_GameCallback = nullptr;
+		InputManager* m_InputManager = nullptr;
+		Image* m_Background = nullptr;
+		Image* m_Title = nullptr;
+		Image* m_ButtonBackground = nullptr;
+		Image* m_PlayGameButtonText = nullptr;
+		Image* m_CheckControlsButtonText = nullptr;
+		Image* m_CreditsButtonText = nullptr;
+		Image* m_ExitGameButtonText = nullptr;
+		int m_MenuButtonsY[4]{ 4 * 64, 5 * 64, 6 * 64, 7 * 64 };
+		short m_SelectedMenuItem = 0;
+		Image* m_MenuItemHighlight = nullptr;
 
 	public:
-		StartMenu(GameCallback* iCallback);
+		StartMenu(GameCallback* callback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~StartMenu();

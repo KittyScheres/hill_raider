@@ -2,7 +2,7 @@
 
 namespace HillRaider
 {
-	AStar* AStar::instance = nullptr;
+	AStar* AStar::s_Instance = nullptr;
 
 	// --------------------------------------------------
 	// This method is used to get the instance of the 
@@ -10,11 +10,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStar* AStar::GetIntance()
 	{
-		if (instance == nullptr) {
-			instance = new AStar();
+		if (s_Instance == nullptr) {
+			s_Instance = new AStar();
 		}
 
-		return instance;
+		return s_Instance;
 	}
 
 	// --------------------------------------------------
@@ -23,8 +23,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	void AStar::DestroyInstance()
 	{
-		delete instance;
-		instance = nullptr;
+		delete s_Instance;
+		s_Instance = nullptr;
 	}
 
 	// --------------------------------------------------
@@ -32,11 +32,11 @@ namespace HillRaider
 	// current room.
 	// --------------------------------------------------
 	void AStar::SetNodeMap(TileMap* tileMap) {
-		if (nodeMap != nullptr) {
-			delete nodeMap;
+		if (m_NodeMap != nullptr) {
+			delete m_NodeMap;
 		}
 
-		nodeMap = new AStarGrid(tileMap);
+		m_NodeMap = new AStarGrid(tileMap);
 	}
 
 	// --------------------------------------------------
@@ -45,7 +45,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void AStar::SetEntitiesListReference(std::list<Entity*>* const entitiesList)
 	{
-		entitiesListReference = entitiesList;
+		m_EntitiesListReference = entitiesList;
 	}
 
 	// --------------------------------------------------
@@ -54,7 +54,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void AStar::SetEndGoal(Entity* entity)
 	{
-		endGoal = entity;
+		m_EndGoal = entity;
 	}
 
 	// --------------------------------------------------
@@ -66,9 +66,9 @@ namespace HillRaider
 	{
 		std::vector<AStarNode*> path;
 
-		AStarNode* startNode = nodeMap->GetNodeFromGrid(startPosition[0], startPosition[1]);
-		AStarNode* compareNode = nodeMap->GetNodeFromGrid(comparePosition[0], comparePosition[1]);
-		AStarNode* endNode = nodeMap->GetNodeFromGrid(endGoal->GetPosition()[0], endGoal->GetPosition()[1]);
+		AStarNode* startNode = m_NodeMap->GetNodeFromGrid(startPosition[0], startPosition[1]);
+		AStarNode* compareNode = m_NodeMap->GetNodeFromGrid(comparePosition[0], comparePosition[1]);
+		AStarNode* endNode = m_NodeMap->GetNodeFromGrid(m_EndGoal->GetPosition()[0], m_EndGoal->GetPosition()[1]);
 
 		std::list<AStarNode*> openSet;
 		std::unordered_set<AStarNode*> closedSet;
@@ -99,7 +99,7 @@ namespace HillRaider
 				}
 
 				// add available neighbour nodes to open set
-				for (AStarNode* neighbour : nodeMap->GetNeighbouringNodes(currentNode)) {
+				for (AStarNode* neighbour : m_NodeMap->GetNeighbouringNodes(currentNode)) {
 					if (!neighbour->GetWalkable() || closedSet.find(neighbour) != closedSet.end()) {
 						continue;
 					}
@@ -118,7 +118,7 @@ namespace HillRaider
 				}
 			}
 
-			nodeMap->ResetWalkableNodes();
+			m_NodeMap->ResetWalkableNodes();
 		}
 		
 		return path;
@@ -133,27 +133,27 @@ namespace HillRaider
 		AStarNode* entityNode = nullptr;
 		AStarNode* infrontOfEntityNode = nullptr;
 
-		for (Entity* entity : *entitiesListReference) {
+		for (Entity* entity : *m_EntitiesListReference) {
 			if (entity != pathFindingEntity) {
 				switch (entity->GetDirection()) {
-				case Entity::MovementDirection::UP:
-					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] + entity->GetHitbox()->GetHalfHeight()));
-					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()];
+				case Direction::UP:
+					entityNode = m_NodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] + entity->GetHitbox()->GetHalfHeight()));
+					infrontOfEntityNode = m_NodeMap->GetNodeGrid()[entityNode->GetGridY() - 1][entityNode->GetGridX()];
 					break;
 
-				case Entity::MovementDirection::RIGHT:
-					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] - entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
-					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1];
+				case Direction::RIGHT:
+					entityNode = m_NodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] - entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
+					infrontOfEntityNode = m_NodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() + 1];
 					break;
 
-				case Entity::MovementDirection::DOWN:
-					entityNode = nodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] - entity->GetHitbox()->GetHalfHeight()));
-					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()];
+				case Direction::DOWN:
+					entityNode = m_NodeMap->GetNodeFromGrid(entity->GetHitbox()->GetPosition()[0], (entity->GetHitbox()->GetPosition()[1] - entity->GetHitbox()->GetHalfHeight()));
+					infrontOfEntityNode = m_NodeMap->GetNodeGrid()[entityNode->GetGridY() + 1][entityNode->GetGridX()];
 					break;
 
-				case Entity::MovementDirection::LEFT:
-					entityNode = nodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] + entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
-					infrontOfEntityNode = nodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1];
+				case Direction::LEFT:
+					entityNode = m_NodeMap->GetNodeFromGrid((entity->GetHitbox()->GetPosition()[0] + entity->GetHitbox()->GetHalfWidth()), (entity->GetHitbox()->GetPosition()[1]));
+					infrontOfEntityNode = m_NodeMap->GetNodeGrid()[entityNode->GetGridY()][entityNode->GetGridX() - 1];
 					break;
 				}
 
@@ -201,9 +201,9 @@ namespace HillRaider
 	// the node map used by the AStar class.
 	// --------------------------------------------------
 	AStar::~AStar() {
-		if (nodeMap != nullptr) {
-			delete nodeMap;
-			nodeMap = nullptr;
+		if (m_NodeMap != nullptr) {
+			delete m_NodeMap;
+			m_NodeMap = nullptr;
 		}
 	}
 }

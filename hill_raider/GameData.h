@@ -8,14 +8,14 @@ namespace HillRaider
 	class GameData
 	{
 	private:
-		static GameData* instance;
+		static GameData* s_Instance;
 
 	public:
-		const static short MAX_HEALTH = 6;
-		const static int MAX_POINTS = 99999;
-		const static short POINTS_FOR_HEALTH = 20;
-		short playerHealth = 6;
-		int playerPoints = 0;
+		const static short c_s_MaxHealth = 6;
+		const static int c_s_MaxPoints = 99999;
+		const static short c_s_PointsForHealth = 20;
+		short m_PlayerHealth = 6;
+		int m_PlayerPoints = 0;
 
 	public:
 		static GameData* GetInstance();

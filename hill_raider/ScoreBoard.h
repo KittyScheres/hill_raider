@@ -12,14 +12,14 @@ namespace HillRaider
 	class ScoreBoard
 	{
 	private:
-		Image* src = nullptr;
-		int x = 0;
-		int y = 0;
+		Image* m_Source = nullptr;
+		int m_X = 0;
+		int m_Y = 0;
 
 	public:
-		ScoreBoard(int iX = 0, int iY = 0);
+		ScoreBoard(int x = 0, int y = 0);
 		void DrawScore(std::string score, Tmpl8::Surface* screen);
-		void SetPosition(int iX, int iY);
+		void SetPosition(int x, int y);
 		std::vector<int> GetPosition();
 		int GetWidthOfChar();
 		int GetHeightOfChar();

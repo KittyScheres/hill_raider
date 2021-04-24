@@ -27,17 +27,14 @@ namespace HillRaider
 	// --------------------------------------------------
 	class Floor
 	{
-	public:
-		enum class MoveDirection {UP = 0, RIGHT, DOWN, LEFT};
-
 	private:
-		Room* floorMap[9][8];
-		int currentRoom[2];
+		Room* m_FloorMap[9][8];
+		int m_CurrentRoom[2];
 
 	public:
 		Floor();
 		Room* GetCurrentRoom();
-		void MoveToNextRoom(MoveDirection direction);
+		void MoveToNextRoom(Direction direction);
 		~Floor();
 	};
 }

@@ -11,11 +11,12 @@ namespace HillRaider
 	class ProgrammingCreditsScreen
 	{
 	private:
-		Image* screentitle = nullptr;
-		Image* cppFastTrackCredits = nullptr;
-		Image* sdlCredits = nullptr;
-		Image* freeImageCredits = nullptr;
-		Image* aStarCredits = nullptr;
+		Image* m_Screentitle = nullptr;
+		Image* m_CppFastTrackCredits = nullptr;
+		Image* m_SdlCredits = nullptr;
+		Image* m_FreeImageCredits = nullptr;
+		Image* m_AStarCredits = nullptr;
+		Image* m_GameCodeCredits = nullptr;
 
 	public:
 		ProgrammingCreditsScreen();

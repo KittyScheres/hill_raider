@@ -6,11 +6,11 @@ namespace HillRaider
 	// This constructor is used to initialize the score
 	// board.
 	// --------------------------------------------------
-	ScoreBoard::ScoreBoard(int iX, int iY)
+	ScoreBoard::ScoreBoard(int x, int y)
 	{
-		src = new Image("assets/text/number_line.png", 0, 0, 10);
-		x = iX;
-		y = iY;
+		m_Source = new Image("assets/text/number_line.png", 0, 0, 10);
+		m_X = x;
+		m_Y = y;
 	}
 
 	// --------------------------------------------------
@@ -24,9 +24,9 @@ namespace HillRaider
 			short number = ((int)score[i]) - ((int)'0');
 
 			if (number >= 0 && number <= 9) {
-				src->SetPosition(x + (i * GetWidthOfChar()), y);
-				src->SetCurrentXFrame(number);
-				src->DrawImage(screen);
+				m_Source->SetPosition(m_X + (i * GetWidthOfChar()), m_Y);
+				m_Source->SetCurrentXFrame(number);
+				m_Source->DrawImage(screen);
 			}
 		}
 	}
@@ -35,10 +35,10 @@ namespace HillRaider
 	// This mehtod is used to set the position for the score
 	// board.
 	// --------------------------------------------------
-	void ScoreBoard::SetPosition(int iX, int iY)
+	void ScoreBoard::SetPosition(int x, int y)
 	{
-		x = iX;
-		y = iY;
+		m_X = x;
+		m_Y = y;
 	}
 
 	// --------------------------------------------------
@@ -47,7 +47,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<int> ScoreBoard::GetPosition()
 	{
-		return std::vector<int>{ x, y };
+		return std::vector<int>{ m_X, m_Y };
 	}
 
 	// --------------------------------------------------
@@ -56,7 +56,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int ScoreBoard::GetWidthOfChar()
 	{
-		return src->GetWidth();
+		return m_Source->GetWidth();
 	}
 
 	// --------------------------------------------------
@@ -65,7 +65,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int ScoreBoard::GetHeightOfChar()
 	{
-		return src->GetHeight();
+		return m_Source->GetHeight();
 	}
 
 	// --------------------------------------------------
@@ -74,9 +74,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	ScoreBoard::~ScoreBoard()
 	{
-		if (src != nullptr) {
-			delete src;
-			src = nullptr;
+		if (m_Source != nullptr) {
+			delete m_Source;
+			m_Source = nullptr;
 		}
 	}
 }

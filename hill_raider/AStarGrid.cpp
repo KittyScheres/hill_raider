@@ -8,11 +8,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStarGrid::AStarGrid(TileMap* tileMap)
 	{
-		map = tileMap;
+		m_Map = tileMap;
 
-		for (int y = 0; y < TileMap::TILE_MAP_HEIGHT; y++) {
+		for (int y = 0; y < TileMap::c_s_TileMapHeight; y++) {
 			std::vector<AStarNode*> newRow;
-			for (int x = 0; x < TileMap::TILE_MAP_WIDHT; x++) {
+			for (int x = 0; x < TileMap::c_s_TileMapWidth; x++) {
 				int xPos = x * tileMap->GetTileWidth();
 				int yPos = y * tileMap->GetTileHeight();
 
@@ -24,7 +24,7 @@ namespace HillRaider
 					newRow.push_back(new AStarNode(xPos, yPos, true, x, y));
 				}
 			}
-			nodeGrid.push_back(newRow);
+			m_NodeGrid.push_back(newRow);
 		}
 	}
 
@@ -34,9 +34,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	void AStarGrid::ResetWalkableNodes()
 	{
-		for (std::vector<AStarNode*> nodeLine : nodeGrid) {
+		for (std::vector<AStarNode*> nodeLine : m_NodeGrid) {
 			for (AStarNode* node : nodeLine) {
-				node->SetWalkable(map->GetCollision(node->GetPosition()[0], node->GetPosition()[1]) == ' ');
+				node->SetWalkable(m_Map->GetCollision(node->GetPosition()[0], node->GetPosition()[1]) == ' ');
 			}
 		}
 	}
@@ -46,7 +46,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<std::vector<AStarNode*>> AStarGrid::GetNodeGrid()
 	{
-		return nodeGrid;
+		return m_NodeGrid;
 	}
 
 	// --------------------------------------------------
@@ -55,7 +55,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStarNode* AStarGrid::GetNodeFromGrid(int x, int y)
 	{
-		return nodeGrid[y / 64][x / 64];
+		return m_NodeGrid[y / 64][x / 64];
 	}
 
 	// --------------------------------------------------
@@ -67,12 +67,12 @@ namespace HillRaider
 		std::vector<AStarNode*> nodeList;
 
 		for (int offset = -1; offset <= 1; offset += 2) {
-			if ((node->GetGridY() + offset) < (int)nodeGrid.size() && (node->GetGridY() + offset) >= 0) {
-				nodeList.push_back(nodeGrid[node->GetGridY() + offset][node->GetGridX()]);
+			if ((node->GetGridY() + offset) < (int)m_NodeGrid.size() && (node->GetGridY() + offset) >= 0) {
+				nodeList.push_back(m_NodeGrid[node->GetGridY() + offset][node->GetGridX()]);
 			}
 
-			if ((node->GetGridX() + offset) < (int)nodeGrid[0].size() && (node->GetGridX() + offset) >= 0) {
-				nodeList.push_back(nodeGrid[node->GetGridY()][node->GetGridX() + offset]);
+			if ((node->GetGridX() + offset) < (int)m_NodeGrid[0].size() && (node->GetGridX() + offset) >= 0) {
+				nodeList.push_back(m_NodeGrid[node->GetGridY()][node->GetGridX() + offset]);
 			}
 		}
 
@@ -85,13 +85,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	AStarGrid::~AStarGrid()
 	{
-		for (std::vector<AStarNode*> nodeMapRow : nodeGrid) {
+		for (std::vector<AStarNode*> nodeMapRow : m_NodeGrid) {
 			for (AStarNode* node : nodeMapRow) {
 				delete node;
 				node = nullptr;
 			}
 		}
 
-		nodeGrid.clear();
+		m_NodeGrid.clear();
 	}
 }

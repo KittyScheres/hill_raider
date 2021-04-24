@@ -11,12 +11,13 @@ namespace HillRaider
 	class ArtCreditsScreen
 	{
 	private:
-		Image* screenTitle = nullptr;
-		Image* tileMapCredits = nullptr;
-		Image* buttonsCredits = nullptr;
-		Image* backgroundCredits = nullptr;
-		Image* foodCredits = nullptr;
-		Image* keyboardKeysCredits = nullptr;
+		Image* m_ScreenTitle = nullptr;
+		Image* m_TileMapCredits = nullptr;
+		Image* m_ButtonsCredits = nullptr;
+		Image* m_BackgroundCredits = nullptr;
+		Image* m_FoodCredits = nullptr;
+		Image* m_KeyboardKeysCredits = nullptr;
+		Image* m_HeartsAntsCredits = nullptr;
 
 	public:
 		ArtCreditsScreen();

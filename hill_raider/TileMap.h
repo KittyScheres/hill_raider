@@ -12,17 +12,17 @@ namespace HillRaider
 	class TileMap
 	{
 	public:
-		const static int TILE_MAP_HEIGHT = 9;
-		const static int TILE_MAP_WIDHT = 15 * 3;
+		const static int c_s_TileMapHeight = 9;
+		const static int c_s_TileMapWidth = 15 * 3;
 
 	private:
-		Tmpl8::Surface* tileMapSurface = nullptr;
-		char tileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT];
-		int tileHeight = 0;
-		int tileWidth = 0;
+		Tmpl8::Surface* m_TileMapSurface = nullptr;
+		char m_TileMap[c_s_TileMapHeight][c_s_TileMapWidth];
+		int m_TileHeight = 0;
+		int m_TileWidth = 0;
 	
 	public:
-		TileMap(char* TileMapSurfacePath, char iTileMap[TILE_MAP_HEIGHT][TILE_MAP_WIDHT + 1], int iTileWidth, int iTileHeight);
+		TileMap(char* tileMapSurfacePath, char tileMap[c_s_TileMapHeight][c_s_TileMapWidth + 1], int tileWidth, int tileHeight);
 		void Render(Tmpl8::Surface* screen);
 		char GetCollision(int x, int y);
 		int GetTileHeight();
@@ -31,6 +31,5 @@ namespace HillRaider
 
 	private:
 		void DrawTile(Tmpl8::Surface* screen, int xScreen, int yScreen, int xSurface, int ySurface);
-
 	};
 }

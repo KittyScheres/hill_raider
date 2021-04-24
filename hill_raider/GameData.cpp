@@ -2,7 +2,7 @@
 
 namespace HillRaider
 {
-	GameData* GameData::instance = nullptr;
+	GameData* GameData::s_Instance = nullptr;
 
 	// --------------------------------------------------
 	// This method returns the singelton instance of
@@ -10,10 +10,10 @@ namespace HillRaider
 	// --------------------------------------------------
 	GameData* GameData::GetInstance()
 	{
-		if (instance == nullptr) {
-			instance = new GameData();
+		if (s_Instance == nullptr) {
+			s_Instance = new GameData();
 		}
-		return instance;
+		return s_Instance;
 	}
 
 	// --------------------------------------------------
@@ -22,9 +22,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	void GameData::DestroyInstance()
 	{
-		if (instance != nullptr) {
-			delete instance;
-			instance = nullptr;
+		if (s_Instance != nullptr) {
+			delete s_Instance;
+			s_Instance = nullptr;
 		}
 	}
 }

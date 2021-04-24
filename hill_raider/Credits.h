@@ -17,16 +17,16 @@ namespace HillRaider
 	class Credits: public State
 	{
 	private:
-		GameCallback* callback = nullptr;
-		Image* background = nullptr;
-		Image* pressEnterMessage = nullptr;
-		ArtCreditsScreen* artCredits = nullptr;
-		ProgrammingCreditsScreen* programmingCredits = nullptr;
-		FontCreditsScreen* fontCredits = nullptr;
-		short currentScreen = 0;
+		GameCallback* m_GameCallback = nullptr;
+		Image* m_Background = nullptr;
+		Image* m_PressEnterMessage = nullptr;
+		ArtCreditsScreen* m_ArtCredits = nullptr;
+		ProgrammingCreditsScreen* m_ProgrammingCredits = nullptr;
+		FontCreditsScreen* m_FontCredits = nullptr;
+		short m_CurrentScreen = 0;
 
 	public:
-		Credits(GameCallback* iCallback);
+		Credits(GameCallback* callback);
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
 		~Credits();

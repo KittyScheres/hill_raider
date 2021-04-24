@@ -161,7 +161,7 @@
     <ClInclude Include="InputManager.h">
       <Filter>hill_raider\header_files\managers</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlay.h">
+    <ClInclude Include="Gameplay.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
     <ClInclude Include="PauseScreen.h">
@@ -201,9 +201,6 @@
       <Filter>hill_raider\header_files\managers</Filter>
     </ClInclude>
     <ClInclude Include="Room.h">
-      <Filter>hill_raider\header_files\game_components\rooms</Filter>
-    </ClInclude>
-    <ClInclude Include="RoomCallback.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
     <ClInclude Include="HallwayVertical1010.h">
@@ -251,9 +248,6 @@
     <ClInclude Include="DeadEnd0001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="GameCallback.h">
-      <Filter>hill_raider\header_files\states</Filter>
-    </ClInclude>
     <ClInclude Include="CrossRoad1111.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
@@ -283,6 +277,18 @@
     </ClInclude>
     <ClInclude Include="ProgrammingCreditsScreen.h">
       <Filter>hill_raider\header_files\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCallback.h">
+      <Filter>hill_raider\header_files\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomCallback.h">
+      <Filter>hill_raider\header_files\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayCallback.h">
+      <Filter>hill_raider\header_files\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>hill_raider\header_files\enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +363,12 @@
     </Filter>
     <Filter Include="hill_raider\header_files\screens">
       <UniqueIdentifier>{4ae28eb4-f73a-43cc-b174-e6c8b3fe8982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\callbacks">
+      <UniqueIdentifier>{e688194e-4b7d-4aa5-aa74-a049cd2c6968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\enums">
+      <UniqueIdentifier>{ac6b5453-16fd-4ee0-a8a9-73e9402f2d4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

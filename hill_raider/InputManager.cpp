@@ -8,7 +8,7 @@
 
 namespace HillRaider
 {
-	InputManager* InputManager::instance = nullptr;
+	InputManager* InputManager::s_Instance = nullptr;
 
 	// --------------------------------------------------
 	// This method returns the singelton instance of
@@ -16,11 +16,11 @@ namespace HillRaider
 	// --------------------------------------------------
 	InputManager* InputManager::GetInstance()
 	{
-		if (instance == nullptr) {
-			instance = new InputManager();
+		if (s_Instance == nullptr) {
+			s_Instance = new InputManager();
 		}
 
-		return instance;
+		return s_Instance;
 	}
 
 	// --------------------------------------------------
@@ -29,9 +29,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	void InputManager::DestroyInstance()
 	{
-		if (instance != nullptr) {
-			delete instance;
-			instance = nullptr;
+		if (s_Instance != nullptr) {
+			delete s_Instance;
+			s_Instance = nullptr;
 		}
 	}
 
@@ -41,18 +41,18 @@ namespace HillRaider
 	// --------------------------------------------------
 	void InputManager::UpdateKeysState()
 	{
-		for (int i = 0; i < (sizeof(previousKeyState) / sizeof(bool)); i++) {
-			previousKeyState[i] = currentKeysState[i];
+		for (int i = 0; i < (sizeof(m_PreviousKeyState) / sizeof(bool)); i++) {
+			m_PreviousKeyState[i] = m_CurrentKeysState[i];
 		}
 
-		currentKeysState[(int)Keys::ENTER] = GetAsyncKeyState(VK_RETURN);
-		currentKeysState[(int)Keys::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
-		currentKeysState[(int)Keys::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
-		currentKeysState[(int)Keys::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
-		currentKeysState[(int)Keys::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
-		currentKeysState[(int)Keys::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
-		currentKeysState[(int)Keys::SPACE] = GetAsyncKeyState(VK_SPACE);
-		currentKeysState[(int)Keys::E] = GetAsyncKeyState(VK_E);
+		m_CurrentKeysState[(int)Keys::ENTER] = GetAsyncKeyState(VK_RETURN);
+		m_CurrentKeysState[(int)Keys::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
+		m_CurrentKeysState[(int)Keys::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
+		m_CurrentKeysState[(int)Keys::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
+		m_CurrentKeysState[(int)Keys::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
+		m_CurrentKeysState[(int)Keys::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
+		m_CurrentKeysState[(int)Keys::SPACE] = GetAsyncKeyState(VK_SPACE);
+		m_CurrentKeysState[(int)Keys::E] = GetAsyncKeyState(VK_E);
 	}
 
 	// --------------------------------------------------
@@ -61,7 +61,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyDown(Keys key)
 	{
-		return currentKeysState[(int)key];
+		return m_CurrentKeysState[(int)key];
 	}
 	
 	// --------------------------------------------------
@@ -70,7 +70,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyUp(Keys key)
 	{
-		return !currentKeysState[(int)key];
+		return !m_CurrentKeysState[(int)key];
 	}
 	
 	// --------------------------------------------------
@@ -79,7 +79,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyPressed(Keys key)
 	{
-		return !previousKeyState[(int)key] && currentKeysState[(int)key];
+		return !m_PreviousKeyState[(int)key] && m_CurrentKeysState[(int)key];
 	}
 
 	// --------------------------------------------------
@@ -87,6 +87,6 @@ namespace HillRaider
 	// been let go off.
 	// --------------------------------------------------
 	bool InputManager::KeyLetGo(Keys key) {
-		return previousKeyState[(int)key] && !currentKeysState[(int)key];
+		return m_PreviousKeyState[(int)key] && !m_CurrentKeysState[(int)key];
 	}
 }

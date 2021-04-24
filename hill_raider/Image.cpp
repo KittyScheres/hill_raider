@@ -5,15 +5,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This constructor is used to initialize the image.
 	// --------------------------------------------------
-	Image::Image(char* srcPath, int iX, int iY, short iXFrames, short iYFrames)
+	Image::Image(char* sourcePath, int x, int y, short xFrames, short yFrames)
 	{
-		src = new Tmpl8::Surface(srcPath);
-		x = iX;
-		y = iY;
-		xFrames = iXFrames;
-		yFrames = iYFrames;
-		width = src->GetWidth() / iXFrames;
-		height = src->GetHeight() / iYFrames;
+		m_Source = new Tmpl8::Surface(sourcePath);
+		m_X = x;
+		m_Y = y;
+		m_XFrames = xFrames;
+		m_YFrames = yFrames;
+		m_Width = m_Source->GetWidth() / xFrames;
+		m_Height = m_Source->GetHeight() / yFrames;
 	}
 
 	// --------------------------------------------------
@@ -24,14 +24,14 @@ namespace HillRaider
 	{
 		int screenWidth = screen->GetWidth();
 
-		for (int iY = 0; iY < height; iY++) {
-			int screenYPos = y + iY;
+		for (int iY = 0; iY < m_Height; iY++) {
+			int screenYPos = m_Y + iY;
 			if (screenYPos >= 0 && screenYPos <= screen->GetHeight()) {
-				for (int iX = 0; iX < width; iX++) {
-					int screenXpos = x + iX;
+				for (int iX = 0; iX < m_Width; iX++) {
+					int screenXpos = m_X + iX;
 					if (screenXpos >= 0 && screenXpos <= screenWidth) {
-						if ((src->GetBuffer()[(iX + (currentXFrame * width)) + ((iY + (currentYFrame * height)) * src->GetWidth())] >> 24) != 0) {
-							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = src->GetBuffer()[(iX + (currentXFrame * width)) + ((iY + (currentYFrame * height)) * src->GetWidth())];
+						if ((m_Source->GetBuffer()[(iX + (m_CurrentXFrame * m_Width)) + ((iY + (m_CurrentYFrame * m_Height)) * m_Source->GetWidth())] >> 24) != 0) {
+							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = m_Source->GetBuffer()[(iX + (m_CurrentXFrame * m_Width)) + ((iY + (m_CurrentYFrame * m_Height)) * m_Source->GetWidth())];
 						}
 					}
 				}
@@ -43,20 +43,20 @@ namespace HillRaider
 	// This method is used to change the position of the 
 	// image.
 	// --------------------------------------------------
-	void Image::SetPosition(int iX, int iY)
+	void Image::SetPosition(int x, int y)
 	{
-		x = iX;
-		y = iY;
+		m_X = x;
+		m_Y = y;
 	}
 
 	// --------------------------------------------------
 	// This method is used to update the current x axis
 	// of the sampel frame from the image source.
 	// --------------------------------------------------
-	void Image::SetCurrentXFrame(int iCurrentXFrame)
+	void Image::SetCurrentXFrame(int currentXFrame)
 	{
-		if (iCurrentXFrame < xFrames && iCurrentXFrame >= 0) {
-			currentXFrame = iCurrentXFrame;
+		if (currentXFrame < m_XFrames && currentXFrame >= 0) {
+			m_CurrentXFrame = currentXFrame;
 		}
 	}
 
@@ -64,10 +64,10 @@ namespace HillRaider
 	// This method is used to update the current y axis
 	// of the sampel frame from the image source.
 	// --------------------------------------------------
-	void Image::SetCurrentYFrame(int iCurrentYFrame)
+	void Image::SetCurrentYFrame(int currentYFrame)
 	{
-		if (iCurrentYFrame < yFrames && iCurrentYFrame >= 0) {
-			currentYFrame = iCurrentYFrame;
+		if (currentYFrame < m_YFrames && currentYFrame >= 0) {
+			m_CurrentYFrame = currentYFrame;
 		}
 	}
 
@@ -77,7 +77,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<int> Image::GetPosition()
 	{
-		return std::vector<int>{ x, y };
+		return std::vector<int>{ m_X, m_Y };
 	}
 
 	// --------------------------------------------------
@@ -86,7 +86,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Image::GetWidth()
 	{
-		return width;
+		return m_Width;
 	}
 
 	// --------------------------------------------------
@@ -95,7 +95,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Image::GetHeight()
 	{
-		return height;
+		return m_Height;
 	}
 
 	// --------------------------------------------------
@@ -104,9 +104,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	Image::~Image()
 	{
-		if (src != nullptr) {
-			delete src;
-			src = nullptr;
+		if (m_Source != nullptr) {
+			delete m_Source;
+			m_Source = nullptr;
 		}
 	}
 }

@@ -8,11 +8,11 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	FontCreditsScreen::FontCreditsScreen()
 	{
-		screenTitle = new Image("assets/text/font_credits_title.png", 0, 0);
-		screenTitle->SetPosition(480 - (screenTitle->GetWidth() / 2), 32);
+		m_ScreenTitle = new Image("assets/text/titels/font_credits_title.png", 0, 0);
+		m_ScreenTitle->SetPosition(480 - (m_ScreenTitle->GetWidth() / 2), 32);
 
-		fontCredits = new Image("assets/text/font_credits.png", 0, 0);
-		fontCredits->SetPosition(480 - (fontCredits->GetWidth() / 2), 288 - (fontCredits->GetHeight() / 2));
+		m_FontCredits = new Image("assets/text/credits/font_credits.png", 0, 0);
+		m_FontCredits->SetPosition(480 - (m_FontCredits->GetWidth() / 2), 288 - (m_FontCredits->GetHeight() / 2));
 	}
 
 	// ------------------------------------------------------------
@@ -20,8 +20,8 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void FontCreditsScreen::Render(Tmpl8::Surface* screen)
 	{
-		screenTitle->DrawImage(screen);
-		fontCredits->DrawImage(screen);
+		m_ScreenTitle->DrawImage(screen);
+		m_FontCredits->DrawImage(screen);
 	}
 
 	// ------------------------------------------------------------
@@ -30,14 +30,14 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	FontCreditsScreen::~FontCreditsScreen()
 	{
-		if (screenTitle != nullptr) {
-			delete screenTitle;
-			screenTitle = nullptr;
+		if (m_ScreenTitle != nullptr) {
+			delete m_ScreenTitle;
+			m_ScreenTitle = nullptr;
 		}
 
-		if (fontCredits != nullptr) {
-			delete fontCredits;
-			fontCredits = nullptr;
+		if (m_FontCredits != nullptr) {
+			delete m_FontCredits;
+			m_FontCredits = nullptr;
 		}
 	}
 }

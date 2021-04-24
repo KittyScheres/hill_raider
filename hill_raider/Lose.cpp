@@ -6,19 +6,19 @@ namespace HillRaider
 	// This constructor is used to setup the properties 
 	// for the lose screen.
 	// --------------------------------------------------
-	Lose::Lose(GameCallback* iCallback)
+	Lose::Lose(GameCallback* callback)
 	{
-		callback = iCallback;
-		background = new Image("assets/ui/background.png", 0, 0);
+		m_GameCallback = callback;
+		m_Background = new Image("assets/ui/background.png", 0, 0);
 		
-		loseMessage = new Image("assets/text/lose_message.png", 0, 0);
-		loseMessage->SetPosition(480 - (loseMessage->GetWidth() / 2), 70);
+		m_LoseMessage = new Image("assets/text/lose_message.png", 0, 0);
+		m_LoseMessage->SetPosition(480 - (m_LoseMessage->GetWidth() / 2), 70);
 
-		buttonBackground = new Image("assets/ui/menu_item_background.png", buttonsXPos[0], 7 * 64);
-		buttonHighlight = new Image("assets/ui/menu_item_highlight.png", buttonsXPos[selectedButton], 7 * 64);
+		m_ButtonBackground = new Image("assets/ui/menu_item_background.png", m_ButtonsXPos[0], 7 * 64);
+		m_ButtonHighlight = new Image("assets/ui/menu_item_highlight.png", m_ButtonsXPos[m_SelectedButton], 7 * 64);
 
-		backToMenuButtonText = new Image("assets/text/back_to_menu_button_text.png", buttonsXPos[0], 7 * 64);
-		retryButtonText = new Image("assets/text/try_again_button_text.png", buttonsXPos[1], 7 * 64);
+		m_BackToMenuButtonText = new Image("assets/text/buttons/back_to_menu_button_text.png", m_ButtonsXPos[0], 7 * 64);
+		m_RetryButtonText = new Image("assets/text/buttons/try_again_button_text.png", m_ButtonsXPos[1], 7 * 64);
 	}
 	
 	// --------------------------------------------------
@@ -27,23 +27,23 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Lose::Update(float deltaTime)
 	{
-		if (selectedButton > 0 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::LEFT)) {
-			--selectedButton;
+		if (m_SelectedButton > 0 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::LEFT)) {
+			--m_SelectedButton;
 		}
 
-		if (selectedButton < 1 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::RIGHT)) {
-			++selectedButton;
+		if (m_SelectedButton < 1 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::RIGHT)) {
+			++m_SelectedButton;
 		}
 
 		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ENTER)) {
-			switch (selectedButton)
+			switch (m_SelectedButton)
 			{
 			case 0:
-				callback->SetNextState(new StartMenu(callback));
+				m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 				break;
 			
 			case 1:
-				callback->SetNextState(new GamePlay(callback));
+				m_GameCallback->SetNextState(new Gameplay(m_GameCallback));
 				break;
 			}
 		}
@@ -55,19 +55,19 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Lose::Render(Tmpl8::Surface* screen)
 	{
-		background->DrawImage(screen);
-		loseMessage->DrawImage(screen);
+		m_Background->DrawImage(screen);
+		m_LoseMessage->DrawImage(screen);
 
-		for (int xPos : buttonsXPos) {
-			buttonBackground->SetPosition(xPos, 7 * 64);
-			buttonBackground->DrawImage(screen);
+		for (int xPos : m_ButtonsXPos) {
+			m_ButtonBackground->SetPosition(xPos, 7 * 64);
+			m_ButtonBackground->DrawImage(screen);
 		}
 
-		buttonHighlight->SetPosition(buttonsXPos[selectedButton], 7 * 64);
-		buttonHighlight->DrawImage(screen);
+		m_ButtonHighlight->SetPosition(m_ButtonsXPos[m_SelectedButton], 7 * 64);
+		m_ButtonHighlight->DrawImage(screen);
 
-		backToMenuButtonText->DrawImage(screen);
-		retryButtonText->DrawImage(screen);
+		m_BackToMenuButtonText->DrawImage(screen);
+		m_RetryButtonText->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
@@ -76,36 +76,36 @@ namespace HillRaider
 	// --------------------------------------------------
 	Lose::~Lose()
 	{
-		if (background != nullptr) {
-			delete background;
-			background = nullptr;
+		if (m_Background != nullptr) {
+			delete m_Background;
+			m_Background = nullptr;
 		}
 
-		if (loseMessage != nullptr) {
-			delete loseMessage;
-			loseMessage = nullptr;
+		if (m_LoseMessage != nullptr) {
+			delete m_LoseMessage;
+			m_LoseMessage = nullptr;
 		}
 
-		if (buttonBackground != nullptr) {
-			delete buttonBackground;
-			buttonBackground = nullptr;
+		if (m_ButtonBackground != nullptr) {
+			delete m_ButtonBackground;
+			m_ButtonBackground = nullptr;
 		}
 
-		if (buttonHighlight != nullptr) {
-			delete buttonHighlight;
-			buttonHighlight = nullptr;
+		if (m_ButtonHighlight != nullptr) {
+			delete m_ButtonHighlight;
+			m_ButtonHighlight = nullptr;
 		}
 
-		if (backToMenuButtonText != nullptr) {
-			delete backToMenuButtonText;
-			backToMenuButtonText = nullptr;
+		if (m_BackToMenuButtonText != nullptr) {
+			delete m_BackToMenuButtonText;
+			m_BackToMenuButtonText = nullptr;
 		}
 
-		if (retryButtonText != nullptr) {
-			delete retryButtonText;
-			retryButtonText = nullptr;
+		if (m_RetryButtonText != nullptr) {
+			delete m_RetryButtonText;
+			m_RetryButtonText = nullptr;
 		}
 
-		callback = nullptr;
+		m_GameCallback = nullptr;
 	}
 }

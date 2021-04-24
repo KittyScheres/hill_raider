@@ -285,6 +285,7 @@
     <ClInclude Include="DeadEnd0010.h" />
     <ClInclude Include="DeadEnd0100.h" />
     <ClInclude Include="DeadEnd1000.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FontCreditsScreen.h" />
@@ -292,7 +293,8 @@
     <ClInclude Include="FrameRateManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameData.h" />
-    <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="GameplayCallback.h" />
     <ClInclude Include="HallwayHorizontal0101.h" />
     <ClInclude Include="HallwayVertical1010.h" />
     <ClInclude Include="Hitbox.h" />

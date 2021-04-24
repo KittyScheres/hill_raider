@@ -8,10 +8,10 @@ namespace HillRaider
 	// --------------------------------------------------
 	Hitbox::Hitbox(int x, int y, int width, int Height)
 	{
-		halfWidth = width / 2;
-		halfHeight = Height / 2;
-		xPos = x;
-		yPos = y;
+		m_HalfWidth = width / 2;
+		m_HalfHeight = Height / 2;
+		m_X = x;
+		m_Y = y;
 	}
 
 	// --------------------------------------------------
@@ -19,8 +19,8 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Hitbox::SetPosition(int x, int y)
 	{
-		xPos = x;
-		yPos = y;
+		m_X = x;
+		m_Y = y;
 	}
 
 	// --------------------------------------------------
@@ -28,7 +28,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Hitbox::SetWidth(int width)
 	{
-		halfWidth = width / 2;
+		m_HalfWidth = width / 2;
 	}
 
 	// --------------------------------------------------
@@ -36,7 +36,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Hitbox::SetHeight(int height)
 	{
-		halfHeight = height / 2;
+		m_HalfHeight = height / 2;
 	}
 
 	// --------------------------------------------------
@@ -44,7 +44,7 @@ namespace HillRaider
 	// hitbox.
 	// --------------------------------------------------
 	std::vector<int> Hitbox::GetPosition() {
-		return std::vector<int>{xPos, yPos};
+		return std::vector<int>{m_X, m_Y};
 	}
 
 	// --------------------------------------------------
@@ -53,7 +53,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Hitbox::GetHalfWidth()
 	{
-		return halfWidth;
+		return m_HalfWidth;
 	}
 
 	// --------------------------------------------------
@@ -62,7 +62,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Hitbox::GetHalfHeight()
 	{
-		return halfHeight;
+		return m_HalfHeight;
 	}
 
 	// --------------------------------------------------
@@ -71,7 +71,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	float Hitbox::GetCircleRadius()
 	{
-		return sqrtf((float)(halfWidth * halfWidth) + (float)(halfHeight * halfHeight));
+		return sqrtf((float)(m_HalfWidth * m_HalfWidth) + (float)(m_HalfHeight * m_HalfHeight));
 	}
 
 	// --------------------------------------------------
@@ -89,22 +89,22 @@ namespace HillRaider
 				switch (x)
 				{
 				case 0:
-					point.push_back(xPos - halfWidth);
+					point.push_back(m_X - m_HalfWidth);
 					break;
 
 				case 1:
-					point.push_back(xPos + halfWidth);
+					point.push_back(m_X + m_HalfWidth);
 					break;
 				}
 
 				switch (y)
 				{
 				case 0:
-					point.push_back(yPos - halfHeight);
+					point.push_back(m_Y - m_HalfHeight);
 					break;
 
 				case 1:
-					point.push_back(yPos + halfHeight);
+					point.push_back(m_Y + m_HalfHeight);
 					break;
 				}
 

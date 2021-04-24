@@ -10,7 +10,7 @@ namespace Tmpl8
 	class Game : public HillRaider::GameCallback
 	{
 	public:
-		void SetTarget(Surface* surface) { screen = surface; }
+		void SetTarget(Surface* surface) { m_Screen = surface; }
 		void Init();
 		void Shutdown();
 		void Tick( float deltaTime );
@@ -22,9 +22,9 @@ namespace Tmpl8
 		void MouseMove( int x, int y ) {}
 
 	private:
-		Surface* screen;
-		HillRaider::InputManager* inputManager = nullptr;
-		HillRaider::State* currentState = nullptr;
-		HillRaider::State* nextState = nullptr;
+		Surface* m_Screen;
+		HillRaider::InputManager* m_InputManager = nullptr;
+		HillRaider::State* m_CurrentState = nullptr;
+		HillRaider::State* m_NextState = nullptr;
 	};
 };

@@ -14,9 +14,9 @@ namespace HillRaider
 		enum class Keys {ENTER = 0, ESCAPE, UP, RIGHT, DOWN, LEFT, SPACE, E};
 
 	private:
-		static InputManager* instance;
-		bool currentKeysState[8] { false, false, false, false, false, false, false, false };
-		bool previousKeyState[8] { false, false, false, false, false, false, false, false };
+		static InputManager* s_Instance;
+		bool m_CurrentKeysState[8] { false, false, false, false, false, false, false, false };
+		bool m_PreviousKeyState[8] { false, false, false, false, false, false, false, false };
 
 	public:
 		static InputManager* GetInstance();

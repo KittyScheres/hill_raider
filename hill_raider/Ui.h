@@ -13,10 +13,10 @@ namespace HillRaider
 	class Ui
 	{
 	private:
-		Image* healingIcon = nullptr;
-		Image* healthBar[GameData::MAX_HEALTH] = {};
-		Image* foodScoreIcon = nullptr;
-		ScoreBoard* scoreBoard = nullptr;
+		Image* m_HealingIcon = nullptr;
+		Image* m_HealthBar[GameData::c_s_MaxHealth] = {};
+		Image* m_FoodScoreIcon = nullptr;
+		ScoreBoard* m_ScoreBoard = nullptr;
 
 	public:
 		Ui();

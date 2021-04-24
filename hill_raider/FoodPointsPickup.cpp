@@ -6,11 +6,11 @@ namespace HillRaider
 	// This constructor is used to setup the properties
 	// for a food points pickup entity.
 	// --------------------------------------------------
-	FoodPointsPickup::FoodPointsPickup(short iPoints, int iX, int iY): Entity(iX, iY, 44, 38)
+	FoodPointsPickup::FoodPointsPickup(short points, int x, int y): Entity(x, y, 44, 38)
 	{
-		foodPickupTexture = new Image("assets/entities/food_pickup.png", 0, 0);
-		foodPickupTexture->SetPosition(x - (foodPickupTexture->GetWidth() / 2), y - (foodPickupTexture->GetHeight() / 2));
-		points = iPoints;
+		m_FoodPickupTexture = new Image("assets/entities/food_pickup.png", 0, 0);
+		m_FoodPickupTexture->SetPosition(m_X - (m_FoodPickupTexture->GetWidth() / 2), m_Y - (m_FoodPickupTexture->GetHeight() / 2));
+		m_Points = points;
 	}
 
 	// --------------------------------------------------
@@ -19,28 +19,28 @@ namespace HillRaider
 	// --------------------------------------------------
 	void FoodPointsPickup::Render(Tmpl8::Surface* screen)
 	{
-		foodPickupTexture->DrawImage(screen);
+		m_FoodPickupTexture->DrawImage(screen);
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the room callback for 
 	// a food points pickup entity.
 	// --------------------------------------------------
-	void FoodPointsPickup::SetRoomCallback(RoomCallback* iCallback)
+	void FoodPointsPickup::SetRoomCallback(RoomCallback* callback)
 	{
-		callback = iCallback;
+		m_RoomCallback = callback;
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the position of a food
 	// points pickup entity.
 	// --------------------------------------------------
-	void FoodPointsPickup::SetPosition(int iX, int iY)
+	void FoodPointsPickup::SetPosition(int x, int y)
 	{
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
-		foodPickupTexture->SetPosition(x - (foodPickupTexture->GetWidth() / 2), y - (foodPickupTexture->GetHeight() / 2));
+		m_X = x;
+		m_Y = y;
+		m_Hitbox->SetPosition(m_X, m_Y);
+		m_FoodPickupTexture->SetPosition(m_X - (m_FoodPickupTexture->GetWidth() / 2), m_Y - (m_FoodPickupTexture->GetHeight() / 2));
 	}
 
 	// --------------------------------------------------
@@ -49,7 +49,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void FoodPointsPickup::RemoveFoodPointsPickup()
 	{
-		callback->RemoveEntity(this);
+		m_RoomCallback->RemoveEntity(this);
 	}
 
 	// --------------------------------------------------
@@ -58,7 +58,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	short FoodPointsPickup::GetPoints()
 	{
-		return points;
+		return m_Points;
 	}
 
 	// --------------------------------------------------
@@ -68,9 +68,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	FoodPointsPickup::~FoodPointsPickup()
 	{
-		if (foodPickupTexture != nullptr) {
-			delete foodPickupTexture;
-			foodPickupTexture = nullptr;
+		if (m_FoodPickupTexture != nullptr) {
+			delete m_FoodPickupTexture;
+			m_FoodPickupTexture = nullptr;
 		}
 	}
 }

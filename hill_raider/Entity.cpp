@@ -6,23 +6,23 @@ namespace HillRaider
 	// This constructor is used to setup the properties 
 	// for a basic entity.
 	// --------------------------------------------------
-	Entity::Entity(int iX, int iY, int iWidth, int iHeight)
+	Entity::Entity(int x, int y, int width, int height)
 	{
-		x = iX;
-		y = iY;
-		width = iWidth;
-		height = iHeight;
-		hitbox = new Hitbox(x, y, width, height);
+		m_X = x;
+		m_Y = y;
+		m_Width = width;
+		m_Height = height;
+		m_Hitbox = new Hitbox(m_X, m_Y, m_Width, m_Height);
 	}
 
 	// --------------------------------------------------
 	// This method is used to set the position of an entity.
 	// --------------------------------------------------
-	void Entity::SetPosition(int iX, int iY)
+	void Entity::SetPosition(int x, int y)
 	{
-		x = iX;
-		y = iY;
-		hitbox->SetPosition(x, y);
+		m_X = x;
+		m_Y = y;
+		m_Hitbox->SetPosition(m_X, m_Y);
 	}
 
 	// --------------------------------------------------
@@ -30,7 +30,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	std::vector<int> Entity::GetPosition()
 	{
-		return std::vector<int> {x, y};
+		return std::vector<int> {m_X, m_Y};
 	}
 
 	// --------------------------------------------------
@@ -38,7 +38,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Entity::GetWidth()
 	{
-		return width;
+		return m_Width;
 	}
 
 	// --------------------------------------------------
@@ -46,15 +46,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	int Entity::GetHeight()
 	{
-		return height;
+		return m_Height;
 	}
 
 	// --------------------------------------------------
 	// This method is used to get the direction an entity
 	// is facing.
 	// --------------------------------------------------
-	Entity::MovementDirection Entity::GetDirection() {
-		return direction;
+	Direction Entity::GetDirection() {
+		return m_Direction;
 	}
 
 	// --------------------------------------------------
@@ -62,7 +62,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Hitbox* Entity::GetHitbox()
 	{
-		return hitbox;
+		return m_Hitbox;
 	}
 	
 	// --------------------------------------------------
@@ -71,9 +71,9 @@ namespace HillRaider
 	// --------------------------------------------------
 	Entity::~Entity()
 	{
-		if (hitbox != nullptr) {
-			delete hitbox;
-			hitbox = nullptr;
+		if (m_Hitbox != nullptr) {
+			delete m_Hitbox;
+			m_Hitbox = nullptr;
 		}
 	}
 
@@ -110,39 +110,93 @@ namespace HillRaider
 	// when it is necessary.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
-		int vX = otherEntity->GetPosition()[0] - x;
-		int vY = otherEntity->GetPosition()[1] - y;
+		int vX = otherEntity->GetPosition()[0] - m_X;
+		int vY = otherEntity->GetPosition()[1] - m_Y;
 		float mag = sqrtf((float)(vX * vX) + (float)(vY * vY));
 		float nX = vX / mag;
 		float nY = vY / mag;
 
-		switch (direction)
+		switch (m_Direction)
 		{
-		case Entity::MovementDirection::UP:
+		case Direction::UP:
 			if ((nX > -0.75f && nX < 0.75f) && nY < 0.f) {
-				y += distanceMoved;
+				m_Y += m_DistanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::RIGHT:
+		case Direction::RIGHT:
 			if ((nY > -0.75f && nY < 0.75f) && nX > 0.f) {
-				x -= distanceMoved;
+				m_X -= m_DistanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::DOWN:
+		case Direction::DOWN:
 			if ((nX > -0.75f && nX < 0.75f) && nY > 0.f) {
-				y -= distanceMoved;
+				m_Y -= m_DistanceMoved;
 			}
 			break;
 
-		case Entity::MovementDirection::LEFT:
+		case Direction::LEFT:
 			if ((nY > -0.75f && nY < 0.75f) && nX < 0.f) {
-				x += distanceMoved;
+				m_X += m_DistanceMoved;
 			}
 			break;
 		}
 
-		this->SetPosition(x, y);
+		this->SetPosition(m_X, m_Y);
+	}
+
+	// --------------------------------------------------
+	// This method is used to check the tile map collision
+	// for an entity.
+	// --------------------------------------------------
+	void Entity::CheckTileMapCollision(short& _hitboxPoint, char& _collisionChar, TileMap* tileMap) {
+		std::vector<std::vector<int>> hitboxPoints = m_Hitbox->GetBoxPoints();
+
+		for (int i = 0; i < 4; i++) {
+			if (tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]) != ' ' && _collisionChar != 'x') {
+				_collisionChar = tileMap->GetCollision(hitboxPoints[i][0], hitboxPoints[i][1]);
+				_hitboxPoint = i;
+			}
+		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to push an entity away from
+	// tile map obsticals the entity has collided with 
+	// while moving in a vertical direction.
+	// --------------------------------------------------
+	void Entity::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
+	{
+		switch (hitboxPointIndex & 2)
+		{
+		case 0:
+			SetPosition(m_X, m_Y + (64 - (hitboxPointYPos & 63)));
+			break;
+
+		case 2:
+			SetPosition(m_X, m_Y - (hitboxPointYPos & 63));
+			break;
+		}
+
+	}
+
+	// --------------------------------------------------
+	// This method is used to push an entity away from
+	// tile map obsticals the entity has collided with 
+	// while moving in a horizontal direction.
+	// --------------------------------------------------
+	void Entity::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)
+	{
+		switch (hitboxPointIndex & 1)
+		{
+		case 0:
+			SetPosition(m_X + (64 - (hitboxPointXPos & 63)), m_Y);
+			break;
+
+		case 1:
+			SetPosition(m_X - (hitboxPointXPos & 63), m_Y);
+			break;
+		}
 	}
 }

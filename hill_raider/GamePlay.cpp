@@ -6,13 +6,14 @@ namespace HillRaider
 	// This constructor is used to initialize the components
 	// for the gameplay state.
 	// --------------------------------------------------
-	GamePlay::GamePlay(GameCallback* iCallback)
+	Gameplay::Gameplay(GameCallback* callback)
 	{
-		callback = iCallback;
-		pauseScreen = new PauseScreen(callback);
-		player = new Player((64 * 7) + 32, (64 * 4) + 32);
-		floor = new Floor();
-		ui = new Ui();
+		m_GameCallback = callback;
+		m_PauseScreen = new PauseScreen(m_GameCallback);
+		m_Player = new Player((64 * 7) + 32, (64 * 4) + 32);
+		m_Player->SetGamePlayCallback(this);
+		m_Floor = new Floor();
+		m_Ui = new Ui();
 	}
 
 	// --------------------------------------------------
@@ -20,35 +21,34 @@ namespace HillRaider
 	// for the gameplay state which might have been destroyed
 	// on the state change.
 	// --------------------------------------------------
-	void GamePlay::SetupSingletons()
+	void Gameplay::SetupSingletons()
 	{
 		GameData::GetInstance();
-		AStar::GetIntance()->SetEndGoal(player);
-		inputManager = InputManager::GetInstance();
+		AStar::GetIntance()->SetEndGoal(m_Player);
+		m_InputManager = InputManager::GetInstance();
 	}
 
 	// --------------------------------------------------
 	// This method is used to update the components for
 	// the gameplay state.
 	// --------------------------------------------------
-	void GamePlay::Update(float deltaTime)
+	void Gameplay::Update(float deltaTime)
 	{
-		if (gamePaused) {
-			if (inputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
-				gamePaused = false;
-				pauseScreen->GamePause();
+		if (m_GamePaused) {
+			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+				m_GamePaused = false;
+				m_PauseScreen->GamePause();
 			}
 
-			pauseScreen->Update(deltaTime);
+			m_PauseScreen->Update(deltaTime);
 		}
 		else {
-			if (inputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
-				gamePaused = true;
+			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+				m_GamePaused = true;
 			}
 
-			HealPlayer();
-			player->Update(deltaTime);
-			floor->GetCurrentRoom()->Update(deltaTime);
+			m_Player->Update(deltaTime);
+			m_Floor->GetCurrentRoom()->Update(deltaTime);
 		}
 	}
 
@@ -56,19 +56,14 @@ namespace HillRaider
 	// This method is used to execute the collision checks
 	// for the components for the gameplay state.
 	// --------------------------------------------------
-	void GamePlay::LateUpdate()
+	void Gameplay::LateUpdate()
 	{
-		if (!gamePaused) {
-			// check and apply entity collision
-			floor->GetCurrentRoom()->RoomCheckEntityCollision(player);
-			
-			// check and apply tile map collision
-			CheckTileMapCollision(player->GetHitbox()->GetBoxPoints());
-			floor->GetCurrentRoom()->RoomCheckTileMapCollsion();
+		if (!m_GamePaused) {
+			m_Floor->GetCurrentRoom()->LateUpdate(m_Player);
 		}
 
-		if (GameData::GetInstance()->playerHealth <= 0) {
-			callback->SetNextState(new Lose(callback));
+		if (GameData::GetInstance()->m_PlayerHealth <= 0) {
+			m_GameCallback->SetNextState(new Lose(m_GameCallback));
 		}
 	}
 
@@ -76,193 +71,72 @@ namespace HillRaider
 	// This method is used to draw the components for the
 	// gameplay state on to the screen.
 	// --------------------------------------------------
-	void GamePlay::Render(Tmpl8::Surface* screen)
+	void Gameplay::Render(Tmpl8::Surface* screen)
 	{
-		if (gamePaused) {
-			pauseScreen->Render(screen);
+		if (m_GamePaused) {
+			m_PauseScreen->Render(screen);
 		}
 		else {
-			floor->GetCurrentRoom()->Render(screen);
-			player->Render(screen);
-			ui->Render(screen);
+			m_Floor->GetCurrentRoom()->Render(screen);
+			m_Player->Render(screen);
+			m_Ui->Render(screen);
 		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to check if the room has been
+	// cleared.
+	// --------------------------------------------------
+	bool Gameplay::HasRoomBeenCleared() {
+		return m_Floor->GetCurrentRoom()->RoomCleared();
+	}
+
+	// --------------------------------------------------
+	// This method is used to move the player to a
+	// new room.
+	// --------------------------------------------------
+	void Gameplay::MovePlayerToNextRoom(Direction direction) {
+		m_Floor->MoveToNextRoom(direction);
+	}
+
+	// --------------------------------------------------
+	// This method is called when the player has met the
+	// the win condition of the game.
+	// --------------------------------------------------
+	void Gameplay::PlayerHasWonTheGame() {
+		m_GameCallback->SetNextState(new Win(m_GameCallback, GameData::GetInstance()->m_PlayerPoints));
 	}
 
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
 	// of the components for the gameplay state.
 	// --------------------------------------------------
-	GamePlay::~GamePlay()
+	Gameplay::~Gameplay()
 	{
-		callback = nullptr;
-		inputManager = nullptr;
+		m_GameCallback = nullptr;
+		m_InputManager = nullptr;
 
-		if (pauseScreen != nullptr) {
-			delete pauseScreen;
-			pauseScreen = nullptr;
+		if (m_PauseScreen != nullptr) {
+			delete m_PauseScreen;
+			m_PauseScreen = nullptr;
 		}
 
-		if (ui != nullptr) {
-			delete ui;
-			ui = nullptr;
+		if (m_Ui != nullptr) {
+			delete m_Ui;
+			m_Ui = nullptr;
 		}
 
-		if (player != nullptr) {
-			delete player;
-			player = nullptr;
+		if (m_Player != nullptr) {
+			delete m_Player;
+			m_Player = nullptr;
 		}
 
-		if (floor != nullptr) {
-			delete floor;
-			floor = nullptr;
+		if (m_Floor != nullptr) {
+			delete m_Floor;
+			m_Floor = nullptr;
 		}
 
 		AStar::DestroyInstance();
 		GameData::DestroyInstance();
-	}
-
-	// --------------------------------------------------
-	// This method is used heal the player when it the 
-	// conditions have been met.
-	// --------------------------------------------------
-	void GamePlay::HealPlayer()
-	{
-		GameData* gameDataInstance = GameData::GetInstance();
-		if (gameDataInstance->playerHealth < gameDataInstance->MAX_HEALTH && gameDataInstance->playerPoints >= gameDataInstance->POINTS_FOR_HEALTH && inputManager->KeyPressed(InputManager::Keys::E)) {
-			++gameDataInstance->playerHealth;
-			gameDataInstance->playerPoints -= gameDataInstance->POINTS_FOR_HEALTH;
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to check the tile map collision
-	// for the player.
-	// --------------------------------------------------
-	void GamePlay::CheckTileMapCollision(std::vector<std::vector<int>> hitbox) {
-		char collisionChar = ' ';
-		short index = 0;
-
-		for (int i = 0; i < 4; i++) {
-			if (floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1]) != ' ' && collisionChar != 'x') {
-				collisionChar = floor->GetCurrentRoom()->GetTileMap()->GetCollision(hitbox[i][0], hitbox[i][1]);
-				index = i;
-			}
-		}
-
-		switch (collisionChar) {
-		case 'w':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				floor->MoveToNextRoom(Floor::MoveDirection::UP);
-				player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), (7 * 64) + (player->GetSprite()->GetHeight() / 2));
-			}
-			else{
-				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
-			}
-			break;
-
-		case 'd':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				floor->MoveToNextRoom(Floor::MoveDirection::RIGHT);
-				player->SetPosition(64 + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
-			}
-			else {
-				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
-			}
-			break;
-
-		case 's':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				floor->MoveToNextRoom(Floor::MoveDirection::DOWN);
-				player->SetPosition((7 * 64) + (player->GetSprite()->GetWidth() / 2), 64 + (player->GetSprite()->GetHeight() / 2));
-			}
-			else {
-				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
-			}
-			break;
-
-		case 'a':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				floor->MoveToNextRoom(Floor::MoveDirection::LEFT);
-				player->SetPosition((13 * 64) + (player->GetSprite()->GetWidth() / 2), (4 * 64) + (player->GetSprite()->GetHeight() / 2));
-			}
-			else {
-				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
-			}
-			break;
-
-		case 't':
-		case 'g':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				callback->SetNextState(new Win(callback, GameData::GetInstance()->playerPoints));
-			}
-			else {
-				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
-			}
-			break;
-
-		case 'h':
-		case 'f':
-			if (floor->GetCurrentRoom()->RoomCleared()) {
-				callback->SetNextState(new Win(callback, GameData::GetInstance()->playerPoints));
-			}
-			else {
-				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
-			}
-			break;
-
-		case 'x':
-			switch (player->GetDirection())
-			{
-			case Entity::MovementDirection::UP:
-			case Entity::MovementDirection::DOWN:
-				ApplyVerticalTileMapCollision(index, hitbox[index][1]);
-				break;
-
-			case Entity::MovementDirection::LEFT:
-			case Entity::MovementDirection::RIGHT:
-				ApplyHorizontalTileMapCollision(index, hitbox[index][0]);
-				break;
-			}
-			break;
-		}
-	}
-
-	// --------------------------------------------------
-	// This method is used to push the player away from
-	// tile map obsticals the player has collided with 
-	// while moving in a vertical direction.
-	// --------------------------------------------------
-	void GamePlay::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
-	{
-		switch (hitboxPointIndex & 2)
-		{
-		case 0:
-			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] + (64 - (hitboxPointYPos & 63)));
-			break;
-
-		case 2:
-			player->SetPosition(player->GetPosition()[0], player->GetPosition()[1] - (hitboxPointYPos & 63));
-			break;
-		}
-
-	}
-
-	// --------------------------------------------------
-	// This method is used to push the player away from
-	// tile map obsticals the player has collided with 
-	// while moving in a horizontal direction.
-	// --------------------------------------------------
-	void GamePlay::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)
-	{
-		switch (hitboxPointIndex & 1)
-		{
-		case 0:
-			player->SetPosition(player->GetPosition()[0] + (64 - (hitboxPointXPos & 63)), player->GetPosition()[1]);
-			break;
-
-		case 1:
-			player->SetPosition(player->GetPosition()[0] - (hitboxPointXPos & 63), player->GetPosition()[1]);
-			break;
-		}
 	}
 }

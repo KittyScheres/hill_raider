@@ -20,10 +20,10 @@ namespace HillRaider
 	class AStar
 	{
 	private:
-		static AStar* instance;
-		AStarGrid* nodeMap = nullptr;
-		std::list<Entity*>* entitiesListReference = nullptr;
-		Entity* endGoal = nullptr;
+		static AStar* s_Instance;
+		AStarGrid* m_NodeMap = nullptr;
+		std::list<Entity*>* m_EntitiesListReference = nullptr;
+		Entity* m_EndGoal = nullptr;
 
 	public:
 		static AStar* GetIntance();
