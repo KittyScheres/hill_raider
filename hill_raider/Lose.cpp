@@ -27,15 +27,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Lose::Update(float deltaTime)
 	{
-		if (m_SelectedButton > 0 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::LEFT)) {
+		if (m_SelectedButton > 0 && InputManager::GetInstance()->KeyPressed(KeyBinding::LEFT)) {
 			--m_SelectedButton;
 		}
 
-		if (m_SelectedButton < 1 && InputManager::GetInstance()->KeyPressed(InputManager::Keys::RIGHT)) {
+		if (m_SelectedButton < 1 && InputManager::GetInstance()->KeyPressed(KeyBinding::RIGHT)) {
 			++m_SelectedButton;
 		}
 
-		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ENTER)) {
+		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedButton)
 			{
 			case 0:

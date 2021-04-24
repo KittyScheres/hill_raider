@@ -23,7 +23,7 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void Controls::Update(float deltaTime)
 	{
-		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ESCAPE)) {
+		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ESCAPE)) {
 			m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 		}
 	}

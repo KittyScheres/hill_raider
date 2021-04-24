@@ -300,6 +300,7 @@
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="KeyBinding.h" />
     <ClInclude Include="Lose.h" />
     <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="Player.h" />
