@@ -36,15 +36,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	void PauseScreen::Update(float deltaTime)
 	{
-		if (m_InputManager->KeyPressed(InputManager::Keys::UP) && m_SelectedButton > 0) {
+		if (m_InputManager->KeyPressed(KeyBinding::UP) && m_SelectedButton > 0) {
 			--m_SelectedButton;
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN) && m_SelectedButton < 1) {
+		if (m_InputManager->KeyPressed(KeyBinding::DOWN) && m_SelectedButton < 1) {
 			++m_SelectedButton;
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::ENTER)) {
+		if (m_InputManager->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedButton)
 			{
 			case 0:

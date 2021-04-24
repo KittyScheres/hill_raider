@@ -35,7 +35,7 @@ namespace HillRaider
 	void Gameplay::Update(float deltaTime)
 	{
 		if (m_GamePaused) {
-			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+			if (m_InputManager->KeyPressed(KeyBinding::ESCAPE)) {
 				m_GamePaused = false;
 				m_PauseScreen->GamePause();
 			}
@@ -43,7 +43,7 @@ namespace HillRaider
 			m_PauseScreen->Update(deltaTime);
 		}
 		else {
-			if (m_InputManager->KeyPressed(InputManager::Keys::ESCAPE)) {
+			if (m_InputManager->KeyPressed(KeyBinding::ESCAPE)) {
 				m_GamePaused = true;
 			}
 

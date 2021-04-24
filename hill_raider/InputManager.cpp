@@ -45,21 +45,21 @@ namespace HillRaider
 			m_PreviousKeyState[i] = m_CurrentKeysState[i];
 		}
 
-		m_CurrentKeysState[(int)Keys::ENTER] = GetAsyncKeyState(VK_RETURN);
-		m_CurrentKeysState[(int)Keys::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
-		m_CurrentKeysState[(int)Keys::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
-		m_CurrentKeysState[(int)Keys::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
-		m_CurrentKeysState[(int)Keys::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
-		m_CurrentKeysState[(int)Keys::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
-		m_CurrentKeysState[(int)Keys::SPACE] = GetAsyncKeyState(VK_SPACE);
-		m_CurrentKeysState[(int)Keys::E] = GetAsyncKeyState(VK_E);
+		m_CurrentKeysState[(int)KeyBinding::ENTER] = GetAsyncKeyState(VK_RETURN);
+		m_CurrentKeysState[(int)KeyBinding::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
+		m_CurrentKeysState[(int)KeyBinding::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
+		m_CurrentKeysState[(int)KeyBinding::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
+		m_CurrentKeysState[(int)KeyBinding::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
+		m_CurrentKeysState[(int)KeyBinding::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
+		m_CurrentKeysState[(int)KeyBinding::SPACE] = GetAsyncKeyState(VK_SPACE);
+		m_CurrentKeysState[(int)KeyBinding::E] = GetAsyncKeyState(VK_E);
 	}
 
 	// --------------------------------------------------
 	// This method is used to check if a key is being 
 	// pressed.
 	// --------------------------------------------------
-	bool InputManager::KeyDown(Keys key)
+	bool InputManager::KeyDown(KeyBinding key)
 	{
 		return m_CurrentKeysState[(int)key];
 	}
@@ -68,7 +68,7 @@ namespace HillRaider
 	// This method is used to check if a key is not being 
 	// pressed
 	// --------------------------------------------------
-	bool InputManager::KeyUp(Keys key)
+	bool InputManager::KeyUp(KeyBinding key)
 	{
 		return !m_CurrentKeysState[(int)key];
 	}
@@ -77,7 +77,7 @@ namespace HillRaider
 	// This mehtod is used to check if a key has just 
 	// been pressed.
 	// --------------------------------------------------
-	bool InputManager::KeyPressed(Keys key)
+	bool InputManager::KeyPressed(KeyBinding key)
 	{
 		return !m_PreviousKeyState[(int)key] && m_CurrentKeysState[(int)key];
 	}
@@ -86,7 +86,7 @@ namespace HillRaider
 	// This method is used to check if a key has just
 	// been let go off.
 	// --------------------------------------------------
-	bool InputManager::KeyLetGo(Keys key) {
+	bool InputManager::KeyLetGo(KeyBinding key) {
 		return m_PreviousKeyState[(int)key] && !m_CurrentKeysState[(int)key];
 	}
 }

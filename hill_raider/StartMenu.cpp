@@ -31,15 +31,15 @@ namespace HillRaider
 	// --------------------------------------------------
 	void StartMenu::Update(float deltaTime)
 	{
-		if (m_InputManager->KeyPressed(InputManager::Keys::UP) && m_SelectedMenuItem > 0) {
+		if (m_InputManager->KeyPressed(KeyBinding::UP) && m_SelectedMenuItem > 0) {
 			--m_SelectedMenuItem;
 		}
 		
-		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN) && m_SelectedMenuItem < 3) {
+		if (m_InputManager->KeyPressed(KeyBinding::DOWN) && m_SelectedMenuItem < 3) {
 			++m_SelectedMenuItem;
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::ENTER)) {
+		if (m_InputManager->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedMenuItem)
 			{
 			case 0:

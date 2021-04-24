@@ -290,6 +290,9 @@
     <ClInclude Include="Direction.h">
       <Filter>hill_raider\header_files\enums</Filter>
     </ClInclude>
+    <ClInclude Include="KeyBinding.h">
+      <Filter>hill_raider\header_files\enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

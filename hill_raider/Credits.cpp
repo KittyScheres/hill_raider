@@ -23,7 +23,7 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void Credits::Update(float deltaTime)
 	{
-		if (InputManager::GetInstance()->KeyPressed(InputManager::Keys::ENTER)) {
+		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ENTER)) {
 			if (m_CurrentScreen++ >= 2) {
 				m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 			}

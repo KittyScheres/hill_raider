@@ -19,7 +19,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
-		if (m_InputManager->KeyPressed(InputManager::Keys::E)) {
+		if (m_InputManager->KeyPressed(KeyBinding::E)) {
 			Heal();
 		}
 
@@ -29,7 +29,7 @@ namespace HillRaider
 			MovePlayer(deltaTime);
 			
 			if (!m_LungeCooldownFlag) {
-				if (m_InputManager->KeyPressed(InputManager::Keys::SPACE)) {
+				if (m_InputManager->KeyPressed(KeyBinding::SPACE)) {
 					m_LegsAnimation->SetTimePerFrame(c_LungeTimePerFrameWalkingAnimation);
 					m_LungeFlag = true;
 					m_LungeCooldownFlag = true;
@@ -257,19 +257,19 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::CheckForMovementKeyPressed()
 	{
-		if (m_InputManager->KeyPressed(InputManager::Keys::UP)) {
+		if (m_InputManager->KeyPressed(KeyBinding::UP)) {
 			SetDirection(Direction::UP);
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::RIGHT)) {
+		if (m_InputManager->KeyPressed(KeyBinding::RIGHT)) {
 			SetDirection(Direction::RIGHT);
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::DOWN)) {
+		if (m_InputManager->KeyPressed(KeyBinding::DOWN)) {
 			SetDirection(Direction::DOWN);
 		}
 
-		if (m_InputManager->KeyPressed(InputManager::Keys::LEFT)) {
+		if (m_InputManager->KeyPressed(KeyBinding::LEFT)) {
 			SetDirection(Direction::LEFT);
 		}
 	}
@@ -283,56 +283,56 @@ namespace HillRaider
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			if (m_InputManager->KeyLetGo(InputManager::Keys::UP)) {
-				if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+			if (m_InputManager->KeyLetGo(KeyBinding::UP)) {
+				if (m_InputManager->KeyDown(KeyBinding::RIGHT)) {
 					SetDirection(Direction::RIGHT);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+				else if (m_InputManager->KeyDown(KeyBinding::DOWN)) {
 					SetDirection(Direction::DOWN);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
+				else if (m_InputManager->KeyDown(KeyBinding::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
 			}
 			break;
 
 		case Direction::RIGHT:
-			if (m_InputManager->KeyLetGo(InputManager::Keys::RIGHT)) {
-				if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+			if (m_InputManager->KeyLetGo(KeyBinding::RIGHT)) {
+				if (m_InputManager->KeyDown(KeyBinding::DOWN)) {
 					SetDirection(Direction::DOWN);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
+				else if (m_InputManager->KeyDown(KeyBinding::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+				else if (m_InputManager->KeyDown(KeyBinding::UP)) {
 					SetDirection(Direction::UP);
 				}
 			}
 			break;
 
 		case Direction::DOWN:
-			if (m_InputManager->KeyLetGo(InputManager::Keys::DOWN)) {
-				if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
+			if (m_InputManager->KeyLetGo(KeyBinding::DOWN)) {
+				if (m_InputManager->KeyDown(KeyBinding::LEFT)) {
 					SetDirection(Direction::LEFT);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+				else if (m_InputManager->KeyDown(KeyBinding::UP)) {
 					SetDirection(Direction::UP);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+				else if (m_InputManager->KeyDown(KeyBinding::RIGHT)) {
 					SetDirection(Direction::RIGHT);
 				}
 			}
 			break;
 
 		case Direction::LEFT:
-			if (m_InputManager->KeyLetGo(InputManager::Keys::LEFT)) {
-				if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+			if (m_InputManager->KeyLetGo(KeyBinding::LEFT)) {
+				if (m_InputManager->KeyDown(KeyBinding::UP)) {
 					SetDirection(m_Direction = Direction::UP);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+				else if (m_InputManager->KeyDown(KeyBinding::RIGHT)) {
 					SetDirection(m_Direction = Direction::RIGHT);
 				}
-				else if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+				else if (m_InputManager->KeyDown(KeyBinding::DOWN)) {
 					SetDirection(m_Direction = Direction::DOWN);
 				}
 			}
@@ -351,7 +351,7 @@ namespace HillRaider
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			if (m_InputManager->KeyDown(InputManager::Keys::UP)) {
+			if (m_InputManager->KeyDown(KeyBinding::UP)) {
 				m_LegsAnimation->UpdateAnimation(deltaTime);
 				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 				m_Y -= m_DistanceMoved;
@@ -359,7 +359,7 @@ namespace HillRaider
 			break;
 
 		case Direction::RIGHT:
-			if (m_InputManager->KeyDown(InputManager::Keys::RIGHT)) {
+			if (m_InputManager->KeyDown(KeyBinding::RIGHT)) {
 				m_LegsAnimation->UpdateAnimation(deltaTime);
 				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 				m_X += m_DistanceMoved;
@@ -367,7 +367,7 @@ namespace HillRaider
 			break;
 
 		case Direction::DOWN:
-			if (m_InputManager->KeyDown(InputManager::Keys::DOWN)) {
+			if (m_InputManager->KeyDown(KeyBinding::DOWN)) {
 				m_LegsAnimation->UpdateAnimation(deltaTime);
 				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 				m_Y += m_DistanceMoved;
@@ -375,7 +375,7 @@ namespace HillRaider
 			break;
 
 		case Direction::LEFT:
-			if (m_InputManager->KeyDown(InputManager::Keys::LEFT)) {
+			if (m_InputManager->KeyDown(KeyBinding::LEFT)) {
 				m_LegsAnimation->UpdateAnimation(deltaTime);
 				m_DistanceMoved = (int)(m_Speed * (deltaTime / 1000.f));
 				m_X -= m_DistanceMoved;
