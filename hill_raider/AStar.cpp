@@ -1,4 +1,4 @@
-#include "AStar.h"
+#include "aStar.h"
 
 namespace HillRaider
 {
@@ -59,13 +59,14 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to get a walkable path for the
-	// enemy ai. This method has been created with the help
+	// enemy AI. This method has been created with the help
 	// of a tutorial.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition, bool bypassCheck)
 	{
 		std::vector<AStarNode*> path;
 
+		// Setup relevant nodes
 		AStarNode* startNode = m_NodeMap->GetNodeFromGrid(startPosition[0], startPosition[1]);
 		AStarNode* compareNode = m_NodeMap->GetNodeFromGrid(comparePosition[0], comparePosition[1]);
 		AStarNode* endNode = m_NodeMap->GetNodeFromGrid(m_EndGoal->GetPosition()[0], m_EndGoal->GetPosition()[1]);
@@ -74,13 +75,15 @@ namespace HillRaider
 		std::unordered_set<AStarNode*> closedSet;
 		openSet.push_back(startNode);
 
+		// Check if a* algorithm needs to be ran
 		if ((startNode == compareNode) || bypassCheck) {
+			// Take other entities into acount
 			SetNonWalkableEntityNodes(pathFindingEntity);
 			startNode->SetWalkable(true);
 			endNode->SetWalkable(true);
 
 			while (openSet.size() > 0) {
-				// check for node clossesd to endNode
+				// Check for node closest to endNode
 				AStarNode* currentNode = *openSet.begin();
 				for (std::list<AStarNode*>::iterator i = openSet.begin(); i != openSet.end(); i++) {
 					if ((*i)->GetFCost() < currentNode->GetFCost() || ((*i)->GetFCost() == currentNode->GetFCost() && (*i)->GetHCost() < currentNode->GetHCost())) {
@@ -88,24 +91,26 @@ namespace HillRaider
 					}
 				}
 
-				// add current node to closed set
+				// Add current node to closed set
 				openSet.remove(currentNode);
 				closedSet.insert(currentNode);
 
-				// check if endNode has been reached
+				// Check if endNode has been reached
 				if (currentNode == endNode) {
 					path = RetracePath(startNode, endNode);
 					break;
 				}
 
-				// add available neighbour nodes to open set
+				// Add available neighbour nodes to open set
 				for (AStarNode* neighbour : m_NodeMap->GetNeighbouringNodes(currentNode)) {
+					// Check if neighbour can be added to the open set
 					if (!neighbour->GetWalkable() || closedSet.find(neighbour) != closedSet.end()) {
 						continue;
 					}
 
 					int newPathToNeighbour = currentNode->GetGCost() + GetDistanceBetween(currentNode, neighbour);
 
+					// Add neighbour to the open set
 					if (newPathToNeighbour < neighbour->GetGCost() || std::find(openSet.begin(), openSet.end(), neighbour) == openSet.end()) {
 						neighbour->SetGCost(newPathToNeighbour);
 						neighbour->SetHCost(GetDistanceBetween(currentNode, endNode));
@@ -125,8 +130,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to the the nodes wich have been
-	// occupied by an enemy ai to not walkable.
+	// This method is used to set the nodes which have been
+	// occupied by an enemy AI to not walkable.
 	// --------------------------------------------------
 	void AStar::SetNonWalkableEntityNodes(Entity* pathFindingEntity)
 	{
@@ -165,7 +170,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to create a list with nodes that
-	// creat a walkable path for the enemy ai.
+	// create a walkable path for the enemy AI.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStar::RetracePath(AStarNode* startNode, AStarNode* endNode)
 	{
@@ -197,7 +202,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehtod is used to safly free the memory for 
+	// This method is used to safely free the memory for 
 	// the node map used by the AStar class.
 	// --------------------------------------------------
 	AStar::~AStar() {

@@ -1,9 +1,9 @@
-#include "Player.h"
+#include "player.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties 
+	// This constructor is used to set up the properties 
 	// for a player entity.
 	// --------------------------------------------------
 	Player::Player(int x, int y): Entity(x, y, 28, 62)
@@ -19,16 +19,21 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Player::Update(float deltaTime)
 	{
+		// Check if the player should be healed
 		if (m_InputManager->KeyPressed(KeyBinding::E)) {
 			Heal();
 		}
-
+		
+		// Is the player attacking?
 		if (!m_LungeFlag) {
+			// Update the movement of the player
 			CheckForMovementKeyPressed();
 			CheckForMovementKeyLetGo();
 			MovePlayer(deltaTime);
 			
+			// Has the attack cooldown finished?
 			if (!m_LungeCooldownFlag) {
+				// Check if the player wants to attack
 				if (m_InputManager->KeyPressed(KeyBinding::SPACE)) {
 					m_LegsAnimation->SetTimePerFrame(c_LungeTimePerFrameWalkingAnimation);
 					m_LungeFlag = true;
@@ -36,7 +41,7 @@ namespace HillRaider
 				}
 			}
 			else {
-				//attack cooldown timer
+				// Attack cooldown timer
 				if (m_LungeCooldownTimer >= c_LungeCooldown) {
 					m_LungeCooldownFlag = false;
 					m_LungeCooldownTimer = 0.f;
@@ -49,10 +54,10 @@ namespace HillRaider
 			}
 		}
 		else {
-			//is attacking
 			m_LegsAnimation->UpdateAnimation(deltaTime);
 			Lunge(deltaTime);
 
+			// Attack duration timer
 			if (m_LungeDurationTimer >= c_LungeDuration) {
 				m_LegsAnimation->SetTimePerFrame(c_TimePerframeWalkingAnimation);
 				m_LungeFlag = false;
@@ -77,7 +82,7 @@ namespace HillRaider
 		for (Entity* entity : entityList) {
 			FoodPointsPickup* foodPointPickup = dynamic_cast<FoodPointsPickup*>(entity);
 
-			//entity on entity collision
+			// Entity on entity collision
 			if (foodPointPickup == nullptr) {
 				if (TestBoxCollision(m_Hitbox, entity)) {
 					ApplyEntityCollision(entity);
@@ -85,7 +90,7 @@ namespace HillRaider
 				}
 			}
 
-			//entity on attack hitbox collision
+			// Entity on attack hitbox collision
 			if (m_LungeFlag && foodPointPickup == nullptr) {
 				if (TestBoxCollision(m_AttackHitbox, entity)) {
 					EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(entity);
@@ -97,7 +102,7 @@ namespace HillRaider
 				}
 			}
 
-			//entity on food points pickup entity collision
+			// Entity on food points pickup entity collision
 			if (foodPointPickup != nullptr) {
 				if (TestBoxCollision(m_Hitbox, entity)) {
 					GameData* gameDataInstance = GameData::GetInstance();
@@ -125,7 +130,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is called to make a player entity take
+	// This method is used to make a player entity take
 	// damage.
 	// --------------------------------------------------
 	void Player::TakeDamage() {
@@ -175,6 +180,7 @@ namespace HillRaider
 
 		switch (m_Direction)
 		{
+		// Make the player face up
 		case Direction::UP:
 			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
 			m_Hitbox->SetWidth(m_Width);
@@ -183,6 +189,7 @@ namespace HillRaider
 			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
 			break;
 		
+		// Make the player face right
 		case Direction::RIGHT:
 			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
 			m_Hitbox->SetWidth(m_Height);
@@ -191,6 +198,7 @@ namespace HillRaider
 			m_AttackHitbox->SetHeight(c_AttackHitboxWidth);
 			break;
 
+		// Make the player face down
 		case Direction::DOWN:
 			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
 			m_Hitbox->SetWidth(m_Width);
@@ -199,6 +207,7 @@ namespace HillRaider
 			m_AttackHitbox->SetHeight(c_AttackHitboxHeight);
 			break;
 
+		// Make the player face left
 		case Direction::LEFT:
 			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
 			m_Hitbox->SetWidth(m_Height);
@@ -210,8 +219,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This methos is used to get the direction a player
-	// entity.
+	// This method is used to get the direction a player
+	// entity is facing.
 	// --------------------------------------------------
 	Direction Player::GetDirection() {
 		return m_Direction;
@@ -228,7 +237,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// of the propeties of a player entity.
+	// of the properties of a player entity.
 	// --------------------------------------------------
 	Player::~Player()
 	{
@@ -276,7 +285,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to check if the direction key 
-	// of the current direction has been let go of.
+	// of the current direction has been let go.
 	// --------------------------------------------------
 	void Player::CheckForMovementKeyLetGo()
 	{
@@ -386,7 +395,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to move a player entity in 
-	// the current direction with an increade movement
+	// the current direction with increased movement
 	// speed.
 	// --------------------------------------------------
 	void Player::Lunge(float deltaTime)
@@ -418,12 +427,14 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used heal the player when the 
+	// This method is used to heal the player when the 
 	// conditions have been met.
 	// --------------------------------------------------
 	void Player::Heal()
 	{
 		GameData* gameDataInstance = GameData::GetInstance();
+
+		// Should the player be healed?
 		if (gameDataInstance->m_PlayerHealth < gameDataInstance->c_s_MaxHealth && gameDataInstance->m_PlayerPoints >= gameDataInstance->c_s_PointsForHealth) {
 			++gameDataInstance->m_PlayerHealth;
 			gameDataInstance->m_PlayerPoints -= gameDataInstance->c_s_PointsForHealth;
@@ -441,6 +452,7 @@ namespace HillRaider
 		
 		switch (tileMapCollisionChar)
 		{
+		// Player collides with a door at the top of the room
 		case 'w':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
 				m_GameplayCallback->MovePlayerToNextRoom(Direction::UP);
@@ -451,6 +463,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with a door on the right of the room
 		case 'd':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
 				m_GameplayCallback->MovePlayerToNextRoom(Direction::RIGHT);
@@ -461,6 +474,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with a door at the bottom of the room
 		case 's':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
 				m_GameplayCallback->MovePlayerToNextRoom(Direction::DOWN);
@@ -471,6 +485,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with a door on the left of the room
 		case 'a':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
 				m_GameplayCallback->MovePlayerToNextRoom(Direction::LEFT);
@@ -481,6 +496,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with an exit door at the top or the bottom of the room
 		case 't':
 		case 'g':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
@@ -491,6 +507,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with an exit door at the left or the right of the room
 		case 'h':
 		case 'f':
 			if (m_GameplayCallback->HasRoomBeenCleared()) {
@@ -501,6 +518,7 @@ namespace HillRaider
 			}
 			break;
 
+		// Player collides with a wall
 		case 'x':
 			switch (m_Direction)
 			{

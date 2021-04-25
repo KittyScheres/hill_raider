@@ -1,12 +1,12 @@
-#include "ArtCreditsScreen.h"
+#include "artCreditsOverlay.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// This contructor is used to initialize the componenets for
-	// the art credits screen.
+	// This constructor is used to initialize the components of
+	// the art credits overlay.
 	// ------------------------------------------------------------
-	ArtCreditsScreen::ArtCreditsScreen()
+	ArtCreditsOverlay::ArtCreditsOverlay()
 	{
 		m_ScreenTitle = new Image("assets/text/titels/art_credits_title.png", 0, 0);
 		m_ScreenTitle->SetPosition(480 - (m_ScreenTitle->GetWidth() / 2), 32);
@@ -31,9 +31,9 @@ namespace HillRaider
 	}
 
 	// ------------------------------------------------------------
-	// This method is used to draw the components on to the screen.
+	// This method is used to draw the components onto the screen.
 	// ------------------------------------------------------------
-	void ArtCreditsScreen::Render(Tmpl8::Surface* screen)
+	void ArtCreditsOverlay::Render(Tmpl8::Surface* screen)
 	{
 		m_ScreenTitle->DrawImage(screen);
 		m_TileMapCredits->DrawImage(screen);
@@ -46,9 +46,9 @@ namespace HillRaider
 
 	// ------------------------------------------------------------
 	// This destructor is used to safely free the memory for the
-	// components of the art credits screen.
+	// components of the art credits overlay.
 	// ------------------------------------------------------------
-	ArtCreditsScreen::~ArtCreditsScreen()
+	ArtCreditsOverlay::~ArtCreditsOverlay()
 	{
 		if (m_ScreenTitle != nullptr) {
 			delete m_ScreenTitle;

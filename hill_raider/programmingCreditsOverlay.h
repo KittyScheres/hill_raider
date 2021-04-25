@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Image.h"
+#include "image.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// The programming credits screen class is used to initialize and 
-	// keep track of the programming credits screen for the game.
+	// The programming credits overlay class is used to initialize and 
+	// keep track of the programming credits overlay for the game.
 	// ------------------------------------------------------------
-	class ProgrammingCreditsScreen
+	class ProgrammingCreditsOverlay
 	{
 	private:
 		Image* m_Screentitle = nullptr;
@@ -19,8 +19,8 @@ namespace HillRaider
 		Image* m_GameCodeCredits = nullptr;
 
 	public:
-		ProgrammingCreditsScreen();
+		ProgrammingCreditsOverlay();
 		void Render(Tmpl8::Surface* screen);
-		~ProgrammingCreditsScreen();
+		~ProgrammingCreditsOverlay();
 	};
 }

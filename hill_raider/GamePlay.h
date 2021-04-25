@@ -1,32 +1,32 @@
 #pragma once
 
-#include "State.h"
-#include "GameCallback.h"
-#include "GamePlayCallback.h"
-#include "Lose.h"
-#include "Win.h"
-#include "InputManager.h"
-#include "PauseScreen.h"
-#include "Ui.h"
-#include "Player.h"
-#include "Floor.h"
-#include "GameData.h"
-#include "AStar.h"
+#include "state.h"
+#include "gameCallback.h"
+#include "gamePlayCallback.h"
+#include "lose.h"
+#include "win.h"
+#include "inputManager.h"
+#include "pauseOverlay.h"
+#include "uiOverlay.h"
+#include "player.h"
+#include "floor.h"
+#include "gameData.h"
+#include "aStar.h"
 #include <vector>
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// The gameplay state class is used to initialize and keep
-	// track off everything for the gameplay of the game.
+	// track of everything for the gameplay of the game.
 	// --------------------------------------------------
 	class Gameplay: public State, public GameplayCallback
 	{
 	private:
 		GameCallback* m_GameCallback = nullptr;
 		InputManager* m_InputManager = nullptr;
-		PauseScreen* m_PauseScreen = nullptr;
-		Ui* m_Ui = nullptr;
+		PauseOverlay* m_PauseScreen = nullptr;
+		UiOverlay* m_Ui = nullptr;
 		Player* m_Player = nullptr;
 		Floor* m_Floor = nullptr;
 		bool m_GamePaused = false;

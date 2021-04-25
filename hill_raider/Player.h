@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Entity.h"
-#include "EnemyAnt.h"
-#include "FoodPointsPickup.h"
-#include "Animation.h"
-#include "InputManager.h"
-#include "GameData.h"
-#include "GamePlayCallback.h"
+#include "entity.h"
+#include "enemyAnt.h"
+#include "foodPointsPickup.h"
+#include "animation.h"
+#include "inputManager.h"
+#include "gameData.h"
+#include "gamePlayCallback.h"
 
 namespace HillRaider
 {

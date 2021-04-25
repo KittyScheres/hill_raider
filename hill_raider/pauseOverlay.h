@@ -1,16 +1,16 @@
 #pragma once
 
-#include "InputManager.h"
-#include "GameCallback.h"
-#include "Image.h"
+#include "inputManager.h"
+#include "gameCallback.h"
+#include "image.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// The pause screen class is used to initialize and 
-	// keep track of the pause screen for the game.
+	// The pause overlay class is used to initialize and 
+	// keep track of the pause overlay for the game.
 	// --------------------------------------------------
-	class PauseScreen
+	class PauseOverlay
 	{
 	private:
 		InputManager* m_InputManager = nullptr;
@@ -23,10 +23,10 @@ namespace HillRaider
 		Image* m_ButtonHighlight = nullptr;
 
 	public:
-		PauseScreen(GameCallback* callback);
+		PauseOverlay(GameCallback* callback);
 		void GamePause();
 		void Update(float deltaTime);
 		void Render(Tmpl8::Surface* screen);
-		~PauseScreen();
+		~PauseOverlay();
 	};
 }

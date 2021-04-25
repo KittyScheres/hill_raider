@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Image.h"
-#include "ScoreBoard.h"
-#include "GameData.h"
+#include "image.h"
+#include "scoreBoard.h"
+#include "gameData.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// The ui class is used to initialize and keep track
-	// of the ui for the game.
+	// The UI overlay class is used to initialize and keep track
+	// of the UI for the game.
 	// --------------------------------------------------
-	class Ui
+	class UiOverlay
 	{
 	private:
 		Image* m_HealingIcon = nullptr;
@@ -19,9 +19,9 @@ namespace HillRaider
 		ScoreBoard* m_ScoreBoard = nullptr;
 
 	public:
-		Ui();
+		UiOverlay();
 		void Render(Tmpl8::Surface* screen);
-		~Ui();
+		~UiOverlay();
 
 	private:
 		std::string GetPointsString();

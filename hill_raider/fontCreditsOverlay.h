@@ -1,22 +1,22 @@
 #pragma once
 
-#include "Image.h"
+#include "image.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// The font credits screen class is used to initialize and 
-	// keep track of the font credits screen for the game.
+	// The font credits overlay class is used to initialize and 
+	// keep track of the font credits overlay for the game.
 	// ------------------------------------------------------------
-	class FontCreditsScreen
+	class FontCreditsOverlay
 	{
 	private:
 		Image* m_ScreenTitle = nullptr;
 		Image* m_FontCredits = nullptr;
 
 	public:
-		FontCreditsScreen();
+		FontCreditsOverlay();
 		void Render(Tmpl8::Surface* screen);
-		~FontCreditsScreen();
+		~FontCreditsOverlay();
 	};
 }

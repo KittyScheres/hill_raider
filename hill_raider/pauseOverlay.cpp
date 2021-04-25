@@ -1,14 +1,14 @@
-#include "PauseScreen.h"
-#include "StartMenu.h"
-#include "GamePlay.h"
+#include "pauseOverlay.h"
+#include "startMenu.h"
+#include "gamePlay.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the pause screen.
+	// of the pause overlay.
 	// --------------------------------------------------
-	PauseScreen::PauseScreen(GameCallback* callback)
+	PauseOverlay::PauseOverlay(GameCallback* callback)
 	{
 		m_InputManager = InputManager::GetInstance();
 		m_GameCallback = callback;
@@ -22,28 +22,31 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to reset the pause screen object
+	// This method is used to reset the pause overlay object
 	// when the game gets paused.
 	// --------------------------------------------------
-	void PauseScreen::GamePause()
+	void PauseOverlay::GamePause()
 	{
 		m_SelectedButton = 0;
 	}
 
 	// --------------------------------------------------
-	// This method is used to update the components for
-	// the pause screen.
+	// This method is used to update the components of
+	// the pause overlay.
 	// --------------------------------------------------
-	void PauseScreen::Update(float deltaTime)
+	void PauseOverlay::Update(float deltaTime)
 	{
+		// Check if the selector needs to be moved up
 		if (m_InputManager->KeyPressed(KeyBinding::UP) && m_SelectedButton > 0) {
 			--m_SelectedButton;
 		}
 
+		// Check if the selector need to be moved down
 		if (m_InputManager->KeyPressed(KeyBinding::DOWN) && m_SelectedButton < 1) {
 			++m_SelectedButton;
 		}
 
+		// Check if one of the list options has been selected
 		if (m_InputManager->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedButton)
 			{
@@ -59,10 +62,10 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This method is used to draw the components for
-	// the pause screen on to the screen.
+	// This method is used to draw the components of
+	// the pause screen onto the screen.
 	// --------------------------------------------------
-	void PauseScreen::Render(Tmpl8::Surface* screen)
+	void PauseOverlay::Render(Tmpl8::Surface* screen)
 	{
 		for (short i = 0; i < 2; i++) {
 			m_ButtonBackground->SetPosition(5 * 64, m_ButtonsYPos[i]);
@@ -78,9 +81,9 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// of the components for the pause screen.
+	// of the components of the pause overlay.
 	// --------------------------------------------------
-	PauseScreen::~PauseScreen()
+	PauseOverlay::~PauseOverlay()
 	{
 		if (m_ButtonBackground != nullptr) {
 			delete m_ButtonBackground;

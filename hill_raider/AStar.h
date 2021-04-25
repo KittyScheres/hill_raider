@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AStarGrid.h"
-#include "Entity.h"
-#include "TileMap.h"
+#include "aStarGrid.h"
+#include "entity.h"
+#include "tileMap.h"
 #include <list>
 #include <unordered_set>
 #include <math.h>
@@ -10,12 +10,11 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This singelton class is used to for the a* path 
-	// finding algorithm implementation which is used by 
-	// the ai to follow the player. This class is one of 3 
-	// classes which have been created with the help of a 
-	// tutorial for the implementation of the a* path 
-	// finding algorithm.
+	// This singleton class is used for the a* pathfinding 
+	// algorithm implementation which is used by the AI to 
+	// follow the player. This class is one of three classes 
+	// which have been created with the help of a tutorial 
+	// on the implementation of the a* pathfinding algorithm.
 	// --------------------------------------------------
 	class AStar
 	{

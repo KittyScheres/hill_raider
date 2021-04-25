@@ -1,16 +1,16 @@
 #pragma once
 
-#include "State.h"
-#include "GameCallback.h"
-#include "Image.h"
-#include "InputManager.h"
-#include "StartMenu.h"
+#include "state.h"
+#include "gameCallback.h"
+#include "image.h"
+#include "inputManager.h"
+#include "startMenu.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
 	// The controls state class is used to initialize and keep
-	// track off everything on the controls screen.
+	// track of everything on the controls screen.
 	// ------------------------------------------------------------
 	class Controls: public State
 	{

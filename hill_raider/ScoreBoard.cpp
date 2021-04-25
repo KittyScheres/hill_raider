@@ -1,4 +1,4 @@
-#include "ScoreBoard.h"
+#include "scoreBoard.h"
 
 namespace HillRaider
 {
@@ -14,7 +14,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehod is used to draw a score on to the screen.
+	// This method is used to draw a score onto the screen.
 	// --------------------------------------------------
 	void ScoreBoard::DrawScore(std::string score, Tmpl8::Surface* screen)
 	{
@@ -32,8 +32,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehtod is used to set the position for the score
-	// board.
+	// This method is used to set the position of the 
+	// scoreboard.
 	// --------------------------------------------------
 	void ScoreBoard::SetPosition(int x, int y)
 	{
@@ -42,8 +42,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the position of the score
-	// board.
+	// This method is used to get the position of the 
+	// scoreboard.
 	// --------------------------------------------------
 	std::vector<int> ScoreBoard::GetPosition()
 	{
@@ -51,8 +51,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the width of 1 number on
-	// on the score board.
+	// This method is used to get the width of one
+	// character on the scoreboard.
 	// --------------------------------------------------
 	int ScoreBoard::GetWidthOfChar()
 	{
@@ -60,8 +60,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the height a 1 char on 
-	// the score board.
+	// This method is used to get the height of one
+	// character on the score board.
 	// --------------------------------------------------
 	int ScoreBoard::GetHeightOfChar()
 	{
@@ -70,7 +70,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// score board image source.
+	// scoreboard image source.
 	// --------------------------------------------------
 	ScoreBoard::~ScoreBoard()
 	{

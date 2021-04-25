@@ -1,4 +1,4 @@
-#include "Corner1100.h"
+#include "corner1100.h"
 
 namespace HillRaider
 {

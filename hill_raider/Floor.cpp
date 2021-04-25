@@ -1,9 +1,9 @@
-#include "Floor.h"
+#include "floor.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This contructor is used to setup the floor map for
+	// This contructor is used to set up the floor map for
 	// the gameplay.
 	// --------------------------------------------------
 	Floor::Floor()
@@ -64,30 +64,35 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used move the player to a different
+	// This method is used to move the player to a different
 	// room.
 	// --------------------------------------------------
 	void Floor::MoveToNextRoom(Direction direction)
 	{
 		switch (direction)
 		{
+		// Move up one room
 		case Direction::UP:
 			--m_CurrentRoom[1];
 			break;
 
+		// Move right one room
 		case Direction::RIGHT:
 			++m_CurrentRoom[0];
 			break;
 
+		// Move down one room
 		case Direction::DOWN:
 			++m_CurrentRoom[1];
 			break;
 
+		// Move left one room
 		case Direction::LEFT:
 			--m_CurrentRoom[0];
 			break;
 		}
 
+		// Update the required for the a* algorithm
 		AStar::GetIntance()->SetNodeMap(m_FloorMap[m_CurrentRoom[0]][m_CurrentRoom[1]]->GetTileMap());
 		AStar::GetIntance()->SetEntitiesListReference(m_FloorMap[m_CurrentRoom[0]][m_CurrentRoom[1]]->GetEnemyListReference());
 	}

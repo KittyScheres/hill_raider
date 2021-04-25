@@ -1,17 +1,17 @@
 #pragma once
 
-#include "RoomCallback.h"
-#include "Player.h"
-#include "TileMap.h"
-#include "EnemyAnt.h"
-#include "FoodPointsPickup.h"
+#include "roomCallback.h"
+#include "player.h"
+#include "tileMap.h"
+#include "enemyAnt.h"
+#include "foodPointsPickup.h"
 #include <list>
 #include <typeinfo>
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// The room class used to creat a room for the floormap
+	// The room class used to create a room for the floormap
 	// of the game. This class contains methods and properties
 	// which are used to interact with and keep track of 
 	// everything inside of a room.

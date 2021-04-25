@@ -1,10 +1,10 @@
 #pragma once
 
-#include "RoomCallback.h"
-#include "Entity.h"
-#include "Player.h"
-#include "Animation.h"
-#include "AStar.h"
+#include "roomCallback.h"
+#include "entity.h"
+#include "player.h"
+#include "animation.h"
+#include "aStar.h"
 #include <random>
 
 namespace HillRaider

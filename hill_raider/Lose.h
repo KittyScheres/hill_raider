@@ -1,17 +1,17 @@
 #pragma once
 
-#include "State.h"
-#include "GameCallback.h"
-#include "Image.h"
-#include "InputManager.h"
-#include "StartMenu.h"
-#include "GamePlay.h"
+#include "state.h"
+#include "gameCallback.h"
+#include "image.h"
+#include "inputManager.h"
+#include "startMenu.h"
+#include "gamePlay.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// The lose state class is used to initialize and keep
-	// track off everything on the lose screen.
+	// track of everything on the lose screen.
 	// --------------------------------------------------
 	class Lose: public State
 	{

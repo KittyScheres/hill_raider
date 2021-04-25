@@ -1,7 +1,7 @@
 #include "game.h"
 #include "SDL.h"
 #include "surface.h"
-#include "StartMenu.h"
+#include "startMenu.h"
 #include <random>
 #include <time.h>
 
@@ -19,7 +19,7 @@ namespace Tmpl8
 	}
 	
 	// -----------------------------------------------------------
-	// Close down application.
+	// Close down the application.
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
@@ -48,6 +48,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
+		// Is the delta time to high?
 		if (deltaTime < 100.f) {
 			m_Screen->Clear(0);
 			m_InputManager->UpdateKeysState();

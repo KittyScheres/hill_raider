@@ -1,8 +1,8 @@
 #pragma once
 
 #include "template.h"
-#include "GameCallback.h"
-#include "InputManager.h"
+#include "gameCallback.h"
+#include "inputManager.h"
 
 namespace Tmpl8
 {

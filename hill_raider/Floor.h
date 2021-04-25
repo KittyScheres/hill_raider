@@ -1,28 +1,28 @@
 #pragma once
 
-#include "Player.h"
-#include "CrossRoad1111.h"
-#include "HallwayVertical1010.h"
-#include "HallwayHorizontal0101.h"
-#include "TSplit1101.h"
-#include "TSplit1110.h"
-#include "TSplit0111.h"
-#include "TSplit1011.h"
-#include "Corner1100.h"
-#include "Corner0110.h"
-#include "Corner0011.h"
-#include "Corner1001.h"
-#include "DeadEnd1000.h"
-#include "DeadEnd0100.h"
-#include "DeadEnd0010.h"
-#include "DeadEnd0001.h"
-#include "AStar.h"
+#include "player.h"
+#include "crossRoad1111.h"
+#include "hallwayVertical1010.h"
+#include "hallwayHorizontal0101.h"
+#include "tSplit1101.h"
+#include "tSplit1110.h"
+#include "tSplit0111.h"
+#include "tSplit1011.h"
+#include "corner1100.h"
+#include "corner0110.h"
+#include "corner0011.h"
+#include "corner1001.h"
+#include "deadEnd1000.h"
+#include "deadEnd0100.h"
+#include "deadEnd0010.h"
+#include "deadEnd0001.h"
+#include "aStar.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// This class contains the floor map for the game. It
-	// can be used to keep track of and update the players
+	// can be used to keep track of and update the player's
 	// position in the ant hill.
 	// --------------------------------------------------
 	class Floor

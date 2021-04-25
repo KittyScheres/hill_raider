@@ -1,9 +1,9 @@
-#include "Credits.h"
+#include "credits.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// This method is used to setup the components for the credits
+	// This method is used to set up the components for the credits
 	// state.
 	// ------------------------------------------------------------
 	Credits::Credits(GameCallback* callback)
@@ -12,18 +12,20 @@ namespace HillRaider
 		
 		m_Background = new Image("assets/ui/background.png", 0, 0);
 		m_PressEnterMessage = new Image("assets/text/press_enter_to_continue.png", 64 * 11, 64 * 8);
-		m_ArtCredits = new ArtCreditsScreen();
-		m_ProgrammingCredits = new ProgrammingCreditsScreen();
-		m_FontCredits = new FontCreditsScreen();
+		m_ArtCredits = new ArtCreditsOverlay();
+		m_ProgrammingCredits = new ProgrammingCreditsOverlay();
+		m_FontCredits = new FontCreditsOverlay();
 	}
 	
 	// ------------------------------------------------------------
-	// This method is used to update the components for the credits
+	// This method is used to update the components of the credits
 	// state.
 	// ------------------------------------------------------------
 	void Credits::Update(float deltaTime)
 	{
+		// Check if the next credits screen needs to be displayed
 		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ENTER)) {
+			// Check if all of the credits screens have been shown
 			if (m_CurrentScreen++ >= 2) {
 				m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 			}
@@ -31,8 +33,8 @@ namespace HillRaider
 	}
 	
 	// ------------------------------------------------------------
-	// This method is used to draw the components for the credits
-	// state on to the screen.
+	// This method is used to draw the components of the credits
+	// state onto the screen.
 	// ------------------------------------------------------------
 	void Credits::Render(Tmpl8::Surface* screen)
 	{

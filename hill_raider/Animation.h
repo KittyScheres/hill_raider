@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Image.h"
+#include "image.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// This class is used to create and update an 
-	// animation which can be drawn on to the screen.
+	// animation which can be drawn onto the screen.
 	// --------------------------------------------------
 	class Animation
 	{

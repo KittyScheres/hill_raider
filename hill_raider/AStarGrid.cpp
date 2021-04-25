@@ -1,9 +1,9 @@
-#include "AStarGrid.h"
+#include "aStarGrid.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constuctor is used to setup a node grid for the
+	// This constuctor is used to set up a node grid for the
 	// the grid class.
 	// --------------------------------------------------
 	AStarGrid::AStarGrid(TileMap* tileMap)
@@ -50,7 +50,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get a spesific node from the
+	// This method is used to get a specific node from the
 	// node grid.
 	// --------------------------------------------------
 	AStarNode* AStarGrid::GetNodeFromGrid(int x, int y)
@@ -60,7 +60,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to get all of the neighbouring
-	// nodes of a spesific node.
+	// nodes of a specific node.
 	// --------------------------------------------------
 	std::vector<AStarNode*> AStarGrid::GetNeighbouringNodes(AStarNode* node)
 	{

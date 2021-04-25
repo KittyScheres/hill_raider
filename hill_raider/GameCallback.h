@@ -1,12 +1,12 @@
 #pragma once
 
-#include "State.h"
+#include "state.h"
 
 namespace HillRaider
 {
 	// -------------------------------------------------------------------
 	// The game callback class contains methods which can be used by a 
-	// state class to interact with the a game class instance.
+	// state class to interact with the game class instance.
 	// -------------------------------------------------------------------
 	class GameCallback
 	{

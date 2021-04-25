@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Direction.h"
+#include "direction.h"
 
 namespace HillRaider
 {

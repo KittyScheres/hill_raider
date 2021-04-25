@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "image.h"
 
 namespace HillRaider
 {
@@ -17,7 +17,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw the image on to the 
+	// This method is used to draw the image onto the 
 	// screen.
 	// --------------------------------------------------
 	void Image::DrawImage(Tmpl8::Surface* screen)
@@ -51,7 +51,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the current x axis
-	// of the sampel frame from the image source.
+	// of the sample frame from the image source.
 	// --------------------------------------------------
 	void Image::SetCurrentXFrame(int currentXFrame)
 	{
@@ -62,7 +62,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the current y axis
-	// of the sampel frame from the image source.
+	// of the sample frame from the image source.
 	// --------------------------------------------------
 	void Image::SetCurrentYFrame(int currentYFrame)
 	{
@@ -99,7 +99,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This deconstructor is used to safly free up the
+	// This deconstructor is used to safely free up the
 	// memory of the image source.
 	// --------------------------------------------------
 	Image::~Image()

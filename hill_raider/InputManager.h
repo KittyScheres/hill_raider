@@ -1,7 +1,7 @@
 #pragma once
 
+#include "keyBinding.h"
 #include <Windows.h>
-#include "KeyBinding.h"
 
 namespace HillRaider
 {

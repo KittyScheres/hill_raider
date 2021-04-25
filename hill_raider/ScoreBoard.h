@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Image.h"
+#include "image.h"
 #include <string>
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// This class is used to draw a dynamic score board
-	// on to the screen.
+	// onto the screen.
 	// --------------------------------------------------
 	class ScoreBoard
 	{

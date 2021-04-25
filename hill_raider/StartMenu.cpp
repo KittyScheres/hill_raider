@@ -1,10 +1,10 @@
-#include "StartMenu.h"
+#include "startMenu.h"
 
 namespace HillRaider 
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the start menu state.
+	// of the start menu state.
 	// --------------------------------------------------
 	StartMenu::StartMenu(GameCallback* callback)
 	{
@@ -26,19 +26,22 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to update the components on the
+	// This method is used to update the components of the
 	// start menu.
 	// --------------------------------------------------
 	void StartMenu::Update(float deltaTime)
 	{
+		// Check if the selector needs to be moved up
 		if (m_InputManager->KeyPressed(KeyBinding::UP) && m_SelectedMenuItem > 0) {
 			--m_SelectedMenuItem;
 		}
 		
+		// Check if the selector needs to be moved down
 		if (m_InputManager->KeyPressed(KeyBinding::DOWN) && m_SelectedMenuItem < 3) {
 			++m_SelectedMenuItem;
 		}
 
+		// Check if one of the list options has been selected
 		if (m_InputManager->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedMenuItem)
 			{
@@ -63,7 +66,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to render all of the components
-	// on the start menu.
+	// of the start menu.
 	// --------------------------------------------------
 	void StartMenu::Render(Tmpl8::Surface* screen)
 	{
@@ -86,7 +89,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This deconstructor is used to safely free the memory
-	// of the components for the start menu.
+	// of the components of the start menu.
 	// --------------------------------------------------
 	StartMenu::~StartMenu()
 	{

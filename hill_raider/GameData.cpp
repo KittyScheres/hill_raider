@@ -1,11 +1,11 @@
-#include "GameData.h"
+#include "gameData.h"
 
 namespace HillRaider
 {
 	GameData* GameData::s_Instance = nullptr;
 
 	// --------------------------------------------------
-	// This method returns the singelton instance of
+	// This method returns the singleton instance of
 	// the game data class.
 	// --------------------------------------------------
 	GameData* GameData::GetInstance()

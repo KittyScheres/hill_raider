@@ -1,4 +1,4 @@
-#include "TSplit1101.h"
+#include "tSplit1101.h"
 
 namespace HillRaider
 {

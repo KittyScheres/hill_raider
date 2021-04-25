@@ -1,9 +1,9 @@
-#include "Entity.h"
+#include "entity.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties 
+	// This constructor is used to set up the properties 
 	// for a basic entity.
 	// --------------------------------------------------
 	Entity::Entity(int x, int y, int width, int height)
@@ -67,7 +67,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This deconstructor is used to safely free the memory
-	// for the propeties of a basic entity.
+	// for the properties of a basic entity.
 	// --------------------------------------------------
 	Entity::~Entity()
 	{
@@ -83,22 +83,20 @@ namespace HillRaider
 	bool Entity::TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity)
 	{
 		bool collide = false;
-
 		int vectorX = otherEntity->GetPosition()[0] - myHitbox->GetPosition()[0];
 		int vectorY = otherEntity->GetPosition()[1] - myHitbox->GetPosition()[1];
 		float magnatude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
 
-		// check for circel collision
+		// Check for circle collision
 		if (magnatude < (myHitbox->GetCircleRadius() + otherEntity->GetHitbox()->GetCircleRadius())) {
 			std::vector<std::vector<int>> myHitboxPoints = myHitbox->GetBoxPoints();
 			std::vector<std::vector<int>> entityHitboxPoints = otherEntity->GetHitbox()->GetBoxPoints();
 
-			// check for box collision
+			// Check for box collision
 			if (((myHitboxPoints[0][0] <= entityHitboxPoints[1][0] && myHitboxPoints[0][0] >= entityHitboxPoints[0][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])) && ((myHitboxPoints[0][1] <= entityHitboxPoints[2][1] && myHitboxPoints[0][1] >= entityHitboxPoints[0][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1])) ||
 				((myHitboxPoints[0][0] < entityHitboxPoints[0][0] && myHitboxPoints[1][0] > entityHitboxPoints[1][0]) && ((myHitboxPoints[0][1] >= entityHitboxPoints[0][1] && myHitboxPoints[0][1] <= entityHitboxPoints[2][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1]))) ||
 				((myHitboxPoints[0][1] < entityHitboxPoints[0][1] && myHitboxPoints[2][1] > entityHitboxPoints[2][1]) && ((myHitboxPoints[0][0] >= entityHitboxPoints[0][0] && myHitboxPoints[0][0] <= entityHitboxPoints[1][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])))) {
 				collide = true;
-				
 			}
 		}
 
@@ -107,42 +105,47 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to stop the movement of an entity
-	// when it is necessary.
+	// when necessary.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
-		int vX = otherEntity->GetPosition()[0] - m_X;
-		int vY = otherEntity->GetPosition()[1] - m_Y;
-		float mag = sqrtf((float)(vX * vX) + (float)(vY * vY));
-		float nX = vX / mag;
-		float nY = vY / mag;
+		// Get a vector arrow from this entity to the other entity
+		int vectorX = otherEntity->GetPosition()[0] - m_X;
+		int vectorY = otherEntity->GetPosition()[1] - m_Y;
+		// Get the magnitude of the vector arrow
+		float magnitude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
+		// Normalize the vector arrow to get the direction of the arrow
+		float normalizedVectorX = vectorX / magnitude;
+		float normalizedVectorY = vectorY / magnitude;
 
+		// Remove the moved distance from the current position where necessary 
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			if ((nX > -0.75f && nX < 0.75f) && nY < 0.f) {
+			if ((normalizedVectorX > -0.75f && normalizedVectorX < 0.75f) && normalizedVectorY < 0.f) {
 				m_Y += m_DistanceMoved;
 			}
 			break;
 
 		case Direction::RIGHT:
-			if ((nY > -0.75f && nY < 0.75f) && nX > 0.f) {
+			if ((normalizedVectorY > -0.75f && normalizedVectorY < 0.75f) && normalizedVectorX > 0.f) {
 				m_X -= m_DistanceMoved;
 			}
 			break;
 
 		case Direction::DOWN:
-			if ((nX > -0.75f && nX < 0.75f) && nY > 0.f) {
+			if ((normalizedVectorX > -0.75f && normalizedVectorX < 0.75f) && normalizedVectorY > 0.f) {
 				m_Y -= m_DistanceMoved;
 			}
 			break;
 
 		case Direction::LEFT:
-			if ((nY > -0.75f && nY < 0.75f) && nX < 0.f) {
+			if ((normalizedVectorY > -0.75f && normalizedVectorY < 0.75f) && normalizedVectorX < 0.f) {
 				m_X += m_DistanceMoved;
 			}
 			break;
 		}
 
+		// Update position
 		this->SetPosition(m_X, m_Y);
 	}
 
@@ -163,7 +166,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to push an entity away from
-	// tile map obsticals the entity has collided with 
+	// tile map obstacles the entity has collided with 
 	// while moving in a vertical direction.
 	// --------------------------------------------------
 	void Entity::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
@@ -183,7 +186,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to push an entity away from
-	// tile map obsticals the entity has collided with 
+	// tile map obstacles the entity has collided with 
 	// while moving in a horizontal direction.
 	// --------------------------------------------------
 	void Entity::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)

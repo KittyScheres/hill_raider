@@ -1,12 +1,12 @@
-#include "ProgrammingCreditsScreen.h"
+#include "programmingCreditsOverlay.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// This contructor is used to initialize the componenets for
-	// the programming credits screen.
+	// This constructor is used to initialize the components of
+	// the programming credits overlay.
 	// ------------------------------------------------------------
-	ProgrammingCreditsScreen::ProgrammingCreditsScreen()
+	ProgrammingCreditsOverlay::ProgrammingCreditsOverlay()
 	{
 		m_Screentitle = new Image("assets/text/titels/programming_credits_title.png", 0, 0);
 		m_Screentitle->SetPosition(480 - (m_Screentitle->GetWidth() / 2), 32);
@@ -29,9 +29,9 @@ namespace HillRaider
 	}
 
 	// ------------------------------------------------------------
-	// This method is used to draw the components on to the screen.
+	// This method is used to draw the components onto the screen.
 	// ------------------------------------------------------------
-	void ProgrammingCreditsScreen::Render(Tmpl8::Surface* screen)
+	void ProgrammingCreditsOverlay::Render(Tmpl8::Surface* screen)
 	{
 		m_Screentitle->DrawImage(screen);
 		m_CppFastTrackCredits->DrawImage(screen);
@@ -43,9 +43,9 @@ namespace HillRaider
 
 	// ------------------------------------------------------------
 	// This destructor is used to safely free the memory for the
-	// components of the programming credits screen.
+	// components of the programming credits overlay.
 	// ------------------------------------------------------------
-	ProgrammingCreditsScreen::~ProgrammingCreditsScreen()
+	ProgrammingCreditsOverlay::~ProgrammingCreditsOverlay()
 	{
 		if (m_Screentitle != nullptr) {
 			delete m_Screentitle;

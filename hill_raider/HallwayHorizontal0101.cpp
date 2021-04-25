@@ -1,4 +1,4 @@
-#include "HallwayHorizontal0101.h"
+#include "hallwayHorizontal0101.h"
 
 namespace HillRaider
 {
