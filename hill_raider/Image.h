@@ -6,7 +6,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This class is used to draw an image on to the screen.
+	// This class is used to draw an image onto the screen.
 	// --------------------------------------------------
 	class Image
 	{

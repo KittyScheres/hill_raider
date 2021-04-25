@@ -7,8 +7,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This class is used to setup and keep track of a
-	// which can be used to process entity on entity
+	// This class is used to set up and keep track of a 
+	// hitbox which can be used to process entity on entity
 	// collision.
 	// --------------------------------------------------
 	class Hitbox

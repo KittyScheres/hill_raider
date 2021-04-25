@@ -11,7 +11,7 @@ namespace HillRaider
 	InputManager* InputManager::s_Instance = nullptr;
 
 	// --------------------------------------------------
-	// This method returns the singelton instance of
+	// This method returns the singleton instance of
 	// the input manager class.
 	// --------------------------------------------------
 	InputManager* InputManager::GetInstance()
@@ -41,10 +41,12 @@ namespace HillRaider
 	// --------------------------------------------------
 	void InputManager::UpdateKeysState()
 	{
+		// Update the previous key state
 		for (int i = 0; i < (sizeof(m_PreviousKeyState) / sizeof(bool)); i++) {
 			m_PreviousKeyState[i] = m_CurrentKeysState[i];
 		}
 
+		// Update the current key state
 		m_CurrentKeysState[(int)KeyBinding::ENTER] = GetAsyncKeyState(VK_RETURN);
 		m_CurrentKeysState[(int)KeyBinding::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
 		m_CurrentKeysState[(int)KeyBinding::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
@@ -66,7 +68,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This method is used to check if a key is not being 
-	// pressed
+	// pressed.
 	// --------------------------------------------------
 	bool InputManager::KeyUp(KeyBinding key)
 	{
@@ -74,7 +76,7 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This mehtod is used to check if a key has just 
+	// This method is used to check if a key has just 
 	// been pressed.
 	// --------------------------------------------------
 	bool InputManager::KeyPressed(KeyBinding key)
@@ -84,7 +86,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to check if a key has just
-	// been let go off.
+	// been let go of.
 	// --------------------------------------------------
 	bool InputManager::KeyLetGo(KeyBinding key) {
 		return m_PreviousKeyState[(int)key] && !m_CurrentKeysState[(int)key];

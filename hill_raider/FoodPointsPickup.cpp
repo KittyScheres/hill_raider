@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties
+	// This constructor is used to set up the properties
 	// for a food points pickup entity.
 	// --------------------------------------------------
 	FoodPointsPickup::FoodPointsPickup(short points, int x, int y): Entity(x, y, 44, 38)
@@ -14,8 +14,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw the food poins pickup
-	// on to the screen.
+	// This method is used to draw the food points pickup
+	// onto the screen.
 	// --------------------------------------------------
 	void FoodPointsPickup::Render(Tmpl8::Surface* screen)
 	{
@@ -53,7 +53,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the points value of a 
+	// This method is used to get the point value of a 
 	// food points pickup entity.
 	// --------------------------------------------------
 	short FoodPointsPickup::GetPoints()

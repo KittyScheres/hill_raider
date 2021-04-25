@@ -4,7 +4,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the gameplay state.
+	// of the gameplay state.
 	// --------------------------------------------------
 	Gameplay::Gameplay(GameCallback* callback)
 	{
@@ -17,9 +17,9 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to setup the singleton components
-	// for the gameplay state which might have been destroyed
-	// on the state change.
+	// This method is used to set up the singleton components
+	// of the gameplay state which might have been destroyed
+	// in the state change.
 	// --------------------------------------------------
 	void Gameplay::SetupSingletons()
 	{
@@ -29,12 +29,14 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to update the components for
+	// This method is used to update the components of
 	// the gameplay state.
 	// --------------------------------------------------
 	void Gameplay::Update(float deltaTime)
 	{
+		// Is the game paused?
 		if (m_GamePaused) {
+			// Check if the game needs to be unpaused
 			if (m_InputManager->KeyPressed(KeyBinding::ESCAPE)) {
 				m_GamePaused = false;
 				m_PauseScreen->GamePause();
@@ -43,6 +45,7 @@ namespace HillRaider
 			m_PauseScreen->Update(deltaTime);
 		}
 		else {
+			// Check if the game needs to be paused
 			if (m_InputManager->KeyPressed(KeyBinding::ESCAPE)) {
 				m_GamePaused = true;
 			}
@@ -54,22 +57,24 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to execute the collision checks
-	// for the components for the gameplay state.
+	// for the components of the gameplay state.
 	// --------------------------------------------------
 	void Gameplay::LateUpdate()
 	{
 		if (!m_GamePaused) {
+			// Apply collision detection for the entities
 			m_Floor->GetCurrentRoom()->LateUpdate(m_Player);
 		}
 
+		// Check if the player has died
 		if (GameData::GetInstance()->m_PlayerHealth <= 0) {
 			m_GameCallback->SetNextState(new Lose(m_GameCallback));
 		}
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw the components for the
-	// gameplay state on to the screen.
+	// This method is used to draw the components of the
+	// gameplay state onto the screen.
 	// --------------------------------------------------
 	void Gameplay::Render(Tmpl8::Surface* screen)
 	{
@@ -109,7 +114,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// of the components for the gameplay state.
+	// of the components of the gameplay state.
 	// --------------------------------------------------
 	Gameplay::~Gameplay()
 	{

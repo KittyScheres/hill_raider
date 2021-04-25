@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to initialize and setup
+	// This constructor is used to initialize and set up
 	// the tile map object.
 	// --------------------------------------------------
 	TileMap::TileMap(char* tileMapSurfacePath, char tileMap[c_s_TileMapHeight][c_s_TileMapWidth + 1], int tileWidth, int tileHeight)
@@ -14,12 +14,13 @@ namespace HillRaider
 				m_TileMap[i][k] = tileMap[i][k];
 			}
 		}
+
 		m_TileHeight = tileHeight;
 		m_TileWidth = tileWidth;
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw a tile on to the screen.
+	// This method is used to draw a tile onto the screen.
 	// --------------------------------------------------
 	void TileMap::DrawTile(Tmpl8::Surface* screen, int xScreen, int yScreen, int xSurface, int ySurface)
 	{
@@ -35,8 +36,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This mehtod is used to draw all of the tiles of
-	// the tilemap on to the screen.
+	// This method is used to draw all of the tiles of
+	// the tilemap onto the screen.
 	// --------------------------------------------------
 	void TileMap::Render(Tmpl8::Surface* screen)
 	{
@@ -49,7 +50,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This method is used to get the collision char for
-	// a spesific tile on the tile map.
+	// a specific tile on the tile map.
 	// --------------------------------------------------
 	char TileMap::GetCollision(int x, int y)
 	{
@@ -65,7 +66,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehtod is used to get the height of a tile
+	// This method is used to get the height of a tile
 	// on the tile map.
 	// --------------------------------------------------
 	int TileMap::GetTileHeight()
@@ -74,7 +75,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehtod is used to get the width of a tile
+	// This method is used to get the width of a tile
 	// on the tile map.
 	// --------------------------------------------------
 	int TileMap::GetTileWidth()

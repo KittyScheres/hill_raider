@@ -6,7 +6,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This class is used to create tile maps for the game.
-	// This class has been inspired by the tilemap used
+	// This class has been inspired by the tile map used
 	// in the c++ fast track for games programming course.
 	// --------------------------------------------------
 	class TileMap

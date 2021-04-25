@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// -----------------------------------------------------------
-	// This method us used to reset the frame cap timer.
+	// This method is used to reset the frame cap timer.
 	// -----------------------------------------------------------
 	void FrameRateManager::ResetFrameCapTimer()
 	{
@@ -11,7 +11,7 @@ namespace HillRaider
 	}
 
 	// -----------------------------------------------------------
-	// This method is used to artificialy increase the time per 
+	// This method is used to artificially increase the time per 
 	// frame to decrease the frames per seccond.
 	// -----------------------------------------------------------
 	void FrameRateManager::ConstrainFrameRate()

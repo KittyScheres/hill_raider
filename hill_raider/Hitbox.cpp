@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties
+	// This constructor is used to set up the properties
 	// for a hitbox.
 	// --------------------------------------------------
 	Hitbox::Hitbox(int x, int y, int width, int Height)
@@ -66,7 +66,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the radius of a circel
+	// This method is used to get the radius of a circle
 	// drawn around a hitbox.
 	// --------------------------------------------------
 	float Hitbox::GetCircleRadius()
@@ -75,7 +75,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the position of all 4
+	// This method is used to get the position of all four
 	// corners of a hitbox.
 	// --------------------------------------------------
 	std::vector<std::vector<int>> Hitbox::GetBoxPoints()
@@ -88,10 +88,12 @@ namespace HillRaider
 				
 				switch (x)
 				{
+				// Point is on the left
 				case 0:
 					point.push_back(m_X - m_HalfWidth);
 					break;
 
+				// Point is on the right
 				case 1:
 					point.push_back(m_X + m_HalfWidth);
 					break;
@@ -99,10 +101,12 @@ namespace HillRaider
 
 				switch (y)
 				{
+				// Point is at the top
 				case 0:
 					point.push_back(m_Y - m_HalfHeight);
 					break;
 
+				// Point is at the bottom
 				case 1:
 					point.push_back(m_Y + m_HalfHeight);
 					break;

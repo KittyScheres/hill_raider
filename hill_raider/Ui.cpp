@@ -8,6 +8,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Ui::Ui()
 	{
+		// Set up health bar
 		m_HealingIcon = new Image("assets/ui/healing_icon.png", 0, 0);
 		m_HealingIcon->SetPosition(64 - m_HealingIcon->GetWidth(), 32 - (m_HealingIcon->GetHeight() / 2));
 
@@ -20,6 +21,7 @@ namespace HillRaider
 			}			
 		}
 
+		// Set up food points scoreboard 
 		m_FoodScoreIcon = new Image("assets/entities/food_pickup.png", 0, 0);
 		m_FoodScoreIcon->SetPosition((64 * 10) + 52, 32 - (m_FoodScoreIcon->GetHeight() / 2));
 
@@ -28,7 +30,7 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This method is used to draw the ui on to the screen.
+	// This method is used to draw the UI onto the screen.
 	// --------------------------------------------------
 	void Ui::Render(Tmpl8::Surface* screen)
 	{
@@ -44,7 +46,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory for
-	// the components of the ui.
+	// the components of the UI.
 	// --------------------------------------------------
 	Ui::~Ui()
 	{
@@ -79,10 +81,12 @@ namespace HillRaider
 		std::string pointsString;
 		std::string playerPoints = std::to_string(GameData::GetInstance()->m_PlayerPoints);
 		
+		// Add zeros to the scoreboard
 		for (short i = (short)playerPoints.size(); i < (short)std::to_string(GameData::c_s_MaxPoints).size(); i++) {
 			pointsString.push_back('0');
 		}
 
+		// Add score to the scoreboard
 		for (std::string::iterator points = playerPoints.begin(); points != playerPoints.end(); points++) {
 			pointsString.push_back(*points);
 		}

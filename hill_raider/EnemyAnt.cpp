@@ -19,11 +19,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	void EnemyAnt::Update(float deltaTime)
 	{
+		// Is the enemy ant attacking?
 		if (!m_LungeFlag) {
+			// Update the enemy ant's movement
 			UpdateDirection();
 			MoveEnemyAnt(deltaTime);
 
-			//make decision timer
+			// Attack decision timer
 			if (!m_MakeDecisionFlag) {
 				if (m_MakeDecisionTimer >= c_MakeDecisionCooldown) {
 					m_MakeDecisionFlag = true;
@@ -34,7 +36,7 @@ namespace HillRaider
 				}
 			}
 
-			//attack cooldown timer
+			// Attack cooldown timer
 			if (m_LungeCooldownFlag) {
 				if (m_LungeCooldownTimer >= c_LungeCooldown) {
 					m_LungeCooldownFlag = false;
@@ -51,6 +53,7 @@ namespace HillRaider
 			//is attacking
 			Lunge(deltaTime);
 
+			// Attack duration timer
 			if (m_LungeDurationTimer >= c_LungeDuration) {
 				m_LegsAnimation->SetTimePerFrame(c_TimePerframeWalkingAnimation);
 				m_LungeFlag = false;
@@ -77,13 +80,13 @@ namespace HillRaider
 		ProcessTileMapCollision(tileMap);
 
 		for (auto entity : entityList) {
-			//entity on entity collision
+			// Entity on entity collision
 			if (TestBoxCollision(m_Hitbox, entity)) {
 				ApplyEntityCollision(entity);
 				GetAntUnstuck(entity);
 			}
 
-			//entity on attack hitbox collision
+			// Entity on attack hitbox collision
 			if (m_LungeFlag) {
 				Player* player = dynamic_cast<Player*>(entity);
 				if (player != nullptr && TestBoxCollision(m_AttackHitbox, entity)) {
@@ -93,7 +96,7 @@ namespace HillRaider
 				}
 			}
 
-			//entity on attack range collision
+			// Entity on attack range collision
 			if (m_MakeDecisionFlag && !m_LungeCooldownFlag) {
 				if (TestBoxCollision(m_LineScan, entity)) {
 					int distanceVectorX = entity->GetPosition()[0] - m_X;
@@ -111,7 +114,7 @@ namespace HillRaider
 			}
 		}
 		
-		//attack decision
+		// Attack decision
 		if (playerInLineOfSide) {
 			if ((rand() & 1) == 0) {
 				m_LegsAnimation->SetTimePerFrame(c_LungeTimePerFrameWalkingAnimation);
@@ -124,7 +127,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to draw an enemy ant entity
-	// on to the screen.
+	// onto the screen.
 	// --------------------------------------------------
 	void EnemyAnt::Render(Tmpl8::Surface* screen)
 	{
@@ -201,6 +204,7 @@ namespace HillRaider
 
 		switch (m_Direction)
 		{
+		// Make the enemy ant face up
 		case Direction::UP:
 			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
 			m_LineScanOffset = -std::abs(m_LineScanOffset);
@@ -212,6 +216,7 @@ namespace HillRaider
 			m_LineScan->SetHeight(c_LineScanHeight);
 			break;
 
+		// Make the enemy ant face right
 		case Direction::RIGHT:
 			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
 			m_LineScanOffset = std::abs(m_LineScanOffset);
@@ -223,6 +228,7 @@ namespace HillRaider
 			m_LineScan->SetHeight(c_LineScanWidth);
 			break;
 
+		// Make the enemy ant face down
 		case Direction::DOWN:
 			m_AttackHitboxOffset = std::abs(m_AttackHitboxOffset);
 			m_LineScanOffset = std::abs(m_LineScanOffset);
@@ -234,6 +240,7 @@ namespace HillRaider
 			m_LineScan->SetHeight(c_LineScanHeight);
 			break;
 
+		// Make the enemy ant face left
 		case Direction::LEFT:
 			m_AttackHitboxOffset = -std::abs(m_AttackHitboxOffset);
 			m_LineScanOffset = -std::abs(m_LineScanOffset);
@@ -257,7 +264,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This mehtod is used to get the sprite of an enemy
+	// This method is used to get the sprite of an enemy
 	// ant entity.
 	// --------------------------------------------------
 	Animation* EnemyAnt::GetSprite()
@@ -295,12 +302,13 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This method is used to update the current movement
 	// direction of an enemy ant according to the output
-	// of the a* path finding algorithm.
+	// of the a* pathfinding algorithm.
 	// --------------------------------------------------
 	void EnemyAnt::UpdateDirection(bool bypassCheck)
 	{
 		std::vector<AStarNode*> path;
 
+		// Execute a* pathfinding to get the new direction for the enemy ant
 		switch (m_Direction)
 		{
 		case Direction::UP:
@@ -320,9 +328,11 @@ namespace HillRaider
 			break;
 		}
 
+		// Check if new path has been found
 		if (path.size() > 1) {
 			std::vector<int> directionVector{ path[1]->GetGridX() - path[0]->GetGridX(), path[1]->GetGridY() - path[0]->GetGridY() };
 
+			// Apply new direction to the enemy ant
 			if (directionVector == std::vector<int>{0, -1}) {
 				SetDirection(Direction::UP);
 			}
@@ -339,8 +349,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// Thid method is used to move an enemy ant entitie
-	// according the current movement direction.
+	// This method is used to move an enemy ant entity
+	// in the current movement direction.
 	// --------------------------------------------------
 	void EnemyAnt::MoveEnemyAnt(float deltaTime)
 	{
@@ -372,7 +382,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to make an enemy ant entity 
-	// move in the current direction with an icreased 
+	// move in the current direction with increased 
 	// movement speed.
 	// --------------------------------------------------
 	void EnemyAnt::Lunge(float deltaTime)
@@ -405,7 +415,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the movement direction
-	// of an enemy ant entity inorder to attempt to get
+	// of an enemy ant entity to attempt to get
 	// it unstuck.
 	// --------------------------------------------------
 	void EnemyAnt::GetAntUnstuck(Entity* entity) {

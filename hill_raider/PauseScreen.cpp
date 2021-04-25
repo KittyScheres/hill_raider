@@ -6,7 +6,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the pause screen.
+	// of the pause screen.
 	// --------------------------------------------------
 	PauseScreen::PauseScreen(GameCallback* callback)
 	{
@@ -31,19 +31,22 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to update the components for
+	// This method is used to update the components of
 	// the pause screen.
 	// --------------------------------------------------
 	void PauseScreen::Update(float deltaTime)
 	{
+		// Check if the selector needs to be moved up
 		if (m_InputManager->KeyPressed(KeyBinding::UP) && m_SelectedButton > 0) {
 			--m_SelectedButton;
 		}
 
+		// Check if the selector need to be moved down
 		if (m_InputManager->KeyPressed(KeyBinding::DOWN) && m_SelectedButton < 1) {
 			++m_SelectedButton;
 		}
 
+		// Check if one of the list options has been selected
 		if (m_InputManager->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedButton)
 			{
@@ -59,8 +62,8 @@ namespace HillRaider
 	}
 	
 	// --------------------------------------------------
-	// This method is used to draw the components for
-	// the pause screen on to the screen.
+	// This method is used to draw the components of
+	// the pause screen onto the screen.
 	// --------------------------------------------------
 	void PauseScreen::Render(Tmpl8::Surface* screen)
 	{
@@ -78,7 +81,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// of the components for the pause screen.
+	// of the components of the pause screen.
 	// --------------------------------------------------
 	PauseScreen::~PauseScreen()
 	{

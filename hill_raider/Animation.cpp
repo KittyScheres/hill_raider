@@ -35,7 +35,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to the animation on to the 
+	// This method is used to draw the animation onto the 
 	// screen.
 	// --------------------------------------------------
 	void Animation::DrawAnimation(Tmpl8::Surface* screen)
@@ -63,7 +63,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the current x axis
-	// of the sampel frame from the animation source.
+	// of the sample frame from the animation source.
 	// --------------------------------------------------
 	void Animation::SetCurrentXFrame(short currentXFrame)
 	{
@@ -73,7 +73,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the current y axis
-	// of the sampel frame from the animation source.
+	// of the sample frame from the animation source.
 	// --------------------------------------------------
 	void Animation::SetCurrentYFrame(short currentYFrame)
 	{
@@ -108,7 +108,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This deconstructor is used to safly free up the
+	// This deconstructor is used to safely free up the
 	// memory of the animation source.
 	// --------------------------------------------------
 	Animation::~Animation()

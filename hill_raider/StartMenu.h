@@ -13,7 +13,7 @@ namespace HillRaider
 {
 	// ------------------------------------------------------------
 	// The start menu state class is used to initialize and keep
-	// track off everything on the start menu screen.
+	// track of everything on the start menu screen.
 	// ------------------------------------------------------------
 	class StartMenu: public State
 	{

@@ -4,7 +4,7 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize all of the
-	// componets contained inside of the room.
+	// components contained inside of the room.
 	// --------------------------------------------------
 	Room::Room(TileMap* tilemap, std::list<Entity*> enemies, std::list<Entity*> foodPointsPickups)
 	{
@@ -14,6 +14,7 @@ namespace HillRaider
 		m_EnemyList = enemies;
 		m_FoodPointsPickupList = foodPointsPickups;
 		
+		// Set up enemies list
 		for (Entity* enemy : m_EnemyList) {
 			EnemyAnt* enemyAnt = dynamic_cast<EnemyAnt*>(enemy);
 			if (enemyAnt != nullptr) {
@@ -21,6 +22,7 @@ namespace HillRaider
 			}
 		}
  
+		// Set up food points pickups list
 		for (Entity* Pickup : m_FoodPointsPickupList) {
 			FoodPointsPickup* foodPointPickup = dynamic_cast<FoodPointsPickup*>(Pickup);
 			if (foodPointPickup != nullptr) {
@@ -30,8 +32,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to get the possitions of all of
-	// the doors in a room, these positions will be used to
+	// This method is used to get the positions of all of
+	// the doors in a room. These positions will be used to
 	// set the position for the blockade image when the 
 	// room has not been cleared.
 	// --------------------------------------------------
@@ -48,24 +50,28 @@ namespace HillRaider
 
 				switch (m_TileMap->GetCollision(tileWidth * x, tileHeight * y))
 				{
+				// There is a door at the top
 				case 'w':
 				case 't':
 					doorBlockadePos[0] = 0;
 					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
+				// There is a door on the right
 				case 'd':
 				case 'h':
 					doorBlockadePos[0] = 1;
 					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
+				// There is a door at the bottom
 				case 's':
 				case 'g':
 					doorBlockadePos[0] = 3;
 					m_DoorBlockadePositionList.push_back(doorBlockadePos);
 					break;
 
+				// There is a door on the left
 				case 'a':
 				case 'f':
 					doorBlockadePos[0] = 2;
@@ -89,7 +95,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to call the late update method
-	// for all of the entities in a room, this includes
+	// for all of the entities in a room. This includes
 	// the player.
 	// --------------------------------------------------
 	void Room::LateUpdate(Player* player)
@@ -104,8 +110,8 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to draw all of the componets
-	// of a room on to the screen.
+	// This method is used to draw all of the components
+	// of a room onto the screen.
 	// --------------------------------------------------
 	void Room::Render(Tmpl8::Surface* screen)
 	{
@@ -170,7 +176,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This method is used to check if a room still has
-	// enemy ants inside of it.
+	// enemies inside of it.
 	// --------------------------------------------------
 	bool Room::RoomCleared()
 	{
@@ -179,7 +185,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory
-	// of the propperties inside of a room.
+	// of the properties inside of a room.
 	// --------------------------------------------------
 	Room::~Room()
 	{
@@ -216,7 +222,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to get a list of all of the 
-	// entity which the player can collide with.
+	// entities the player can collide with.
 	// --------------------------------------------------
 	std::list<Entity*> Room::GetPLayerCollisionCheckList()
 	{

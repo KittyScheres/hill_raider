@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties
+	// This constructor is used to set up the properties
 	// for the node class.
 	// --------------------------------------------------
 	AStarNode::AStarNode(int x, int y, bool walkable, int gridX, int gridY)
@@ -16,7 +16,7 @@ namespace HillRaider
 	}
 
 	// --------------------------------------------------
-	// This method is used to set wether this node can be
+	// This method is used to determine whether this node can be
 	// walked on or not.
 	// --------------------------------------------------
 	void AStarNode::SetWalkable(bool walkable)
@@ -27,7 +27,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This method is used to set the g cost of a node.
 	// The g cost of a node is the distance between the
-	// staring node and the currently selected node.
+	// starting node and the currently selected node.
 	// --------------------------------------------------
 	void AStarNode::SetGCost(int gCost)
 	{
@@ -90,7 +90,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This method is used to get the g cost of a node.
 	// The g cost of a node is the distance between the
-	// staring node and the currently selected node.
+	// starting node and the currently selected node.
 	// --------------------------------------------------
 	int AStarNode::GetGCost()
 	{

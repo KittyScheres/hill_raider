@@ -48,13 +48,13 @@
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
     <ClCompile Include="aStar.cpp">
-      <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\cpp_files\game_components\algorithms\a_star</Filter>
     </ClCompile>
     <ClCompile Include="aStarGrid.cpp">
-      <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\cpp_files\game_components\algorithms\a_star</Filter>
     </ClCompile>
     <ClCompile Include="aStarNode.cpp">
-      <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\cpp_files\game_components\algorithms\a_star</Filter>
     </ClCompile>
     <ClCompile Include="frameRateManager.cpp">
       <Filter>hill_raider\cpp_files\managers</Filter>
@@ -189,13 +189,13 @@
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
     <ClInclude Include="aStar.h">
-      <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\header_files\game_components\algorithms\a_star</Filter>
     </ClInclude>
     <ClInclude Include="aStarGrid.h">
-      <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\header_files\game_components\algorithms\a_star</Filter>
     </ClInclude>
     <ClInclude Include="aStarNode.h">
-      <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
+      <Filter>hill_raider\header_files\game_components\algorithms\a_star</Filter>
     </ClInclude>
     <ClInclude Include="frameRateManager.h">
       <Filter>hill_raider\header_files\managers</Filter>
@@ -322,9 +322,6 @@
     <Filter Include="hill_raider\header_files\game_components\physics">
       <UniqueIdentifier>{b41ca808-a521-4478-8c4c-88d8e2c6ed10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="hill_raider\header_files\game_components\algoritmes">
-      <UniqueIdentifier>{1602a18b-d66d-43ac-b030-9c1b6acb6b34}</UniqueIdentifier>
-    </Filter>
     <Filter Include="hill_raider\cpp_files">
       <UniqueIdentifier>{3759f279-8d26-47b4-b725-ccb9f66173bc}</UniqueIdentifier>
     </Filter>
@@ -346,15 +343,6 @@
     <Filter Include="hill_raider\cpp_files\game_components\physics">
       <UniqueIdentifier>{a7f8964d-e2c2-456b-ab37-08a5c6fb3120}</UniqueIdentifier>
     </Filter>
-    <Filter Include="hill_raider\cpp_files\game_components\algoritmes">
-      <UniqueIdentifier>{7e28bbd2-6e16-40af-a9fa-408c2ab44858}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="hill_raider\cpp_files\game_components\algoritmes\a_star">
-      <UniqueIdentifier>{90ac2ba4-9dde-4e4e-ac9b-3e5b24df0de4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="hill_raider\header_files\game_components\algoritmes\a_star">
-      <UniqueIdentifier>{540682df-a136-4849-bd6b-564deaba63aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="hill_raider\cpp_files\game_components\rooms">
       <UniqueIdentifier>{fb0eb3b3-2420-4825-b782-001a34f509e1}</UniqueIdentifier>
     </Filter>
@@ -372,6 +360,18 @@
     </Filter>
     <Filter Include="hill_raider\header_files\enums">
       <UniqueIdentifier>{ac6b5453-16fd-4ee0-a8a9-73e9402f2d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\cpp_files\game_components\algorithms">
+      <UniqueIdentifier>{7e28bbd2-6e16-40af-a9fa-408c2ab44858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\cpp_files\game_components\algorithms\a_star">
+      <UniqueIdentifier>{90ac2ba4-9dde-4e4e-ac9b-3e5b24df0de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\game_components\algorithms">
+      <UniqueIdentifier>{1602a18b-d66d-43ac-b030-9c1b6acb6b34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hill_raider\header_files\game_components\algorithms\a_star">
+      <UniqueIdentifier>{540682df-a136-4849-bd6b-564deaba63aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

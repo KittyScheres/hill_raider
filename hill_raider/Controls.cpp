@@ -23,6 +23,7 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	void Controls::Update(float deltaTime)
 	{
+		// Check if the the game needs to go back to the start menu
 		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ESCAPE)) {
 			m_GameCallback->SetNextState(new StartMenu(m_GameCallback));
 		}
@@ -30,7 +31,7 @@ namespace HillRaider
 
 	// ------------------------------------------------------------
 	// This method is used to draw the components of the controls
-	// screen on to the screen.
+	// screen onto the screen.
 	// ------------------------------------------------------------
 	void Controls::Render(Tmpl8::Surface* screen)
 	{
@@ -42,8 +43,8 @@ namespace HillRaider
 	}
 	
 	// ------------------------------------------------------------
-	// This destructoru is used to safely free the memory of the
-	// components on the controls screen.
+	// This destructor is used to safely free the memory of the
+	// components of the controls screen.
 	// ------------------------------------------------------------
 	Controls::~Controls()
 	{

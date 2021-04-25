@@ -7,8 +7,8 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// The ui class is used to initialize and keep track
-	// of the ui for the game.
+	// The UI class is used to initialize and keep track
+	// of the UI for the game.
 	// --------------------------------------------------
 	class Ui
 	{

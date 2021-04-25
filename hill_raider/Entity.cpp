@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties 
+	// This constructor is used to set up the properties 
 	// for a basic entity.
 	// --------------------------------------------------
 	Entity::Entity(int x, int y, int width, int height)
@@ -67,7 +67,7 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This deconstructor is used to safely free the memory
-	// for the propeties of a basic entity.
+	// for the properties of a basic entity.
 	// --------------------------------------------------
 	Entity::~Entity()
 	{
@@ -87,12 +87,12 @@ namespace HillRaider
 		int vectorY = otherEntity->GetPosition()[1] - myHitbox->GetPosition()[1];
 		float magnatude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
 
-		// check for circel collision
+		// Check for circle collision
 		if (magnatude < (myHitbox->GetCircleRadius() + otherEntity->GetHitbox()->GetCircleRadius())) {
 			std::vector<std::vector<int>> myHitboxPoints = myHitbox->GetBoxPoints();
 			std::vector<std::vector<int>> entityHitboxPoints = otherEntity->GetHitbox()->GetBoxPoints();
 
-			// check for box collision
+			// Check for box collision
 			if (((myHitboxPoints[0][0] <= entityHitboxPoints[1][0] && myHitboxPoints[0][0] >= entityHitboxPoints[0][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])) && ((myHitboxPoints[0][1] <= entityHitboxPoints[2][1] && myHitboxPoints[0][1] >= entityHitboxPoints[0][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1])) ||
 				((myHitboxPoints[0][0] < entityHitboxPoints[0][0] && myHitboxPoints[1][0] > entityHitboxPoints[1][0]) && ((myHitboxPoints[0][1] >= entityHitboxPoints[0][1] && myHitboxPoints[0][1] <= entityHitboxPoints[2][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1]))) ||
 				((myHitboxPoints[0][1] < entityHitboxPoints[0][1] && myHitboxPoints[2][1] > entityHitboxPoints[2][1]) && ((myHitboxPoints[0][0] >= entityHitboxPoints[0][0] && myHitboxPoints[0][0] <= entityHitboxPoints[1][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])))) {
@@ -105,15 +105,19 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to stop the movement of an entity
-	// when it is necessary.
+	// when necessary.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
+		// Get a vector arrow from this entity to the other entity
 		int vectorX = otherEntity->GetPosition()[0] - m_X;
 		int vectorY = otherEntity->GetPosition()[1] - m_Y;
+		// Get the magnitude of the vector arrow
 		float magnitude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
+		// Normalize the vector arrow to get the direction of the arrow
 		float normalizedVectorX = vectorX / magnitude;
 		float normalizedVectorY = vectorY / magnitude;
 
+		// Remove the moved distance from the current position where necessary 
 		switch (m_Direction)
 		{
 		case Direction::UP:
@@ -141,6 +145,7 @@ namespace HillRaider
 			break;
 		}
 
+		// Update position
 		this->SetPosition(m_X, m_Y);
 	}
 
@@ -161,7 +166,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to push an entity away from
-	// tile map obsticals the entity has collided with 
+	// tile map obstacles the entity has collided with 
 	// while moving in a vertical direction.
 	// --------------------------------------------------
 	void Entity::ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos)
@@ -181,7 +186,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to push an entity away from
-	// tile map obsticals the entity has collided with 
+	// tile map obstacles the entity has collided with 
 	// while moving in a horizontal direction.
 	// --------------------------------------------------
 	void Entity::ApplyHorizontalTileMapCollision(int hitboxPointIndex, int hitboxPointXPos)

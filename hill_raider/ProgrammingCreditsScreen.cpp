@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// This contructor is used to initialize the componenets for
+	// This constructor is used to initialize the components of
 	// the programming credits screen.
 	// ------------------------------------------------------------
 	ProgrammingCreditsScreen::ProgrammingCreditsScreen()
@@ -29,7 +29,7 @@ namespace HillRaider
 	}
 
 	// ------------------------------------------------------------
-	// This method is used to draw the components on to the screen.
+	// This method is used to draw the components onto the screen.
 	// ------------------------------------------------------------
 	void ProgrammingCreditsScreen::Render(Tmpl8::Surface* screen)
 	{

@@ -9,9 +9,9 @@ namespace HillRaider
 {
 	// --------------------------------------------------
 	// This class is used to create node grids which are used
-	// for the a* path finding implementation. This class
-	// is one of 3 classes which have been created with 
-	// the help of a tutorial for the implementation of 
+	// for the a* pathfinding implementation. This class
+	// is one of three classes which have been created with 
+	// the help of a tutorial on the implementation of 
 	// the a* path finding algorithm.
 	// --------------------------------------------------
 	class AStarGrid

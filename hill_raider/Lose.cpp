@@ -3,7 +3,7 @@
 namespace HillRaider
 {
 	// --------------------------------------------------
-	// This constructor is used to setup the properties 
+	// This constructor is used to set up the properties 
 	// for the lose screen.
 	// --------------------------------------------------
 	Lose::Lose(GameCallback* callback)
@@ -27,14 +27,17 @@ namespace HillRaider
 	// --------------------------------------------------
 	void Lose::Update(float deltaTime)
 	{
+		// Check if the selector needs to be moved to the left
 		if (m_SelectedButton > 0 && InputManager::GetInstance()->KeyPressed(KeyBinding::LEFT)) {
 			--m_SelectedButton;
 		}
 
+		//  Check if the selector needs to be moved to the right
 		if (m_SelectedButton < 1 && InputManager::GetInstance()->KeyPressed(KeyBinding::RIGHT)) {
 			++m_SelectedButton;
 		}
 
+		// Check if one of the list options has been selected
 		if (InputManager::GetInstance()->KeyPressed(KeyBinding::ENTER)) {
 			switch (m_SelectedButton)
 			{
@@ -51,7 +54,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to draw the components of the
-	// lose screen on to the screen.
+	// lose screen onto the screen.
 	// --------------------------------------------------
 	void Lose::Render(Tmpl8::Surface* screen)
 	{
