@@ -1,8 +1,8 @@
 #pragma once
 
 #include "surface.h"
-#include "TileMap.h"
-#include "AStarNode.h"
+#include "tileMap.h"
+#include "aStarNode.h"
 #include <vector>
 
 namespace HillRaider

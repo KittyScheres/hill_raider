@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Image.h"
-#include "RoomCallback.h"
-#include "Entity.h"
+#include "image.h"
+#include "roomCallback.h"
+#include "entity.h"
 
 namespace HillRaider
 {

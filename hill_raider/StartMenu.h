@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GameCallback.h"
+#include "gameCallback.h"
 #include "surface.h"
-#include "Image.h"
-#include "Animation.h"
-#include "InputManager.h"
-#include "GamePlay.h"
-#include "Controls.h"
-#include "Credits.h"
+#include "image.h"
+#include "animation.h"
+#include "inputManager.h"
+#include "gamePlay.h"
+#include "controls.h"
+#include "credits.h"
 
 namespace HillRaider 
 {

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "State.h"
-#include "GameCallback.h"
-#include "InputManager.h"
-#include "StartMenu.h"
-#include "ArtCreditsScreen.h"
-#include "ProgrammingCreditsScreen.h"
-#include "FontCreditsScreen.h"
+#include "state.h"
+#include "gameCallback.h"
+#include "inputManager.h"
+#include "startMenu.h"
+#include "artCreditsScreen.h"
+#include "programmingCreditsScreen.h"
+#include "fontCreditsScreen.h"
 
 namespace HillRaider
 {

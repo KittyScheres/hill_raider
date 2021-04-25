@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "entity.h"
 
 namespace HillRaider
 {
@@ -83,7 +83,6 @@ namespace HillRaider
 	bool Entity::TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity)
 	{
 		bool collide = false;
-
 		int vectorX = otherEntity->GetPosition()[0] - myHitbox->GetPosition()[0];
 		int vectorY = otherEntity->GetPosition()[1] - myHitbox->GetPosition()[1];
 		float magnatude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
@@ -98,7 +97,6 @@ namespace HillRaider
 				((myHitboxPoints[0][0] < entityHitboxPoints[0][0] && myHitboxPoints[1][0] > entityHitboxPoints[1][0]) && ((myHitboxPoints[0][1] >= entityHitboxPoints[0][1] && myHitboxPoints[0][1] <= entityHitboxPoints[2][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1]))) ||
 				((myHitboxPoints[0][1] < entityHitboxPoints[0][1] && myHitboxPoints[2][1] > entityHitboxPoints[2][1]) && ((myHitboxPoints[0][0] >= entityHitboxPoints[0][0] && myHitboxPoints[0][0] <= entityHitboxPoints[1][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])))) {
 				collide = true;
-				
 			}
 		}
 
@@ -110,34 +108,34 @@ namespace HillRaider
 	// when it is necessary.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
-		int vX = otherEntity->GetPosition()[0] - m_X;
-		int vY = otherEntity->GetPosition()[1] - m_Y;
-		float mag = sqrtf((float)(vX * vX) + (float)(vY * vY));
-		float nX = vX / mag;
-		float nY = vY / mag;
+		int vectorX = otherEntity->GetPosition()[0] - m_X;
+		int vectorY = otherEntity->GetPosition()[1] - m_Y;
+		float magnitude = sqrtf((float)(vectorX * vectorX) + (float)(vectorY * vectorY));
+		float normalizedVectorX = vectorX / magnitude;
+		float normalizedVectorY = vectorY / magnitude;
 
 		switch (m_Direction)
 		{
 		case Direction::UP:
-			if ((nX > -0.75f && nX < 0.75f) && nY < 0.f) {
+			if ((normalizedVectorX > -0.75f && normalizedVectorX < 0.75f) && normalizedVectorY < 0.f) {
 				m_Y += m_DistanceMoved;
 			}
 			break;
 
 		case Direction::RIGHT:
-			if ((nY > -0.75f && nY < 0.75f) && nX > 0.f) {
+			if ((normalizedVectorY > -0.75f && normalizedVectorY < 0.75f) && normalizedVectorX > 0.f) {
 				m_X -= m_DistanceMoved;
 			}
 			break;
 
 		case Direction::DOWN:
-			if ((nX > -0.75f && nX < 0.75f) && nY > 0.f) {
+			if ((normalizedVectorX > -0.75f && normalizedVectorX < 0.75f) && normalizedVectorY > 0.f) {
 				m_Y -= m_DistanceMoved;
 			}
 			break;
 
 		case Direction::LEFT:
-			if ((nY > -0.75f && nY < 0.75f) && nX < 0.f) {
+			if ((normalizedVectorY > -0.75f && normalizedVectorY < 0.75f) && normalizedVectorX < 0.f) {
 				m_X += m_DistanceMoved;
 			}
 			break;

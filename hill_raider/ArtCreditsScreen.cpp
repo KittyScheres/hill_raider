@@ -1,4 +1,4 @@
-#include "ArtCreditsScreen.h"
+#include "artCreditsScreen.h"
 
 namespace HillRaider
 {

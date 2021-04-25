@@ -1,7 +1,8 @@
 #pragma once
+
+#include "room.h"
+#include "enemyAnt.h"
 #include <random>
-#include "Room.h"
-#include "EnemyAnt.h"
 
 namespace HillRaider
 {

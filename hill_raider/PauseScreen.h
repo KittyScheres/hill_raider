@@ -1,8 +1,8 @@
 #pragma once
 
-#include "InputManager.h"
-#include "GameCallback.h"
-#include "Image.h"
+#include "inputManager.h"
+#include "gameCallback.h"
+#include "image.h"
 
 namespace HillRaider
 {

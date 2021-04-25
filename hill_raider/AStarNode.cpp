@@ -1,4 +1,4 @@
-#include "AStarNode.h"
+#include "aStarNode.h"
 
 namespace HillRaider
 {

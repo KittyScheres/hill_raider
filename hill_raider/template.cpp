@@ -18,7 +18,7 @@
 #include <fcntl.h>
 #include <io.h>
 #include "template.h"
-#include "FrameRateManager.h"
+#include "frameRateManager.h"
 #include <corecrt_math.h>
 #include <SDL.h>
 #include "surface.h"

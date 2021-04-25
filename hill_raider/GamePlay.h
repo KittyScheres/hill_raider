@@ -1,17 +1,17 @@
 #pragma once
 
-#include "State.h"
-#include "GameCallback.h"
-#include "GamePlayCallback.h"
-#include "Lose.h"
-#include "Win.h"
-#include "InputManager.h"
-#include "PauseScreen.h"
-#include "Ui.h"
-#include "Player.h"
-#include "Floor.h"
-#include "GameData.h"
-#include "AStar.h"
+#include "state.h"
+#include "gameCallback.h"
+#include "gamePlayCallback.h"
+#include "lose.h"
+#include "win.h"
+#include "inputManager.h"
+#include "pauseScreen.h"
+#include "ui.h"
+#include "player.h"
+#include "floor.h"
+#include "gameData.h"
+#include "aStar.h"
 #include <vector>
 
 namespace HillRaider

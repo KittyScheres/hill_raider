@@ -1,4 +1,4 @@
-#include "TileMap.h"
+#include "tileMap.h"
 
 namespace HillRaider
 {

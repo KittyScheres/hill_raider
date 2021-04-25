@@ -1,4 +1,4 @@
-#include "GamePlay.h"
+#include "gamePlay.h"
 
 namespace HillRaider
 {

@@ -1,4 +1,4 @@
-#include "StartMenu.h"
+#include "startMenu.h"
 
 namespace HillRaider 
 {

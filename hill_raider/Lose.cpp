@@ -1,4 +1,4 @@
-#include "Lose.h"
+#include "lose.h"
 
 namespace HillRaider
 {

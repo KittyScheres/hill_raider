@@ -1,4 +1,4 @@
-#include "EnemyAnt.h"
+#include "enemyAnt.h"
 
 namespace HillRaider
 {

@@ -1,4 +1,4 @@
-#include "FrameRateManager.h"
+#include "frameRateManager.h"
 
 namespace HillRaider
 {

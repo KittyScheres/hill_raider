@@ -1,4 +1,4 @@
-#include "ScoreBoard.h"
+#include "scoreBoard.h"
 
 namespace HillRaider
 {

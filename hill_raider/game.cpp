@@ -1,7 +1,7 @@
 #include "game.h"
 #include "SDL.h"
 #include "surface.h"
-#include "StartMenu.h"
+#include "startMenu.h"
 #include <random>
 #include <time.h>
 

@@ -1,4 +1,4 @@
-#include "FontCreditsScreen.h"
+#include "fontCreditsScreen.h"
 
 namespace HillRaider
 {

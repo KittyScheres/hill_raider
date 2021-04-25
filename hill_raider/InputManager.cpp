@@ -1,4 +1,4 @@
-#include "InputManager.h"
+#include "inputManager.h"
 
 #define VK_W              0x57
 #define VK_D              0x44

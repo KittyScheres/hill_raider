@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include "surface.h"
+#include <vector>
 
 namespace HillRaider
 {

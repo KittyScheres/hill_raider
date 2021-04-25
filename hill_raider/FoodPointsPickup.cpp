@@ -1,4 +1,4 @@
-#include "FoodPointsPickup.h"
+#include "foodPointsPickup.h"
 
 namespace HillRaider
 {

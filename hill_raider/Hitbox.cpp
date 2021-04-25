@@ -1,4 +1,4 @@
-#include "Hitbox.h"
+#include "hitbox.h"
 
 namespace HillRaider
 {

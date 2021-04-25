@@ -1,4 +1,4 @@
-#include "AStarGrid.h"
+#include "aStarGrid.h"
 
 namespace HillRaider
 {

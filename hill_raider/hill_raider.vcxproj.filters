@@ -8,133 +8,133 @@
     <ClCompile Include="template.cpp">
       <Filter>template code</Filter>
     </ClCompile>
-    <ClCompile Include="StartMenu.cpp">
+    <ClCompile Include="startMenu.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="image.cpp">
       <Filter>hill_raider\cpp_files\graphics_objects</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
+    <ClCompile Include="animation.cpp">
       <Filter>hill_raider\cpp_files\graphics_objects</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
+    <ClCompile Include="inputManager.cpp">
       <Filter>hill_raider\cpp_files\managers</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlay.cpp">
+    <ClCompile Include="gamePlay.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="PauseScreen.cpp">
+    <ClCompile Include="pauseScreen.cpp">
       <Filter>hill_raider\cpp_files\screens</Filter>
     </ClCompile>
-    <ClCompile Include="GameData.cpp">
+    <ClCompile Include="gameData.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="player.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Ui.cpp">
+    <ClCompile Include="ui.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
+    <ClCompile Include="tileMap.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="Floor.cpp">
+    <ClCompile Include="floor.cpp">
       <Filter>hill_raider\cpp_files\game_components</Filter>
     </ClCompile>
-    <ClCompile Include="Hitbox.cpp">
+    <ClCompile Include="hitbox.cpp">
       <Filter>hill_raider\cpp_files\game_components\physics</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="entity.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
-    <ClCompile Include="AStar.cpp">
+    <ClCompile Include="aStar.cpp">
       <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
     </ClCompile>
-    <ClCompile Include="AStarGrid.cpp">
+    <ClCompile Include="aStarGrid.cpp">
       <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
     </ClCompile>
-    <ClCompile Include="AStarNode.cpp">
+    <ClCompile Include="aStarNode.cpp">
       <Filter>hill_raider\cpp_files\game_components\algoritmes\a_star</Filter>
     </ClCompile>
-    <ClCompile Include="FrameRateManager.cpp">
+    <ClCompile Include="frameRateManager.cpp">
       <Filter>hill_raider\cpp_files\managers</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
+    <ClCompile Include="room.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="HallwayVertical1010.cpp">
+    <ClCompile Include="hallwayVertical1010.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="HallwayHorizontal0101.cpp">
+    <ClCompile Include="hallwayHorizontal0101.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="TSplit1101.cpp">
+    <ClCompile Include="tSplit1101.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyAnt.cpp">
+    <ClCompile Include="enemyAnt.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
-    <ClCompile Include="TSplit1110.cpp">
+    <ClCompile Include="tSplit1110.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="TSplit0111.cpp">
+    <ClCompile Include="tSplit0111.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="TSplit1011.cpp">
+    <ClCompile Include="tSplit1011.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="Corner1100.cpp">
+    <ClCompile Include="corner1100.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="Corner0110.cpp">
+    <ClCompile Include="corner0110.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="Corner0011.cpp">
+    <ClCompile Include="corner0011.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="Corner1001.cpp">
+    <ClCompile Include="corner1001.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="DeadEnd1000.cpp">
+    <ClCompile Include="deadEnd1000.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="DeadEnd0100.cpp">
+    <ClCompile Include="deadEnd0100.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="DeadEnd0010.cpp">
+    <ClCompile Include="deadEnd0010.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="DeadEnd0001.cpp">
+    <ClCompile Include="deadEnd0001.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="CrossRoad1111.cpp">
+    <ClCompile Include="crossRoad1111.cpp">
       <Filter>hill_raider\cpp_files\game_components\rooms</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreBoard.cpp">
+    <ClCompile Include="scoreBoard.cpp">
       <Filter>hill_raider\cpp_files\graphics_objects</Filter>
     </ClCompile>
-    <ClCompile Include="FoodPointsPickup.cpp">
+    <ClCompile Include="foodPointsPickup.cpp">
       <Filter>hill_raider\cpp_files\game_components\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Lose.cpp">
+    <ClCompile Include="lose.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="Win.cpp">
+    <ClCompile Include="win.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="Controls.cpp">
+    <ClCompile Include="controls.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="Credits.cpp">
+    <ClCompile Include="credits.cpp">
       <Filter>hill_raider\cpp_files\states</Filter>
     </ClCompile>
-    <ClCompile Include="ArtCreditsScreen.cpp">
+    <ClCompile Include="artCreditsScreen.cpp">
       <Filter>hill_raider\cpp_files\screens</Filter>
     </ClCompile>
-    <ClCompile Include="FontCreditsScreen.cpp">
+    <ClCompile Include="fontCreditsScreen.cpp">
       <Filter>hill_raider\cpp_files\screens</Filter>
     </ClCompile>
-    <ClCompile Include="ProgrammingCreditsScreen.cpp">
+    <ClCompile Include="programmingCreditsScreen.cpp">
       <Filter>hill_raider\cpp_files\screens</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,151 +146,151 @@
     <ClInclude Include="template.h">
       <Filter>template code</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
+    <ClInclude Include="state.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="StartMenu.h">
+    <ClInclude Include="startMenu.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="image.h">
       <Filter>hill_raider\header_files\graphics_objects</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
+    <ClInclude Include="animation.h">
       <Filter>hill_raider\header_files\graphics_objects</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
+    <ClInclude Include="inputManager.h">
       <Filter>hill_raider\header_files\managers</Filter>
     </ClInclude>
-    <ClInclude Include="Gameplay.h">
+    <ClInclude Include="gameplay.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="PauseScreen.h">
+    <ClInclude Include="pauseScreen.h">
       <Filter>hill_raider\header_files\screens</Filter>
     </ClInclude>
-    <ClInclude Include="GameData.h">
+    <ClInclude Include="gameData.h">
       <Filter>hill_raider\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="player.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="Ui.h">
+    <ClInclude Include="ui.h">
       <Filter>hill_raider\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="tileMap.h">
       <Filter>hill_raider\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="Floor.h">
+    <ClInclude Include="floor.h">
       <Filter>hill_raider\header_files\game_components</Filter>
     </ClInclude>
-    <ClInclude Include="Hitbox.h">
+    <ClInclude Include="hitbox.h">
       <Filter>hill_raider\header_files\game_components\physics</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="entity.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="AStar.h">
+    <ClInclude Include="aStar.h">
       <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
     </ClInclude>
-    <ClInclude Include="AStarGrid.h">
+    <ClInclude Include="aStarGrid.h">
       <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
     </ClInclude>
-    <ClInclude Include="AStarNode.h">
+    <ClInclude Include="aStarNode.h">
       <Filter>hill_raider\header_files\game_components\algoritmes\a_star</Filter>
     </ClInclude>
-    <ClInclude Include="FrameRateManager.h">
+    <ClInclude Include="frameRateManager.h">
       <Filter>hill_raider\header_files\managers</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
+    <ClInclude Include="room.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="HallwayVertical1010.h">
+    <ClInclude Include="hallwayVertical1010.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="HallwayHorizontal0101.h">
+    <ClInclude Include="hallwayHorizontal0101.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="TSplit1101.h">
+    <ClInclude Include="tSplit1101.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyAnt.h">
+    <ClInclude Include="enemyAnt.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="TSplit1110.h">
+    <ClInclude Include="tSplit1110.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="TSplit0111.h">
+    <ClInclude Include="tSplit0111.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="TSplit1011.h">
+    <ClInclude Include="tSplit1011.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="Corner1100.h">
+    <ClInclude Include="corner1100.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="Corner0110.h">
+    <ClInclude Include="corner0110.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="Corner0011.h">
+    <ClInclude Include="corner0011.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="Corner1001.h">
+    <ClInclude Include="corner1001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="DeadEnd1000.h">
+    <ClInclude Include="deadEnd1000.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="DeadEnd0100.h">
+    <ClInclude Include="deadEnd0100.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="DeadEnd0010.h">
+    <ClInclude Include="deadEnd0010.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="DeadEnd0001.h">
+    <ClInclude Include="deadEnd0001.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="CrossRoad1111.h">
+    <ClInclude Include="crossRoad1111.h">
       <Filter>hill_raider\header_files\game_components\rooms</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreBoard.h">
+    <ClInclude Include="scoreBoard.h">
       <Filter>hill_raider\header_files\graphics_objects</Filter>
     </ClInclude>
-    <ClInclude Include="FoodPointsPickup.h">
+    <ClInclude Include="foodPointsPickup.h">
       <Filter>hill_raider\header_files\game_components\entities</Filter>
     </ClInclude>
-    <ClInclude Include="Lose.h">
+    <ClInclude Include="lose.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="Win.h">
+    <ClInclude Include="win.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="Controls.h">
+    <ClInclude Include="controls.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="Credits.h">
+    <ClInclude Include="credits.h">
       <Filter>hill_raider\header_files\states</Filter>
     </ClInclude>
-    <ClInclude Include="ArtCreditsScreen.h">
+    <ClInclude Include="artCreditsScreen.h">
       <Filter>hill_raider\header_files\screens</Filter>
     </ClInclude>
-    <ClInclude Include="FontCreditsScreen.h">
+    <ClInclude Include="fontCreditsScreen.h">
       <Filter>hill_raider\header_files\screens</Filter>
     </ClInclude>
-    <ClInclude Include="ProgrammingCreditsScreen.h">
+    <ClInclude Include="programmingCreditsScreen.h">
       <Filter>hill_raider\header_files\screens</Filter>
     </ClInclude>
-    <ClInclude Include="GameCallback.h">
+    <ClInclude Include="gameCallback.h">
       <Filter>hill_raider\header_files\callbacks</Filter>
     </ClInclude>
-    <ClInclude Include="RoomCallback.h">
+    <ClInclude Include="roomCallback.h">
       <Filter>hill_raider\header_files\callbacks</Filter>
     </ClInclude>
-    <ClInclude Include="GameplayCallback.h">
+    <ClInclude Include="gameplayCallback.h">
       <Filter>hill_raider\header_files\callbacks</Filter>
     </ClInclude>
-    <ClInclude Include="Direction.h">
+    <ClInclude Include="direction.h">
       <Filter>hill_raider\header_files\enums</Filter>
     </ClInclude>
-    <ClInclude Include="KeyBinding.h">
+    <ClInclude Include="keyBinding.h">
       <Filter>hill_raider\header_files\enums</Filter>
     </ClInclude>
   </ItemGroup>

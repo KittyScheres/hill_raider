@@ -1,9 +1,9 @@
 #pragma once
 
 #include "surface.h"
-#include "Hitbox.h"
-#include "TileMap.h"
-#include "Direction.h"
+#include "hitbox.h"
+#include "tileMap.h"
+#include "direction.h"
 #include <vector>
 #include <list>
 

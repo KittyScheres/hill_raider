@@ -1,8 +1,8 @@
 #pragma once
 
+#include "surface.h"
 #include <vector>
 #include <math.h>
-#include "surface.h"
 
 namespace HillRaider
 {

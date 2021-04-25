@@ -1,10 +1,10 @@
 #pragma once
 
-#include "RoomCallback.h"
-#include "Player.h"
-#include "TileMap.h"
-#include "EnemyAnt.h"
-#include "FoodPointsPickup.h"
+#include "roomCallback.h"
+#include "player.h"
+#include "tileMap.h"
+#include "enemyAnt.h"
+#include "foodPointsPickup.h"
 #include <list>
 #include <typeinfo>
 

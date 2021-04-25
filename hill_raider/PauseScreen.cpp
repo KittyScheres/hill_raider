@@ -1,6 +1,6 @@
-#include "PauseScreen.h"
-#include "StartMenu.h"
-#include "GamePlay.h"
+#include "pauseScreen.h"
+#include "startMenu.h"
+#include "gamePlay.h"
 
 namespace HillRaider
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AStarGrid.h"
-#include "Entity.h"
-#include "TileMap.h"
+#include "aStarGrid.h"
+#include "entity.h"
+#include "tileMap.h"
 #include <list>
 #include <unordered_set>
 #include <math.h>

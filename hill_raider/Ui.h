@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Image.h"
-#include "ScoreBoard.h"
-#include "GameData.h"
+#include "image.h"
+#include "scoreBoard.h"
+#include "gameData.h"
 
 namespace HillRaider
 {
