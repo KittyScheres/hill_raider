@@ -6,8 +6,8 @@
 #include "lose.h"
 #include "win.h"
 #include "inputManager.h"
-#include "pauseScreen.h"
-#include "ui.h"
+#include "pauseOverlay.h"
+#include "uiOverlay.h"
 #include "player.h"
 #include "floor.h"
 #include "gameData.h"
@@ -25,8 +25,8 @@ namespace HillRaider
 	private:
 		GameCallback* m_GameCallback = nullptr;
 		InputManager* m_InputManager = nullptr;
-		PauseScreen* m_PauseScreen = nullptr;
-		Ui* m_Ui = nullptr;
+		PauseOverlay* m_PauseScreen = nullptr;
+		UiOverlay* m_Ui = nullptr;
 		Player* m_Player = nullptr;
 		Floor* m_Floor = nullptr;
 		bool m_GamePaused = false;

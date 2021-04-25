@@ -4,9 +4,9 @@
 #include "gameCallback.h"
 #include "inputManager.h"
 #include "startMenu.h"
-#include "artCreditsScreen.h"
-#include "programmingCreditsScreen.h"
-#include "fontCreditsScreen.h"
+#include "artCreditsOverlay.h"
+#include "programmingCreditsOverlay.h"
+#include "fontCreditsOverlay.h"
 
 namespace HillRaider
 {
@@ -20,9 +20,9 @@ namespace HillRaider
 		GameCallback* m_GameCallback = nullptr;
 		Image* m_Background = nullptr;
 		Image* m_PressEnterMessage = nullptr;
-		ArtCreditsScreen* m_ArtCredits = nullptr;
-		ProgrammingCreditsScreen* m_ProgrammingCredits = nullptr;
-		FontCreditsScreen* m_FontCredits = nullptr;
+		ArtCreditsOverlay* m_ArtCredits = nullptr;
+		ProgrammingCreditsOverlay* m_ProgrammingCredits = nullptr;
+		FontCreditsOverlay* m_FontCredits = nullptr;
 		short m_CurrentScreen = 0;
 
 	public:

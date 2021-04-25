@@ -5,10 +5,10 @@
 namespace HillRaider
 {
 	// ------------------------------------------------------------
-	// The art credits screen class is used to initialize and 
-	// keep track of the art credits screen for the game.
+	// The art credits overlay class is used to initialize and 
+	// keep track of the art credits overlay for the game.
 	// ------------------------------------------------------------
-	class ArtCreditsScreen
+	class ArtCreditsOverlay
 	{
 	private:
 		Image* m_ScreenTitle = nullptr;
@@ -20,8 +20,8 @@ namespace HillRaider
 		Image* m_HeartsAntsCredits = nullptr;
 
 	public:
-		ArtCreditsScreen();
+		ArtCreditsOverlay();
 		void Render(Tmpl8::Surface* screen);
-		~ArtCreditsScreen();
+		~ArtCreditsOverlay();
 	};
 }

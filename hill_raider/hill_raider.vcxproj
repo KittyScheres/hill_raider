@@ -224,7 +224,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
-    <ClCompile Include="artCreditsScreen.cpp" />
+    <ClCompile Include="artCreditsOverlay.cpp" />
     <ClCompile Include="aStar.cpp" />
     <ClCompile Include="aStarGrid.cpp" />
     <ClCompile Include="aStarNode.cpp" />
@@ -240,7 +240,7 @@
     <ClCompile Include="deadEnd1000.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="floor.cpp" />
-    <ClCompile Include="fontCreditsScreen.cpp" />
+    <ClCompile Include="fontCreditsOverlay.cpp" />
     <ClCompile Include="foodPointsPickup.cpp" />
     <ClCompile Include="frameRateManager.cpp" />
     <ClCompile Include="game.cpp" />
@@ -252,10 +252,10 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="lose.cpp" />
-    <ClCompile Include="pauseScreen.cpp" />
+    <ClCompile Include="pauseOverlay.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="enemyAnt.cpp" />
-    <ClCompile Include="programmingCreditsScreen.cpp" />
+    <ClCompile Include="programmingCreditsOverlay.cpp" />
     <ClCompile Include="room.cpp" />
     <ClCompile Include="crossRoad1111.cpp" />
     <ClCompile Include="scoreBoard.cpp" />
@@ -267,12 +267,12 @@
     <ClCompile Include="tSplit1011.cpp" />
     <ClCompile Include="tSplit1101.cpp" />
     <ClCompile Include="tSplit1110.cpp" />
-    <ClCompile Include="ui.cpp" />
+    <ClCompile Include="uiOverlay.cpp" />
     <ClCompile Include="win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
-    <ClInclude Include="artCreditsScreen.h" />
+    <ClInclude Include="artCreditsOverlay.h" />
     <ClInclude Include="aStar.h" />
     <ClInclude Include="aStarGrid.h" />
     <ClInclude Include="aStarNode.h" />
@@ -289,7 +289,7 @@
     <ClInclude Include="direction.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="floor.h" />
-    <ClInclude Include="fontCreditsScreen.h" />
+    <ClInclude Include="fontCreditsOverlay.h" />
     <ClInclude Include="foodPointsPickup.h" />
     <ClInclude Include="frameRateManager.h" />
     <ClInclude Include="game.h" />
@@ -303,10 +303,10 @@
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="keyBinding.h" />
     <ClInclude Include="lose.h" />
-    <ClInclude Include="pauseScreen.h" />
+    <ClInclude Include="pauseOverlay.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="enemyAnt.h" />
-    <ClInclude Include="programmingCreditsScreen.h" />
+    <ClInclude Include="programmingCreditsOverlay.h" />
     <ClInclude Include="room.h" />
     <ClInclude Include="roomCallback.h" />
     <ClInclude Include="crossRoad1111.h" />
@@ -321,7 +321,7 @@
     <ClInclude Include="tSplit1011.h" />
     <ClInclude Include="tSplit1101.h" />
     <ClInclude Include="tSplit1110.h" />
-    <ClInclude Include="ui.h" />
+    <ClInclude Include="uiOverlay.h" />
     <ClInclude Include="win.h" />
   </ItemGroup>
   <ItemGroup>

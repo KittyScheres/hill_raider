@@ -9,11 +9,11 @@ namespace HillRaider
 	Gameplay::Gameplay(GameCallback* callback)
 	{
 		m_GameCallback = callback;
-		m_PauseScreen = new PauseScreen(m_GameCallback);
+		m_PauseScreen = new PauseOverlay(m_GameCallback);
 		m_Player = new Player((64 * 7) + 32, (64 * 4) + 32);
 		m_Player->SetGamePlayCallback(this);
 		m_Floor = new Floor();
-		m_Ui = new Ui();
+		m_Ui = new UiOverlay();
 	}
 
 	// --------------------------------------------------

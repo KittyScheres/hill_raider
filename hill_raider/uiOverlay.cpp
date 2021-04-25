@@ -1,12 +1,12 @@
-#include "ui.h"
+#include "uiOverlay.h"
 
 namespace HillRaider
 {
 	// --------------------------------------------------
 	// This constructor is used to initialize the components
-	// for the ui.
+	// for the ui overlay.
 	// --------------------------------------------------
-	Ui::Ui()
+	UiOverlay::UiOverlay()
 	{
 		// Set up health bar
 		m_HealingIcon = new Image("assets/ui/healing_icon.png", 0, 0);
@@ -32,7 +32,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	// This method is used to draw the UI onto the screen.
 	// --------------------------------------------------
-	void Ui::Render(Tmpl8::Surface* screen)
+	void UiOverlay::Render(Tmpl8::Surface* screen)
 	{
 		ShowHealingIcon(screen);
 
@@ -46,9 +46,9 @@ namespace HillRaider
 	
 	// --------------------------------------------------
 	// This destructor is used to safely free the memory for
-	// the components of the UI.
+	// the components of the UI overlay.
 	// --------------------------------------------------
-	Ui::~Ui()
+	UiOverlay::~UiOverlay()
 	{
 		if (m_HealingIcon != nullptr) {
 			delete m_HealingIcon;
@@ -77,7 +77,7 @@ namespace HillRaider
 	// This method is used to generate a points string which
 	// will be displayed to the player.
 	// --------------------------------------------------
-	std::string Ui::GetPointsString() {
+	std::string UiOverlay::GetPointsString() {
 		std::string pointsString;
 		std::string playerPoints = std::to_string(GameData::GetInstance()->m_PlayerPoints);
 		
@@ -98,7 +98,7 @@ namespace HillRaider
 	// This method is used to check if the healing icon 
 	// needs to be displayed.
 	// --------------------------------------------------
-	void Ui::ShowHealingIcon(Tmpl8::Surface* screen)
+	void UiOverlay::ShowHealingIcon(Tmpl8::Surface* screen)
 	{
 		GameData* gameDataInstance = GameData::GetInstance();
 		if (gameDataInstance->m_PlayerHealth < gameDataInstance->c_s_MaxHealth && gameDataInstance->m_PlayerPoints >= gameDataInstance->c_s_PointsForHealth) {

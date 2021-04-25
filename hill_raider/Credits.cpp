@@ -12,9 +12,9 @@ namespace HillRaider
 		
 		m_Background = new Image("assets/ui/background.png", 0, 0);
 		m_PressEnterMessage = new Image("assets/text/press_enter_to_continue.png", 64 * 11, 64 * 8);
-		m_ArtCredits = new ArtCreditsScreen();
-		m_ProgrammingCredits = new ProgrammingCreditsScreen();
-		m_FontCredits = new FontCreditsScreen();
+		m_ArtCredits = new ArtCreditsOverlay();
+		m_ProgrammingCredits = new ProgrammingCreditsOverlay();
+		m_FontCredits = new FontCreditsOverlay();
 	}
 	
 	// ------------------------------------------------------------

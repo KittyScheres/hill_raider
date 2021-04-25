@@ -1,12 +1,12 @@
-#include "fontCreditsScreen.h"
+#include "fontCreditsOverlay.h"
 
 namespace HillRaider
 {
 	// ------------------------------------------------------------
 	// This contructor is used to initialize the components for
-	// the font credits screen.
+	// the font credits overlay.
 	// ------------------------------------------------------------
-	FontCreditsScreen::FontCreditsScreen()
+	FontCreditsOverlay::FontCreditsOverlay()
 	{
 		m_ScreenTitle = new Image("assets/text/titels/font_credits_title.png", 0, 0);
 		m_ScreenTitle->SetPosition(480 - (m_ScreenTitle->GetWidth() / 2), 32);
@@ -18,7 +18,7 @@ namespace HillRaider
 	// ------------------------------------------------------------
 	// This method is used to draw the components onto the screen.
 	// ------------------------------------------------------------
-	void FontCreditsScreen::Render(Tmpl8::Surface* screen)
+	void FontCreditsOverlay::Render(Tmpl8::Surface* screen)
 	{
 		m_ScreenTitle->DrawImage(screen);
 		m_FontCredits->DrawImage(screen);
@@ -26,9 +26,9 @@ namespace HillRaider
 
 	// ------------------------------------------------------------
 	// This destructor is used to safely free the memory for the
-	// components of the font credits screen.
+	// components of the font credits overlay.
 	// ------------------------------------------------------------
-	FontCreditsScreen::~FontCreditsScreen()
+	FontCreditsOverlay::~FontCreditsOverlay()
 	{
 		if (m_ScreenTitle != nullptr) {
 			delete m_ScreenTitle;
