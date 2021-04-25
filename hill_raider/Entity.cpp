@@ -105,7 +105,7 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to stop the movement of an entity
-	// when necessary.
+	// when it collides with another entity.
 	// --------------------------------------------------
 	void Entity::ApplyEntityCollision(Entity* otherEntity) {
 		// Get a vector arrow from this entity to the other entity
