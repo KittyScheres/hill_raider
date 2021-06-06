@@ -8,6 +8,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	Floor::Floor()
 	{
+		// set all of the indexes in the floormap to nullptr to prevent exceptions when de allocating all of the rooms in the lists.
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 9; x++) {
 				m_FloorMap[x][y] = nullptr;

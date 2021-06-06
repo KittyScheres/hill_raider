@@ -117,6 +117,7 @@ namespace HillRaider
 	{
 		m_TileMap->Render(screen);
 
+		// show door blockade while the room has not been cleared
 		if (!RoomCleared()) {
 			for (std::vector<int> position : m_DoorBlockadePositionList) {
 				m_DoorBlockade->SetCurrentXFrame(position[0]);

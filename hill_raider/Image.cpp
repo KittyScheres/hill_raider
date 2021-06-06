@@ -24,19 +24,35 @@ namespace HillRaider
 	{
 		int screenWidth = screen->GetWidth();
 
-		for (int iY = 0; iY < m_Height; iY++) {
-			int screenYPos = m_Y + iY;
+		for (int y = 0; y < m_Height; y++) {
+			int screenYPos = m_Y + y;
 			if (screenYPos >= 0 && screenYPos <= screen->GetHeight()) {
-				for (int iX = 0; iX < m_Width; iX++) {
-					int screenXpos = m_X + iX;
+				for (int x = 0; x < m_Width; x++) {
+					int screenXpos = m_X + x;
 					if (screenXpos >= 0 && screenXpos <= screenWidth) {
-						if ((m_Source->GetBuffer()[(iX + (m_CurrentXFrame * m_Width)) + ((iY + (m_CurrentYFrame * m_Height)) * m_Source->GetWidth())] >> 24) != 0) {
-							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = m_Source->GetBuffer()[(iX + (m_CurrentXFrame * m_Width)) + ((iY + (m_CurrentYFrame * m_Height)) * m_Source->GetWidth())];
+						if (GetOpacityValueFromPixelInSourceImage(x, y) != 0) {
+							screen->GetBuffer()[screenXpos + (screenYPos * screenWidth)] = GetColourValueFromPixelInSourceImage(x, y);
 						}
 					}
 				}
 			}
 		}
+	}
+
+	// --------------------------------------------------
+	// This method is used to get the opacity value of a
+	// pixel in the source image.
+	// --------------------------------------------------
+	int Image::GetOpacityValueFromPixelInSourceImage(int xPosition, int yPosition) {
+		return GetColourValueFromPixelInSourceImage(xPosition, yPosition) >> 24;
+	}
+
+	// --------------------------------------------------
+	// This method is used to get the colour value of a
+	// pixel in the source image.
+	// --------------------------------------------------
+	int Image::GetColourValueFromPixelInSourceImage(int xPosition, int yPosition) {
+		return m_Source->GetBuffer()[(xPosition + (m_CurrentXFrame * m_Width)) + ((yPosition + (m_CurrentYFrame * m_Height)) * m_Source->GetWidth())];
 	}
 
 	// --------------------------------------------------

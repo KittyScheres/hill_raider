@@ -24,6 +24,8 @@ namespace HillRaider
 	public:
 		Image(char* sourcePath, int x, int y, short xFrames = 1, short yFrames = 1);
 		void DrawImage(Tmpl8::Surface* screen);
+		int GetOpacityValueFromPixelInSourceImage(int xPosition, int yPosition);
+		int GetColourValueFromPixelInSourceImage(int xPosition, int yPosition);
 		void SetPosition(int x, int y);
 		void SetCurrentXFrame(int currentXFrame);
 		void SetCurrentYFrame(int currentYFrame);

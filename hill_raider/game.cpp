@@ -1,7 +1,7 @@
 #include "game.h"
-#include "SDL.h"
 #include "surface.h"
 #include "startMenu.h"
+#include <SDL.h>
 #include <random>
 #include <time.h>
 
@@ -48,7 +48,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		// Is the delta time to high?
+		// skip the frame if to much time has passed
 		if (deltaTime < 100.f) {
 			m_Screen->Clear(0);
 			m_InputManager->UpdateKeysState();

@@ -117,7 +117,7 @@ namespace HillRaider
 		float normalizedVectorX = vectorX / magnitude;
 		float normalizedVectorY = vectorY / magnitude;
 
-		// Remove the moved distance from the current position where necessary 
+		// Remove the moved distance from the current position when necessary 
 		switch (m_Direction)
 		{
 		case Direction::UP:

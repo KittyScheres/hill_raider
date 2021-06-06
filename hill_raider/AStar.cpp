@@ -62,24 +62,24 @@ namespace HillRaider
 	// enemy AI. This method has been created with the help
 	// of a tutorial.
 	// --------------------------------------------------
-	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> startPosition, std::vector<int> comparePosition, bool bypassCheck)
+	std::vector<AStarNode*> AStar::FindPath(Entity* pathFindingEntity, std::vector<int> enityBottomPosition, std::vector<int> entityTopPosition, bool bypassCheck)
 	{
 		std::vector<AStarNode*> path;
 
 		// Setup relevant nodes
-		AStarNode* startNode = m_NodeMap->GetNodeFromGrid(startPosition[0], startPosition[1]);
-		AStarNode* compareNode = m_NodeMap->GetNodeFromGrid(comparePosition[0], comparePosition[1]);
+		AStarNode* entityBottomNode = m_NodeMap->GetNodeFromGrid(enityBottomPosition[0], enityBottomPosition[1]);
+		AStarNode* entityTopNode = m_NodeMap->GetNodeFromGrid(entityTopPosition[0], entityTopPosition[1]);
 		AStarNode* endNode = m_NodeMap->GetNodeFromGrid(m_EndGoal->GetPosition()[0], m_EndGoal->GetPosition()[1]);
 
 		std::list<AStarNode*> openSet;
 		std::unordered_set<AStarNode*> closedSet;
-		openSet.push_back(startNode);
+		openSet.push_back(entityBottomNode);
 
 		// Check if a* algorithm needs to be ran
-		if ((startNode == compareNode) || bypassCheck) {
+		if ((entityBottomNode == entityTopNode) || bypassCheck) {
 			// Take other entities into acount
 			SetNonWalkableEntityNodes(pathFindingEntity);
-			startNode->SetWalkable(true);
+			entityBottomNode->SetWalkable(true);
 			endNode->SetWalkable(true);
 
 			while (openSet.size() > 0) {
@@ -97,7 +97,7 @@ namespace HillRaider
 
 				// Check if endNode has been reached
 				if (currentNode == endNode) {
-					path = RetracePath(startNode, endNode);
+					path = RetracePath(entityBottomNode, endNode);
 					break;
 				}
 
