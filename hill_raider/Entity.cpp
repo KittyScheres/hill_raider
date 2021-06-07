@@ -93,14 +93,30 @@ namespace HillRaider
 			std::vector<std::vector<int>> entityHitboxPoints = otherEntity->GetHitbox()->GetBoxPoints();
 
 			// Check for box collision
-			if (((myHitboxPoints[0][0] <= entityHitboxPoints[1][0] && myHitboxPoints[0][0] >= entityHitboxPoints[0][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])) && ((myHitboxPoints[0][1] <= entityHitboxPoints[2][1] && myHitboxPoints[0][1] >= entityHitboxPoints[0][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1])) ||
-				((myHitboxPoints[0][0] < entityHitboxPoints[0][0] && myHitboxPoints[1][0] > entityHitboxPoints[1][0]) && ((myHitboxPoints[0][1] >= entityHitboxPoints[0][1] && myHitboxPoints[0][1] <= entityHitboxPoints[2][1]) || (myHitboxPoints[2][1] >= entityHitboxPoints[0][1] && myHitboxPoints[2][1] <= entityHitboxPoints[2][1]))) ||
-				((myHitboxPoints[0][1] < entityHitboxPoints[0][1] && myHitboxPoints[2][1] > entityHitboxPoints[2][1]) && ((myHitboxPoints[0][0] >= entityHitboxPoints[0][0] && myHitboxPoints[0][0] <= entityHitboxPoints[1][0]) || (myHitboxPoints[1][0] >= entityHitboxPoints[0][0] && myHitboxPoints[1][0] <= entityHitboxPoints[1][0])))) {
-				collide = true;
-			}
+			collide = IsEntityCollidingWithCollisionBox(myHitboxPoints, entityHitboxPoints) || IsEntityCollidingWithCollisionBox(entityHitboxPoints, myHitboxPoints);
 		}
 
 		return collide;
+	}
+
+	// --------------------------------------------------
+	// This method is used to check if one or more coreners
+	// of a hitbox are positioned within the boundries
+	// of a box.
+	// --------------------------------------------------
+	bool Entity::IsEntityCollidingWithCollisionBox(std::vector<std::vector<int>> entityCollisonBoxCorners, std::vector<std::vector<int>> otherCollisionBoxCorners) {
+		bool result = false;
+		for (std::vector<int> cornerPosition : entityCollisonBoxCorners)
+			result = IsCornerInsideOfTheBox(cornerPosition, otherCollisionBoxCorners) || result;
+		return result;
+	}
+
+	// --------------------------------------------------
+	// This method is used to check if a position is within
+	// the boundries of a box.
+	// --------------------------------------------------
+	bool Entity::IsCornerInsideOfTheBox(std::vector<int> cornerPosition, std::vector<std::vector<int>> collisionBoxCorners) {
+		return ((cornerPosition[0] >= collisionBoxCorners[0][0] && cornerPosition[0] <= collisionBoxCorners[1][0]) && (cornerPosition[1] >= collisionBoxCorners[0][1] && cornerPosition[1] <= collisionBoxCorners[2][1]));
 	}
 
 	// --------------------------------------------------

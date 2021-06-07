@@ -41,6 +41,8 @@ namespace HillRaider
 	protected:
 		Entity(int x, int y, int width, int height);
 		bool TestBoxCollision(Hitbox* myHitbox, Entity* otherEntity);
+		bool IsEntityCollidingWithCollisionBox(std::vector<std::vector<int>> entityCollisonBoxCorners, std::vector<std::vector<int>> otherCollisionBoxCorners);
+		bool IsCornerInsideOfTheBox(std::vector<int> cornerPosition, std::vector<std::vector<int>> collisionBoxCorners);
 		void ApplyEntityCollision(Entity* otherEntity);
 		void CheckTileMapCollision(short& _hitboxPoint, char& _collisionChar, TileMap* tileMap);
 		void ApplyVerticalTileMapCollision(int hitboxPointIndex, int hitboxPointYPos);
