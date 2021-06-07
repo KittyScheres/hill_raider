@@ -12,9 +12,12 @@ namespace HillRaider
 	class InputManager
 	{
 	private:
+		const unsigned short c_VALUE_MASK = 1;
+
+	private:
 		static InputManager* s_Instance;
-		bool m_CurrentKeysState[8] { false, false, false, false, false, false, false, false };
-		bool m_PreviousKeyState[8] { false, false, false, false, false, false, false, false };
+		unsigned short m_CurrentKeysState = 0;
+		unsigned short m_PreviousKeyState = 0;
 
 	public:
 		static InputManager* GetInstance();

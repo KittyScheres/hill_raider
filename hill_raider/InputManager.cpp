@@ -1,10 +1,10 @@
 #include "inputManager.h"
 
-#define VK_W              0x57
-#define VK_D              0x44
-#define VK_S              0x53
-#define VK_A              0x41
-#define VK_E			  0x45
+#define VK_W 0x57 // w key
+#define VK_D 0x44 // d key
+#define VK_S 0x53 // s key
+#define VK_A 0x41 // a key
+#define VK_E 0x45 // e key
 
 namespace HillRaider
 {
@@ -37,24 +37,22 @@ namespace HillRaider
 
 	// --------------------------------------------------
 	// This method is used to update the previous key state
-	// and the current key state lists for the input manager.
+	// and the current key state for the input manager.
 	// --------------------------------------------------
 	void InputManager::UpdateKeysState()
 	{
 		// Update the previous key state
-		for (int i = 0; i < (sizeof(m_PreviousKeyState) / sizeof(bool)); i++) {
-			m_PreviousKeyState[i] = m_CurrentKeysState[i];
-		}
+		m_PreviousKeyState = m_CurrentKeysState;
 
 		// Update the current key state
-		m_CurrentKeysState[(int)KeyBinding::ENTER] = GetAsyncKeyState(VK_RETURN);
-		m_CurrentKeysState[(int)KeyBinding::ESCAPE] = GetAsyncKeyState(VK_ESCAPE);
-		m_CurrentKeysState[(int)KeyBinding::UP] = (GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
-		m_CurrentKeysState[(int)KeyBinding::RIGHT] = (GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
-		m_CurrentKeysState[(int)KeyBinding::DOWN] = (GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
-		m_CurrentKeysState[(int)KeyBinding::LEFT] = (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
-		m_CurrentKeysState[(int)KeyBinding::SPACE] = GetAsyncKeyState(VK_SPACE);
-		m_CurrentKeysState[(int)KeyBinding::E] = GetAsyncKeyState(VK_E);
+		m_CurrentKeysState = GetAsyncKeyState(VK_E);
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + GetAsyncKeyState(VK_SPACE);
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + (unsigned short)(GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState(VK_A));
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + (unsigned short)(GetAsyncKeyState(VK_DOWN) || GetAsyncKeyState(VK_S));
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + (unsigned short)(GetAsyncKeyState(VK_RIGHT) || GetAsyncKeyState(VK_D));
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + (unsigned short)(GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_W));
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + GetAsyncKeyState(VK_ESCAPE);
+		m_CurrentKeysState = (m_CurrentKeysState << 1) + GetAsyncKeyState(VK_RETURN);
 	}
 
 	// --------------------------------------------------
@@ -63,7 +61,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyDown(KeyBinding key)
 	{
-		return m_CurrentKeysState[(int)key];
+		return (bool)((m_CurrentKeysState >> (unsigned short)key) & c_VALUE_MASK);
 	}
 	
 	// --------------------------------------------------
@@ -72,7 +70,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyUp(KeyBinding key)
 	{
-		return !m_CurrentKeysState[(int)key];
+		return !(bool)((m_CurrentKeysState >> (unsigned short)key) & c_VALUE_MASK);
 	}
 	
 	// --------------------------------------------------
@@ -81,7 +79,7 @@ namespace HillRaider
 	// --------------------------------------------------
 	bool InputManager::KeyPressed(KeyBinding key)
 	{
-		return !m_PreviousKeyState[(int)key] && m_CurrentKeysState[(int)key];
+		return !(bool)((m_PreviousKeyState >> (unsigned short)key) & c_VALUE_MASK) && (bool)((m_CurrentKeysState >> (unsigned short)key) & c_VALUE_MASK);
 	}
 
 	// --------------------------------------------------
@@ -89,6 +87,6 @@ namespace HillRaider
 	// been let go of.
 	// --------------------------------------------------
 	bool InputManager::KeyLetGo(KeyBinding key) {
-		return m_PreviousKeyState[(int)key] && !m_CurrentKeysState[(int)key];
+		return (bool)((m_PreviousKeyState >> (unsigned short)key) & c_VALUE_MASK) && !(bool)((m_CurrentKeysState >> (unsigned short)key) & c_VALUE_MASK);
 	}
 }
