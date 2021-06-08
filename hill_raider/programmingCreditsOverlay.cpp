@@ -12,10 +12,10 @@ namespace HillRaider
 		m_Screentitle->SetPosition(480 - (m_Screentitle->GetWidth() / 2), 32);
 
 		m_CppFastTrackCredits = new Image("assets/text/credits/template_credits.png", 0, 0);
-		m_CppFastTrackCredits->SetPosition(240 - (m_CppFastTrackCredits->GetWidth() / 2), 64 + 32);
+		m_CppFastTrackCredits->SetPosition(250 - (m_CppFastTrackCredits->GetWidth() / 2), 64 + 32);
 
 		m_AStarCredits = new Image("assets/text/credits/a_star_credits.png", 0, 0);
-		m_AStarCredits->SetPosition(240 - (m_AStarCredits->GetWidth() / 2), 64 * 6);
+		m_AStarCredits->SetPosition(250 - (m_AStarCredits->GetWidth() / 2), 64 * 6);
 
 		m_SdlCredits = new Image("assets/text/credits/sdl2_credits.png", 0, 0);
 		m_SdlCredits->SetPosition(720 - (m_SdlCredits->GetWidth() / 2), 64 + 32);
